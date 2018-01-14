@@ -37,6 +37,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
         * Retorna uma data formatada no padrão "dd.MM.yyyy"
         */
         formataData: function (value) {
+            debugger;
             if (value) {
                 var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({ pattern: "dd.MM.yyyy" });
                 var oFormattedDate = oDateFormat.format(new Date(value), true);
