@@ -1,0 +1,61 @@
+<core:View
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="tradelog.domain.carteira.Carteira"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
+    >
+    <Page id="idDetalhe"  class="sapUiStdPage MasterButton" navButtonPress="onPressBack" showNavButton="{device>/isPhone}" title= "{i18n>carteira.tituloDetalhe}">
+        <headerContent>
+			<Image class="imagemCabecalho" src="content/images/marca.png" />
+			<Image class="logoCabecalho"   src="content/images/logo.png" />
+		</headerContent>
+
+        <content>
+            <ObjectHeader id="oh1"
+                            title= "{NomeCarteira}"
+                            number="{path:'ValorAtual', formatter:'.formatter.formataValor'}"
+						numberUnit="$"
+                        backgroundDesign="Translucent">
+            </ObjectHeader>
+
+            <IconTabBar id="idIconTabBar" expandable="false" select="onTabBarSelected">
+                <items>
+                    <IconTabFilter id="iconTabDadosGerais" class="tamanhoMinimo" key="DadosGerais"
+                        text="{i18n>generico.tabDadosGerais}"
+                        icon="sap-icon://hint"
+                        >
+                        <content>
+                            <mvc:XMLView viewName="tradelog.domain.carteira.fragments.EditaDadosGerais" id="panelDadosGerais"
+                                app:nomePainel="EditaDadosGerais" app:domainAtual="carteira" app:entidade="{viewModel>/bindPath}" app:paramEntidade="carteira" ></mvc:XMLView>
+                        </content>
+                    </IconTabFilter>
+
+                    <IconTabFilter id="iconTabPosicao" class="tamanhoMinimo" key="Posicao"
+                        text="{i18n>carteira.tabPosicao}"
+                        icon="sap-icon://form"
+                        >
+                        <content>
+                            <mvc:XMLView viewName="tradelog.domain.carteira.VisualizaCarteira"
+                                app:domainAtual="carteira"  app:entidade="{viewModel>/bindPath}/Posicao"></mvc:XMLView>
+                        </content>
+                    </IconTabFilter>
+
+                    <IconTabFilter id="iconTabMovimento" class="tamanhoMinimo" key="Movimento"
+                        text="{i18n>carteira.tabMovimento}"
+                        icon="sap-icon://decision"
+                        >
+                        <content>
+                            <!--<mvc:XMLView viewName="tradelog.domain.modeloObrigacao.components.ListaModeloObrigacao"
+                                        id="viewModeloObrigacao" app:area="{IdArea}" app:bindPath="{viewModel>/bindPath}" app:IdContrato="{IdContrato}" ></mvc:XMLView>
+                                        -->
+                        </content>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+
+
+        </content>
+
+    </Page>
+</core:View>

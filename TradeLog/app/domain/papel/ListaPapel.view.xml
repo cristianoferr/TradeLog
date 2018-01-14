@@ -1,0 +1,16 @@
+<core:View
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="tradelog.domain.papel.ListaPapel"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
+    >
+    <Page showHeader="true" enableScrolling="true">
+        <headerContent>
+			<Image class="imagemCabecalho" src="content/images/marca.png" />
+			<Image class="logoCabecalho"   src="content/images/logo.png" />
+		</headerContent>
+
+
+    </Page>
+</core:View>

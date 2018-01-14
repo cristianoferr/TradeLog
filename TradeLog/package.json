@@ -1,0 +1,22 @@
+{
+    "name": "tradelog",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
+        "serve": "lite-server -c=bs-config.json",
+        "build": "tsc -p tsconfig.json",
+        "build:watch": "tsc -p tsconfig.json -w",
+        "lint": "tslint ./app/**/*.ts -t verbose"
+    },
+    "dependencies": {
+        "requirejs": "^2.3.5",
+        "ui5ts": "0.3.0"
+    },
+    "devDependencies": {
+        "@types/jquery": "^2.0.47",
+        "concurrently": "^3.2.0",
+        "lite-server": "^2.3.0",
+        "typescript": "^2.5.2",
+        "tslint": "^3.15.1"
+    }
+}

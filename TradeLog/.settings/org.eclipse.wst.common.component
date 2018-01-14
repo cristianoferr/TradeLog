@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="obrigacoescontratuais">
+        <wb-resource deploy-path="/" source-path="/app" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/app"/>
+        <property name="context-root" value="obrigacoescontratuais"/>
+        <property name="java-output-path" value="/obrigacoescontratuais/build/classes"/>
+    </wb-module>
+</project-modules>

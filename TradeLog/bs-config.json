@@ -1,0 +1,13 @@
+{
+    "files": [
+        "*.j"
+    ],
+    "port": 8000,
+    "server": {
+        "baseDir": "app/",
+        "routes": {
+            "/node_modules": "node_modules",
+            "/resources": "resources"
+        }
+    }
+}

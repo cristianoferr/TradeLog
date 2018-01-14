@@ -1,0 +1,22 @@
+{
+    "Tiles": [
+        {
+            "Navegacao": "FRONT",
+            "Icone": "sap-icon://key-user-settings",
+            "Descricao": "Carteira",
+            "Rota": "carteiras"
+        },
+        {
+            "Navegacao": "FRONT",
+            "Icone": "sap-icon://add-activity-2",
+            "Descricao": "Ações",
+            "Rota": "acoes"
+        },
+        {
+            "Navegacao": "FRONT",
+            "Icone": "sap-icon://add-activity-2",
+            "Descricao": "Configuração",
+            "Rota": "config"
+        }
+    ]
+}

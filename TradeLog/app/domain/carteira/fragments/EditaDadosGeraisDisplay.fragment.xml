@@ -1,0 +1,79 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:Form
+			editable="false">
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="{i18n>generico.tabDadosGerais}">
+					<f:formElements>
+
+                        <f:FormElement label="{i18n>carteira.nomeCarteira}">
+							<f:fields>
+								<Text text="{NomeCarteira}" />
+							</f:fields>
+                        </f:FormElement>
+
+
+
+                        <f:FormElement label="{i18n>carteira.custoOperacao}">
+							<f:fields>
+								<Text text="{path:'CustoOperacaoPadrao', formatter:'.formatter.formataValor'}" />
+							</f:fields>
+                        </f:FormElement>
+
+                         <f:FormElement label="{i18n>carteira.valorLiquido}">
+							<f:fields>
+								<Text text="{path:'ValorLiquido', formatter:'.formatter.formataValor'}" />
+							</f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>carteira.valorAtual}">
+							<f:fields>
+								<Text text="{path:'ValorAtual', formatter:'.formatter.formataValor'}" />
+							</f:fields>
+                        </f:FormElement>
+
+
+					</f:formElements>
+				</f:FormContainer>
+
+                <f:FormContainer title="{i18n>carteira.tabRisco}">
+					<f:formElements>
+                        <f:FormElement label="{i18n>carteira.riscoPorPosicao}">
+							<f:fields>
+								<Text text="{path:'RiscoPorPosicao', formatter:'.formatter.formataValor'}" />
+							</f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>carteira.riscoPorCarteira}">
+							<f:fields>
+								<Text text="{path:'RiscoPorCarteira', formatter:'.formatter.formataValor'}" />
+							</f:fields>
+                        </f:FormElement>
+
+                    </f:formElements>
+				</f:FormContainer>
+
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

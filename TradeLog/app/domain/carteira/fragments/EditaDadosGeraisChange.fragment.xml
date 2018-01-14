@@ -1,0 +1,75 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:Form id="FormChange354wideDual"
+			editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="3"
+					labelSpanL="2"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="3"
+					emptySpanL="2"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer  title="{i18n>generico.tabDadosGerais}">
+					<f:formElements>
+                         <f:FormElement label="{i18n>carteira.nomeCarteira}">
+							<f:fields>
+								<Input value="{NomeCarteira}" />
+							</f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>carteira.custoOperacao}">
+							<f:fields>
+								<Input value="{CustoOperacaoPadrao}" />
+							</f:fields>
+                        </f:FormElement>
+
+                         <f:FormElement label="{i18n>carteira.valorLiquido}">
+							<f:fields>
+								<Input value="{ValorLiquido}" />
+							</f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>carteira.valorAtual}">
+							<f:fields>
+								<Input value="{ValorAtual}" />
+							</f:fields>
+                        </f:FormElement>
+
+
+                        </f:formElements>
+				</f:FormContainer>
+
+                <f:FormContainer title="{i18n>carteira.tabRisco}">
+					<f:formElements>
+                        <f:FormElement label="{i18n>carteira.riscoPorPosicao}">
+							<f:fields>
+								<Input value="{RiscoPorPosicao}" />
+							</f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>carteira.riscoPorCarteira}">
+							<f:fields>
+								<Input value="{RiscoPorCarteira}" />
+							</f:fields>
+                        </f:FormElement>
+
+                    </f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

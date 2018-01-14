@@ -1,0 +1,12 @@
+
+
+Pegar o dado: /api/{Dado}/get/{id}
+
+Carteira:
+/api/Carteira/get/{id} = /api/Carteira/{id} < retorna os dados da carteira atual = /odata/Carteira?id=1
+/api/Carteira = retorna todas as carteiras do usuário atual  = /odata/Carteira
+
+Posicao:
+Listar as posições da carteira: /api/Posicao/Carteira/{idCarteira} = /odata/Posicao?idCarteira=1
+/api/Posicao/get/{IdPosicao} = /odata/Posicao?id=1
+

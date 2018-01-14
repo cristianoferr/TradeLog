@@ -1,0 +1,39 @@
+<core:View
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="tradelog.domain.carteira.ListaCarteira"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
+    >
+    <Page id="masterPage" title="{i18n>carteira.titulo}"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		class="sapUiStdPage">
+        	<!-- Campo de Busca -->
+		<subHeader>
+			<Toolbar>
+				<SearchField liveChange="onLiveSearch" search="onRefresh" width="100%" showRefreshButton="true" placeholder="{i18n>buscaPlaceholder}" />
+			</Toolbar>
+
+		</subHeader>
+		<!-- Fim do banco de busca -->
+		<content>
+            <List id="listCarteira" items="{/Carteira}" growing="true" growingScrollToLoad="true" growingThreshold="50" selectionChange="onSelectCarteira"  mode="SingleSelectMaster">
+				<items>
+					<ObjectListItem app:idRegistro="{IdCarteira}" title="{NomeCarteira}"
+                    	number="$ {path:'ValorAtual', formatter:'.formatter.formataValor'}"
+						numberUnit=""
+                    showMarkers="true" iconDensityAware="false">
+                    </ObjectListItem>
+				</items>
+			</List>
+		</content>
+
+        <!-- Fim da Listagem mestre -->
+		<footer>
+			<OverflowToolbar>
+                <Button activeIcon="sap-icon://add" icon="sap-icon://add" id="buttonAdiciona" press="onAdicionaCarteira" text="{i18n>carteira.adicionaCarteira}"  />
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</core:View>

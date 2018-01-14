@@ -1,0 +1,20 @@
+<mvc:View
+    controllerName="tradelog.shared.PainelEditavel"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    >
+    <Bar>
+        <contentLeft>
+            <Button id="EditaDadosGeraisEdit" icon="sap-icon://edit" text="Editar" type="Emphasized"  />
+            <Button id="EditaDadosGeraisSave" icon="sap-icon://save" text="Salvar" type="Emphasized" visible="false"  />
+            <Button id="EditaDadosGeraisCancel" icon="sap-icon://cancel"  text="Cancelar" type="Reject" visible="false"  />
+        </contentLeft>
+    </Bar>
+    <Panel id="EditaDadosGerais">
+    </Panel>
+
+</mvc:View>

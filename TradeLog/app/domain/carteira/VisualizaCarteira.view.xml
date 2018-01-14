@@ -1,0 +1,43 @@
+<mvc:View
+    controllerName="tradelog.domain.carteira.VisualizaCarteira"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    >
+
+    <Table id="tablePosicao" items="{Posicao}" growing="false">
+        <columns>
+            <Column ><Text text="{i18n>posicao.dataEntrada}"   /></Column>
+            <Column ><Text text="{i18n>posicao.precoEntrada}"   /></Column>
+            <Column ><Text text="{i18n>posicao.precoAtual}"   /></Column>
+            <Column ><Text text="{i18n>posicao.quantidade}"   /></Column>
+            <Column ><Text text="{i18n>posicao.valorStop}"   /></Column>
+            <Column ><Text text="{i18n>posicao.valorAtual}"   /></Column>
+            <Column ><Text text="{i18n>posicao.percDif}"   /></Column>
+            <Column ><Text text="{i18n>posicao.valorDif}"   /></Column>
+
+            <Column ><Text text="{i18n>posicao.diasPosicao}"   /></Column>
+
+        </columns>
+        <items>
+        <ColumnListItem type="Navigation" press="onClickPosicao" app:IdPosicao="{IdPosicao}">
+                <cells>
+                    <Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />
+                    <Text text="{path:'PrecoEntrada', formatter:'.formatter.formataValor'}" />
+                    <Text text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}" />
+                    <Text text="{Quantidade}" />
+                    <Text text="{path:'PrecoStop', formatter:'.formatter.formataValor'}" />
+                    <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPrecoAtual'}" />
+                    <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoPercDif'}" />
+                    <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoValorDif'}" />
+                    <Text text="{path:'DataEntrada', formatter:'.formatter.calcDifDays'}" />
+
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+
+</mvc:View>

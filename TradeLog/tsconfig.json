@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "amd",
+        "experimentalDecorators": true,
+        "strict": true,
+        "alwaysStrict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "sourceMap": true,
+        "baseUrl": "./",
+        "paths": {
+            "configHelper": ["./app/shared/configHelper"],
+            "obrigacoescontratuais/*": [ "./app/*" ],
+            "sap/*": [ "./node_modules/ui5ts/exports/sap/*" ]
+        }
+    },
+    "files": [
+        "node_modules/ui5ts/ui5ts.d.ts",
+        "node_modules/ui5ts/ui5-types/1.46/sap.d.ts",
+        "node_modules/ui5ts/ui5-types/1.46/jQuery.d.ts"
+    ],
+    "include": [
+        "app/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "resources"
+    ]
+}

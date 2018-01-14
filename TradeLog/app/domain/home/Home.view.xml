@@ -1,0 +1,30 @@
+<core:View
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="tradelog.domain.home.Home"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
+    >
+    <Page showHeader="false" enableScrolling="false">
+        <headerContent>
+			<Image class="imagemCabecalho" src="content/images/marca.png" />
+			<Image class="logoCabecalho"   src="content/images/logo.png" />
+		</headerContent>
+
+        <!-- fim do botao que abre a pagina about -->
+        <!--titulos rotativos -->
+        <html:section class="rw-wrapper">
+            <html:h2 class="rw-sentence">
+                <html:span>TradeLog</html:span>
+            </html:h2>
+        </html:section>
+        <!--fim dos titulos rotativos -->
+
+        <TileContainer id="container" tiles="{tiles>/Tiles}" class="imagemRodapeInicio">
+            <tiles>
+                <StandardTile icon="{tiles>Icone}" numberUnit="" title="{tiles>Descricao}" press="onNavTo" app:rota="{tiles>Rota}"/>
+            </tiles>
+        </TileContainer>
+
+    </Page>
+</core:View>

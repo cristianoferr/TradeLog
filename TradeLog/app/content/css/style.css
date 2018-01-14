@@ -1,0 +1,43 @@
+
+/* Impede que o texto das colunas seja encurtado */
+.quebraLinha, .quebraLinha span{
+    overflow:initial !important;
+    white-space: normal !important;
+}
+
+/*Usado em multilineInput*/
+.maxHeight{
+    height:100%;
+}
+.maxHeight .sapMMultiInputBorder{
+    background: #ffffff;
+    border: 1px solid #bfbfbf;
+}
+
+
+/***********************************************\
+Imagens do cabeçalho e do rodapé
+\***********************************************/
+.imagemCabecalho {
+
+    margin: 0 !important;
+    padding: 0.4em !important;
+    visibility: visible;
+    width: 8em;
+
+}
+
+.logoCabecalho {
+    visibility: hidden;
+    width: 0px;
+}
+
+
+.imagemRodapeInicio {
+    background-image: url(../../content/images/rodape-01.png);
+    background-size: 25%;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-color: #ffffff;
+}
+
