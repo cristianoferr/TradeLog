@@ -17,6 +17,7 @@ using System.Web.Http.OData.Batch;
 using System.Web.OData.Routing;
 using System.Web.Http.Batch;
 using System.Web.Http.OData.Formatter;
+using TradeLogServer.App_Start;
 
 namespace TradeLogServer
 {
@@ -90,53 +91,13 @@ public static class WebApiConfig
             string routeName = "odata";
 
             System.Web.OData.Batch.ODataBatchHandler odataBatchHandler = new System.Web.OData.Batch.DefaultODataBatchHandler(GlobalConfiguration.DefaultServer);
-           /* config.Routes.MapHttpBatchRoute(
-               routeName: "WebApiBatch",
-               routeTemplate: routeName + "/$batch",
-               batchHandler: new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));*/
 
             ODataRoute route = config.MapODataServiceRoute(routeName, routeName, 
-                model: GetModel(),
+                model: ModelConfig.GetModel(),
                 batchHandler: odataBatchHandler);
 
 
-            //odataBatchHandler.ODataRouteName = routeName;
-            //config.Routes.MapHttpBatchRoute(routeName + "Batch", routeName + "/batch", batchHandler: odataBatchHandler);
-
-
         }
-
-        public static Microsoft.OData.Edm.IEdmModel GetModel()
-        {
-            ODataModelBuilder builder = new ODataConventionModelBuilder();
-
-            builder.EntitySet<Posicao>("Posicao");
-            builder.EntitySet<Carteira>("Carteira");
-            builder.EntitySet<Movimento>("Movimento");
-            builder.EntitySet<Papel>("Papel");
-            builder.EntitySet<Usuario>("Usuario");
-
-            builder
-                  .EntitySet<Carteira>("Carteira")
-                  .EntityType
-                  .Function("Posicao")
-                  .ReturnsFromEntitySet<Posicao>("Posicao");
-
-
-            /*var function = builder.Function("GetCarteira");
-            function.Parameter<int>("key");
-            function.ReturnsCollectionFromEntitySet<Carteira>("Carteira");
-            */
-            builder.Namespace = "TradeLogServer.Controllers"; 
-
-            /*EntitySetConfiguration<Person> persons = builder.EntitySet<Person>("Person");
-
-            FunctionConfiguration myFirstFunction = persons.EntityType.Collection.Function("MyFirstFunction");
-            myFirstFunction.ReturnsCollectionFromEntitySet<Person>("Person");*/
-
-            return builder.GetEdmModel();
-        }
-
 
         private static void MapApiRoutes(HttpConfiguration config)
         {

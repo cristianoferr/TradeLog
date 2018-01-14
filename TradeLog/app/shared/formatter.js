@@ -18,8 +18,11 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
             //return sValue;
             //debugger;
             //TODO: isso não pode ir para produção assim
-            sValue = sValue.replace(".", "");
-            sValue = sValue.replace(",", ".");
+            //if (sValue == undefined) return undefined;
+            if (typeof sValue == "string") {
+                sValue = sValue.replace(".", "");
+                sValue = sValue.replace(",", ".");
+            }
             var numberFormat = NumberFormat.getFloatInstance({
                 maxFractionDigits: 2,
                 minFractionDigits: 2,

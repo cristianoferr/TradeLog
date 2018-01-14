@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     >
 
-    <Table id="tablePosicao" items="{Posicao}" growing="false">
+    <Table id="tablePosicao" items="{/Posicao}" growing="false">
         <columns>
             <Column ><Text text="{i18n>posicao.dataEntrada}"   /></Column>
             <Column ><Text text="{i18n>posicao.precoEntrada}"   /></Column>
