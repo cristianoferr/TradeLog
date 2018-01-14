@@ -14,15 +14,6 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
 		 * @return {string} formatted price
 		 */
         formataValor: function (sValue) {
-            //formataValor com problema: 1000 vira '1.000'...
-            //return sValue;
-            //debugger;
-            //TODO: isso não pode ir para produção assim
-            //if (sValue == undefined) return undefined;
-            if (typeof sValue == "string") {
-                sValue = sValue.replace(".", "");
-                sValue = sValue.replace(",", ".");
-            }
             var numberFormat = NumberFormat.getFloatInstance({
                 maxFractionDigits: 2,
                 minFractionDigits: 2,
@@ -37,7 +28,6 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
         * Retorna uma data formatada no padrão "dd.MM.yyyy"
         */
         formataData: function (value) {
-            debugger;
             if (value) {
                 var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({ pattern: "dd.MM.yyyy" });
                 var oFormattedDate = oDateFormat.format(new Date(value), true);
@@ -47,11 +37,27 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
             }
         },
         calcDifDays: function (value) {
-            return value;
+            var date1 = new Date(value);
+            var date2 = new Date();
+            var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            return diffDays;
         }
 
 
     };
 
+
     return formatter;
+
 });
+
+
+//desativando o auto formatador do openui5...
+sap.ui.model.PropertyBinding.prototype._toExternalValue = function (oValue) {
+
+    if (this.fnFormatter) {
+        oValue = this.fnFormatter(oValue);
+    }
+    return oValue;
+};

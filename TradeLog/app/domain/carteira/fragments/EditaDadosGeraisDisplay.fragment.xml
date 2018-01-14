@@ -8,9 +8,9 @@
 			editable="false">
 			<f:layout>
 				<f:ResponsiveGridLayout
-					labelSpanXL="4"
-					labelSpanL="3"
-					labelSpanM="4"
+					labelSpanXL="5"
+					labelSpanL="5"
+					labelSpanM="5"
 					labelSpanS="12"
 					adjustLabelSpan="false"
 					emptySpanXL="0"
@@ -18,8 +18,8 @@
 					emptySpanM="0"
 					emptySpanS="0"
 					columnsXL="2"
-					columnsL="1"
-					columnsM="1"
+					columnsL="2"
+					columnsM="2"
 					singleContainerFullSize="false" />
 			</f:layout>
 			<f:formContainers>
@@ -31,8 +31,6 @@
 								<Text text="{NomeCarteira}" />
 							</f:fields>
                         </f:FormElement>
-
-
 
                         <f:FormElement label="{i18n>carteira.custoOperacao}">
 							<f:fields>

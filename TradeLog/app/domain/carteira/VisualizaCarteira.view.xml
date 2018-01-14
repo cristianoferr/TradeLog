@@ -7,8 +7,9 @@
     xmlns="sap.m"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     >
+<VBox class="sapUiSmallMargin">
 
-    <Table id="tablePosicao" items="{/Posicao}" growing="false">
+    <Table id="tablePosicao" items="{Posicao}" growing="false">
         <columns>
             <Column ><Text text="{i18n>posicao.dataEntrada}"   /></Column>
             <Column ><Text text="{i18n>posicao.precoEntrada}"   /></Column>
@@ -39,5 +40,8 @@
             </ColumnListItem>
         </items>
     </Table>
+
+    <core:Fragment fragmentName="tradelog.domain.posicao.fragments.DetalhePosicao" type="XML" />
+    </VBox>
 
 </mvc:View>

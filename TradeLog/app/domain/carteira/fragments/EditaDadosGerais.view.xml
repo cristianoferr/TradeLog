@@ -9,9 +9,8 @@
     >
     <Bar>
         <contentLeft>
-            <Button id="EditaDadosGeraisEdit" icon="sap-icon://edit" text="Editar" type="Emphasized"  />
-            <Button id="EditaDadosGeraisSave" icon="sap-icon://save" text="Salvar" type="Emphasized" visible="false"  />
-            <Button id="EditaDadosGeraisCancel" icon="sap-icon://cancel"  text="Cancelar" type="Reject" visible="false"  />
+            <Button id="EditaDadosGeraisEdit" icon="sap-icon://edit" text="{i18n>generico.editar}" type="Emphasized"  />
+            <Button id="EditaDadosGeraisSave" icon="sap-icon://complete" text="{i18n>generico.concluir}" type="Emphasized" visible="false"  />
         </contentLeft>
     </Bar>
     <Panel id="EditaDadosGerais">

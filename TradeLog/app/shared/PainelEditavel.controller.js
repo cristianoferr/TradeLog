@@ -23,7 +23,6 @@ sap.ui.define([
             //aponta para os respectivos botoes de editar, salvar e cancelar
             buttonEdit: undefined,
             buttonSave: undefined,
-            buttonCancel: undefined,
             //indica se o componente já foi inicializado (isso ocorre no routeMatched pois é preciso pegar os componentes da view)
             hasInitialized: false,
 
@@ -53,11 +52,11 @@ sap.ui.define([
                 //pego os botoes da view principal (que não fazem parte da sub view)
                 this.buttonEdit = this.getView().byId(this.nomePainel + "Edit");
                 this.buttonSave = this.getView().byId(this.nomePainel + "Save");
-                this.buttonCancel = this.getView().byId(this.nomePainel + "Cancel");
+                //this.buttonCancel = this.getView().byId(this.nomePainel + "Cancel");
 
                 this.buttonEdit.attachPress({ controller: this }, this.handleEditPress);
                 this.buttonSave.attachPress({ controller: this }, this.handleSavePress);
-                this.buttonCancel.attachPress({ controller: this }, this.handleCancelPress);
+                // this.buttonCancel.attachPress({ controller: this }, this.handleCancelPress);
 
                 this.hasInitialized = true;
             },
@@ -86,8 +85,10 @@ sap.ui.define([
             handleCancelPress: function (evt, context) {
                 context.controller.toggleButtonsAndView(false);
                 var oModel = context.controller.getView().getModel();
-                //oModel.refresh(true);
-                oModel.resetChanges();
+                //oModel.attachEventOnce("requestCompleted",function () { oModel.refresh(); console.log("refresh");})
+                oModel.resetChanges("reset");
+                setTimeout(function () { oModel.refresh(); }, 100);
+
             },
 
             /**
@@ -97,17 +98,13 @@ sap.ui.define([
                 context.controller.toggleButtonsAndView(false);
                 var oModel = context.controller.getView().getModel();
                 //oModel.resetChanges();
-                oModel.attachEventOnce("batchRequestCompleted", this.onBatchRequestCompleted);
-                oModel.attachEventOnce("batchRequestFailed", this.onBatchRequestFailed);
-                oModel.submitChanges();
-                //TODO: mandar para o serviço os dados alterados
-
+                //oModel.submitChanges();
             },
 
-            onBatchRequestCompleted(oData) {
+            onBatchRequestCompleted: function (oData) {
                 debugger;
             },
-            onBatchRequestFailed(oData) {
+            onBatchRequestFailed: function (oData) {
                 debugger;
             },
 
@@ -120,7 +117,7 @@ sap.ui.define([
                 oView.byId(this.nomePainel + "Cancel").setVisible(bEdit);*/
                 this.buttonEdit.setVisible(!bEdit);
                 this.buttonSave.setVisible(bEdit);
-                this.buttonCancel.setVisible(bEdit);
+                //this.buttonCancel.setVisible(bEdit);
 
                 // Set the right form type
                 this.showFormFragment(bEdit ? "Change" : "Display");

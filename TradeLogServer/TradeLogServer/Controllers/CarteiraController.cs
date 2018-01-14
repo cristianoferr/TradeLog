@@ -39,7 +39,7 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public SingleResult<Carteira> GetCarteira([FromODataUri] int key)
         {
-            return SingleResult.Create(db.Carteiras.Where(carteira => carteira.IdCarteira == key && carteira.IdUsuario==idUsuarioAtual));
+            return SingleResult.Create(db.Carteiras.Where(carteira => carteira.IdCarteira == key && carteira.IdUsuario==idUsuarioAtual).Include(p => p.Posicao));
         }
 
         // GET: odata/Carteira(5)/Posicao

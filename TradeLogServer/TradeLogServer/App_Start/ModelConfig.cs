@@ -18,6 +18,8 @@ using System.Web.OData.Routing;
 using System.Web.Http.Batch;
 using System.Web.Http.OData.Formatter;
 using TradeLogServer.App_Start;
+using Microsoft.OData.Edm;
+using System.Web.Http.OData.Routing;
 
 namespace TradeLogServer.App_Start
 {
@@ -29,7 +31,7 @@ namespace TradeLogServer.App_Start
             ODataModelBuilder builder = new ODataConventionModelBuilder();
 
             builder.EntitySet<Posicao>("Posicao");
-            builder.EntitySet<Carteira>("Carteira");
+            var carteira=builder.EntitySet<Carteira>("Carteira");
             builder.EntitySet<Movimento>("Movimento");
             builder.EntitySet<Papel>("Papel");
             builder.EntitySet<Usuario>("Usuario");
@@ -45,11 +47,39 @@ namespace TradeLogServer.App_Start
             builder.EntityType<Posicao>().Property(a => a.PrecoAtual);
             builder.EntityType<Posicao>().Property(a => a.ValorAtual);
 
-            //builder.EntityType<Posicao>().ContainsMany(m => m.Papel);
+            builder.EntityType<Carteira>().HasMany(a => a.Posicao);
+
+            /*carteira.HasNavigationPropertyLink(carteira.EntityType.NavigationProperties.First(np => np.Name == "Posicao"),
+            (context, navigation) =>
+            {
+                return new Uri(context.Url.ODataLink(new EntitySetPathSegment("Posicao"), new KeyValuePathSegment(context.ResourceInstance.Posicao.IdPosicao.ToString())));
+            }, followsConventions: false);
+            */
+
+            //builder.EntityType<Carteira>().ContainsMany(m => m.Posicao);
+
+
 
             builder.Namespace = "TradeLogServer.Controllers";
 
-            return builder.GetEdmModel();
+            IEdmModel model =builder.GetEdmModel();
+            /*
+            var carteira = (EdmEntitySet)model.EntityContainer.FindEntitySet("Carteira");
+            var posicao = (EdmEntitySet)model.EntityContainer.FindEntitySet("Posicao");
+            var carteiraType = (EdmEntityType)model.FindDeclaredType("TradeLogServer.Models.Carteira");
+            var posicaoType = (EdmEntityType)model.FindDeclaredType("TradeLogServer.Models.Posicao");
+
+            var partsProperty = new EdmNavigationPropertyInfo();
+            partsProperty.TargetMultiplicity = EdmMultiplicity.Many;
+            partsProperty.Target = posicaoType;
+            partsProperty.ContainsTarget = false;
+            partsProperty.OnDelete = EdmOnDeleteAction.None;
+            partsProperty.Name = "Posicao";
+
+            var navigationProperty = carteiraType.AddUnidirectionalNavigation(partsProperty);
+            carteira.AddNavigationTarget(navigationProperty, posicao);*/
+
+            return model;
         }
     }
 }
