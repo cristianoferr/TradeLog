@@ -1,0 +1,168 @@
+
+DROP TABLE Movimento;
+
+
+
+DROP TABLE Posicao;
+
+
+
+DROP TABLE Papel;
+
+
+
+DROP TABLE Carteira;
+
+
+
+DROP TABLE Usuario;
+
+
+
+CREATE TABLE Carteira
+(
+	IdCarteira           INT(10) NOT NULL,
+	IdUsuario            int(10) NULL,
+	ValorAtual           CHAR(18) NULL,
+	NomeCarteira         CHAR(18) NULL
+);
+
+
+
+ALTER TABLE Carteira
+ADD PRIMARY KEY (IdCarteira);
+
+
+
+ALTER TABLE Carteira
+MODIFY IdCarteira INT(10) AUTO_INCREMENT;
+
+insert into Carteira (IdUsuario,ValorAtual,NomeCarteira) values (1,1000,'Carteira Padrão');
+
+
+
+CREATE TABLE Movimento
+(
+	IdCarteira           INT(10) NULL,
+	IdMovimento          int(10) NOT NULL,
+	ValorMovimento       decimal(10,2) NULL,
+	IdPosicao            int(10) NULL,
+	Descricao            VARCHAR(20) NULL
+);
+
+
+
+ALTER TABLE Movimento
+ADD PRIMARY KEY (IdMovimento);
+
+
+
+ALTER TABLE MOVIMENTO 
+MODIFY IdMOVIMENTO  INT(10) AUTO_INCREMENT;
+
+INSERT INTO MOVIMENTO (IDCARTEIRA,DESCRICAO,VALORMOVIMENTO,IDPOSICAO) VALUES (1,'TESTE MOVIMENTO',100,1);
+
+
+
+CREATE TABLE Papel
+(
+	IdPapel              int(10) NOT NULL,
+	Codigo               VARCHAR(20) NULL,
+	Nome                 VARCHAR(20) NULL,
+	ValorAtual           decimal(10,2) NULL,
+	LotePadrao           int(6) NULL
+);
+
+
+
+ALTER TABLE Papel
+ADD PRIMARY KEY (IdPapel);
+
+
+
+ALTER TABLE Papel
+MODIFY IdPapel INT(10) AUTO_INCREMENT;
+
+insert into Papel(Codigo,Nome,ValorAtual,LotePadrao) values ('TST1','Teste 1',10,100);
+insert into Papel(Codigo,Nome,ValorAtual,LotePadrao) values ('TST2','Teste 2',20,100);
+
+
+
+CREATE TABLE Posicao
+(
+	IdPosicao            int(10) NOT NULL,
+	ValorEntrada         decimal(10,2) NULL,
+	ValorSaida           decimal(10,2) NULL,
+	ValorStop            VARCHAR(20) NULL,
+	Quantidade           int(6) NULL,
+	IdPapel              int(10) NULL,
+	IdUsuario            int(10) NULL
+);
+
+
+
+ALTER TABLE Posicao
+ADD PRIMARY KEY (IdPosicao);
+
+
+
+ALTER TABLE Posicao 
+MODIFY IdPosicao  INT(10) AUTO_INCREMENT;
+
+insert into Posicao (ValorEntrada,ValorSaida,ValorStop,Quantidade,IdPapel,IdUsuario) values (10,20,5,100,1,1);
+insert into Posicao (ValorEntrada,ValorSaida,ValorStop,Quantidade,IdPapel,IdUsuario) values (10,20,5,100,2,1);
+
+
+
+CREATE TABLE Usuario
+(
+	IdUsuario            int(10) NOT NULL,
+	NomeUsuario          VARCHAR(20) NULL,
+	RiscoPorPosicao      decimal(10,2) NULL,
+	RiscoPorCarteira     decimal(10,2) NULL,
+	CustoOperacaoPadrao  decimal(10,2) NULL
+);
+
+
+
+ALTER TABLE Usuario
+ADD PRIMARY KEY (IdUsuario);
+
+
+
+ALTER TABLE Usuario
+MODIFY IdUsuario INT(10) AUTO_INCREMENT;
+
+insert into Usuario(NomeUsuario,RiscoPorPosicao,RiscoPorCarteira,CustoOperacaoPadrao) values ('Usuario Teste',0.02,0.06,20);
+
+
+
+ALTER TABLE Carteira
+ADD FOREIGN KEY R_3 (IdUsuario) REFERENCES Usuario (IdUsuario);
+
+
+
+ALTER TABLE Carteira
+ADD FOREIGN KEY R_6 (IdUsuario) REFERENCES Usuario (IdUsuario);
+
+
+
+ALTER TABLE Movimento
+ADD FOREIGN KEY R_7 (IdCarteira) REFERENCES Carteira (IdCarteira);
+
+
+
+ALTER TABLE Movimento
+ADD FOREIGN KEY R_8 (IdPosicao) REFERENCES Posicao (IdPosicao);
+
+
+
+ALTER TABLE Posicao
+ADD FOREIGN KEY R_2 (IdPapel) REFERENCES Papel (IdPapel);
+
+
+
+ALTER TABLE Posicao
+ADD FOREIGN KEY R_5 (IdUsuario) REFERENCES Usuario (IdUsuario);
+
+
