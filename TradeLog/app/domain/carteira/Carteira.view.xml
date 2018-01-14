@@ -43,12 +43,10 @@
 
                     <IconTabFilter id="iconTabMovimento" class="tamanhoMinimo" key="Movimento"
                         text="{i18n>carteira.tabMovimento}"
-                        icon="sap-icon://decision"
+                        icon="sap-icon://history"
                         >
                         <content>
-                            <!--<mvc:XMLView viewName="tradelog.domain.modeloObrigacao.components.ListaModeloObrigacao"
-                                        id="viewModeloObrigacao" app:area="{IdArea}" app:bindPath="{viewModel>/bindPath}" app:IdContrato="{IdContrato}" ></mvc:XMLView>
-                                        -->
+                            <core:Fragment fragmentName="tradelog.domain.movimento.fragments.ListaMovimentos" type="XML" />
                         </content>
                     </IconTabFilter>
                 </items>

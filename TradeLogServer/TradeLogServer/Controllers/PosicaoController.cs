@@ -32,9 +32,9 @@ namespace TradeLogServer.Controllers
     {
         // GET: odata/Posicao
         [EnableQuery]
-        public IQueryable<Posicao> GetPosicao([FromODataUri] int key)
+        public SingleResult<Posicao> GetPosicao([FromODataUri] int key)
         {
-            return db.Posicoes.Where(posicao=>posicao.IdCarteira== key && posicao.IdUsuario==idUsuarioAtual);
+            return SingleResult.Create(db.Posicoes.Where(posicao=>posicao.IdPosicao== key && posicao.IdUsuario==idUsuarioAtual).Include(p => p.Papel));
         }
 
         // GET: odata/Posicao(5)

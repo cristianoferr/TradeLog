@@ -3,7 +3,7 @@
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
-	<VBox class="sapUiSmallMargin" id="detalhePosicao" visible="true" >
+	<VBox class="sapUiSmallMargin" id="detalhePosicao" visible="{viewModel>/posicaoSelected}" >
 		<f:Form id="FormDisplay354wideDual"
 			editable="false">
 			<f:title>
