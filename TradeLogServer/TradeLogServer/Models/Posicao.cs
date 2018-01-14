@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.OData.Builder;
 
 namespace TradeLogServer.Models
 {
@@ -13,18 +14,18 @@ namespace TradeLogServer.Models
         [Key]
         public int IdPosicao { get; set; }
 
+        [ForeignKey("Papel")]
         public int IdPapel { get; set; }
-        [ForeignKey("IdPapel")]
         [Required]
-        public Papel Papel{ get; set; }
+        public  Papel Papel { get; set; }
 
+        [ForeignKey("Usuario")]
         public int IdUsuario { get; set; }
-        [ForeignKey("IdUsuario")]
-        public Usuario Usuario { get; set; }
+        public  Usuario Usuario { get; set; }
 
+        [ForeignKey("Carteira")]
         public int IdCarteira { get; set; }
-        [ForeignKey("IdCarteira")]
-        public Carteira Carteira { get; set; }
+        public  Carteira Carteira { get; set; }
 
         public float PrecoEntrada{ get; set; }
         public float ValorEntrada { get; set; }
@@ -37,5 +38,7 @@ namespace TradeLogServer.Models
 
         [NotMapped]
         public float PrecoAtual { get { return Papel.ValorAtual; } }
+        [NotMapped]
+        public float ValorAtual { get { return PrecoAtual*Quantidade; } }
     }
 }

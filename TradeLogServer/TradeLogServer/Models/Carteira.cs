@@ -26,6 +26,6 @@ namespace TradeLogServer.Models
         public float CustoOperacaoPadrao { get; set; }
 
         [Required]
-        public virtual Posicao Posicao{ get; set; }
+        public virtual IList<Posicao> Posicao{ get; set; }
     }
 }

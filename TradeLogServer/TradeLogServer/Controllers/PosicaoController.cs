@@ -41,7 +41,7 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public IQueryable<Posicao> GetPosicao()
         {
-            return db.Posicoes.Where(posicao => posicao.IdUsuario == idUsuarioAtual);
+            return db.Posicoes.Where(posicao => posicao.IdUsuario == idUsuarioAtual).Include(p => p.Papel);
         }
 
         /*

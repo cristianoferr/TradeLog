@@ -48,7 +48,7 @@ namespace TradeLogServer.Controllers
         [ODataRoute("Carteira({key})/Posicao")]
         public IQueryable<Posicao> Posicao([FromODataUri] int key)
         {
-            return db.Posicoes.Where(posicao => posicao.IdCarteira==key && posicao.IdUsuario==idUsuarioAtual);
+            return db.Posicoes.Where(posicao => posicao.IdCarteira==key && posicao.IdUsuario==idUsuarioAtual).Include(p => p.Papel);
         }
 
         // GET: odata/Carteira(5)
