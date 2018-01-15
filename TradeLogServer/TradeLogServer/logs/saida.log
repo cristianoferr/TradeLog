@@ -21851,3 +21851,2193 @@ FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPape
 
 2018-01-14 23:06:41,100 [37] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 14/01/2018 23:06:41 -02:00
 
+2018-01-15 17:09:12,199 [1] INFO TradeLogServer.WebApiApplication - Application Start
+2018-01-15 17:09:24,819 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:09:24 -02:00
+
+2018-01-15 17:09:26,056 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`
+ WHERE `Extent1`.`ContextKey` = @p__linq__0) AS `GroupBy1`
+2018-01-15 17:09:26,061 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:09:26,132 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: 'TradeLogServer.Models.ApplicationDbContext' (Type = String, Size = 42)
+
+2018-01-15 17:09:26,133 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:09:26 -02:00
+
+2018-01-15 17:09:26,174 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Failed in 39 ms with error: Table 'tradelog.__migrationhistory' doesn't exist
+
+2018-01-15 17:09:26,174 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:09:26,177 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:09:26 -02:00
+
+2018-01-15 17:09:26,352 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:09:26 -02:00
+
+2018-01-15 17:09:26,354 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`) AS `GroupBy1`
+2018-01-15 17:09:26,355 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:09:26,355 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:09:26 -02:00
+
+2018-01-15 17:09:26,357 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Failed in 1 ms with error: Table 'tradelog.__migrationhistory' doesn't exist
+
+2018-01-15 17:09:26,357 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:09:26,358 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:09:26 -02:00
+
+2018-01-15 17:09:26,887 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:09:26 -02:00
+
+2018-01-15 17:09:27,071 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:09:27,075 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:09:27,077 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:09:27,077 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:09:27,077 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:09:27,077 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:09:27 -02:00
+
+2018-01-15 17:09:27,080 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:09:27,081 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:09:27,266 [7] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:09:27 -02:00
+
+2018-01-15 17:09:32,742 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:09:32 -02:00
+
+2018-01-15 17:09:32,857 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:09:32,857 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:09:32,857 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:09:32,857 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:09:32,858 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:09:32 -02:00
+
+2018-01-15 17:09:32,860 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 2 ms with result: EFMySqlDataReader
+
+2018-01-15 17:09:32,860 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:09:32,954 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:09:32 -02:00
+
+2018-01-15 17:09:32,956 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:09:32 -02:00
+
+2018-01-15 17:09:33,000 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:09:33,000 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:09:33,000 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:09:33,000 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:09:33,001 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:09:33,001 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:09:33,001 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:09:33 -02:00
+
+2018-01-15 17:09:33,002 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:09:33,002 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:09:33,011 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:09:33 -02:00
+
+2018-01-15 17:14:26,464 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:14:26 -02:00
+
+2018-01-15 17:14:26,466 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:14:26,467 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:14:26,467 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:14:26,467 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:14:26,467 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:14:26 -02:00
+
+2018-01-15 17:14:26,469 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:14:26,472 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:14:26,473 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:14:26 -02:00
+
+2018-01-15 17:14:26,627 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:14:26 -02:00
+
+2018-01-15 17:14:26,627 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:14:26,627 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:14:26,627 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:14:26,628 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:14:26,628 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:14:26,628 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:14:26 -02:00
+
+2018-01-15 17:14:26,628 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:14:26,629 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:14:26,629 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:14:26 -02:00
+
+2018-01-15 17:14:26,630 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:14:26 -02:00
+
+2018-01-15 17:14:26,631 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:14:26,631 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:14:26,631 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:14:26,631 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:14:26,631 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:14:26,631 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:14:26,631 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:14:26 -02:00
+
+2018-01-15 17:14:26,633 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:14:26,633 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:14:26,634 [25] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:14:26 -02:00
+
+2018-01-15 17:14:56,222 [20] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:14:56 -02:00
+
+2018-01-15 17:14:56,226 [20] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdPosicao` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)
+2018-01-15 17:14:56,226 [20] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:14:56,226 [20] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:14:56,227 [20] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:14:56,227 [20] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:14:56 -02:00
+
+2018-01-15 17:14:56,230 [20] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:14:56,230 [20] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:14:56,231 [20] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:14:56 -02:00
+
+2018-01-15 17:15:33,847 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:15:33 -02:00
+
+2018-01-15 17:15:33,854 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:15:33,854 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:15:33,854 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:15:33,854 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:15:33,854 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:15:33 -02:00
+
+2018-01-15 17:15:33,856 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:15:33,856 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:15:33,857 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:15:33 -02:00
+
+2018-01-15 17:15:33,858 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:15:33 -02:00
+
+2018-01-15 17:15:33,863 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:15:33,863 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:15:33,863 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:15:33,863 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:15:33,863 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:15:33,864 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:15:33 -02:00
+
+2018-01-15 17:15:33,865 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:15:33,865 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:15:33,865 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:15:33 -02:00
+
+2018-01-15 17:15:33,866 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:15:33 -02:00
+
+2018-01-15 17:15:33,867 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:15:33,867 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:15:33,867 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:15:33,867 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:15:33,867 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:15:33,867 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:15:33,867 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:15:33 -02:00
+
+2018-01-15 17:15:33,869 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:15:33,869 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:15:33,870 [23] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:15:33 -02:00
+
+2018-01-15 17:19:09,204 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:19:09 -02:00
+
+2018-01-15 17:19:09,205 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:19:09,205 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:19:09,206 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:19:09,206 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:19:09,206 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:19:09 -02:00
+
+2018-01-15 17:19:09,207 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:19:09,207 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:19:09,208 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:19:09 -02:00
+
+2018-01-15 17:19:09,212 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:19:09 -02:00
+
+2018-01-15 17:19:09,213 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:19:09,213 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:19:09,213 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:19:09,213 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:19:09,213 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:19:09,213 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:19:09 -02:00
+
+2018-01-15 17:19:09,214 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:19:09,214 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:19:09,215 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:19:09 -02:00
+
+2018-01-15 17:19:09,216 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:19:09 -02:00
+
+2018-01-15 17:19:09,216 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:19:09,217 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:19:09,217 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:19:09,217 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:19:09,217 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:19:09,217 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:19:09,217 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:19:09 -02:00
+
+2018-01-15 17:19:09,218 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:19:09,218 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:19:09,219 [41] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:19:09 -02:00
+
+2018-01-15 17:20:57,796 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:20:57 -02:00
+
+2018-01-15 17:20:57,797 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:20:57,797 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:20:57,797 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:20:57,797 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:20:57,797 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:20:57 -02:00
+
+2018-01-15 17:20:57,799 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:20:57,799 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:20:57,800 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:20:57 -02:00
+
+2018-01-15 17:20:57,807 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:20:57 -02:00
+
+2018-01-15 17:20:57,829 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:20:57,831 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:20:57,831 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:20:57,831 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:20:57,831 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:20:57,831 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:20:57 -02:00
+
+2018-01-15 17:20:57,832 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:20:57,833 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:20:57,833 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:20:57 -02:00
+
+2018-01-15 17:20:57,837 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:20:57 -02:00
+
+2018-01-15 17:20:57,837 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:20:57,838 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:20:57,838 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:20:57,838 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:20:57,838 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:20:57,838 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:20:57,838 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:20:57 -02:00
+
+2018-01-15 17:20:57,839 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:20:57,839 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:20:57,840 [40] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:20:57 -02:00
+
+2018-01-15 17:26:42,203 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:26:42 -02:00
+
+2018-01-15 17:26:42,205 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:26:42,206 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:26:42,206 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:26:42,206 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:26:42,206 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:26:42 -02:00
+
+2018-01-15 17:26:42,207 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:26:42,207 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:26:42,208 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:26:42 -02:00
+
+2018-01-15 17:26:42,209 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:26:42 -02:00
+
+2018-01-15 17:26:42,210 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:26:42,210 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:26:42,210 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:26:42,210 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:26:42,210 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:26:42,210 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:26:42 -02:00
+
+2018-01-15 17:26:42,211 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:26:42,211 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:26:42,212 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:26:42 -02:00
+
+2018-01-15 17:26:42,213 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:26:42 -02:00
+
+2018-01-15 17:26:42,215 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:26:42,215 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:26:42,215 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:26:42,215 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:26:42,215 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:26:42,215 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:26:42,215 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:26:42 -02:00
+
+2018-01-15 17:26:42,216 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:26:42,218 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:26:42,220 [65] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:26:42 -02:00
+
+2018-01-15 17:27:46,819 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:27:46 -02:00
+
+2018-01-15 17:27:46,820 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:27:46,820 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:27:46,820 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:27:46,821 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:27:46,821 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:27:46 -02:00
+
+2018-01-15 17:27:46,822 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:27:46,822 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:27:46,823 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:27:46 -02:00
+
+2018-01-15 17:27:46,824 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:27:46 -02:00
+
+2018-01-15 17:27:46,825 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:27:46,825 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:27:46,825 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:27:46,825 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:27:46,825 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:27:46,825 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:27:46 -02:00
+
+2018-01-15 17:27:46,826 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:27:46,826 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:27:46,827 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:27:46 -02:00
+
+2018-01-15 17:27:46,837 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:27:46 -02:00
+
+2018-01-15 17:27:46,838 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:27:46,838 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:27:46,838 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:27:46,838 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:27:46,838 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:27:46,838 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:27:46,838 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:27:46 -02:00
+
+2018-01-15 17:27:46,840 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:27:46,840 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:27:46,841 [64] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:27:46 -02:00
+
+2018-01-15 17:34:33,430 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:34:33 -02:00
+
+2018-01-15 17:34:33,432 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:34:33,434 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:34:33,434 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:34:33,434 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:34:33,435 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:34:33 -02:00
+
+2018-01-15 17:34:33,436 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:34:33,436 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:34:33,437 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:34:33 -02:00
+
+2018-01-15 17:34:33,439 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:34:33 -02:00
+
+2018-01-15 17:34:33,441 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:34:33,442 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:34:33,443 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:34:33,445 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:34:33,445 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:34:33,445 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:34:33 -02:00
+
+2018-01-15 17:34:33,447 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:34:33,450 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:34:33,451 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:34:33 -02:00
+
+2018-01-15 17:34:33,453 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:34:33 -02:00
+
+2018-01-15 17:34:33,454 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:34:33,454 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:34:33,454 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:34:33,455 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:34:33,455 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:34:33,455 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:34:33,456 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:34:33 -02:00
+
+2018-01-15 17:34:33,460 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:34:33,460 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:34:33,462 [77] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:34:33 -02:00
+
+2018-01-15 17:35:19,177 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:35:19 -02:00
+
+2018-01-15 17:35:19,178 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:35:19,179 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:19,179 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:19,179 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:19,179 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:35:19 -02:00
+
+2018-01-15 17:35:19,180 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:35:19,181 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:19,181 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:35:19 -02:00
+
+2018-01-15 17:35:19,183 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:35:19 -02:00
+
+2018-01-15 17:35:19,184 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:35:19,184 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:19,184 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:19,185 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:19,185 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:19,185 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:35:19 -02:00
+
+2018-01-15 17:35:19,185 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:35:19,185 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:19,186 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:35:19 -02:00
+
+2018-01-15 17:35:19,188 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:35:19 -02:00
+
+2018-01-15 17:35:19,188 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:35:19,205 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:19,205 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:19,205 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:19,205 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:19,205 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:19,206 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:35:19 -02:00
+
+2018-01-15 17:35:19,207 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:35:19,207 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:19,208 [75] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:35:19 -02:00
+
+2018-01-15 17:35:42,409 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:35:42 -02:00
+
+2018-01-15 17:35:42,411 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:35:42,411 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:42,411 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:42,411 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:42,411 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:35:42 -02:00
+
+2018-01-15 17:35:42,413 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:35:42,413 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:42,414 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:35:42 -02:00
+
+2018-01-15 17:35:42,417 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:35:42 -02:00
+
+2018-01-15 17:35:42,418 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:35:42,418 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:42,418 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:42,419 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:42,423 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:42,435 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:35:42 -02:00
+
+2018-01-15 17:35:42,436 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:35:42,436 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:42,437 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:35:42 -02:00
+
+2018-01-15 17:35:42,439 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:35:42 -02:00
+
+2018-01-15 17:35:42,440 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:35:42,440 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:42,440 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:42,440 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:42,440 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:42,440 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:35:42,440 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:35:42 -02:00
+
+2018-01-15 17:35:42,441 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:35:42,442 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:35:42,442 [76] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:35:42 -02:00
+
+2018-01-15 17:37:17,519 [1] INFO TradeLogServer.WebApiApplication - Application Start
+2018-01-15 17:37:29,425 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:37:29 -02:00
+
+2018-01-15 17:37:30,419 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`
+ WHERE `Extent1`.`ContextKey` = @p__linq__0) AS `GroupBy1`
+2018-01-15 17:37:30,419 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:37:30,420 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: 'TradeLogServer.Models.ApplicationDbContext' (Type = String, Size = 42)
+
+2018-01-15 17:37:30,421 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:37:30 -02:00
+
+2018-01-15 17:37:30,432 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Failed in 10 ms with error: Table 'tradelog.__migrationhistory' doesn't exist
+
+2018-01-15 17:37:30,433 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:37:30,437 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:37:30 -02:00
+
+2018-01-15 17:37:30,439 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:37:30 -02:00
+
+2018-01-15 17:37:30,441 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`) AS `GroupBy1`
+2018-01-15 17:37:30,442 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:37:30,442 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:37:30 -02:00
+
+2018-01-15 17:37:30,444 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Failed in 1 ms with error: Table 'tradelog.__migrationhistory' doesn't exist
+
+2018-01-15 17:37:30,445 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:37:30,446 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:37:30 -02:00
+
+2018-01-15 17:37:30,810 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:37:30 -02:00
+
+2018-01-15 17:37:31,159 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:37:31,163 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:37:31,164 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:37:31,171 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:37:31,172 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:37:31 -02:00
+
+2018-01-15 17:37:31,176 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 3 ms with result: EFMySqlDataReader
+
+2018-01-15 17:37:31,176 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:37:31,361 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:37:31 -02:00
+
+2018-01-15 17:37:31,516 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:37:31 -02:00
+
+2018-01-15 17:37:31,537 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:37:31,540 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:37:31,541 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:37:31,541 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:37:31,541 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:37:31,541 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:37:31 -02:00
+
+2018-01-15 17:37:31,546 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:37:31,546 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:37:31,710 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:37:31 -02:00
+
+2018-01-15 17:37:31,724 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:37:31 -02:00
+
+2018-01-15 17:37:31,786 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:37:31,792 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:37:31,793 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:37:31,796 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:37:31,800 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:37:31,803 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:37:31,803 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:37:31 -02:00
+
+2018-01-15 17:37:31,805 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:37:31,805 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:37:31,815 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:37:31 -02:00
+
+2018-01-15 17:40:33,642 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:40:33 -02:00
+
+2018-01-15 17:40:33,651 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:40:33,653 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:40:33,653 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:40:33,654 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:40:33,654 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:40:33 -02:00
+
+2018-01-15 17:40:33,655 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:40:33,655 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:40:33,656 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:40:33 -02:00
+
+2018-01-15 17:40:33,657 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:40:33 -02:00
+
+2018-01-15 17:40:33,658 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:40:33,658 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:40:33,658 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:40:33,658 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:40:33,658 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:40:33,658 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:40:33 -02:00
+
+2018-01-15 17:40:33,659 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:40:33,659 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:40:33,659 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:40:33 -02:00
+
+2018-01-15 17:40:33,660 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:40:33 -02:00
+
+2018-01-15 17:40:33,661 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:40:33,661 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:40:33,661 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:40:33,661 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:40:33,661 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:40:33,661 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:40:33,661 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:40:33 -02:00
+
+2018-01-15 17:40:33,662 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:40:33,662 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:40:33,663 [16] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:40:33 -02:00
+
+2018-01-15 17:43:15,208 [1] INFO TradeLogServer.WebApiApplication - Application Start
+2018-01-15 17:43:54,945 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:43:54 -02:00
+
+2018-01-15 17:43:56,243 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`
+ WHERE `Extent1`.`ContextKey` = @p__linq__0) AS `GroupBy1`
+2018-01-15 17:43:56,243 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:43:56,246 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: 'TradeLogServer.Models.ApplicationDbContext' (Type = String, Size = 42)
+
+2018-01-15 17:43:56,246 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:43:56 -02:00
+
+2018-01-15 17:43:56,259 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Failed in 10 ms with error: Table 'tradelog.__migrationhistory' doesn't exist
+
+2018-01-15 17:43:56,259 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:43:56,263 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:43:56 -02:00
+
+2018-01-15 17:43:56,265 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:43:56 -02:00
+
+2018-01-15 17:43:56,268 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`GroupBy1`.`A1` AS `C1`
+FROM (SELECT
+COUNT(1) AS `A1`
+FROM `__MigrationHistory` AS `Extent1`) AS `GroupBy1`
+2018-01-15 17:43:56,268 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:43:56,268 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:43:56 -02:00
+
+2018-01-15 17:43:56,270 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Failed in 1 ms with error: Table 'tradelog.__migrationhistory' doesn't exist
+
+2018-01-15 17:43:56,272 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:43:56,272 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:43:56 -02:00
+
+2018-01-15 17:43:56,656 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:43:56 -02:00
+
+2018-01-15 17:43:56,836 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`, 
+`Project1`.`C1`, 
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario1`, 
+`Project1`.`IdCarteira1`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`
+FROM (SELECT
+`Extent1`.`IdCarteira`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`ValorAtual`, 
+`Extent1`.`ValorLiquido`, 
+`Extent1`.`NomeCarteira`, 
+`Extent1`.`RiscoPorPosicao`, 
+`Extent1`.`RiscoPorCarteira`, 
+`Extent1`.`CustoOperacaoPadrao`, 
+`Extent2`.`IdPosicao`, 
+`Extent2`.`IdPapel`, 
+`Extent2`.`IdUsuario` AS `IdUsuario1`, 
+`Extent2`.`IdCarteira` AS `IdCarteira1`, 
+`Extent2`.`PrecoEntrada`, 
+`Extent2`.`ValorEntrada`, 
+`Extent2`.`PrecoSaida`, 
+`Extent2`.`Quantidade`, 
+`Extent2`.`PrecoStopInicial`, 
+`Extent2`.`PrecoStopAtual`, 
+`Extent2`.`DataEntrada`, 
+`Extent2`.`DataSaida`, 
+CASE WHEN (`Extent2`.`IdPosicao` IS  NULL) THEN (NULL)  ELSE (1) END AS `C1`
+FROM `Carteira` AS `Extent1` LEFT OUTER JOIN `Posicao` AS `Extent2` ON `Extent1`.`IdCarteira` = `Extent2`.`IdCarteira`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdCarteira` ASC, 
+`Project1`.`C1` ASC
+2018-01-15 17:43:56,837 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:43:56,837 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:43:56,837 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:43:56,837 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:43:56 -02:00
+
+2018-01-15 17:43:56,841 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 4 ms with result: EFMySqlDataReader
+
+2018-01-15 17:43:56,842 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:43:57,003 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:43:57 -02:00
+
+2018-01-15 17:43:57,110 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:43:57 -02:00
+
+2018-01-15 17:43:57,126 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdCarteira`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`ValorAtual`, 
+`Project1`.`ValorLiquido`, 
+`Project1`.`NomeCarteira`, 
+`Project1`.`RiscoPorPosicao`, 
+`Project1`.`RiscoPorCarteira`, 
+`Project1`.`CustoOperacaoPadrao`
+FROM `Carteira` AS `Project1`
+ WHERE `Project1`.`IdUsuario` = @p__linq__0
+ ORDER BY 
+`Project1`.`IdCarteira` ASC LIMIT @p__linq__1,@p__linq__2
+2018-01-15 17:43:57,128 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:43:57,128 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:43:57,128 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:43:57,129 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '50' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:43:57,129 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:43:57 -02:00
+
+2018-01-15 17:43:57,130 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 0 ms with result: EFMySqlDataReader
+
+2018-01-15 17:43:57,130 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:43:57,222 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:43:57 -02:00
+
+2018-01-15 17:43:57,230 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection at 15/01/2018 17:43:57 -02:00
+
+2018-01-15 17:43:57,280 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - SELECT
+`Project1`.`IdPosicao`, 
+`Project1`.`IdPapel`, 
+`Project1`.`IdUsuario`, 
+`Project1`.`IdCarteira`, 
+`Project1`.`PrecoEntrada`, 
+`Project1`.`ValorEntrada`, 
+`Project1`.`PrecoSaida`, 
+`Project1`.`Quantidade`, 
+`Project1`.`PrecoStopInicial`, 
+`Project1`.`PrecoStopAtual`, 
+`Project1`.`DataEntrada`, 
+`Project1`.`DataSaida`, 
+`Project1`.`IdPapel1`, 
+`Project1`.`Codigo`, 
+`Project1`.`Nome`, 
+`Project1`.`ValorAtual`
+FROM (SELECT
+`Extent1`.`IdPosicao`, 
+`Extent1`.`IdPapel`, 
+`Extent1`.`IdUsuario`, 
+`Extent1`.`IdCarteira`, 
+`Extent1`.`PrecoEntrada`, 
+`Extent1`.`ValorEntrada`, 
+`Extent1`.`PrecoSaida`, 
+`Extent1`.`Quantidade`, 
+`Extent1`.`PrecoStopInicial`, 
+`Extent1`.`PrecoStopAtual`, 
+`Extent1`.`DataEntrada`, 
+`Extent1`.`DataSaida`, 
+`Extent2`.`IdPapel` AS `IdPapel1`, 
+`Extent2`.`Codigo`, 
+`Extent2`.`Nome`, 
+`Extent2`.`ValorAtual`
+FROM `Posicao` AS `Extent1` INNER JOIN `Papel` AS `Extent2` ON `Extent1`.`IdPapel` = `Extent2`.`IdPapel`
+ WHERE (`Extent1`.`IdCarteira` = @p__linq__0) AND (`Extent1`.`IdUsuario` = @p__linq__1)) AS `Project1`
+ ORDER BY 
+`Project1`.`IdPosicao` ASC LIMIT @p__linq__2,@p__linq__3
+2018-01-15 17:43:57,281 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:43:57,281 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__0: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:43:57,281 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__1: '1' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:43:57,281 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__2: '0' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:43:57,283 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- p__linq__3: '100' (Type = Int32, IsNullable = false)
+
+2018-01-15 17:43:57,283 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing at 15/01/2018 17:43:57 -02:00
+
+2018-01-15 17:43:57,284 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 1 ms with result: EFMySqlDataReader
+
+2018-01-15 17:43:57,284 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:43:57,295 [13] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:43:57 -02:00
+
+2018-01-15 17:44:25,081 [5] DEBUG TradeLogServer.Models.ApplicationDbContext - Opened connection asynchronously at 15/01/2018 17:44:25 -02:00
+
+2018-01-15 17:44:25,088 [5] DEBUG TradeLogServer.Models.ApplicationDbContext - Started transaction at 15/01/2018 17:44:25 -02:00
+
+2018-01-15 17:44:25,210 [5] DEBUG TradeLogServer.Models.ApplicationDbContext - SET SESSION sql_mode='ANSI';INSERT INTO `Carteira`(
+`IdUsuario`, 
+`ValorAtual`, 
+`ValorLiquido`, 
+`NomeCarteira`, 
+`RiscoPorPosicao`, 
+`RiscoPorCarteira`, 
+`CustoOperacaoPadrao`) VALUES (
+1, 
+5, 
+0, 
+@gp1, 
+3, 
+4, 
+2);
+SELECT
+`IdCarteira`
+FROM `Carteira`
+ WHERE  row_count() > 0 AND `IdCarteira`=last_insert_id()
+2018-01-15 17:44:25,210 [5] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:44:25,211 [5] DEBUG TradeLogServer.Models.ApplicationDbContext - -- @gp1: '1' (Type = String, IsNullable = false, Size = 1)
+
+2018-01-15 17:44:25,211 [5] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Executing asynchronously at 15/01/2018 17:44:25 -02:00
+
+2018-01-15 17:44:25,227 [5] DEBUG TradeLogServer.Models.ApplicationDbContext - -- Completed in 15 ms with result: EFMySqlDataReader
+
+2018-01-15 17:44:25,227 [5] DEBUG TradeLogServer.Models.ApplicationDbContext - 
+
+2018-01-15 17:44:25,358 [5] DEBUG TradeLogServer.Models.ApplicationDbContext - Committed transaction at 15/01/2018 17:44:25 -02:00
+
+2018-01-15 17:44:25,360 [5] DEBUG TradeLogServer.Models.ApplicationDbContext - Closed connection at 15/01/2018 17:44:25 -02:00
+
+2018-01-15 17:44:25,361 [5] DEBUG TradeLogServer.Models.ApplicationDbContext - Disposed transaction at 15/01/2018 17:44:25 -02:00
+

@@ -98,8 +98,15 @@ namespace TradeLogServer.Controllers
         // POST: odata/Carteira
         public async Task<IHttpActionResult> Post(Carteira carteira)
         {
+            carteira.ValorLiquido = carteira.ValorAtual;
+            carteira.IdUsuario = idUsuarioAtual;
+            if (!IsUnique(carteira))
+            {
+                return BadRequest("repeated_name");
+            }
             if (!ModelState.IsValid)
             {
+                var errors = ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
                 return BadRequest(ModelState);
             }
 
@@ -107,6 +114,11 @@ namespace TradeLogServer.Controllers
             await db.SaveChangesAsync();
 
             return Created(carteira);
+        }
+
+        private bool IsUnique(Carteira carteira)
+        {
+            return !db.Carteiras.Where(c => c.NomeCarteira == carteira.NomeCarteira && c.IdUsuario == idUsuarioAtual).Any();
         }
 
         // PATCH: odata/Carteira(5)

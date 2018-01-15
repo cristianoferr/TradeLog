@@ -1,0 +1,40 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    >
+    <Dialog title="{i18n>carteira.adicionaCarteira}" id="incluiModeloDialog" stretchOnPhone="true" icon="sap-icon://add-activity" width="320px" contentWidth="320px" contentHeight="480px"  horizontalScrolling="false">
+        <content class="dialog">
+            <f:SimpleForm
+                minWidth="100%"
+                maxContainerCols="1"
+                editable="true"
+                layout="ResponsiveLayout"
+                id="formAddCarteira"
+                >
+                <f:content>
+                    <!--<Label text="Área do Modelo"   />
+                    <Select id="idAreaIncluiFamilia" items="{
+                    path: '/Area',
+                    sorter: { path: 'NomeArea' }
+                    }">
+                        <core:Item key="{IdArea}" text="{NomeArea}" />
+                    </Select>-->
+
+                    <Label text="{i18n>carteira.nome}"   /><Input id="nomeCarteira" required="true" value=""/>
+                    <Label text="{i18n>carteira.custoOperacao}"   /><Input id="custoOperacao" required="true" value=""/>
+                    <Label text="{i18n>carteira.riscoPorPosicao}"   /><Input id="riscoPorPosicao" required="true" value=""/>
+                    <Label text="{i18n>carteira.riscoPorCarteira}"   /><Input id="riscoPorCarteira" required="true" value=""/>
+                    <Label text="{i18n>carteira.saldoInicial}"   /><Input id="saldoInicial" required="true" value=""/>
+
+                </f:content>
+            </f:SimpleForm>
+        </content>
+          <buttons>
+          <Button text="{i18n>generico.adicionaRegistro}" type="Emphasized" class="acaoEsquerda" press="addRegistro"/>
+          <Button press="close"  type="Reject" text="{i18n>generico.fechar}" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

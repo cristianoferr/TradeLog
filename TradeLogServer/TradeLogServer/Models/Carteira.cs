@@ -25,7 +25,6 @@ namespace TradeLogServer.Models
         public float RiscoPorCarteira { get; set; }
         public float CustoOperacaoPadrao { get; set; }
 
-        [Required]
         public ICollection<Posicao> Posicao{ get; set; }
     }
 }

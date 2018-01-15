@@ -26,8 +26,14 @@ sap.ui.define([
             },
 
             onAdicionaCarteira: function (evt) {
-                //TODO: implementar esse dialogo
-                debugger;
+                if (this._incluiDialog) {
+                    this._incluiDialog.destroy();
+                }
+                this._incluiDialogController = sap.ui.controller("tradelog.domain.carteira.dialogs.IncluiCarteira");
+                this._incluiDialogController.onInit(this);
+                this._incluiDialog = sap.ui.xmlfragment("tradelog.domain.carteira.dialogs.IncluiCarteira", this._incluiDialogController);
+                this._incluiDialogController.setDialog(this._incluiDialog);
+                this._incluiDialog.open();
             },
 
             /**
