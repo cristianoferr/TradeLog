@@ -3,12 +3,10 @@
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
-	<VBox class="sapUiSmallMargin" id="detalhePosicao" visible="{viewModel>/posicaoSelected}" >
+	<VBox class="sapUiSmallMargin"  >
 		<f:Form id="FormDisplay354wideDual"
 			editable="false">
-			<f:title>
-				<core:Title text="{i18n>posicao.detalhePosicao} - {NomePapel}" />
-			</f:title>
+			
 			<f:layout>
 				<f:ResponsiveGridLayout
 					labelSpanXL="4"
@@ -20,8 +18,8 @@
 					emptySpanL="4"
 					emptySpanM="0"
 					emptySpanS="0"
-					columnsXL="2"
-					columnsL="2"
+					columnsXL="3"
+					columnsL="3"
 					columnsM="2"
                     columnsS="1"
 					singleContainerFullSize="false" />

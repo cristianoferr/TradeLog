@@ -7,11 +7,12 @@
     xmlns="sap.m"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     >
-<VBox class="sapUiSmallMargin">
 
+    <Panel expandable="true" expanded="true" headerText="{i18n>carteira.tituloPosicoes}">
     <Table id="tablePosicao" items="{Posicao}" growing="false">
         <columns>
-            <Column ><Text text="{i18n>posicao.dataEntrada}"   /></Column>
+        <Column ><Text text="{i18n>posicao.nomePapel}"   /></Column>
+            <Column width="5rem"><Text text="{i18n>posicao.dataEntrada}"   /></Column>
             <Column ><Text text="{i18n>posicao.precoEntrada}"   /></Column>
             <Column ><Text text="{i18n>posicao.precoAtual}"   /></Column>
             <Column ><Text text="{i18n>posicao.quantidade}"   /></Column>
@@ -26,6 +27,8 @@
         <items>
         <ColumnListItem type="Navigation" press="onClickPosicao" app:IdPosicao="{IdPosicao}">
                 <cells>
+
+                    <Text text="{NomePapel}" />
                     <Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />
                     <Text text="{path:'PrecoEntrada', formatter:'.formatter.formataValor'}" />
                     <Text text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}" />
@@ -40,8 +43,13 @@
             </ColumnListItem>
         </items>
     </Table>
+    </Panel>
 
-    <core:Fragment fragmentName="tradelog.domain.posicao.fragments.DetalhePosicao" type="XML" />
-    </VBox>
+    <Panel id="detalhePosicao" expandable="true" expanded="true" headerText="{i18n>posicao.detalhePosicao} - {NomePapel}" visible="{viewModel>/posicaoSelected}">
+        <Button id="EditaPosicao" icon="sap-icon://edit" type="Emphasized" />
+        <Panel id="conteudoPosicao">
+            <core:Fragment fragmentName="tradelog.domain.posicao.fragments.DetalhePosicao" type="XML" />
+        </Panel>
+    </Panel>
 
 </mvc:View>
