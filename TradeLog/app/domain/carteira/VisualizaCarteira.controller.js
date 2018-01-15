@@ -9,7 +9,7 @@ sap.ui.define([
 
         return BaseController.extend("tradelog.domain.carteira.VisualizaCarteira", {
 
-            viewData: { bindPath: '', posicaoSelected: false, idPosicaoSelected=false },
+            viewData: { bindPath: '', posicaoSelected: false, idPosicaoSelected: false, idCarteira: undefined },
 
             onInit: function () {
                 var oComponent = this.getOwnerComponent();
@@ -23,6 +23,7 @@ sap.ui.define([
              * @return {type} {description}
              */
             onRouteMatched: function (evt) {
+                this.viewData.idCarteira = evt.getParameter("arguments").carteira;
                 var sEntityPath = `/Carteira(${evt.getParameter("arguments").carteira})/Posicao`;
                 this.bindView(sEntityPath);
 
@@ -44,7 +45,7 @@ sap.ui.define([
             },
 
 
-            formataCalculoPrecoAtual: function (preco, quantidade) {
+            formataCalculoPreco: function (preco, quantidade) {
                 return this.formatter.formataValor(preco * quantidade);
             },
 
@@ -63,7 +64,7 @@ sap.ui.define([
                 this.viewData.idPosicaoSelected = evt.getSource().data().IdPosicao;
                 this.viewData.posicaoSelected = this.viewData.idPosicaoSelected != undefined;
 
-
+                this.getView().byId("detalhePosicao").bindElement(`/Posicao(${this.viewData.idPosicaoSelected})`);
             }
 
 

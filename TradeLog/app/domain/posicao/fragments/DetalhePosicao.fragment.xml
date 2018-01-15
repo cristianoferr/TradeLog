@@ -7,7 +7,7 @@
 		<f:Form id="FormDisplay354wideDual"
 			editable="false">
 			<f:title>
-				<core:Title text="{i18n>posicao.detalhePosicao}" />
+				<core:Title text="{i18n>posicao.detalhePosicao} - {NomePapel}" />
 			</f:title>
 			<f:layout>
 				<f:ResponsiveGridLayout
@@ -23,36 +23,80 @@
 					columnsXL="2"
 					columnsL="2"
 					columnsM="2"
+                    columnsS="1"
 					singleContainerFullSize="false" />
 			</f:layout>
 			<f:formContainers>
-				<f:FormContainer title="Office">
+				<f:FormContainer title="{i18n>posicao.dadosIniciais}">
 					<f:formElements>
-						<f:FormElement label="Full name of the contact">
+						<f:FormElement label="{i18n>posicao.precoEntrada}">
 							<f:fields>
-								<Text text="{SupplierName}" id="nameText"  />
+								<Text text="{path:'PrecoEntrada', formatter:'.formatter.formataValor'}"  />
 							</f:fields>
 						</f:FormElement>
-						<f:FormElement label="Street and number where the contact is located">
+                        <f:FormElement label="{i18n>posicao.valorInicial}">
 							<f:fields>
-								<Text text="{Street} {HouseNumber}" />
+								<Text text="{parts:[{path:'PrecoEntrada'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" />
 							</f:fields>
 						</f:FormElement>
-						<f:FormElement label="ZIP Code and City">
+
+                        <f:FormElement label="{i18n>posicao.precoAtual}">
 							<f:fields>
-								<Text text="{ZIPCode} {City}" />
+								<Text text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}"  />
 							</f:fields>
 						</f:FormElement>
-						<f:FormElement label="Country where the contact is located">
+                        <f:FormElement label="{i18n>posicao.valorStopInicial}">
 							<f:fields>
-								<Text text="{Country}" id="countryText" />
+								<Text text="{path:'PrecoStopInicial', formatter:'.formatter.formataValor'}"  />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.valorStopAtual}">
+							<f:fields>
+								<Text text="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>posicao.dataEntrada}">
+							<f:fields>
+								<Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.quantidade}">
+							<f:fields>
+								<Text text="{Quantidade}" />
+							</f:fields>
+						</f:FormElement>
+
+					</f:formElements>
+				</f:FormContainer>
+
+                <f:FormContainer title="{i18n>posicao.dadosSituacao}">
+					<f:formElements>
+						<f:FormElement label="{i18n>posicao.valorAtual}">
+							<f:fields>
+								<Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" />
+							</f:fields>
+						</f:FormElement>
+                        	<f:FormElement label="{i18n>posicao.valorDif}">
+							<f:fields>
+								<Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoValorDif'}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>posicao.percDif}">
+							<f:fields>
+								<Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoPercDif'}" />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.diasPosicao}">
+							<f:fields>
+								<Text text="{path:'DataEntrada', formatter:'.formatter.calcDifDays'}" />
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
 				</f:FormContainer>
-				<f:FormContainer title="Online">
+
+				<f:FormContainer title="{i18n>posicao.dadosRisco}">
 					<f:formElements>
-						<f:FormElement label="Web page of the contact">
+						<f:FormElement label="{i18n>posicao.quantidade}">
 							<f:fields>
 								<Text text="{Url}" />
 							</f:fields>

@@ -46,6 +46,8 @@ namespace TradeLogServer.App_Start
             //registrando propriedades calculadas
             builder.EntityType<Posicao>().Property(a => a.PrecoAtual);
             builder.EntityType<Posicao>().Property(a => a.ValorAtual);
+            builder.EntityType<Posicao>().Property(a => a.NomePapel);
+            
 
             builder.EntityType<Carteira>().HasMany(a => a.Posicao);
 

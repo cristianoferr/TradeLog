@@ -15,7 +15,7 @@
             <Column ><Text text="{i18n>posicao.precoEntrada}"   /></Column>
             <Column ><Text text="{i18n>posicao.precoAtual}"   /></Column>
             <Column ><Text text="{i18n>posicao.quantidade}"   /></Column>
-            <Column ><Text text="{i18n>posicao.valorStop}"   /></Column>
+            <Column ><Text text="{i18n>posicao.valorStopAtual}"   /></Column>
             <Column ><Text text="{i18n>posicao.valorAtual}"   /></Column>
             <Column ><Text text="{i18n>posicao.percDif}"   /></Column>
             <Column ><Text text="{i18n>posicao.valorDif}"   /></Column>
@@ -30,8 +30,8 @@
                     <Text text="{path:'PrecoEntrada', formatter:'.formatter.formataValor'}" />
                     <Text text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}" />
                     <Text text="{Quantidade}" />
-                    <Text text="{path:'PrecoStop', formatter:'.formatter.formataValor'}" />
-                    <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPrecoAtual'}" />
+                    <Text text="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}" />
+                    <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" />
                     <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoPercDif'}" />
                     <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoValorDif'}" />
                     <Text text="{path:'DataEntrada', formatter:'.formatter.calcDifDays'}" />

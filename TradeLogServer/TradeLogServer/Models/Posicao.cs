@@ -31,7 +31,8 @@ namespace TradeLogServer.Models
         public float ValorEntrada { get; set; }
         public float PrecoSaida{ get; set; }
         public int Quantidade { get; set; }
-        public float PrecoStop { get; set; }
+        public float PrecoStopInicial { get; set; }
+        public float PrecoStopAtual{ get; set; }
 
         public DateTime DataEntrada { get; set; }
         public DateTime? DataSaida{ get; set; }
@@ -40,5 +41,8 @@ namespace TradeLogServer.Models
         public float PrecoAtual { get { return Papel.ValorAtual; } }
         [NotMapped]
         public float ValorAtual { get { return PrecoAtual*Quantidade; } }
+        [NotMapped]
+        public string NomePapel { get { return Papel.Nome; } }
+
     }
 }
