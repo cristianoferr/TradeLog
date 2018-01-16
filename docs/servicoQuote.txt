@@ -1,0 +1,10 @@
+https://www.enclout.com/
+
+
+https://query1.finance.yahoo.com/v8/finance/chart/PETR4.SA?range=1d&includePrePost=false&interval=1d&corsDomain=finance.yahoo.com&.tsrc=finance
+
+https://economia.awesomeapi.com.br/json/all
+
+
+https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=PETR3.SA&interval=1day&outputsize=1&apikey=SUBSTITUA_SUA_KEY_AQUI
+
