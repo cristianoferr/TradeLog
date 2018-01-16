@@ -1,13 +1,13 @@
 sap.ui.define([
-    'tradelog/shared/BaseController',
+    'tradelog/shared/DomainController',
     'sap/ui/model/Filter',
     'sap/ui/model/FilterOperator'
-], function (BaseController,
+], function (DomainController,
     Filter,
     FilterOperator) {
         "use strict";
 
-        return BaseController.extend("tradelog.domain.carteira.VisualizaCarteira", {
+        return DomainController.extend("tradelog.domain.carteira.VisualizaCarteira", {
 
             viewData: { bindPath: '', posicaoSelected: false, idPosicaoSelected: false, idCarteira: undefined },
 
@@ -27,6 +27,9 @@ sap.ui.define([
                 var sEntityPath = `/Carteira(${evt.getParameter("arguments").carteira})/Posicao`;
                 this.bindView(sEntityPath);
 
+                this.viewData.posicaoSelected = false;
+                this.viewData.idPosicaoSelected = false;
+
             },
 
             /**
@@ -44,20 +47,6 @@ sap.ui.define([
                 this.getView().setModel(viewModel, "viewModel");
             },
 
-
-            formataCalculoPreco: function (preco, quantidade) {
-                return this.formatter.formataValor(preco * quantidade);
-            },
-
-            formataCalculoPercDif: function (preco, quantidade, valorEntrada) {
-                var dif = preco * quantidade - valorEntrada;
-
-                return this.formatter.formataValor(dif / valorEntrada * 100);
-            },
-            formataCalculoValorDif: function (preco, quantidade, valorEntrada) {
-                var dif = preco * quantidade - valorEntrada;
-                return this.formatter.formataValor(dif);
-            },
 
             onClickPosicao: function (evt) {
                 //debugger;

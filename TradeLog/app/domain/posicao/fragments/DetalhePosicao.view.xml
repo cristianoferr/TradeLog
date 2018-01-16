@@ -1,0 +1,19 @@
+<mvc:View
+    controllerName="tradelog.shared.PainelEditavel"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    >
+    <Bar>
+        <contentLeft>
+            <Button id="DetalhePosicaoEdit" icon="sap-icon://edit" type="Emphasized"  />
+            <Button id="DetalhePosicaoSave" icon="sap-icon://complete"  type="Emphasized" visible="false"  />
+        </contentLeft>
+    </Bar>
+    <Panel id="DetalhePosicao">
+    </Panel>
+
+</mvc:View>

@@ -24,10 +24,10 @@
                     </Select>-->
 
                     <Label text="{i18n>carteira.nome}"   /><Input id="nomeCarteira" required="true" value=""/>
-                    <Label text="{i18n>carteira.custoOperacao}"   /><Input id="custoOperacao" required="true" value=""/>
-                    <Label text="{i18n>carteira.riscoPorPosicao}"   /><Input id="riscoPorPosicao" required="true" value=""/>
-                    <Label text="{i18n>carteira.riscoPorCarteira}"   /><Input id="riscoPorCarteira" required="true" value=""/>
-                    <Label text="{i18n>carteira.saldoInicial}"   /><Input id="saldoInicial" required="true" value=""/>
+                    <Label text="{i18n>carteira.custoOperacao}"   /><Input id="custoOperacao" required="true" value="20" liveChange="inputFloat" change="checkFloat"/>
+                    <Label text="{i18n>carteira.riscoPorPosicao}"   /><Input id="riscoPorPosicao" required="true" value="2" liveChange="inputFloat" change="checkFloat"/>
+                    <Label text="{i18n>carteira.riscoPorCarteira}"   /><Input id="riscoPorCarteira" required="true" value="6" liveChange="inputFloat" change="checkFloat"/>
+                    <Label text="{i18n>carteira.saldoInicial}"   /><Input id="saldoInicial" required="true" value="1000" liveChange="inputFloat" change="checkFloat"/>
 
                 </f:content>
             </f:SimpleForm>

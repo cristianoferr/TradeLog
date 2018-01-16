@@ -3,12 +3,12 @@ CREATE TABLE Carteira
 (
 	IdCarteira           INT(10) NOT NULL,
 	IdUsuario            int(10) NULL,
-	ValorAtual           decimal(10,2) NULL,
+	ValorAtual           decimal(14,6) NULL,
 	NomeCarteira         VARCHAR(50) NULL,
-	RiscoPorPosicao      decimal(10,2) NULL,
-	RiscoPorCarteira     decimal(10,2) NULL,
-	CustoOperacaoPadrao  decimal(10,2) NULL,
-	ValorLiquido         decimal(10,2) NULL
+	RiscoPorPosicao      decimal(14,6) NULL,
+	RiscoPorCarteira     decimal(14,6) NULL,
+	CustoOperacaoPadrao  decimal(14,6) NULL,
+	ValorLiquido         decimal(14,6) NULL
 );
 
 
@@ -31,7 +31,7 @@ CREATE TABLE Movimento
 (
 	IdCarteira           INT(10) NULL,
 	IdMovimento          int(10) NOT NULL,
-	ValorMovimento       decimal(10,2) NULL,
+	ValorMovimento       decimal(14,6) NULL,
 	IdPosicao            int(10) NULL,
 	Descricao            VARCHAR(255) NULL
 );
@@ -55,7 +55,7 @@ CREATE TABLE Papel
 	IdPapel              int(10) NOT NULL,
 	Codigo               VARCHAR(20) NULL,
 	Nome                 VARCHAR(20) NULL,
-	ValorAtual           decimal(10,2) NULL,
+	ValorAtual           decimal(14,6) NULL,
 	LotePadrao           int(6) NULL
 );
 
@@ -77,8 +77,8 @@ insert into Papel(Codigo,Nome,ValorAtual,LotePadrao) values ('TST2','Teste 2',20
 CREATE TABLE Posicao
 (
 	IdPosicao            int(10) NOT NULL,
-	PrecoEntrada         decimal(10,2) NULL,
-	PrecoSaida           decimal(10,2) NULL,
+	PrecoEntrada         decimal(14,6) NULL,
+	PrecoSaida           decimal(14,6) NULL,
 	PrecoStopAtual       VARCHAR(20) NULL,
 	Quantidade           int(6) NULL,
 	IdPapel              int(10) NULL,
@@ -86,8 +86,8 @@ CREATE TABLE Posicao
 	IdCarteira           INT(10) NULL,
 	DataEntrada          DATE NULL,
 	DataSaida            CHAR(18) NULL,
-	ValorEntrada         decimal(10,2) NULL,
-	PrecoStopInicial     decimal(10,2) NULL
+	ValorEntrada         decimal(14,6) NULL,
+	PrecoStopInicial     decimal(14,6) NULL
 );
 
 

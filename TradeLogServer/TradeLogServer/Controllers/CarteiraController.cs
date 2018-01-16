@@ -125,7 +125,7 @@ namespace TradeLogServer.Controllers
         [AcceptVerbs("PATCH", "MERGE")]
         public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Carteira> patch)
         {
-           // Validate(patch.GetEntity());
+            //Validate(patch.GetEntity());
 
             if (!ModelState.IsValid)
             {

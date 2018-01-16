@@ -1,0 +1,112 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin"  >
+		<f:Form id="FormDisplay354wideDual"
+			editable="false">
+			
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="3"
+					columnsL="3"
+					columnsM="2"
+                    columnsS="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="{i18n>posicao.dadosIniciais}">
+					<f:formElements>
+						<f:FormElement label="{i18n>posicao.precoEntrada}">
+							<f:fields>
+								<Text text="{path:'PrecoEntrada', formatter:'.formatter.formataValor'}"  />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.valorInicial}">
+							<f:fields>
+								<Text text="{parts:[{path:'PrecoEntrada'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" />
+							</f:fields>
+						</f:FormElement>
+
+                        <f:FormElement label="{i18n>posicao.precoAtual}">
+							<f:fields>
+								<Text text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}"  />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.valorStopInicial}">
+							<f:fields>
+								<Text text="{path:'PrecoStopInicial', formatter:'.formatter.formataValor'}"  />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.valorStopAtual}">
+							<f:fields>
+								<Text text="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>posicao.dataEntrada}">
+							<f:fields>
+								<Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.quantidade}">
+							<f:fields>
+								<Text text="{Quantidade}" />
+							</f:fields>
+						</f:FormElement>
+
+					</f:formElements>
+				</f:FormContainer>
+
+                <f:FormContainer title="{i18n>posicao.dadosSituacao}">
+					<f:formElements>
+						<f:FormElement label="{i18n>posicao.valorAtual}">
+							<f:fields>
+								<Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" />
+							</f:fields>
+						</f:FormElement>
+                        	<f:FormElement label="{i18n>posicao.valorDif}">
+							<f:fields>
+								<Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoValorDif'}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>posicao.percDif}">
+							<f:fields>
+								<Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoPercDif'}" />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.diasPosicao}">
+							<f:fields>
+								<Text text="{path:'DataEntrada', formatter:'.formatter.calcDifDays'}" />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+
+				<f:FormContainer title="{i18n>posicao.dadosRisco}">
+					<f:formElements>
+						<f:FormElement label="{i18n>posicao.quantidade}">
+							<f:fields>
+								<Text text="{Url}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Twitter account of the contact">
+							<f:fields>
+								<Text text="{Twitter}" />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

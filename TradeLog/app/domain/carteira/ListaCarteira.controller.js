@@ -1,13 +1,13 @@
 sap.ui.define([
-    'tradelog/shared/BaseController',
+    'tradelog/shared/DomainController',
     'sap/ui/model/Filter',
     'sap/ui/model/FilterOperator'
-], function (BaseController,
+], function (DomainController,
     Filter,
     FilterOperator) {
         "use strict";
 
-        return BaseController.extend("tradelog.domain.carteira.ListaCarteira", {
+        return DomainController.extend("tradelog.domain.carteira.ListaCarteira", {
 
             onInit: function () {
                 var oComponent = this.getOwnerComponent();
@@ -34,6 +34,7 @@ sap.ui.define([
                 this._incluiDialog = sap.ui.xmlfragment("tradelog.domain.carteira.dialogs.IncluiCarteira", this._incluiDialogController);
                 this._incluiDialogController.setDialog(this._incluiDialog);
                 this._incluiDialog.open();
+                this._incluiDialogController.onShow();
             },
 
             /**

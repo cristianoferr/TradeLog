@@ -1,16 +1,20 @@
 sap.ui.define([
-    'tradelog/shared/BaseController',
+    'tradelog/shared/DomainController',
     'sap/ui/model/Filter',
     'sap/ui/model/FilterOperator'
-], function (BaseController,
+], function (DomainController,
     Filter,
     FilterOperator) {
         "use strict";
 
-        return BaseController.extend("tradelog.controller.BaseDialog", {
+        return DomainController.extend("tradelog.controller.BaseDialog", {
 
             onInit: function (masterController) {
                 this.masterController = masterController;
+
+            },
+
+            onShow: function () {
             },
 
             setDialog: function (oDialog) {
@@ -27,6 +31,8 @@ sap.ui.define([
             close: function (oEvent) {
                 //pode ser que já tenha fechado...
                 this._oDialog.close();
-            }
+            },
+
+
         });
     });

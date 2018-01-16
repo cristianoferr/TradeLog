@@ -1,13 +1,13 @@
 sap.ui.define([
-    'tradelog/shared/BaseController',
+    'tradelog/shared/DomainController',
     'sap/ui/model/Filter',
     'sap/ui/model/FilterOperator'
-], function (BaseController,
+], function (DomainController,
     Filter,
     FilterOperator) {
         "use strict";
 
-        return BaseController.extend("tradelog.shared.PainelEditavel", {
+        return DomainController.extend("tradelog.shared.PainelEditavel", {
 
             //id do Painel que será alterado entre os modos Display e Change
             nomePainel: '',

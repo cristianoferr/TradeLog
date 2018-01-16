@@ -1,13 +1,13 @@
 sap.ui.define([
-    'tradelog/shared/BaseController',
+    'tradelog/shared/DomainController',
     'sap/ui/model/Filter',
     'sap/ui/model/FilterOperator'
-], function (BaseController,
+], function (DomainController,
     Filter,
     FilterOperator) {
         "use strict";
 
-        return BaseController.extend("tradelog.domain.carteira.Carteira", {
+        return DomainController.extend("tradelog.domain.carteira.Carteira", {
             //objeto contendo dados que podem ser usados pela view (por exemplo: para saber qual a aba atual que o usuário clicou)
             viewData: { bindPath: '', carteiraAtual: undefined, abaDadosGerais: true },
 

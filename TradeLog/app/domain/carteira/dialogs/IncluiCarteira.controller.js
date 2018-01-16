@@ -15,6 +15,15 @@ sap.ui.define([
                 return undefined;
             },
 
+            onShow: function () {
+                //this.addOnChange("riscoPorPosicao");
+               // this.addOnChange("riscoPorCarteira");
+               // this.addOnChange("custoOperacao");
+               // this.addOnChange("saldoInicial");
+            },
+
+
+
             addRegistro: function () {
                 var form = sap.ui.getCore().byId("formAddCarteira");
                 var lista = this.getView().byId("listCarteira");

@@ -33,19 +33,19 @@
 
                         <f:FormElement label="{i18n>carteira.custoOperacao}">
 							<f:fields>
-								<Input value="{CustoOperacaoPadrao}" />
+								<Input value="{CustoOperacaoPadrao}" liveChange="inputFloat" change="checkFloat"/>
 							</f:fields>
                         </f:FormElement>
 
                          <f:FormElement label="{i18n>carteira.valorLiquido}">
 							<f:fields>
-								<Input value="{ValorLiquido}" />
+								<Input value="{ValorLiquido}" liveChange="inputFloat" change="checkFloat"/>
 							</f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="{i18n>carteira.valorAtual}">
 							<f:fields>
-								<Input value="{ValorAtual}" />
+								<Input value="{ValorAtual}"  liveChange="inputFloat" change="checkFloat"/>
 							</f:fields>
                         </f:FormElement>
 
@@ -57,13 +57,13 @@
 					<f:formElements>
                         <f:FormElement label="{i18n>carteira.riscoPorPosicao}">
 							<f:fields>
-								<Input value="{RiscoPorPosicao}" />
+								<Input value="{RiscoPorPosicao}"  liveChange="inputFloat" change="checkFloat"/>
 							</f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="{i18n>carteira.riscoPorCarteira}">
 							<f:fields>
-								<Input value="{RiscoPorCarteira}" />
+								<Input value="{RiscoPorCarteira}"  liveChange="inputFloat" change="checkFloat"/>
 							</f:fields>
                         </f:FormElement>
 

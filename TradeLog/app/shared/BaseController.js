@@ -49,6 +49,65 @@ sap.ui.define(
                 return sap.ui.core.UIComponent.getRouterFor(this);
             },
 
+
+
+            /* Recria o evento onChange do input... o onchange não está funcionando corretamente por padrão */
+            addOnChange: function (inputId) {
+                var input = sap.ui.getCore().byId(inputId);
+                this.addOnChangeToInput(input);
+            },
+            addOnChangeToInput: function (input) {
+                input.onChange = function (e) {
+                    if (!this.getEditable() || !this.getEnabled()) {
+                        return
+                    }
+                    var v = this._getInputValue();
+                    //if (v !== this._lastValue)
+                    {
+                        this.setValue(v);
+                        v = this.getValue();
+                        this._lastValue = v;
+                        this.fireChangeEvent(v);
+                        return true
+                    }
+
+                };
+            },
+
+            /*Limita o campo a apenas númerico. liveChange="inputNumeric" */
+            inputNumeric: function (oEvent) {
+                var _oInput = oEvent.getSource();
+                var val = _oInput.getValue();
+                val = val.replace(/[^\d]/g, '');
+
+                _oInput.setValue(val);
+            },
+
+            /*Limita o campo a apenas númerico com '.'. liveChange="inputFloat" */
+            inputFloat: function (oEvent) {
+                var _oInput = oEvent.getSource();
+                if (!_oInput.hasInitializedOnChange) {
+                    _oInput.hasInitializedOnChange = true;
+                    this.addOnChangeToInput(_oInput);
+                }
+                var val = _oInput.getValue();
+                val = val.replace(/[^0-9\.]+/g, '');
+                var contaPonto = val.split(".").length - 1;
+                if (contaPonto > 1) val = val.replace(".", "");
+                _oInput.setValue(val);
+                console.log("inputFloat:" + val + " || " + _oInput.getValue());
+            },
+            checkFloat: function (oEvent) {
+                this.inputFloat(oEvent);
+                var _oInput = oEvent.getSource();
+                var val = _oInput.getValue();
+                if (val.endsWith(".")) val = val + "0";
+                if (val.startsWith(".")) val = "0" + val;
+                if (val == "") val = "0.0";
+                _oInput.setValue(val);
+                console.log("checkFloat:" + val + " || " + _oInput.getValue());
+            },
+
             /**
              * Convenience method for getting the view model by name.
              * @public

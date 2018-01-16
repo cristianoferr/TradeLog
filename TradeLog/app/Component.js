@@ -16,6 +16,7 @@ sap.ui.define([
 
         init: function () {
             // call overwritten init (calls createContent)
+            sap.ui.getCore().getConfiguration().setLanguage("en-US");
             UIComponent.prototype.init.apply(this, arguments);
             this.getRouter().attachTitleChanged(function (oEvent) {
                 var sTitle = oEvent.getParameter("title");

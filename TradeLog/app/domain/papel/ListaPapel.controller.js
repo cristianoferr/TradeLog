@@ -1,15 +1,15 @@
 sap.ui.define([
-    'tradelog/shared/BaseController',
+    'tradelog/shared/DomainController',
     'tradelog/shared/formatter',
     'sap/ui/model/Filter',
     'sap/ui/model/FilterOperator'
-], function (BaseController,
+], function (DomainController,
     formatter,
     Filter,
     FilterOperator) {
         "use strict";
 
-        return BaseController.extend("tradelog.domain.papel.ListaPapel", {
+        return DomainController.extend("tradelog.domain.papel.ListaPapel", {
             formatter: formatter,
 
             onInit: function () {
