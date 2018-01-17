@@ -69,6 +69,10 @@ namespace TradeLogServer.Controllers
             {
                 return NotFound();
             }
+            if (posicao.IdUsuario != idUsuarioAtual)
+            {
+                return BadRequest("NO PERMISSION!");
+            }
 
             patch.Put(posicao);
 
@@ -99,6 +103,11 @@ namespace TradeLogServer.Controllers
             {
                 return BadRequest(ModelState);
             }
+            if (posicao.Carteira.IdUsuario != idUsuarioAtual)
+            {
+                return BadRequest("NO PERMISSION!");
+            }
+            posicao.IdUsuario = idUsuarioAtual;
 
             db.Posicoes.Add(posicao);
             await db.SaveChangesAsync();
@@ -110,33 +119,45 @@ namespace TradeLogServer.Controllers
         // PATCH: odata/Posicao(5)
         [AcceptVerbs("PATCH", "MERGE")]
         [HttpPatch]
-        public async Task<IHttpActionResult> Patch([FromODataUri] int id,Dictionary<string,object> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Posicao> patch)
         {
 
-            Posicao posicao = await db.Posicoes.FindAsync(id);
+          
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Posicao posicao = await db.Posicoes.FindAsync(key);
             if (posicao == null)
             {
                 return NotFound();
             }
+            if (posicao.IdUsuario != idUsuarioAtual)
+            {
+                return BadRequest("NO PERMISSION!");
+            }
 
-            AplicaPatch(patch, posicao);
+            patch.Patch(posicao);
 
             try
-               {
-                   await db.SaveChangesAsync();
-               }
-               catch (DbUpdateConcurrencyException)
-               {
-                   if (!PosicaoExists(id))
-                   {
-                       return NotFound();
-                   }
-                   else
-                   {
-                       throw;
-                   }
-               }
-            return Ok();
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PosicaoExists(key))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Updated(posicao);
+
         }
 
       
@@ -145,6 +166,11 @@ namespace TradeLogServer.Controllers
         public async Task<IHttpActionResult> Delete([FromODataUri] int key)
         {
             Posicao posicao = await db.Posicoes.FindAsync(key);
+            if (posicao.IdUsuario != idUsuarioAtual)
+            {
+                return BadRequest("NO PERMISSION!");
+            }
+
             if (posicao == null)
             {
                 return NotFound();

@@ -4,9 +4,9 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<VBox class="sapUiSmallMargin"  >
-		<f:Form id="FormDisplay354wideDual"
+		<f:Form id="DetalhePosicaoChange"
 			editable="false">
-			
+
 			<f:layout>
 				<f:ResponsiveGridLayout
 					labelSpanXL="4"
@@ -29,38 +29,27 @@
 					<f:formElements>
 						<f:FormElement label="{i18n>posicao.precoEntrada}">
 							<f:fields>
-								<Text text="{path:'PrecoEntrada', formatter:'.formatter.formataValor'}"  />
+								<Input value="{PrecoEntrada}"  liveChange="inputFloat" change="checkFloat"/>
 							</f:fields>
 						</f:FormElement>
                         <f:FormElement label="{i18n>posicao.valorInicial}">
 							<f:fields>
-								<Text text="{parts:[{path:'PrecoEntrada'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" />
+								<Input value="{parts:[{path:'PrecoEntrada'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" editable="false"  />
 							</f:fields>
 						</f:FormElement>
 
-                        <f:FormElement label="{i18n>posicao.precoAtual}">
-							<f:fields>
-								<Text text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}"  />
-							</f:fields>
-						</f:FormElement>
-                        <f:FormElement label="{i18n>posicao.valorStopInicial}">
-							<f:fields>
-								<Text text="{path:'PrecoStopInicial', formatter:'.formatter.formataValor'}"  />
-							</f:fields>
-						</f:FormElement>
-                        <f:FormElement label="{i18n>posicao.valorStopAtual}">
-							<f:fields>
-								<Text text="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}"  />
-							</f:fields>
-						</f:FormElement>
+
 						<f:FormElement label="{i18n>posicao.dataEntrada}">
 							<f:fields>
-								<Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />
+                                <DateTimePicker
+                                displayFormat="short"  valueFormat="yyyy-MM-dd"
+			value="{path:'DataEntrada', type:'sap.ui.model.type.DateTime'}"
+			/>
 							</f:fields>
 						</f:FormElement>
                         <f:FormElement label="{i18n>posicao.quantidade}">
 							<f:fields>
-								<Text text="{Quantidade}" />
+								<Input value="{Quantidade}"  liveChange="inputNumeric"/>
 							</f:fields>
 						</f:FormElement>
 
@@ -69,28 +58,58 @@
 
                 <f:FormContainer title="{i18n>posicao.dadosSituacao}">
 					<f:formElements>
+                        <f:FormElement label="{i18n>posicao.precoAtual}">
+							<f:fields>
+								<Input value="{path:'PrecoAtual', formatter:'.formatter.formataValor'}"  editable="false" />
+							</f:fields>
+						</f:FormElement>
+
 						<f:FormElement label="{i18n>posicao.valorAtual}">
 							<f:fields>
-								<Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" />
+								<Input value="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" editable="false" />
 							</f:fields>
 						</f:FormElement>
-                        	<f:FormElement label="{i18n>posicao.valorDif}">
-							<f:fields>
-								<Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoValorDif'}" />
-							</f:fields>
-						</f:FormElement>
-						<f:FormElement label="{i18n>posicao.percDif}">
-							<f:fields>
-								<Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoPercDif'}" />
-							</f:fields>
-						</f:FormElement>
+
                         <f:FormElement label="{i18n>posicao.diasPosicao}">
 							<f:fields>
-								<Text text="{path:'DataEntrada', formatter:'.formatter.calcDifDays'}" />
+								<Input value="{path:'DataEntrada', formatter:'.formatter.calcDifDays'}"  editable="false"/>
+							</f:fields>
+						</f:FormElement>
+
+                        <f:FormElement label="{i18n>posicao.valorDif}" >
+                        <f:fields>
+                            <Input value="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'PrecoEntrada'}], formatter:'.formataCalculoValorDif'}"  editable="false" />
+                        </f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>posicao.percDif}">
+							<f:fields>
+								<Input value="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'PrecoEntrada'}], formatter:'.formataCalculoPercDif'}" editable="false" />
+							</f:fields>
+						</f:FormElement>
+
+                        <f:FormElement label="teste">
+							<f:fields>
+								<Input value="{ path: 'PrecoStopInicial', type:'sap.ui.model.type.Currency' }"  liveChange="inputFloat" change="checkFloat" />
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
 				</f:FormContainer>
+
+                <f:FormContainer title="{i18n>posicao.dadosStop}">
+                    <f:formElements>
+                        <f:FormElement label="{i18n>posicao.valorStopInicial}">
+							<f:fields>
+								<Input value="{PrecoStopInicial}"  liveChange="inputFloat" change="checkFloat" />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.valorStopAtual}">
+							<f:fields>
+								<Input value="{PrecoStopAtual}"  liveChange="inputFloat" change="checkFloat" />
+							</f:fields>
+						</f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
 
 				<f:FormContainer title="{i18n>posicao.dadosRisco}">
 					<f:formElements>

@@ -43,11 +43,18 @@ namespace TradeLogServer.App_Start
                   .Function("Posicao")
                   .ReturnsFromEntitySet<Posicao>("Posicao");
 
+            builder
+                  .EntitySet<Papel>("Papel")
+                  .EntityType
+                  .Function("Update")
+                  .Returns<string>();
+
             //registrando propriedades calculadas
             builder.EntityType<Posicao>().Property(a => a.PrecoAtual);
             builder.EntityType<Posicao>().Property(a => a.ValorAtual);
             builder.EntityType<Posicao>().Property(a => a.NomePapel);
-            
+            builder.EntityType<Posicao>().Property(a => a.CodigoPapel);
+
 
             builder.EntityType<Carteira>().HasMany(a => a.Posicao);
 

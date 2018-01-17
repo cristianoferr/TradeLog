@@ -11,7 +11,7 @@
     <Panel expandable="true" expanded="true" headerText="{i18n>carteira.tituloPosicoes}">
     <Table id="tablePosicao" items="{Posicao}" growing="false">
         <columns>
-        <Column ><Text text="{i18n>posicao.nomePapel}"   /></Column>
+        <Column width="5rem"><Text text="{i18n>posicao.nomePapel}"   /></Column>
             <Column width="5rem"><Text text="{i18n>posicao.dataEntrada}"   /></Column>
             <Column ><Text text="{i18n>posicao.precoEntrada}"   /></Column>
             <Column ><Text text="{i18n>posicao.precoAtual}"   /></Column>
@@ -28,15 +28,15 @@
         <ColumnListItem type="Navigation" press="onClickPosicao" app:IdPosicao="{IdPosicao}">
                 <cells>
 
-                    <Text text="{NomePapel}" />
+                    <Text text="{CodigoPapel}" />
                     <Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />
                     <Text text="{path:'PrecoEntrada', formatter:'.formatter.formataValor'}" />
                     <Text text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}" />
                     <Text text="{Quantidade}" />
                     <Text text="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}" />
                     <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" />
-                    <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoPercDif'}" />
-                    <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'ValorEntrada'}], formatter:'.formataCalculoValorDif'}" />
+                    <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'PrecoEntrada'}], formatter:'.formataCalculoPercDif'}" />
+                    <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'PrecoEntrada'}], formatter:'.formataCalculoValorDif'}" />
                     <Text text="{path:'DataEntrada', formatter:'.formatter.calcDifDays'}" />
 
                 </cells>
@@ -45,7 +45,7 @@
     </Table>
     </Panel>
 
-    <Panel id="detalhePosicao" expandable="true" expanded="true" headerText="{i18n>posicao.detalhePosicao} - {NomePapel}" visible="{viewModel>/posicaoSelected}">
+    <Panel id="detalhePosicao" expandable="true" expanded="true" headerText="{i18n>posicao.detalhePosicao} - {CodigoPapel}" visible="{viewModel>/posicaoSelected}">
         <Panel id="conteudoPosicao">
         <mvc:XMLView viewName="tradelog.domain.posicao.fragments.DetalhePosicao"
                                 app:nomePainel="DetalhePosicao" app:domainAtual="posicao" app:entidade="{viewModel>/bindPath}" app:paramEntidade="posicao" ></mvc:XMLView>

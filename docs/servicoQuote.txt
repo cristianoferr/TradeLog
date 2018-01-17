@@ -8,3 +8,6 @@ https://economia.awesomeapi.com.br/json/all
 
 https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=PETR3.SA&interval=1day&outputsize=1&apikey=SUBSTITUA_SUA_KEY_AQUI
 
+
+
+http://localhost:58760/odata/Papel(1)/TradeLogServer.Controllers.Update

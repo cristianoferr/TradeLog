@@ -43,6 +43,8 @@ namespace TradeLogServer.Models
         public float ValorAtual { get { return PrecoAtual*Quantidade; } }
         [NotMapped]
         public string NomePapel { get { return Papel.Nome; } }
+        [NotMapped]
+        public string CodigoPapel { get { return Papel.Codigo; } }
 
     }
 }

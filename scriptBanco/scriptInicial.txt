@@ -1,4 +1,28 @@
 
+DROP TABLE Movimento;
+
+
+
+DROP TABLE Posicao;
+
+
+
+DROP TABLE Carteira;
+
+
+
+DROP TABLE Usuario;
+
+
+
+DROP TABLE Historico;
+
+
+
+DROP TABLE Papel;
+
+
+
 CREATE TABLE Carteira
 (
 	IdCarteira           INT(10) NOT NULL,
@@ -24,6 +48,30 @@ MODIFY IdCarteira INT(10) AUTO_INCREMENT;
 insert into Carteira (IdUsuario,ValorAtual,NomeCarteira,RiscoPorPosicao,RiscoPorCarteira,CustoOperacaoPadrao,ValorLiquido) values (1,1000,'Carteira Padrão',2,6,20,1000);
 
 insert into Carteira (IdUsuario,ValorAtual,NomeCarteira,RiscoPorPosicao,RiscoPorCarteira,CustoOperacaoPadrao,ValorLiquido) values (1,1234.56,'Carteira Teste 2',10,6,120,1234.56);
+
+
+
+CREATE TABLE Historico
+(
+	idHistorico          int(10) NOT NULL,
+	Open                 decimal(14,6) NULL,
+	Close                decimal(14,6) NULL,
+	High                 decimal(14,6) NULL,
+	Low                  decimal(14,6) NULL,
+	Volume               decimal(14,6) NULL,
+	Data                 DATE NULL,
+	IdPapel              int(10) NULL
+);
+
+
+
+ALTER TABLE Historico
+ADD PRIMARY KEY (idHistorico);
+
+
+
+ALTER TABLE Historico
+MODIFY IdHistorico INT(10) AUTO_INCREMENT;
 
 
 
@@ -132,6 +180,11 @@ ADD FOREIGN KEY R_3 (IdUsuario) REFERENCES Usuario (IdUsuario);
 
 ALTER TABLE Carteira
 ADD FOREIGN KEY R_6 (IdUsuario) REFERENCES Usuario (IdUsuario);
+
+
+
+ALTER TABLE Historico
+ADD FOREIGN KEY R_10 (IdPapel) REFERENCES Papel (IdPapel);
 
 
 

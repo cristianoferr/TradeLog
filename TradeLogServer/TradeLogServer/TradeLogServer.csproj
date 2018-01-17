@@ -286,6 +286,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarteiraController.cs" />
+    <Compile Include="Controllers\HistoricoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovimentoController.cs" />
     <Compile Include="Controllers\PapelController.cs" />
@@ -302,6 +303,7 @@
     <Compile Include="Models\Carteira.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Movimento.cs" />
+    <Compile Include="Models\Historico.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Posicao.cs" />
     <Compile Include="Models\Papel.cs" />
@@ -309,6 +311,8 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\Utils.cs" />
+    <Compile Include="WebData\PapelService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -378,6 +382,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Business\" />
     <Folder Include="logs\" />
   </ItemGroup>
   <ItemGroup>
