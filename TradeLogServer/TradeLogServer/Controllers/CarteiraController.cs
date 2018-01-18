@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -11,6 +12,7 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.OData;
 using System.Web.OData.Routing;
+using TradeLogServer.Business;
 using TradeLogServer.Models;
 
 namespace TradeLogServer.Controllers
@@ -26,7 +28,7 @@ namespace TradeLogServer.Controllers
     builder.EntitySet<Risco>("Riscoes"); 
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class CarteiraController : BaseController<Carteira>
+    public class CarteiraController : BaseController<Carteira,BPCarteira>
     {
         // GET: odata/Carteira
         [EnableQuery]
@@ -40,6 +42,21 @@ namespace TradeLogServer.Controllers
         public SingleResult<Carteira> GetCarteira([FromODataUri] int key)
         {
             return SingleResult.Create(db.Carteiras.Where(carteira => carteira.IdCarteira == key && carteira.IdUsuario==idUsuarioAtual).Include(p => p.Posicao.Select(x => x.Papel)));
+        }
+
+
+        [ODataRoute("Carteira({key})/TradeLogServer.Controllers.DepositaFundos")]
+        [HttpGet]
+        public string DepositaFundos([FromODataUri] int key,[FromBody]JObject data)
+        {
+            return "Fundos Depositados:"  + data["valor"] + "  com descricao: "+ data["descricao"];
+        }
+
+        [ODataRoute("Carteira({key})/TradeLogServer.Controllers.RetiraFundos")]
+        [HttpGet]
+        public string RetiraFundos([FromODataUri] int key, [FromBody]JObject data)
+        {
+            return "Fundos Retirados:" + data["valor"] + "  com descricao: " + data["descricao"];
         }
 
         // GET: odata/Carteira(5)/Posicao

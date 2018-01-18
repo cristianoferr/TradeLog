@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.OData;
+using TradeLogServer.Business;
 using TradeLogServer.Models;
 
 namespace TradeLogServer.Controllers
@@ -24,7 +25,7 @@ namespace TradeLogServer.Controllers
     builder.EntitySet<Usuario>("Usuario");
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class UsuarioController : BaseController<Usuario>
+    public class UsuarioController : BaseController<Usuario,BPUsuario>
     {
         // GET: odata/Usuario
         [EnableQuery]

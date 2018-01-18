@@ -12,7 +12,7 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "http://localhost:58760/odata/",
+                "uri": "http://localhost:58761/odata/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "4.0"

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.OData;
+using TradeLogServer.Business;
 using TradeLogServer.Models;
 
 namespace TradeLogServer.Controllers
@@ -26,7 +27,7 @@ namespace TradeLogServer.Controllers
     builder.EntitySet<Posicao>("Posicaos"); 
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class MovimentoController : BaseController<Movimento>
+    public class MovimentoController : BaseController<Movimento,BPMovimento>
     {
         // GET: odata/Movimento
         [EnableQuery]

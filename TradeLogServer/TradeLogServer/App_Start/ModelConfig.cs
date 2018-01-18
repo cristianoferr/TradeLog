@@ -44,6 +44,18 @@ namespace TradeLogServer.App_Start
                   .ReturnsFromEntitySet<Posicao>("Posicao");
 
             builder
+                  .EntitySet<Carteira>("Carteira")
+                  .EntityType
+                  .Function("DepositaFundos")
+                  .Returns<string>();
+
+            builder
+                  .EntitySet<Carteira>("Carteira")
+                  .EntityType
+                  .Function("RetiraFundos")
+                  .Returns<string>();
+
+            builder
                   .EntitySet<Papel>("Papel")
                   .EntityType
                   .Function("Update")

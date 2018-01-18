@@ -14,19 +14,30 @@ using System.Web.Http.ModelBinding;
 using System.Web.OData;
 using System.Web.OData.Extensions;
 using System.Web.OData.Routing;
+using TradeLogServer.Business;
 using TradeLogServer.Models;
 
 namespace TradeLogServer.Controllers
 {
     
-    public class BaseController<TModel> : ODataController
+    public class BaseController<TModel,TBP> : ODataController
         where TModel : BaseModel
+        where TBP:BaseBP<TModel>, new()
+
     {
+        protected ApplicationDbContext db = new ApplicationDbContext();
+        protected TBP bp;
+
+        public BaseController()
+        {
+            bp = new TBP();
+            bp.db = db;
+        }
+
         //TODO: ver como pega o usuário logado
         protected int idUsuarioAtual = 1;
 
 
-        protected ApplicationDbContext db = new ApplicationDbContext();
 
         public HttpResponseMessage Options()
         {

@@ -5,3 +5,5 @@ demos/
 TradeLogServer/TradeLogServer/bin/
 TradeLog/node_modules/
 TradeLogServer/.vs/TradeLogServer/v15/.suo
+TradeLogServer/TradeLogServer/bin/
+TradeLogServer/TradeLogServer/logs/

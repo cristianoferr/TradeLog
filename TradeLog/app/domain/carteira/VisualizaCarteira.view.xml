@@ -7,6 +7,17 @@
     xmlns="sap.m"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     >
+    <Toolbar>
+        <Title level="H1" text="{i18n>carteira.valorLiquido}:" />
+        <Title level="H1" text="{path:'ValorLiquido', formatter:'.formatter.formataValor'}" />
+        <ToolbarSpacer />
+        <Button type="Accept"
+            icon="sap-icon://sys-add" text="{i18n>carteira.adicionaFundos}"
+            press="dialogAddFunds" />
+            <Button type="Reject"
+            icon="sap-icon://sys-minus" text="{i18n>carteira.removeFundos}"
+            press="dialogRemoveFunds" />
+    </Toolbar>
 
     <Panel expandable="true" expanded="true" headerText="{i18n>carteira.tituloPosicoes}">
     <Table id="tablePosicao" items="{Posicao}" growing="false">

@@ -12,6 +12,7 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.OData;
 using System.Web.OData.Routing;
+using TradeLogServer.Business;
 using TradeLogServer.Models;
 using TradeLogServer.WebData;
 
@@ -27,87 +28,15 @@ namespace TradeLogServer.Controllers
     builder.EntitySet<Papel>("Papel");
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class PapelController : BaseController<Papel>
+    public class PapelController : BaseController<Papel,BPPapel>
     {
 
         [HttpGet]
         [ODataRoute("Papel({key})/TradeLogServer.Controllers.Update")]
         public string Update([FromODataUri] int key)
         {
-            // return db.Posicoes.Where(posicao => posicao.IdCarteira == key && posicao.IdUsuario == idUsuarioAtual).Include(p => p.Papel);
-
-            string saida="Updating:\n ";
-            IList<Papel> papeis=db.Papels.ToList();
-            foreach (Papel papel in papeis)
-            {
-                saida += papel.Codigo ;
-                saida=UpdateHistorico(papel,saida);
-                saida += "\n";
-            }
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-               throw;
-            }
-
-
-            return saida;
+            return bp.UpdateHistoricoDoPapel(key);
         }
-
-        private string UpdateHistorico(Papel papel,string saida)
-        {
-            try
-            {
-                JObject saidaJson = PapelService.RequestData(papel.Codigo);
-                float close = (float)saidaJson["chart"]["result"][0]["indicators"]["quote"][0]["close"][0];
-                float high = (float)saidaJson["chart"]["result"][0]["indicators"]["quote"][0]["high"][0];
-                float low = (float)saidaJson["chart"]["result"][0]["indicators"]["quote"][0]["low"][0];
-                float open = (float)saidaJson["chart"]["result"][0]["indicators"]["quote"][0]["open"][0];
-                float volume = (float)saidaJson["chart"]["result"][0]["indicators"]["quote"][0]["volume"][0];
-                double timestamp= (double)saidaJson["chart"]["result"][0]["timestamp"][0];
-                papel.ValorAtual = close;
-
-                DateTime data= Utils.Utils.UnixTimeStampToDateTime(timestamp);
-                papel.LastUpdate = data;
-                papel.LastUpdateMessage = "OK";
-                Historico historico = GetHistoricoForPapel(papel, data);
-                historico.Close = close;
-                historico.High = high;
-                historico.Open = open;
-                historico.Low = low;
-                historico.Volume = volume;
-
-                saida += " OK";
-            }
-            catch (Exception e)
-            {
-                saida+=" ERROR: "+e.ToString();
-            }
-
-            return saida;
-        }
-
-        private Historico GetHistoricoForPapel(Papel papel, DateTime lastUpdate)
-        {
-            
-            Historico hist = db.Historicoes.Where(h => h.Papel.IdPapel == papel.IdPapel && h.Data.Day == lastUpdate.Day && h.Data.Month == lastUpdate.Month && h.Data.Year == lastUpdate.Year).FirstOrDefault();
-            if (hist == null)
-            {
-                hist = new Historico();
-                hist.Papel = papel;
-                hist.IdPapel = papel.IdPapel;
-                hist.Data = lastUpdate;
-                db.Historicoes.Add(hist);
-
-            }
-            return hist;
-        }
-
-
 
         // GET: odata/Papel
         [EnableQuery]

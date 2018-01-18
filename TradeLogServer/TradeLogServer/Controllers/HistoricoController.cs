@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.OData;
 using System.Web.OData.Routing;
+using TradeLogServer.Business;
 using TradeLogServer.Models;
 
 namespace TradeLogServer.Controllers
@@ -26,10 +27,8 @@ namespace TradeLogServer.Controllers
     builder.EntitySet<Papel>("Papels"); 
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class HistoricoController : ODataController
+    public class HistoricoController : BaseController<Historico,BPHistorico>
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: odata/Historico
         [EnableQuery]
         public IQueryable<Historico> GetHistorico()

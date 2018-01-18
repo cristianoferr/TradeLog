@@ -14,6 +14,7 @@ using System.Web.Http.ModelBinding;
 using System.Web.OData;
 using System.Web.OData.Extensions;
 using System.Web.OData.Routing;
+using TradeLogServer.Business;
 using TradeLogServer.Models;
 
 namespace TradeLogServer.Controllers
@@ -28,7 +29,7 @@ namespace TradeLogServer.Controllers
     builder.EntitySet<Posicao>("Posicao");
     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class PosicaoController : BaseController<Posicao>
+    public class PosicaoController : BaseController<Posicao,BPPosicao>
     {
         // GET: odata/Posicao
         [EnableQuery]
