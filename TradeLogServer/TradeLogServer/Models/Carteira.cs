@@ -17,7 +17,6 @@ namespace TradeLogServer.Models
         [ForeignKey("IdUsuario")]
         public Usuario Usuario{ get; set; }
 
-        public float ValorAtual{ get; set; }
         public float ValorLiquido { get; set; }
         public string NomeCarteira { get; set; }
 
@@ -26,5 +25,15 @@ namespace TradeLogServer.Models
         public float CustoOperacaoPadrao { get; set; }
 
         public ICollection<Posicao> Posicao{ get; set; }
+
+        [NotMapped]
+        public float ValorAtual
+        {
+            get
+            {
+                return Posicao.Sum(x => x.ValorAtual)+ValorLiquido;
+            }
+        }
+
     }
 }

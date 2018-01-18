@@ -55,6 +55,8 @@ namespace TradeLogServer.App_Start
             builder.EntityType<Posicao>().Property(a => a.NomePapel);
             builder.EntityType<Posicao>().Property(a => a.CodigoPapel);
 
+            builder.EntityType<Carteira>().Property(a => a.ValorAtual);
+
 
             builder.EntityType<Carteira>().HasMany(a => a.Posicao);
 

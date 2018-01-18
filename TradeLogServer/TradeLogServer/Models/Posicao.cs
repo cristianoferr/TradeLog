@@ -38,7 +38,7 @@ namespace TradeLogServer.Models
         public DateTime? DataSaida{ get; set; }
 
         [NotMapped]
-        public float PrecoAtual { get { return Papel.ValorAtual; } }
+        public float PrecoAtual { get {  return Papel.ValorAtual; } }
         [NotMapped]
         public float ValorAtual { get { return PrecoAtual*Quantidade; } }
         [NotMapped]

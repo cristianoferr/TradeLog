@@ -32,14 +32,14 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public IQueryable<Carteira> GetCarteira()
         {
-            return db.Carteiras.Where(carteira => carteira.IdUsuario == idUsuarioAtual);
+            return db.Carteiras.Where(carteira => carteira.IdUsuario == idUsuarioAtual).Include(p => p.Posicao.Select(x=>x.Papel));
         }
 
         // GET: odata/Carteira(5)
         [EnableQuery]
         public SingleResult<Carteira> GetCarteira([FromODataUri] int key)
         {
-            return SingleResult.Create(db.Carteiras.Where(carteira => carteira.IdCarteira == key && carteira.IdUsuario==idUsuarioAtual).Include(p => p.Posicao));
+            return SingleResult.Create(db.Carteiras.Where(carteira => carteira.IdCarteira == key && carteira.IdUsuario==idUsuarioAtual).Include(p => p.Posicao.Select(x => x.Papel)));
         }
 
         // GET: odata/Carteira(5)/Posicao
