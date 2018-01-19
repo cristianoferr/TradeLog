@@ -13,5 +13,18 @@ namespace TradeLogServer.Business
         public BaseBP()
         {
         }
+
+        internal void SalvaDados()
+        {
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }

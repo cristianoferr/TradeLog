@@ -30,79 +30,79 @@ namespace TradeLogServer.App_Start
         {
             ODataModelBuilder builder = new ODataConventionModelBuilder();
 
+            builder.EntitySet<Carteira>("Carteira");
             builder.EntitySet<Posicao>("Posicao");
-            var carteira=builder.EntitySet<Carteira>("Carteira");
             builder.EntitySet<Movimento>("Movimento");
             builder.EntitySet<Papel>("Papel");
             builder.EntitySet<Usuario>("Usuario");
 
             //Mapeando navigation properties
-            builder
-                  .EntitySet<Carteira>("Carteira")
-                  .EntityType
-                  .Function("Posicao")
-                  .ReturnsFromEntitySet<Posicao>("Posicao");
+            builder.EntitySet<Carteira>("Carteira").EntityType.Function("Posicao").ReturnsFromEntitySet<Posicao>("Posicao");
+            builder.EntitySet<Carteira>("Carteira").EntityType.Function("Movimento").ReturnsFromEntitySet<Movimento>("Movimento");
 
-            builder
-                  .EntitySet<Carteira>("Carteira")
-                  .EntityType
-                  .Function("DepositaFundos")
-                  .Returns<string>();
+            builder.EntitySet<Papel>("Papel").EntityType.Function("Update").Returns<String>();
 
-            builder
-                  .EntitySet<Carteira>("Carteira")
-                  .EntityType
-                  .Function("RetiraFundos")
-                  .Returns<string>();
-
-            builder
-                  .EntitySet<Papel>("Papel")
-                  .EntityType
-                  .Function("Update")
-                  .Returns<string>();
+            CriaActionsCarteira(builder);
+            CriaActionsPapel(builder);
+            CriaActionsPosicao(builder);
 
             //registrando propriedades calculadas
+            RegistaPropriedadesPosicao(builder);
+            RegistraPropriedadesCarteira(builder);
+            builder.EntityType<Movimento>().Property(a => a.CodigoPapel);
+
+            builder.Namespace = "TradeLogServer.Controllers";
+
+            IEdmModel model = builder.GetEdmModel();
+
+            return model;
+        }
+
+        private static void RegistraPropriedadesCarteira(ODataModelBuilder builder)
+        {
+            builder.EntityType<Carteira>().Property(a => a.ValorAtual);
+            builder.EntityType<Carteira>().HasMany(a => a.Posicao);
+        }
+
+        private static void RegistaPropriedadesPosicao(ODataModelBuilder builder)
+        {
             builder.EntityType<Posicao>().Property(a => a.PrecoAtual);
             builder.EntityType<Posicao>().Property(a => a.ValorAtual);
             builder.EntityType<Posicao>().Property(a => a.NomePapel);
             builder.EntityType<Posicao>().Property(a => a.CodigoPapel);
-
-            builder.EntityType<Carteira>().Property(a => a.ValorAtual);
-
-
-            builder.EntityType<Carteira>().HasMany(a => a.Posicao);
-
-            /*carteira.HasNavigationPropertyLink(carteira.EntityType.NavigationProperties.First(np => np.Name == "Posicao"),
-            (context, navigation) =>
-            {
-                return new Uri(context.Url.ODataLink(new EntitySetPathSegment("Posicao"), new KeyValuePathSegment(context.ResourceInstance.Posicao.IdPosicao.ToString())));
-            }, followsConventions: false);
-            */
-
-            //builder.EntityType<Carteira>().ContainsMany(m => m.Posicao);
+        }
 
 
 
-            builder.Namespace = "TradeLogServer.Controllers";
+        private static void CriaActionsPapel(ODataModelBuilder builder)
+        {
+            ActionConfiguration action = CreateAction<Papel>(builder, "Update");
+        }
 
-            IEdmModel model =builder.GetEdmModel();
-            /*
-            var carteira = (EdmEntitySet)model.EntityContainer.FindEntitySet("Carteira");
-            var posicao = (EdmEntitySet)model.EntityContainer.FindEntitySet("Posicao");
-            var carteiraType = (EdmEntityType)model.FindDeclaredType("TradeLogServer.Models.Carteira");
-            var posicaoType = (EdmEntityType)model.FindDeclaredType("TradeLogServer.Models.Posicao");
+        private static void CriaActionsPosicao(ODataModelBuilder builder)
+        {
+            ActionConfiguration action = CreateAction<Posicao>(builder, "FechaPosicao");
+            action.Parameter<int>("IdPosicao");
+            action.Parameter<float>("valorAcao");
+        }
 
-            var partsProperty = new EdmNavigationPropertyInfo();
-            partsProperty.TargetMultiplicity = EdmMultiplicity.Many;
-            partsProperty.Target = posicaoType;
-            partsProperty.ContainsTarget = false;
-            partsProperty.OnDelete = EdmOnDeleteAction.None;
-            partsProperty.Name = "Posicao";
+            private static void CriaActionsCarteira(ODataModelBuilder builder)
+        {
+            ActionConfiguration action = CreateAction<Carteira>(builder, "DepositaFundos");
+            action.Parameter<int>("IdCarteira");
+            action.Parameter<float>("valor");
+            action.Parameter<string>("descricao");
 
-            var navigationProperty = carteiraType.AddUnidirectionalNavigation(partsProperty);
-            carteira.AddNavigationTarget(navigationProperty, posicao);*/
+            action = CreateAction<Carteira>(builder, "RetiraFundos");
+            action.Parameter<int>("IdCarteira");
+            action.Parameter<float>("valor");
+            action.Parameter<string>("descricao");
+        }
 
-            return model;
+        private static ActionConfiguration CreateAction<TModel>(ODataModelBuilder builder,string name)
+            where TModel : BaseModel
+        {
+            return builder.EntityType<TModel>().Collection.Action(name);
         }
     }
 }

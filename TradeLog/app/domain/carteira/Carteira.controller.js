@@ -42,11 +42,21 @@ sap.ui.define([
             */
             bindView: function (sEntityPath) {
                 this.viewData.bindPath = sEntityPath;
-                this.getView().byId("idDetalhe").bindElement(sEntityPath);
+                this.getView().byId("DetalheCarteira").bindElement(sEntityPath);
 
                 var viewModel = new sap.ui.model.json.JSONModel(this.viewData, true);
                 this.getView().setModel(viewModel, "viewModel");
 
+                this.bindTableMovimento();
+            },
+
+            bindTableMovimento: function () {
+                var list = this.getView().byId("tableMovimento");
+                list.bindItems(this.viewData.bindPath + "/TradeLogServer.Controllers.Movimento", list.getBindingInfo("items").template.clone());
+                var binding = list.getBinding("items");
+                var sort = new sap.ui.model.Sorter("IdMovimento", true, false);
+                binding.sOperationMode = sap.ui.model.odata.OperationMode.Server;
+                binding.sort(sort);
             }
 
 

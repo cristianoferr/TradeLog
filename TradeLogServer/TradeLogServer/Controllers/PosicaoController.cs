@@ -45,6 +45,15 @@ namespace TradeLogServer.Controllers
             return db.Posicoes.Where(posicao => posicao.IdUsuario == idUsuarioAtual).Include(p => p.Papel);
         }
 
+        [HttpPost]
+        public IHttpActionResult FechaPosicao(ODataActionParameters parameters)
+        {
+            string err = "";
+            bool resultado = bp.FechaPosicao(out err, idUsuarioAtual, (int)parameters["IdPosicao"], (float)parameters["valorAcao"]);
+            return resultado ? (IHttpActionResult)Ok() : (IHttpActionResult)BadRequest(err);
+
+        }
+
         /*
         // GET: odata/Posicao(5)
         [EnableQuery]

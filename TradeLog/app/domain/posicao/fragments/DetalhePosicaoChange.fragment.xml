@@ -88,11 +88,6 @@
 							</f:fields>
 						</f:FormElement>
 
-                        <f:FormElement label="teste">
-							<f:fields>
-								<Input value="{ path: 'PrecoStopInicial', type:'sap.ui.model.type.Currency' }"  liveChange="inputFloat" change="checkFloat" />
-							</f:fields>
-						</f:FormElement>
 					</f:formElements>
 				</f:FormContainer>
 

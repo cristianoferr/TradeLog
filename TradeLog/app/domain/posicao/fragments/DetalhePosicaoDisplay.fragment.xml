@@ -58,7 +58,7 @@
 					<f:formElements>
                         <f:FormElement label="{i18n>posicao.precoAtual}">
 							<f:fields>
-								<Text text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}"  />
+								<Text id="txtPrecoAtual" text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}"  />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>posicao.valorAtual}">

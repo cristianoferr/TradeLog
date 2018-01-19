@@ -23,7 +23,7 @@ sap.ui.define([
              */
             onRouteMatched: function (evt) {
                 this.viewData.idCarteira = evt.getParameter("arguments").carteira;
-                var sEntityPath = `/Carteira(${evt.getParameter("arguments").carteira})/Posicao`;
+                var sEntityPath = `/Carteira(${evt.getParameter("arguments").carteira})`;
                 this.bindView(sEntityPath);
 
                 this.viewData.posicaoSelected = false;
@@ -40,7 +40,7 @@ sap.ui.define([
                 this.viewData.bindPath = sEntityPath;
 
                 var table = this.getView().byId("tablePosicao");
-                table.bindItems(sEntityPath, table.getBindingInfo("items").template.clone());
+                table.bindItems(sEntityPath + "/TradeLogServer.Controllers.Posicao", table.getBindingInfo("items").template.clone());
 
                 var viewModel = new sap.ui.model.json.JSONModel(this.viewData, true);
                 this.getView().setModel(viewModel, "viewModel");
@@ -57,54 +57,33 @@ sap.ui.define([
 
             depositaValorCarteira: function (valor, descricaoMovimento) {
                 var parameters = {
+                    "IdCarteira": this.viewData.idCarteira,
                     "valor": valor,
                     "descricao": descricaoMovimento
                 };
-                var sServiceUrl = `Carteira(${this.viewData.idCarteira})/TradeLogServer.Controllers.DepositaFundos`;
-                //this.getView().getModel().create(sServiceUrl, parameters);
-                this.postData(sServiceUrl, parameters);
+                var sServiceUrl = `Carteira/TradeLogServer.Controllers.DepositaFundos`;
+                this.postData(sServiceUrl, parameters, this.sucessoTransferencia.bind(this), this.errorTransferencia.bind(this));
             },
 
-            /*
-            Função que realiza uma chamada para um serviço odata no caminho indicado usando o serviço atual como base
-             */
-            postData: function (sServicePath, parameters) {
-                var jsonParameters = JSON.stringify(parameters);
-                var that = this;
 
-                var createPost = new XMLHttpRequest();
-                createPost.open("GET", this.getView().getModel().sServiceUrl + sServicePath, true);
-                createPost.setRequestHeader("Accept", "application/json");
-                createPost.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                createPost.onreadystatechange = function (evt) {
-                    if (createPost.readyState == 4 && createPost.status == 200) {
-                        that.sucessoTransferencia();
-                    } else {
-                        that.errorTransferencia();
-                    }
-                };
-                createPost.send(jsonParameters);
-            },
 
             sucessoTransferencia: function () {
-                //TODO: mostrar mensagem
+                this.toast(this.traduzChave("carteira.fundoTransferidoSucesso"));
+                this.getView().getModel().refresh();
             },
 
             errorTransferencia: function () {
-                //TODO: mostrar mensagem de erro
+                this.toast(this.traduzChave("carteira.fundoTransferidoErro"));
             },
 
             retirarValorCarteira: function (valor, descricaoMovimento) {
-                if (valor == 0) {
-                    //TODO: mostrar mensagem de erro
-                    return;
-                }
                 var parameters = {
+                    "IdCarteira": this.viewData.idCarteira,
                     "valor": valor,
                     "descricao": descricaoMovimento
                 };
-                var sServiceUrl = `Carteira(${this.viewData.idCarteira})/TradeLogServer.Controllers.RetiraFundos`;
-                this.getView().getModel().create(sServiceUrl, parameters);
+                var sServiceUrl = `Carteira/TradeLogServer.Controllers.RetiraFundos`;
+                this.postData(sServiceUrl, parameters, this.sucessoTransferencia.bind(this), this.errorTransferencia.bind(this));
             },
 
             dialogAddFunds: function (evt) {
@@ -145,9 +124,39 @@ sap.ui.define([
             },
 
             dialogRemoveFunds: function (evt) {
-                //carteira.tituloDialogoRemoveFundos
-                var dialog = sap.ui.xmlfragment("tradelog.domain.carteira.dialogs.AddRemoveFunds", this);
-                dialog.mode = "Remove";
+                var that = this;
+
+                var content = [new sap.m.Label({ text: this.traduzChave("carteira.valorAMovimentar") }),
+                new sap.m.Input({ maxLength: 20, id: "inputValor", liveChange: this.inputFloat.bind(that), change: this.checkFloat.bind(that) }),
+                new sap.m.Label({ text: this.traduzChave("carteira.descricaoMovimentacao") }),
+                new sap.m.Input({ maxLength: 50, id: "descricaoMovimento" })
+                ];
+
+                var dialog = new sap.m.Dialog({
+                    title: this.traduzChave("carteira.tituloDialogoRemoveFundos"),
+                    type: 'Message',
+                    content: content,
+                    beginButton: new sap.m.Button({
+                        text: this.traduzChave("carteira.removerFundos"),
+                        press: function (evt) {
+                            var inputValor = evt.getSource().oParent.getContent().filter(x => x.sId == "inputValor")[0];
+                            var descricaoMovimento = evt.getSource().oParent.getContent().filter(x => x.sId == "descricaoMovimento")[0];
+                            var valor = Math.abs(parseFloat(inputValor.getValue()));
+                            that.retirarValorCarteira(valor, descricaoMovimento.getValue());
+                            dialog.close();
+                        }
+                    }),
+                    endButton: new sap.m.Button({
+                        text: this.traduzChave("generico.fechar"),
+                        press: function () {
+                            dialog.close();
+                        }
+                    }),
+                    afterClose: function () {
+                        dialog.destroy();
+                    }
+                });
+
                 dialog.open();
             },
 

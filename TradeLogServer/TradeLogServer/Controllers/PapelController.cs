@@ -31,11 +31,11 @@ namespace TradeLogServer.Controllers
     public class PapelController : BaseController<Papel,BPPapel>
     {
 
-        [HttpGet]
-        [ODataRoute("Papel({key})/TradeLogServer.Controllers.Update")]
-        public string Update([FromODataUri] int key)
+        //exemplo de chamada: http://localhost:58761/odata/Papel/TradeLogServer.Controllers.Update
+        [HttpPost]
+        public IHttpActionResult Update()
         {
-            return bp.UpdateHistoricoDoPapel(key);
+            return Ok(bp.UpdateHistoricoDoPapel());
         }
 
         // GET: odata/Papel

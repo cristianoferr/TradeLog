@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
     >
-    <Page id="idDetalhe"  class="sapUiStdPage MasterButton" navButtonPress="onPressBack" showNavButton="{device>/isPhone}" title= "{i18n>carteira.tituloDetalhe}">
+    <Page id="DetalheCarteira"  class="sapUiStdPage MasterButton" navButtonPress="onPressBack" showNavButton="{device>/isPhone}" title= "{i18n>carteira.tituloDetalhe}">
         <headerContent>
 			<Image class="imagemCabecalho" src="content/images/marca.png" />
 			<Image class="logoCabecalho"   src="content/images/logo.png" />

@@ -2,6 +2,30 @@
 	xmlns="sap.m"
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
-	xmlns:core="sap.ui.core">
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    >
+
+    <Panel expandable="true" expanded="true" headerText="{i18n>movimento.tituloLista}">
+        <Table id="tableMovimento" items="{TradeLogServer.Controllers.Movimento}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
+            <columns>
+                <Column width="5rem"><Text text="{i18n>posicao.nomePapel}"   /></Column>
+                <Column width="5rem"><Text text="{i18n>movimento.data}"   /></Column>
+                <Column ><Text text="{i18n>movimento.descricao}"   /></Column>
+                <Column ><Text text="{i18n>movimento.valor}"   /></Column>
+
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{CodigoPapel}" />
+                        <Text text="{path:'DataMovimento', formatter:'.formatter.formataData'}" />
+                        <Text text="{Descricao}" />
+                        <ObjectNumber number="{path:'ValorMovimento', formatter:'.formatter.formataValor'}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
 
 </core:FragmentDefinition>

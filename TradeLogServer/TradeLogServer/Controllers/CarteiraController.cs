@@ -17,17 +17,6 @@ using TradeLogServer.Models;
 
 namespace TradeLogServer.Controllers
 {
-    /*
-    The WebApiConfig class may require additional changes to add a route for this controller. Merge these statements into the Register method of the WebApiConfig class as applicable. Note that OData URLs are case sensitive.
-
-    using System.Web.Http.OData.Builder;
-    using System.Web.Http.OData.Extensions;
-    using TradeLogServer.Models;
-    ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-    builder.EntitySet<Carteira>("Carteira");
-    builder.EntitySet<Risco>("Riscoes"); 
-    config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
-    */
     public class CarteiraController : BaseController<Carteira,BPCarteira>
     {
         // GET: odata/Carteira
@@ -45,35 +34,44 @@ namespace TradeLogServer.Controllers
         }
 
 
-        [ODataRoute("Carteira({key})/TradeLogServer.Controllers.DepositaFundos")]
-        [HttpGet]
-        public string DepositaFundos([FromODataUri] int key,[FromBody]JObject data)
+        [HttpPost]
+        public IHttpActionResult DepositaFundos(ODataActionParameters parameters)
         {
-            return "Fundos Depositados:"  + data["valor"] + "  com descricao: "+ data["descricao"];
+            string saida="Fundos Depositados:" + parameters["valor"] + "  com descricao: " + parameters["descricao"];
+            string err = "";
+            bool resultado = bp.MovimentaFundo(out err, idUsuarioAtual,(int)parameters["IdCarteira"], (float)parameters["valor"],(string)parameters["descricao"]);
+            return resultado ? (IHttpActionResult)Ok(saida): (IHttpActionResult)BadRequest(err);
+
         }
 
-        [ODataRoute("Carteira({key})/TradeLogServer.Controllers.RetiraFundos")]
-        [HttpGet]
-        public string RetiraFundos([FromODataUri] int key, [FromBody]JObject data)
+        [HttpPost]
+        public IHttpActionResult RetiraFundos(ODataActionParameters parameters)
         {
-            return "Fundos Retirados:" + data["valor"] + "  com descricao: " + data["descricao"];
+            string saida = "Fundos Depositados:" + parameters["valor"] + "  com descricao: " + parameters["descricao"];
+            string err = "";
+            bool resultado = bp.MovimentaFundo(out err, idUsuarioAtual, (int)parameters["IdCarteira"], -(float)parameters["valor"], (string)parameters["descricao"]);
+            return resultado ? (IHttpActionResult)Ok(saida) : (IHttpActionResult)BadRequest(err);
         }
+
 
         // GET: odata/Carteira(5)/Posicao
         [EnableQuery]
         [HttpGet]
-        [ODataRoute("Carteira({key})/Posicao")]
+        [ODataRoute("Carteira({key})/TradeLogServer.Controllers.Posicao")]
         public IQueryable<Posicao> Posicao([FromODataUri] int key)
         {
             return db.Posicoes.Where(posicao => posicao.IdCarteira==key && posicao.IdUsuario==idUsuarioAtual).Include(p => p.Papel);
         }
 
-        // GET: odata/Carteira(5)
-        /* [ODataRoute("/Posicoes(key)")]
-         public IQueryable<Posicao> GetPosicao([FromODataUri] int key)
-         {
-             return db.Posicoes.Where(posicao => posicao.IdCarteira== key && posicao.IdUsuario == idUsuarioAtual);
-         }*/
+        // GET: odata/Carteira(5)/Movimento
+        [EnableQuery]
+        [HttpGet]
+        [ODataRoute("Carteira({key})/TradeLogServer.Controllers.Movimento")]
+        public IQueryable<Movimento> Movimento([FromODataUri] int key)
+        {
+            return db.Movimentoes.Where(movimento => movimento.IdCarteira == key && movimento.Carteira.IdUsuario == idUsuarioAtual).Include(p => p.Carteira).Include(p => p.Posicao.Papel);
+        }
+
 
         // PUT: odata/Carteira(5)
         public async Task<IHttpActionResult> Put([FromODataUri] int key, Delta<Carteira> patch)

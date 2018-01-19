@@ -11,7 +11,7 @@ namespace TradeLogServer.Business
 {
     public class BPPapel : BaseBP<Papel>
     {
-        internal string UpdateHistoricoDoPapel(int key)
+        internal string UpdateHistoricoDoPapel()
         {
             string saida = "Updating:\n ";
             IList<Papel> papeis = db.Papels.ToList();

@@ -29,6 +29,26 @@ sap.ui.define(
                 this.navegaParaRota(rota);
             },
 
+            /*
+                     Função que realiza uma chamada para um serviço odata no caminho indicado usando o serviço atual como base
+                      */
+            postData: function (sServicePath, parameters, fSuccess, fError) {
+                var jsonParameters = JSON.stringify(parameters);
+
+                var createPost = new XMLHttpRequest();
+                createPost.open("POST", this.getView().getModel().sServiceUrl + sServicePath, true);
+                createPost.setRequestHeader("Accept", "application/json");
+                createPost.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                createPost.onreadystatechange = function (evt) {
+                    if (createPost.readyState == 4 && createPost.status == 200) {
+                        fSuccess();
+                    } else {
+                        fError();
+                    }
+                };
+                createPost.send(jsonParameters);
+            },
+
             /**
             * Traduz a chave informada pelo usuário
             * @param chave
@@ -127,6 +147,10 @@ sap.ui.define(
              */
             setModel: function (oModel, sName) {
                 return this.getView().setModel(oModel, sName);
+            },
+
+            toast: function (msg) {
+                MessageToast.show(msg);
             },
 
             /**
