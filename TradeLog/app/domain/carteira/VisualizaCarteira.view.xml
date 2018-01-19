@@ -17,6 +17,7 @@
             <Button type="Reject"
             icon="sap-icon://sys-minus" text="{i18n>carteira.removeFundos}"
             press="dialogRemoveFunds" />
+            <Button  text="{i18n>carteira.adicionaPosicao}" icon="sap-icon://add"  type="Accept" />
     </Toolbar>
 
     <Panel expandable="true" expanded="true" headerText="{i18n>carteira.tituloPosicoes}">

@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="tradelog.shared.PainelEditavel"
+    controllerName="tradelog.domain.carteira.fragments.EditaDadosGerais"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     xmlns:mvc="sap.ui.core.mvc"

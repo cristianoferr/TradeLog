@@ -35,8 +35,10 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public SingleResult<Posicao> GetPosicao([FromODataUri] int key)
         {
-            return SingleResult.Create(db.Posicoes.Where(posicao=>posicao.IdPosicao== key && posicao.IdUsuario==idUsuarioAtual).Include(p => p.Papel));
+            return SingleResult.Create(bp.GetQueryPosicao(key,idUsuarioAtual));
         }
+
+       
 
         // GET: odata/Posicao(5)
         [EnableQuery]

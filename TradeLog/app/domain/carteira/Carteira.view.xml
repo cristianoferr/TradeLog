@@ -21,16 +21,6 @@
 
             <IconTabBar id="idIconTabBar" expandable="false" select="onTabBarSelected">
                 <items>
-                    <IconTabFilter id="iconTabDadosGerais" class="tamanhoMinimo" key="DadosGerais"
-                        text="{i18n>generico.tabDadosGerais}"
-                        icon="sap-icon://hint"
-                        >
-                        <content>
-                            <mvc:XMLView viewName="tradelog.domain.carteira.fragments.EditaDadosGerais" id="panelDadosGerais"
-                                app:nomePainel="EditaDadosGerais" app:domainAtual="carteira" app:entidade="{viewModel>/bindPath}" app:paramEntidade="carteira" ></mvc:XMLView>
-                        </content>
-                    </IconTabFilter>
-
                     <IconTabFilter id="iconTabPosicao" class="tamanhoMinimo" key="Posicao"
                         text="{i18n>carteira.tabPosicao}"
                         icon="sap-icon://form"
@@ -38,6 +28,16 @@
                         <content>
                             <mvc:XMLView viewName="tradelog.domain.carteira.VisualizaCarteira"
                                 app:domainAtual="carteira"  app:entidade="{viewModel>/bindPath}/Posicao"></mvc:XMLView>
+                        </content>
+                    </IconTabFilter>
+
+                    <IconTabFilter id="iconTabDadosGerais" class="tamanhoMinimo" key="DadosGerais"
+                        text="{i18n>generico.tabDadosGerais}"
+                        icon="sap-icon://hint"
+                        >
+                        <content>
+                            <mvc:XMLView viewName="tradelog.domain.carteira.fragments.EditaDadosGerais" id="panelDadosGerais"
+                                app:nomePainel="EditaDadosGerais" app:domainAtual="carteira" app:entidade="{viewModel>/bindPath}" app:paramEntidade="carteira" ></mvc:XMLView>
                         </content>
                     </IconTabFilter>
 

@@ -15,7 +15,7 @@
         <!--titulos rotativos -->
         <html:section class="rw-wrapper">
             <html:h2 class="rw-sentence">
-                <html:span>TradeLog</html:span>
+                <html:span>Prototipo OpenUI5</html:span>
             </html:h2>
         </html:section>
         <!--fim dos titulos rotativos -->

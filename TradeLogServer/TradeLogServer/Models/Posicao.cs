@@ -24,11 +24,14 @@ namespace TradeLogServer.Models
         public  Usuario Usuario { get; set; }
 
         [ForeignKey("Carteira")]
-        public int IdCarteira { get; set; }
+        public int? IdCarteira { get; set; }
         public  Carteira Carteira { get; set; }
 
         public float PrecoEntrada{ get; set; }
         public float ValorEntrada { get; set; }
+
+      
+
         public float PrecoSaida{ get; set; }
         public int Quantidade { get; set; }
         public float PrecoStopInicial { get; set; }
@@ -40,11 +43,16 @@ namespace TradeLogServer.Models
         [NotMapped]
         public float PrecoAtual { get {  return Papel.ValorAtual; } }
         [NotMapped]
-        public float ValorAtual { get { return PrecoAtual*Quantidade; } }
+        public float ValorAtual { get { return CalcValor(PrecoAtual); } }
         [NotMapped]
         public string NomePapel { get { return Papel.Nome; } }
         [NotMapped]
         public string CodigoPapel { get { return Papel.Codigo; } }
+
+        internal float CalcValor(float valor)
+        {
+            return valor * Quantidade;
+        }
 
     }
 }

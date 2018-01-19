@@ -1,3 +1,5 @@
+jQuery.sap.require("tradelog.shared.PainelEditavel");
+
 sap.ui.define([
     'sap/ui/model/Filter',
     'sap/ui/model/FilterOperator'
