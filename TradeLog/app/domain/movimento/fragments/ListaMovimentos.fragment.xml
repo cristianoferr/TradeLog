@@ -21,7 +21,7 @@
                         <Text text="{CodigoPapel}" />
                         <Text text="{path:'DataMovimento', formatter:'.formatter.formataData'}" />
                         <Text text="{Descricao}" />
-                        <ObjectNumber number="{path:'ValorMovimento', formatter:'.formatter.formataValor'}" />
+                        <ObjectNumber number="{path:'ValorMovimento', formatter:'.formatter.formataValor'}" unit="$" />
                     </cells>
                 </ColumnListItem>
             </items>

@@ -17,42 +17,88 @@ namespace TradeLogServer.Models
         [ForeignKey("Papel")]
         public int IdPapel { get; set; }
         [Required]
-        public  Papel Papel { get; set; }
+        public Papel Papel { get; set; }
 
         [ForeignKey("Usuario")]
         public int IdUsuario { get; set; }
-        public  Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; }
 
         [ForeignKey("Carteira")]
         public int? IdCarteira { get; set; }
-        public  Carteira Carteira { get; set; }
+        public Carteira Carteira { get; set; }
 
-        public float PrecoEntrada{ get; set; }
-        public float ValorEntrada { get; set; }
+        public ICollection<Trade> Trade { get; set; }
 
-      
+        public float PrecoMedioCompra { get; set; }
+        public float PrecoMedioVenda { get; set; }
 
-        public float PrecoSaida{ get; set; }
-        public int Quantidade { get; set; }
+        public int QuantidadeComprada { get; set; }
+        public int QuantidadeVendida { get; set; }
+
+        [NotMapped]
+        public int QuantidadeLiquida { get { return QuantidadeComprada - QuantidadeVendida; } }
+
         public float PrecoStopInicial { get; set; }
-        public float PrecoStopAtual{ get; set; }
+        public float PrecoStopAtual { get; set; }
 
         public DateTime DataEntrada { get; set; }
-        public DateTime? DataSaida{ get; set; }
+        public DateTime? DataSaida { get; set; }
 
         [NotMapped]
-        public float PrecoAtual { get {  return Papel.ValorAtual; } }
+        public float PrecoAtual { get { return Papel.ValorAtual; } }
         [NotMapped]
-        public float ValorAtual { get { return CalcValor(PrecoAtual); } }
+        public float ValorLiquido { get { return CalcValor(PrecoAtual); } }
         [NotMapped]
         public string NomePapel { get { return Papel.Nome; } }
         [NotMapped]
         public string CodigoPapel { get { return Papel.Codigo; } }
 
+
         internal float CalcValor(float valor)
         {
-            return valor * Quantidade;
+            return valor * QuantidadeLiquida;
         }
 
-    }
+        //Retorna a soma de todos os trades na ponta comprada
+        [NotMapped]
+        public float TotalComprado
+        {
+            get
+            {
+                return Trade.Where(x => x.QuantidadeComprada > 0).Sum(x => x.ValorTrade);
+            }
+        }
+
+        //Retorna a soma de todos os trades na ponta vendida
+        [NotMapped]
+        public float TotalVendido
+        {
+            get
+            {
+                return Trade.Where(x => x.QuantidadeVendida > 0).Sum(x => x.ValorTrade);
+            }
+        }
+
+
+        //Retorna o valorNaCarteira + totalVendido
+        [NotMapped]
+        public float ValorPosicaoAtual
+        {
+            get
+            {
+                return ValorLiquido + TotalVendido;
+            }
+        }
+
+        //Retorna o valorNaCarteira + totalVendido
+        [NotMapped]
+        public float DiferencaAtual
+        {
+            get
+            {
+                return ValorPosicaoAtual - TotalComprado;
+            }
+        }
+
+        }
 }

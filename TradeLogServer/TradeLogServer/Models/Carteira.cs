@@ -13,8 +13,8 @@ namespace TradeLogServer.Models
         [Key]
         public int IdCarteira { get; set; }
 
+        [ForeignKey("Usuario")]
         public int IdUsuario { get; set; }
-        [ForeignKey("IdUsuario")]
         public Usuario Usuario{ get; set; }
 
         public float ValorLiquido { get; set; }
@@ -31,7 +31,7 @@ namespace TradeLogServer.Models
         {
             get
             {
-                return Posicao.Sum(x => x.ValorAtual)+ValorLiquido;
+                return Posicao.Sum(x => x.ValorPosicaoAtual) +ValorLiquido;
             }
         }
 

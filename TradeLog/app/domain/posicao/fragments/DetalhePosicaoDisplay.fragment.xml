@@ -38,8 +38,6 @@
 							</f:fields>
 						</f:FormElement>
 
-
-
 						<f:FormElement label="{i18n>posicao.dataEntrada}">
 							<f:fields>
 								<Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />
@@ -47,7 +45,7 @@
 						</f:FormElement>
                         <f:FormElement label="{i18n>posicao.quantidade}">
 							<f:fields>
-								<Text text="{Quantidade}" />
+								<Text id="txtQuantidadeAtual" text="{Quantidade}" />
 							</f:fields>
 						</f:FormElement>
 

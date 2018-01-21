@@ -14,7 +14,8 @@
 
         </contentLeft>
         <contentRight>
-        <Button icon="sap-icon://trend-up"  type="Accept"  press="dialogClosePosition" />
+        <Button icon="sap-icon://down" id="btnBuyPosition" text="{i18n>posicao.comprar}" type="Accept" press="dialogClosePosition" />
+        <Button icon="sap-icon://up" id="btnSellPosition" text="{i18n>posicao.vender}" type="Reject" press="dialogClosePosition" />
         </contentRight>
     </Bar>
     <Panel id="DetalhePosicao">

@@ -8,6 +8,27 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
     };
 
     var formatter = {
+
+        calculaTotalOperacao: function (preco, qtd, custo, tipo) {
+            var total;
+            if (tipo == "C") {
+                total = parseFloat(preco) * parseFloat(qtd) - parseFloat(custo);
+            }
+            if (tipo == "V") {
+                total = -parseFloat(preco) * parseFloat(qtd) - parseFloat(custo);
+            }
+            return total;
+        },
+
+        formataCalculaTotalOperacao: function (preco, qtd, custo, tipo) {
+            var total = this.formatter.calculaTotalOperacao(preco, qtd, custo, tipo);
+            return this.formatter.formataValor(total);
+        },
+        formataCalculaRiscoOperacao: function (precoStop, preco, qtd, custo, tipo) {
+            var valorPreco = this.formatter.calculaTotalOperacao.bind(this)(preco, qtd, custo, tipo);
+            var valorStop = this.formatter.calculaTotalOperacao.bind(this)(precoStop, qtd, custo, tipo == "C" ? "V" : "C");
+            return this.formatter.formataValor(parseFloat(valorPreco) + parseFloat(valorStop));
+        },
 		/**
 		 * Formats the price
 		 * @param {string} sValue model price value

@@ -153,6 +153,43 @@ sap.ui.define(
                 MessageToast.show(msg);
             },
 
+            getValorInputDialog: function (content, idInput) {
+                var inputValor = content.filter(x => x.sId == idInput)[0];
+                if (inputValor.getSelectedKey) return inputValor.getSelectedKey();
+                return inputValor.getValue();
+            },
+
+
+            criaDialogPadrao: function (titleKey, okTextKey, content, functionOk) {
+                var dialog = new sap.m.Dialog({
+                    title: this.traduzChave(titleKey),
+                    type: 'Message',
+                    content: content,
+                    beginButton: new sap.m.Button({
+                        text: this.traduzChave(okTextKey),
+                        press: function (evt) {
+                            functionOk(evt);
+                            dialog.close();
+                        }
+                    }),
+                    endButton: new sap.m.Button({
+                        text: this.traduzChave("generico.fechar"),
+                        press: function () {
+                            dialog.close();
+                        }
+                    }),
+                    afterClose: function () {
+                        dialog.destroy();
+                    }
+                });
+
+                dialog.setModel(this.getModel("i18n"), "i18n");
+                // dialog.setModel(this.getModel());
+                dialog.open();
+
+                return dialog;
+            },
+
             /**
              * Getter for the resource bundle.
              * @public

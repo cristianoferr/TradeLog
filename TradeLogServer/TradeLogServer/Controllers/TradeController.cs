@@ -1,0 +1,193 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web.Http;
+using System.Web.Http.ModelBinding;
+using System.Web.OData;
+using System.Web.OData.Routing;
+using TradeLogServer.Business;
+using TradeLogServer.Models;
+
+namespace TradeLogServer.Controllers
+{
+   
+    public class TradeController : BaseController<Trade, BPTrade>
+    {
+
+        // GET: odata/Trade
+        [EnableQuery]
+        public IQueryable<Trade> GetTrade()
+        {
+            return db.Trades;
+        }
+
+        // GET: odata/Trade(5)
+        [EnableQuery]
+        public SingleResult<Trade> GetTrade([FromODataUri] int key)
+        {
+            return SingleResult.Create(db.Trades.Where(trade => trade.IdTrade == key));
+        }
+
+       
+
+        /*
+         Realiza um trade 
+         Direcao: 1=compra, -1=venda
+             */
+        [HttpPost]
+        public IHttpActionResult ExecutaTrade(ODataActionParameters parameters)
+        {
+            int idPapel = (int)parameters["IdPapel"];
+            string Direcao = (string)parameters["tipoOperacao"];
+            int IdCarteira = (int)parameters["IdCarteira"];
+            
+            float PrecoAcao = (float)parameters["PrecoAcao"];
+            int Quantidade = (int)parameters["quantidade"];
+            float CustoOperacao = (float)parameters["custoOperacao"];
+            float PrecoStopOpcional = (float)parameters["PrecoStopOpcional"];
+
+
+            string err = "";
+            bool resultado = bp.ExecutaTrade(out err, IdCarteira,idUsuarioAtual, Direcao, idPapel, PrecoAcao, Quantidade, CustoOperacao, PrecoStopOpcional);
+            
+            if (resultado)
+            {
+                return Ok("Trade_ok");
+            } else
+            {
+                return BadRequest(err);
+            }
+        }
+
+        // PUT: odata/Trade(5)
+        public async Task<IHttpActionResult> Put([FromODataUri] int key, Delta<Trade> patch)
+        {
+           // Validate(patch.GetEntity());
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Trade trade = await db.Trades.FindAsync(key);
+            if (trade == null)
+            {
+                return NotFound();
+            }
+
+            patch.Put(trade);
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TradeExists(key))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Updated(trade);
+        }
+/*
+        // POST: odata/Trade
+        public async Task<IHttpActionResult> Post(Trade trade)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Trades.Add(trade);
+            await db.SaveChangesAsync();
+
+            return Created(trade);
+        }
+
+        // PATCH: odata/Trade(5)
+        [AcceptVerbs("PATCH", "MERGE")]
+        public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Trade> patch)
+        {
+         //   Validate(patch.GetEntity());
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Trade trade = await db.Trades.FindAsync(key);
+            if (trade == null)
+            {
+                return NotFound();
+            }
+
+            patch.Patch(trade);
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TradeExists(key))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Updated(trade);
+        }
+
+        // DELETE: odata/Trade(5)
+        public async Task<IHttpActionResult> Delete([FromODataUri] int key)
+        {
+            Trade trade = await db.Trades.FindAsync(key);
+            if (trade == null)
+            {
+                return NotFound();
+            }
+
+            db.Trades.Remove(trade);
+            await db.SaveChangesAsync();
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }*/
+
+        // GET: odata/Trade(5)/Posicao
+        [EnableQuery]
+        public SingleResult<Posicao> GetPosicao([FromODataUri] int key)
+        {
+            return SingleResult.Create(db.Trades.Where(m => m.IdTrade == key).Select(m => m.Posicao));
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool TradeExists(int key)
+        {
+            return db.Trades.Count(e => e.IdTrade == key) > 0;
+        }
+    }
+}

@@ -31,14 +31,23 @@ namespace TradeLogServer.Controllers
     */
     public class PosicaoController : BaseController<Posicao,BPPosicao>
     {
+
+        // GET: odata/Posicao(5)/Trade
+        [EnableQuery]
+        [HttpGet]
+        [ODataRoute("Posicao({key})/TradeLogServer.Controllers.Trade")]
+        public IQueryable<Trade> Trade([FromODataUri] int key)
+        {
+            return db.Trades.Where(trade => trade.IdPosicao== key && trade.Posicao.IdUsuario == idUsuarioAtual).Include(t => t.Posicao);
+        }
+
+
         // GET: odata/Posicao
         [EnableQuery]
         public SingleResult<Posicao> GetPosicao([FromODataUri] int key)
         {
             return SingleResult.Create(bp.GetQueryPosicao(key,idUsuarioAtual));
         }
-
-       
 
         // GET: odata/Posicao(5)
         [EnableQuery]
@@ -50,10 +59,11 @@ namespace TradeLogServer.Controllers
         [HttpPost]
         public IHttpActionResult FechaPosicao(ODataActionParameters parameters)
         {
-            string err = "";
-            bool resultado = bp.FechaPosicao(out err, idUsuarioAtual, (int)parameters["IdPosicao"], (float)parameters["valorAcao"]);
-            return resultado ? (IHttpActionResult)Ok() : (IHttpActionResult)BadRequest(err);
+            //  string err = "";
+            // bool resultado = bp.FechaPosicao(out err, idUsuarioAtual, (int)parameters["IdPosicao"], (float)parameters["valorAcao"], (int)(Single)parameters["quantidadeFechada"]);
 
+            //  return resultado ? (IHttpActionResult)Ok() : (IHttpActionResult)BadRequest(err);
+            return Ok("nyi");
         }
 
         /*

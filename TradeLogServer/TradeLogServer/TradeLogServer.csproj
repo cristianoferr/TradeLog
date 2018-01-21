@@ -286,6 +286,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Business\BaseBP.cs" />
     <Compile Include="Business\BPCarteira.cs" />
+    <Compile Include="Business\BPTrade.cs" />
     <Compile Include="Business\BPHistorico.cs" />
     <Compile Include="Business\BPMovimento.cs" />
     <Compile Include="Business\BPUsuario.cs" />
@@ -299,6 +300,7 @@
     <Compile Include="Controllers\PapelController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\PosicaoController.cs" />
+    <Compile Include="Controllers\TradeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Formatters\JsonDotNetFormatter.cs" />
     <Compile Include="Global.asax.cs">
@@ -311,6 +313,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Movimento.cs" />
     <Compile Include="Models\Historico.cs" />
+    <Compile Include="Models\Trade.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Posicao.cs" />
     <Compile Include="Models\Papel.cs" />

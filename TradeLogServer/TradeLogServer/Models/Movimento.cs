@@ -13,12 +13,12 @@ namespace TradeLogServer.Models
         [Key]
         public int IdMovimento { get; set; }
 
+        [ForeignKey("Carteira")]
         public int IdCarteira { get; set; }
-        [ForeignKey("IdCarteira")]
         public Carteira Carteira { get; set; }
 
+        [ForeignKey("Posicao")]
         public int? IdPosicao { get; set; }
-        [ForeignKey("IdPosicao")]
         public Posicao Posicao { get; set; }
 
         public string Descricao { get; set; }

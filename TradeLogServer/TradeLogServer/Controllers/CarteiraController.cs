@@ -23,14 +23,14 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public IQueryable<Carteira> GetCarteira()
         {
-            return db.Carteiras.Where(carteira => carteira.IdUsuario == idUsuarioAtual).Include(p => p.Posicao.Select(x=>x.Papel));
+            return db.Carteiras.Where(carteira => carteira.IdUsuario == idUsuarioAtual).Include(p => p.Posicao.Select(x=>x.Papel)).Include(p=>p.Posicao.Select(x=>x.Trade));
         }
 
         // GET: odata/Carteira(5)
         [EnableQuery]
         public SingleResult<Carteira> GetCarteira([FromODataUri] int key)
         {
-            return SingleResult.Create(db.Carteiras.Where(carteira => carteira.IdCarteira == key && carteira.IdUsuario==idUsuarioAtual).Include(p => p.Posicao.Select(x => x.Papel)));
+            return SingleResult.Create(db.Carteiras.Where(carteira => carteira.IdCarteira == key && carteira.IdUsuario==idUsuarioAtual).Include(p => p.Posicao.Select(x => x.Papel)).Include(p => p.Posicao.Select(x => x.Trade)));
         }
 
 
@@ -60,7 +60,7 @@ namespace TradeLogServer.Controllers
         [ODataRoute("Carteira({key})/TradeLogServer.Controllers.Posicao")]
         public IQueryable<Posicao> Posicao([FromODataUri] int key)
         {
-            return db.Posicoes.Where(posicao => posicao.IdCarteira==key && posicao.IdUsuario==idUsuarioAtual).Include(p => p.Papel);
+            return db.Posicoes.Where(posicao => posicao.IdCarteira==key && posicao.IdUsuario==idUsuarioAtual).Include(p => p.Papel).Include(p => p.Trade);
         }
 
         // GET: odata/Carteira(5)/Movimento
@@ -69,7 +69,7 @@ namespace TradeLogServer.Controllers
         [ODataRoute("Carteira({key})/TradeLogServer.Controllers.Movimento")]
         public IQueryable<Movimento> Movimento([FromODataUri] int key)
         {
-            return db.Movimentoes.Where(movimento => movimento.IdCarteira == key && movimento.Carteira.IdUsuario == idUsuarioAtual).Include(p => p.Carteira).Include(p => p.Posicao.Papel);
+            return db.Movimentoes.Where(movimento => movimento.IdCarteira == key && movimento.Carteira.IdUsuario == idUsuarioAtual).Include(p => p.Carteira).Include(p => p.Posicao.Papel).Include(p => p.Posicao.Trade);
         }
 
 

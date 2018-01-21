@@ -31,8 +31,24 @@ namespace TradeLogServer.Business
             return true;
         }
 
-        
 
+        /*
+        Função que adiciona um valor à carteira, logando o valor na tabela de movimento
+            */
+        internal float MovimentaSaldoParaCarteira(float valor, string mensagem, Carteira carteira)
+        {
+            carteira.ValorLiquido += valor;
+            if (carteira.ValorLiquido < 0)
+            {
+                valor -= carteira.ValorLiquido;
+                carteira.ValorLiquido = 0;
+            }
+
+            BPMovimento bpMovimento = new BPMovimento();bpMovimento.db = db;
+
+            bpMovimento.AdicionaMovimento(valor, mensagem, carteira, null);
+            return valor;
+        }
 
 
     }

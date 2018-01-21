@@ -35,20 +35,24 @@ namespace TradeLogServer.App_Start
             builder.EntitySet<Movimento>("Movimento");
             builder.EntitySet<Papel>("Papel");
             builder.EntitySet<Usuario>("Usuario");
+            builder.EntitySet<Trade>("Trade");
 
             //Mapeando navigation properties
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Posicao").ReturnsFromEntitySet<Posicao>("Posicao");
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Movimento").ReturnsFromEntitySet<Movimento>("Movimento");
+            builder.EntitySet<Posicao>("Posicao").EntityType.Function("Trade").ReturnsFromEntitySet<Trade>("Trade");
 
             builder.EntitySet<Papel>("Papel").EntityType.Function("Update").Returns<String>();
 
             CriaActionsCarteira(builder);
             CriaActionsPapel(builder);
             CriaActionsPosicao(builder);
+            CriaActionsTrade(builder);
 
             //registrando propriedades calculadas
             RegistaPropriedadesPosicao(builder);
             RegistraPropriedadesCarteira(builder);
+            RegistraPropriedadesTrade(builder);
             builder.EntityType<Movimento>().Property(a => a.CodigoPapel);
 
             builder.Namespace = "TradeLogServer.Controllers";
@@ -56,6 +60,11 @@ namespace TradeLogServer.App_Start
             IEdmModel model = builder.GetEdmModel();
 
             return model;
+        }
+
+        private static void RegistraPropriedadesTrade(ODataModelBuilder builder)
+        {
+            builder.EntityType<Trade>().Property(a => a.ValorTrade);
         }
 
         private static void RegistraPropriedadesCarteira(ODataModelBuilder builder)
@@ -67,11 +76,28 @@ namespace TradeLogServer.App_Start
         private static void RegistaPropriedadesPosicao(ODataModelBuilder builder)
         {
             builder.EntityType<Posicao>().Property(a => a.PrecoAtual);
-            builder.EntityType<Posicao>().Property(a => a.ValorAtual);
+            builder.EntityType<Posicao>().Property(a => a.ValorLiquido);
             builder.EntityType<Posicao>().Property(a => a.NomePapel);
+            builder.EntityType<Posicao>().Property(a => a.QuantidadeLiquida);
             builder.EntityType<Posicao>().Property(a => a.CodigoPapel);
+            builder.EntityType<Posicao>().Property(a => a.TotalComprado);
+            builder.EntityType<Posicao>().Property(a => a.TotalVendido);
+            builder.EntityType<Posicao>().Property(a => a.ValorPosicaoAtual);
+            builder.EntityType<Posicao>().Property(a => a.DiferencaAtual);
         }
 
+
+        private static void CriaActionsTrade(ODataModelBuilder builder)
+        {
+            ActionConfiguration action = CreateAction<Trade>(builder, "ExecutaTrade");
+            action.Parameter<int>("IdPapel");
+            action.Parameter<string>("tipoOperacao");
+            action.Parameter<int>("IdCarteira");
+            action.Parameter<float>("PrecoAcao");
+            action.Parameter<int>("quantidade");
+            action.Parameter<float>("custoOperacao");
+            action.Parameter<float>("PrecoStopOpcional");
+        }
 
 
         private static void CriaActionsPapel(ODataModelBuilder builder)
@@ -84,6 +110,7 @@ namespace TradeLogServer.App_Start
             ActionConfiguration action = CreateAction<Posicao>(builder, "FechaPosicao");
             action.Parameter<int>("IdPosicao");
             action.Parameter<float>("valorAcao");
+            action.Parameter<float>("quantidadeFechada");
         }
 
             private static void CriaActionsCarteira(ODataModelBuilder builder)

@@ -17,7 +17,7 @@
             <Button type="Reject"
             icon="sap-icon://sys-minus" text="{i18n>carteira.removeFundos}"
             press="dialogRemoveFunds" />
-            <Button  text="{i18n>carteira.adicionaPosicao}" icon="sap-icon://add"  type="Accept" />
+            <Button  text="{i18n>carteira.adicionaPosicao}" icon="sap-icon://add"  type="Emphasized"  press="dialogCreatePosition"/>
     </Toolbar>
 
     <Panel expandable="true" expanded="true" headerText="{i18n>carteira.tituloPosicoes}">
@@ -26,28 +26,32 @@
             <columns>
                 <Column width="5rem"><Text text="{i18n>posicao.nomePapel}"   /></Column>
                 <Column width="5rem"><Text text="{i18n>posicao.dataEntrada}"   /></Column>
-                <Column ><Text text="{i18n>posicao.precoEntrada}"   /></Column>
-                <Column ><Text text="{i18n>posicao.precoAtual}"   /></Column>
-                <Column ><Text text="{i18n>posicao.quantidade}"   /></Column>
+                <Column ><Text text="{i18n>posicao.precoMedioCompra}"   /></Column>
+                <Column ><Text text="{i18n>posicao.precoMedioVenda}"   /></Column>
+                <Column  ><Text text="{i18n>posicao.precoAtual}"   /></Column>
+                <Column ><Text text="{i18n>posicao.quantidadeComprada}"   /></Column>
+                <Column ><Text text="{i18n>posicao.quantidadeVendida}"   /></Column>
+                <Column ><Text text="{i18n>posicao.quantidadeLiquida}"   /></Column>
                 <Column ><Text text="{i18n>posicao.valorStopAtual}"   /></Column>
                 <Column ><Text text="{i18n>posicao.valorAtual}"   /></Column>
-                <Column ><Text text="{i18n>posicao.percDif}"   /></Column>
                 <Column ><Text text="{i18n>posicao.valorDif}"   /></Column>
-                <Column ><Text text="{i18n>posicao.diasPosicao}"   /></Column>
+                <Column ><Text text="{i18n>posicao.percDif}"   /></Column>
             </columns>
             <items>
             <ColumnListItem type="Navigation" press="onClickPosicao" app:IdPosicao="{IdPosicao}">
                     <cells>
                         <Text text="{CodigoPapel}" />
                         <Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />
-                        <Text text="{path:'PrecoEntrada', formatter:'.formatter.formataValor'}" />
+                        <Text text="{path:'PrecoMedioCompra', formatter:'.formatter.formataValor'}" />
+                        <Text text="{path:'PrecoMedioVenda', formatter:'.formatter.formataValor'}" />
                         <Text text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}" />
-                        <Text text="{Quantidade}" />
+                        <Text text="{QuantidadeComprada}" />
+                        <Text text="{QuantidadeVendida}" />
+                        <Text text="{QuantidadeLiquida}" />
                         <Text text="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}" />
-                        <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" />
-                        <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'PrecoEntrada'}], formatter:'.formataCalculoPercDif'}" />
-                        <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'PrecoEntrada'}], formatter:'.formataCalculoValorDif'}" />
-                        <Text text="{path:'DataEntrada', formatter:'.formatter.calcDifDays'}" />
+                        <Text text="{path:'ValorPosicaoAtual', formatter:'.formatter.formataValor'}" />
+                        <Text text="{path:'DiferencaAtual', formatter:'.formatter.formataValor'}" />
+                        <Text text="{parts:[{path:'ValorPosicaoAtual'},{path:'DiferencaAtual'}], formatter:'.formataCalculoPercDif'}" />
                     </cells>
                 </ColumnListItem>
             </items>

@@ -1,0 +1,68 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<f:SimpleForm id="SimpleFormChange354"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="5"
+			labelSpanL="5"
+			labelSpanM="5"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="2"
+			columnsM="2"
+			singleContainerFullSize="false" >
+			<f:content>
+            <core:Title text="Dados Operação" />
+                <Label text="{i18n>posicao.nomePapel}" />
+                <Select showSecondaryValues= "true" selectedKey="{localModel>/IdPapel}"
+                    enabled="{localModel>/CanChangePapel}"
+                        items="{
+                            path: '/Papel'
+                        }" change="atualizaValorEntradaDialogo">
+                            <core:ListItem key="{IdPapel}" text="{Codigo} - {Nome}"
+                            additionalText= "{path:'ValorAtual', formatter:'.formatter.formataValor'}"/>
+                </Select>
+
+                <Label text="{i18n>posicao.tipoOperacao}" />
+                <Select showSecondaryValues= "true"  selectedKey="{localModel>/tipoOperacao}"
+                        items="{dominio>/TipoOperacao}">
+                            <core:ListItem key="{dominio>key}" text="{path:'dominio>text',formatter:'.traduzChave'}"/>
+                </Select>
+
+                <Label text="{i18n>posicao.valorEntrada}" />
+                <Input value="{localModel>/PrecoAcao}"  liveChange="inputFloat" change="checkFloat"/>
+
+                <Label text="{i18n>posicao.quantidade}" />
+                <Input  value="{localModel>/quantidade}"  liveChange="inputNumeric"/>
+
+                <Label text="{i18n>carteira.custoOperacao}" />
+                <Input value="{localModel>/custoOperacao}"  liveChange="inputNumeric"/>
+
+                <Label text="{i18n>posicao.valorStopInicial}" />
+                <Input value="{localModel>/PrecoStopOpcional}"  liveChange="inputNumeric"/>
+
+                <core:Title text="Sumário" />
+                <Label text="{i18n>posicao.valorTotal}" />
+                <Input value="{parts:[{path:'localModel>/PrecoAcao'},{path:'localModel>/quantidade'},{path:'localModel>/custoOperacao'},{path:'localModel>/tipoOperacao'}], formatter:'.formatter.formataCalculaTotalOperacao'}" editable="false"/>
+
+                <Label text="{i18n>carteira.valorLiquido}" />
+                <Input value="{path:'localModel>/liquidoCarteira', formatter:'.formatter.formataValor'}" editable="false"/>
+
+                <Label text="{i18n>trade.valorStop}" />
+                <Input value="{parts:[{path:'localModel>/PrecoStopOpcional'},{path:'localModel>/quantidade'},{path:'localModel>/custoOperacao'},{path:'localModel>/tipoOperacao'}], formatter:'.formatter.formataCalculaTotalOperacao'}" editable="false"/>
+
+                <Label text="{i18n>trade.valorRisco}" />
+                <Input value="{parts:[{path:'localModel>/PrecoAcao'},{path:'localModel>/PrecoStopOpcional'},{path:'localModel>/quantidade'},{path:'localModel>/custoOperacao'},{path:'localModel>/tipoOperacao'}], formatter:'.formatter.formataCalculaRiscoOperacao'}" editable="false"/>
+
+
+    </f:content>
+		</f:SimpleForm>
+</core:FragmentDefinition>

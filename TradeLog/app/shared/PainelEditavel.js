@@ -8,6 +8,7 @@ sap.ui.define([
         "use strict";
 
         return DomainController.extend("tradelog.shared.PainelEditavel", {
+            painelData: { readMode: true, changeMode: false, textoTeste: "aaaTeste" },
 
             //id do Painel que será alterado entre os modos Display e Change
             nomePainel: '',
@@ -30,13 +31,15 @@ sap.ui.define([
                 var oComponent = this.getOwnerComponent();
                 this._router = oComponent.getRouter();
                 this.getRouter().attachRouteMatched(this.onRouteMatched, this);
+
+
             },
 
 
             /** Método usado para inicializar as propriedades do painel que está sendo editado
-    * @function onRouteMatched
-    * @return {type} {description}
-    */
+            * @function onRouteMatched
+            * @return {type} {description}
+            */
             onRouteMatched: function (evt) {
                 var parameters = evt.getParameters();
                 //if (this.getView().data("idEntidade") == null) return;
@@ -54,11 +57,14 @@ sap.ui.define([
                 this.buttonSave = this.getView().byId(this.nomePainel + "Save");
                 //this.buttonCancel = this.getView().byId(this.nomePainel + "Cancel");
 
-                this.buttonEdit.attachPress({ controller: this }, this.handleEditPress);
-                this.buttonSave.attachPress({ controller: this }, this.handleSavePress);
+                this.buttonEdit.attachPress({ controller: this }, this.handleEditPress.bind(this));
+                this.buttonSave.attachPress({ controller: this }, this.handleSavePress.bind(this));
                 // this.buttonCancel.attachPress({ controller: this }, this.handleCancelPress);
 
                 this.hasInitialized = true;
+
+                var painelDataModel = new sap.ui.model.json.JSONModel(this.painelData, true);
+                this.getView().setModel(painelDataModel, "painelData");
             },
 
             /**
@@ -76,6 +82,8 @@ sap.ui.define([
              */
             handleEditPress: function (evt, context) {
                 context.controller.toggleButtonsAndView(true);
+                this.painelData.readMode = false;
+                this.painelData.changeMode = true;
 
             },
 
@@ -89,6 +97,9 @@ sap.ui.define([
                 oModel.resetChanges("reset");
                 setTimeout(function () { oModel.refresh(); }, 100);
 
+                this.painelData.readMode = true;
+                this.painelData.changeMode = !this.painelData.readMode;
+
             },
 
             /**
@@ -99,6 +110,9 @@ sap.ui.define([
                 var oModel = context.controller.getView().getModel();
                 //oModel.resetChanges();
                 //oModel.submitChanges();
+
+                this.painelData.readMode = true;
+                this.painelData.changeMode = !this.painelData.readMode;
             },
 
             onBatchRequestCompleted: function (oData) {
@@ -119,8 +133,16 @@ sap.ui.define([
                 this.buttonSave.setVisible(bEdit);
                 //this.buttonCancel.setVisible(bEdit);
 
+                this.painelData.readMode = !bEdit;
+                this.painelData.changeMode = !this.painelData.readMode;
                 // Set the right form type
                 this.showFormFragment(bEdit ? "Change" : "Display");
+                this.eventToggle(bEdit);
+            },
+
+            /*Função que pode ser usado por classes herdeiras */
+            eventToggle:function(bEdit){
+
             }
 
 

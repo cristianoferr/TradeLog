@@ -65,13 +65,92 @@ sap.ui.define([
                 this.postData(sServiceUrl, parameters, this.sucessoTransferencia.bind(this), this.errorTransferencia.bind(this));
             },
 
+            atualizaValorEntradaDialogo: function (evt) {
+                var source = evt.getSource()
+                var item = source.getSelectedItem()
+                var data = item.getBindingContext().getObject();
+
+                this.getModel("localModel").oData.PrecoAcao = this.formatter.formataValor(data.ValorAtual);
+                this.getModel("localModel").oData.PrecoStopOpcional = this.formatter.formataValor(data.ValorAtual);
+            },
+
+            /*Dialogo para criar uma posição nova (ou automaticamente adicionar à uma posição existente) */
+            dialogCreatePosition: function () {
+                //AdicionaPosicao
+                var content = sap.ui.xmlfragment("tradelog.domain.carteira.fragments.AdicionaPosicao", this);
+                content.setModel(this.getModel());
+                content.setModel(this.getModel("dominio"), "dominio");
+
+                var carteiraAtual = this.getView().getBindingContext().getObject();
+
+                var dataPosicao = {
+                    IdPapel: 0,
+                    CanChangePapel: true,
+                    tipoOperacao: 'C',
+                    IdCarteira: this.viewData.idCarteira,
+                    quantidade: 100,
+                    PrecoAcao: 0,
+                    custoOperacao: this.formatter.formataValor(carteiraAtual.CustoOperacaoPadrao),
+                    PrecoStopOpcional: "0.00",
+                    totalTrade: 0,
+                    liquidoCarteira: carteiraAtual.ValorLiquido,
+                };
+                var modelPosicao = new sap.ui.model.json.JSONModel(dataPosicao);
+                this.getView().setModel(modelPosicao, "localModel");
+                content.setModel(modelPosicao, "localModel");
+
+                var functionOk = function (evt) {
+                    var data = this.getModel("localModel").oData;
+
+                    this.criaPosicao(data);
+                }
+
+                this.criaDialogPadrao("carteira.adicionaPosicao", "carteira.criaPosicao", content, functionOk.bind(this));
+            },
+
+            criaPosicao: function (data) {
+
+                /* action.Parameter<int>("IdPapel");
+                 action.Parameter<int>("tipoOperacao");
+                 action.Parameter<int>("IdCarteira");
+                 action.Parameter<float>("PrecoAcao");
+                 action.Parameter<int>("quantidade");
+                 action.Parameter<float>("custoOperacao");
+                 action.Parameter<float>("PrecoStopOpcional");*/
+
+                var parameters = {
+                    "IdPapel": data.IdPapel,
+                    "tipoOperacao": data.tipoOperacao,
+                    "IdCarteira": data.IdCarteira,
+                    "PrecoAcao": data.PrecoAcao,
+                    "quantidade": data.quantidade,
+                    "custoOperacao": data.custoOperacao,
+                    "PrecoStopOpcional": data.PrecoStopOpcional
+                };
+
+                var sServiceUrl = `Trade/TradeLogServer.Controllers.ExecutaTrade`;
+                this.postData(sServiceUrl, parameters, this.sucessoTrade.bind(this), this.errorTrade.bind(this));
+            },
+
+            /*Callback quando há sucesso na transferencia de fundos à carteira */
+            sucessoTrade: function () {
+                this.toast(this.traduzChave("trade.sucessoTrade"));
+                this.getView().getModel().refresh();
+            },
+
+            /*Callback quando há erro na transferencia de fundos à carteira */
+            errorTrade: function () {
+                this.toast(this.traduzChave("trade.erroTrade"));
+            },
 
 
+            /*Callback quando há sucesso na transferencia de fundos à carteira */
             sucessoTransferencia: function () {
                 this.toast(this.traduzChave("carteira.fundoTransferidoSucesso"));
                 this.getView().getModel().refresh();
             },
 
+            /*Callback quando há erro na transferencia de fundos à carteira */
             errorTransferencia: function () {
                 this.toast(this.traduzChave("carteira.fundoTransferidoErro"));
             },
@@ -87,77 +166,39 @@ sap.ui.define([
             },
 
             dialogAddFunds: function (evt) {
-                var that = this;
-
                 var content = [new sap.m.Label({ text: this.traduzChave("carteira.valorAMovimentar") }),
-                new sap.m.Input({ maxLength: 20, id: "inputValor", liveChange: this.inputFloat.bind(that), change: this.checkFloat.bind(that) }),
+                new sap.m.Input({ maxLength: 20, id: "inputValor", liveChange: this.inputFloat.bind(this), change: this.checkFloat.bind(this) }),
                 new sap.m.Label({ text: this.traduzChave("carteira.descricaoMovimentacao") }),
                 new sap.m.Input({ maxLength: 50, id: "descricaoMovimento" })
                 ];
 
-                var dialog = new sap.m.Dialog({
-                    title: this.traduzChave("carteira.tituloDialogoAdicionaFundos"),
-                    type: 'Message',
-                    content: content,
-                    beginButton: new sap.m.Button({
-                        text: this.traduzChave("carteira.depositaFundos"),
-                        press: function (evt) {
-                            var inputValor = evt.getSource().oParent.getContent().filter(x => x.sId == "inputValor")[0];
-                            var descricaoMovimento = evt.getSource().oParent.getContent().filter(x => x.sId == "descricaoMovimento")[0];
-                            var valor = Math.abs(parseFloat(inputValor.getValue()));
-                            that.depositaValorCarteira(valor, descricaoMovimento.getValue());
-                            dialog.close();
-                        }
-                    }),
-                    endButton: new sap.m.Button({
-                        text: this.traduzChave("generico.fechar"),
-                        press: function () {
-                            dialog.close();
-                        }
-                    }),
-                    afterClose: function () {
-                        dialog.destroy();
-                    }
-                });
+                var functionOk = function (evt) {
+                    var inputValor = evt.getSource().oParent.getContent().filter(x => x.sId == "inputValor")[0];
+                    var descricaoMovimento = evt.getSource().oParent.getContent().filter(x => x.sId == "descricaoMovimento")[0];
+                    var valor = Math.abs(parseFloat(inputValor.getValue()));
+                    this.depositaValorCarteira(valor, descricaoMovimento.getValue());
+                }
 
-                dialog.open();
+                this.criaDialogPadrao("carteira.tituloDialogoAdicionaFundos", "carteira.depositaFundos", content, functionOk.bind(this));
             },
 
             dialogRemoveFunds: function (evt) {
-                var that = this;
 
                 var content = [new sap.m.Label({ text: this.traduzChave("carteira.valorAMovimentar") }),
-                new sap.m.Input({ maxLength: 20, id: "inputValor", liveChange: this.inputFloat.bind(that), change: this.checkFloat.bind(that) }),
+                new sap.m.Input({ maxLength: 20, id: "inputValor", liveChange: this.inputFloat.bind(this), change: this.checkFloat.bind(this) }),
                 new sap.m.Label({ text: this.traduzChave("carteira.descricaoMovimentacao") }),
                 new sap.m.Input({ maxLength: 50, id: "descricaoMovimento" })
                 ];
 
-                var dialog = new sap.m.Dialog({
-                    title: this.traduzChave("carteira.tituloDialogoRemoveFundos"),
-                    type: 'Message',
-                    content: content,
-                    beginButton: new sap.m.Button({
-                        text: this.traduzChave("carteira.removerFundos"),
-                        press: function (evt) {
-                            var inputValor = evt.getSource().oParent.getContent().filter(x => x.sId == "inputValor")[0];
-                            var descricaoMovimento = evt.getSource().oParent.getContent().filter(x => x.sId == "descricaoMovimento")[0];
-                            var valor = Math.abs(parseFloat(inputValor.getValue()));
-                            that.retirarValorCarteira(valor, descricaoMovimento.getValue());
-                            dialog.close();
-                        }
-                    }),
-                    endButton: new sap.m.Button({
-                        text: this.traduzChave("generico.fechar"),
-                        press: function () {
-                            dialog.close();
-                        }
-                    }),
-                    afterClose: function () {
-                        dialog.destroy();
-                    }
-                });
+                var functionOk = function (evt) {
+                    var inputValor = evt.getSource().oParent.getContent().filter(x => x.sId == "inputValor")[0];
+                    var descricaoMovimento = evt.getSource().oParent.getContent().filter(x => x.sId == "descricaoMovimento")[0];
+                    var valor = Math.abs(parseFloat(inputValor.getValue()));
+                    this.retirarValorCarteira(valor, descricaoMovimento.getValue());
+                }
 
-                dialog.open();
+                this.criaDialogPadrao("carteira.tituloDialogoRemoveFundos", "carteira.removerFundos", content, functionOk.bind(this));
+
             },
 
         });
