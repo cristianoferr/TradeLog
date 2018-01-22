@@ -9,9 +9,9 @@
 
 			<f:layout>
 				<f:ResponsiveGridLayout
-					labelSpanXL="4"
-					labelSpanL="3"
-					labelSpanM="4"
+					labelSpanXL="6"
+					labelSpanL="4"
+					labelSpanM="6"
 					labelSpanS="12"
 					adjustLabelSpan="false"
 					emptySpanXL="0"
@@ -25,29 +25,40 @@
 					singleContainerFullSize="false" />
 			</f:layout>
 			<f:formContainers>
-				<f:FormContainer title="{i18n>posicao.dadosIniciais}">
+				<f:FormContainer title="{i18n>posicao.dadosGerais}">
 					<f:formElements>
-						<f:FormElement label="{i18n>posicao.precoEntrada}">
+                        <f:FormElement label="QuantidadeComprada">
 							<f:fields>
-								<Text text="{path:'PrecoEntrada', formatter:'.formatter.formataValor'}"  />
+								<ObjectNumber number="{QuantidadeComprada}" />
 							</f:fields>
 						</f:FormElement>
-                        <f:FormElement label="{i18n>posicao.valorInicial}">
+						<f:FormElement label="PrecoMedioCompra">
 							<f:fields>
-								<Text text="{parts:[{path:'PrecoEntrada'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" />
+								<ObjectNumber number="{path:'PrecoMedioCompra', formatter:'.formatter.formataValor'}" unit="$" />
 							</f:fields>
 						</f:FormElement>
-
+                        <f:FormElement label="QuantidadeVendida">
+							<f:fields>
+								<ObjectNumber number="{QuantidadeVendida}" />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="PrecoMedioVenda">
+							<f:fields>
+								<ObjectNumber number="{path:'PrecoMedioVenda', formatter:'.formatter.formataValor'}" unit="$" />
+							</f:fields>
+						</f:FormElement>
+                         <f:FormElement label="QuantidadeLiquida">
+							<f:fields>
+								<ObjectNumber number="{QuantidadeLiquida}" />
+							</f:fields>
+						</f:FormElement>
 						<f:FormElement label="{i18n>posicao.dataEntrada}">
 							<f:fields>
 								<Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />
 							</f:fields>
 						</f:FormElement>
-                        <f:FormElement label="{i18n>posicao.quantidade}">
-							<f:fields>
-								<Text id="txtQuantidadeAtual" text="{Quantidade}" />
-							</f:fields>
-						</f:FormElement>
+
+
 
 					</f:formElements>
 				</f:FormContainer>
@@ -56,12 +67,28 @@
 					<f:formElements>
                         <f:FormElement label="{i18n>posicao.precoAtual}">
 							<f:fields>
-								<Text id="txtPrecoAtual" text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}"  />
+								<ObjectNumber number="{path:'PrecoAtual', formatter:'.formatter.formataValor'}" unit="$"/>
 							</f:fields>
 						</f:FormElement>
-						<f:FormElement label="{i18n>posicao.valorAtual}">
+                        <f:FormElement label="{i18n>posicao.totalComprado}">
 							<f:fields>
-								<Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" />
+								<ObjectNumber number="{path:'TotalComprado', formatter:'.formatter.formataValor'}" unit="$"/>
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.totalVendido}">
+							<f:fields>
+								<ObjectNumber number="{path:'TotalVendido', formatter:'.formatter.formataValor'}" unit="$" />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.valorEmPosse}">
+							<f:fields>
+								<ObjectNumber number="{path:'ValorLiquido', formatter:'.formatter.formataValor'}" unit="$" />
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>posicao.situacaoAtual}">
+							<f:fields>
+								<ObjectNumber number="{path:'ValorPosicaoAtual', formatter:'.formatter.formataValor'}" unit="$" />
 							</f:fields>
 						</f:FormElement>
                         <f:FormElement label="{i18n>posicao.diasPosicao}">
@@ -71,12 +98,12 @@
 						</f:FormElement>
                         <f:FormElement label="{i18n>posicao.valorDif}">
                         <f:fields>
-                            <Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'PrecoEntrada'}], formatter:'.formataCalculoValorDif'}" />
+                            <ObjectNumber number="{path:'DiferencaAtual', formatter:'.formatter.formataValor'}" unit="$" />
                         </f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>posicao.percDif}">
 							<f:fields>
-								<Text text="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'PrecoEntrada'}], formatter:'.formataCalculoPercDif'}" />
+								<ObjectNumber number="{parts:[{path:'ValorPosicaoAtual'},{path:'DiferencaAtual'}], formatter:'.formataCalculoPercDif'}" unit="%" />
 							</f:fields>
 						</f:FormElement>
 

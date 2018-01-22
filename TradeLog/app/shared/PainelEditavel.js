@@ -65,6 +65,13 @@ sap.ui.define([
 
                 var painelDataModel = new sap.ui.model.json.JSONModel(this.painelData, true);
                 this.getView().setModel(painelDataModel, "painelData");
+
+                this.routeMatched();
+            },
+
+            //Método chamado no onroutematched que pode ser sobreescrito pelos filhos dessas classe
+            routeMatched: function () {
+
             },
 
             /**
@@ -141,7 +148,7 @@ sap.ui.define([
             },
 
             /*Função que pode ser usado por classes herdeiras */
-            eventToggle:function(bEdit){
+            eventToggle: function (bEdit) {
 
             }
 

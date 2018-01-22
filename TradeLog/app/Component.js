@@ -8,6 +8,16 @@ sap.ui.define([
 
     "use strict";
 
+
+    /**
+       * Carrega módulos externos ao OPENI5 para serem utilizados na aplicação. Vai ser executada logo após sua definição.
+       */
+    (function carregarModulos() {
+        jQuery.sap.registerModulePath('DialogoCarteira', 'business/DialogoCarteira');
+        jQuery.sap.registerModulePath('DialogoPosicao', 'business/DialogoPosicao');
+        jQuery.sap.registerModulePath('ServicoCarteira', 'business/ServicoCarteira');
+    })();
+
     return UIComponent.extend("tradelog.Component", {
 
         metadata: {

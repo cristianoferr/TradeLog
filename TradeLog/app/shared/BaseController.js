@@ -167,6 +167,7 @@ sap.ui.define(
                     content: content,
                     beginButton: new sap.m.Button({
                         text: this.traduzChave(okTextKey),
+                        type: "Emphasized",
                         press: function (evt) {
                             functionOk(evt);
                             dialog.close();
@@ -174,6 +175,7 @@ sap.ui.define(
                     }),
                     endButton: new sap.m.Button({
                         text: this.traduzChave("generico.fechar"),
+                        type: "Reject",
                         press: function () {
                             dialog.close();
                         }

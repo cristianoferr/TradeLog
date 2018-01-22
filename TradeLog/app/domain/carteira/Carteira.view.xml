@@ -26,7 +26,7 @@
                         icon="sap-icon://form"
                         >
                         <content>
-                            <mvc:XMLView viewName="tradelog.domain.carteira.VisualizaCarteira"
+                            <mvc:XMLView viewName="tradelog.domain.carteira.ListaPosicoes"
                                 app:domainAtual="carteira"  app:entidade="{viewModel>/bindPath}/Posicao"></mvc:XMLView>
                         </content>
                     </IconTabFilter>

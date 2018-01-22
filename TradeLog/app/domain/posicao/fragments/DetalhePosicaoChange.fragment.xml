@@ -64,7 +64,7 @@
 							</f:fields>
 						</f:FormElement>
 
-						<f:FormElement label="{i18n>posicao.valorAtual}">
+						<f:FormElement label="{i18n>posicao.situacaoAtual}">
 							<f:fields>
 								<Input value="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" editable="false" />
 							</f:fields>

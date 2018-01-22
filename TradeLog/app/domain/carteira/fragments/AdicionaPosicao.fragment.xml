@@ -22,7 +22,7 @@
 			<f:content>
             <core:Title text="Dados Operação" />
                 <Label text="{i18n>posicao.nomePapel}" />
-                <Select showSecondaryValues= "true" selectedKey="{localModel>/IdPapel}"
+                <Select showSecondaryValues="true" selectedKey="{localModel>/IdPapel}"
                     enabled="{localModel>/CanChangePapel}"
                         items="{
                             path: '/Papel'
@@ -33,6 +33,7 @@
 
                 <Label text="{i18n>posicao.tipoOperacao}" />
                 <Select showSecondaryValues= "true"  selectedKey="{localModel>/tipoOperacao}"
+                enabled="{localModel>/CanChangeTipo}"
                         items="{dominio>/TipoOperacao}">
                             <core:ListItem key="{dominio>key}" text="{path:'dominio>text',formatter:'.traduzChave'}"/>
                 </Select>
@@ -46,7 +47,7 @@
                 <Label text="{i18n>carteira.custoOperacao}" />
                 <Input value="{localModel>/custoOperacao}"  liveChange="inputNumeric"/>
 
-                <Label text="{i18n>posicao.valorStopInicial}" />
+                <Label text="{i18n>posicao.stopPosicao}" />
                 <Input value="{localModel>/PrecoStopOpcional}"  liveChange="inputNumeric"/>
 
                 <core:Title text="Sumário" />
@@ -61,6 +62,9 @@
 
                 <Label text="{i18n>trade.valorRisco}" />
                 <Input value="{parts:[{path:'localModel>/PrecoAcao'},{path:'localModel>/PrecoStopOpcional'},{path:'localModel>/quantidade'},{path:'localModel>/custoOperacao'},{path:'localModel>/tipoOperacao'}], formatter:'.formatter.formataCalculaRiscoOperacao'}" editable="false"/>
+
+                <Label text="{i18n>posicao.quantidadeEmPosse}" />
+                <Input value="{localModel>/quantidadeExistentePapel}" editable="false"/>
 
 
     </f:content>
