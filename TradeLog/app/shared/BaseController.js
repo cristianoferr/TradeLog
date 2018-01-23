@@ -161,18 +161,24 @@ sap.ui.define(
 
 
             criaDialogPadrao: function (titleKey, okTextKey, content, functionOk) {
-                var dialog = new sap.m.Dialog({
-                    title: this.traduzChave(titleKey),
-                    type: 'Message',
-                    content: content,
-                    beginButton: new sap.m.Button({
+
+                var beginButton = null;
+                if (okTextKey != null) {
+                    beginButton = new sap.m.Button({
                         text: this.traduzChave(okTextKey),
                         type: "Emphasized",
                         press: function (evt) {
                             functionOk(evt);
                             dialog.close();
                         }
-                    }),
+                    });
+                }
+
+                var dialog = new sap.m.Dialog({
+                    title: this.traduzChave(titleKey),
+                    type: 'Message',
+                    content: content,
+                    beginButton: beginButton,
                     endButton: new sap.m.Button({
                         text: this.traduzChave("generico.fechar"),
                         type: "Reject",

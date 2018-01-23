@@ -1,0 +1,26 @@
+<mvc:View
+    controllerName="tradelog.domain.login.LoggedUser"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    >
+    <FlexBox alignItems="Start" justifyContent="End">
+            <items>
+            <MenuButton  iconFirst="false" icon="{loginInfo>/UserImg}"  type="Transparent" >
+                	<menu>
+				<Menu itemSelected="onMenuAction">
+					<items>
+						<MenuItem text="Login" app:acao="login" visible="{loginInfo>/isAnonymous}"/>
+						<MenuItem text="Logoff" app:acao="logoff"  visible="{loginInfo>/isLogged}"/>
+					</items>
+				</Menu>
+			</menu>
+		</MenuButton>
+            </items>
+        </FlexBox>
+
+
+</mvc:View>

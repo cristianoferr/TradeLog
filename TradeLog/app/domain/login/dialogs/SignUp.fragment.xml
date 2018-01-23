@@ -1,0 +1,9 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Panel>
+    <Image width="50%" src="content/images/sign-in-with-google.png" press="autenticaGoogle"/>
+    </Panel>
+</core:FragmentDefinition>

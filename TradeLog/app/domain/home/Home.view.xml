@@ -11,6 +11,8 @@
 			<Image class="logoCabecalho"   src="content/images/logo.png" />
 		</headerContent>
 
+        <mvc:XMLView viewName="tradelog.domain.login.LoggedUser"></mvc:XMLView>
+
         <!-- fim do botao que abre a pagina about -->
         <!--titulos rotativos -->
         <html:section class="rw-wrapper">

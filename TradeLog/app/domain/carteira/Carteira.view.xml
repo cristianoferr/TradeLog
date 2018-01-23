@@ -9,7 +9,9 @@
         <headerContent>
 			<Image class="imagemCabecalho" src="content/images/marca.png" />
 			<Image class="logoCabecalho"   src="content/images/logo.png" />
+        <mvc:XMLView viewName="tradelog.domain.login.LoggedUser"></mvc:XMLView>
 		</headerContent>
+
 
         <content>
             <ObjectHeader id="oh1"
