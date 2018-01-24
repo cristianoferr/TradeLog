@@ -8,25 +8,38 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.ModelBinding;
 using System.Web.OData;
 using System.Web.OData.Extensions;
 using System.Web.OData.Routing;
+using System.Web.Routing;
+using System.Web.SessionState;
 using TradeLogServer.Business;
 using TradeLogServer.Models;
 
 namespace TradeLogServer.Controllers
 {
     
-    public class BaseController<TModel,TBP> : ODataController
+    public class BaseController<TModel,TBP> : ODataController, IRequiresSessionState
         where TModel : BaseModel
         where TBP:BaseBP<TModel>, new()
 
     {
         protected ApplicationDbContext db = new ApplicationDbContext();
         protected TBP bp;
+
+        public HttpSessionStateBase Session
+        {
+            get
+            {
+                HttpContextWrapper context = Request.Properties["MS_HttpContext"] as HttpContextWrapper;
+                return context.Session;
+
+            }
+        }
 
         public BaseController()
         {
@@ -35,7 +48,12 @@ namespace TradeLogServer.Controllers
         }
 
         //TODO: ver como pega o usuário logado
-        protected int idUsuarioAtual = 1;
+        protected int idUsuarioAtual { get {
+                var idUsuario = Session["IdUsuario"];
+                if (idUsuario == null) return 1;
+                return (int)idUsuario;
+            }
+        }
 
 
 

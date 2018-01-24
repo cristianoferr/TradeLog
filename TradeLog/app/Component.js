@@ -16,6 +16,8 @@ sap.ui.define([
         jQuery.sap.registerModulePath('DialogoCarteira', 'business/DialogoCarteira');
         jQuery.sap.registerModulePath('DialogoPosicao', 'business/DialogoPosicao');
         jQuery.sap.registerModulePath('ServicoCarteira', 'business/ServicoCarteira');
+        jQuery.sap.registerModulePath('ServicoAutenticacaoGoogle', 'business/ServicoAutenticacaoGoogle');
+        jQuery.sap.registerModulePath('ServicoUsuario', 'business/ServicoUsuario');
     })();
 
     return UIComponent.extend("tradelog.Component", {

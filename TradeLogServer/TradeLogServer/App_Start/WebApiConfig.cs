@@ -18,6 +18,7 @@ using System.Web.OData.Routing;
 using System.Web.Http.Batch;
 using System.Web.Http.OData.Formatter;
 using TradeLogServer.App_Start;
+using TradeLogServer.Handlers;
 
 namespace TradeLogServer
 {
@@ -95,7 +96,7 @@ public static class WebApiConfig
             ODataRoute route = config.MapODataServiceRoute(routeName, routeName, 
                 model: ModelConfig.GetModel(),
                 batchHandler: odataBatchHandler);
-
+            
 
         }
 

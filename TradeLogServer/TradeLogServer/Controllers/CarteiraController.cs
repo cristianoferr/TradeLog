@@ -8,11 +8,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.OData;
 using System.Web.OData.Routing;
+using System.Web.SessionState;
 using TradeLogServer.Business;
+using TradeLogServer.Handlers;
 using TradeLogServer.Models;
 
 namespace TradeLogServer.Controllers
@@ -23,6 +26,9 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public IQueryable<Carteira> GetCarteira()
         {
+            var current2 = HttpContextProvider.Current;
+            var current = HttpContext.Current;
+            HttpContextWrapper context = Request.Properties["MS_HttpContext"] as HttpContextWrapper;
             return db.Carteiras.Where(carteira => carteira.IdUsuario == idUsuarioAtual).Include(p => p.Posicao.Select(x=>x.Papel)).Include(p=>p.Posicao.Select(x=>x.Trade));
         }
 

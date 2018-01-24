@@ -5,22 +5,12 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
     >
-    <Page showHeader="false" enableScrolling="false">
-        <headerContent>
-			<Image class="imagemCabecalho" src="content/images/marca.png" />
-			<Image class="logoCabecalho"   src="content/images/logo.png" />
-		</headerContent>
+    <Page showHeader="false" class="sapUiStdPage MasterButton" enableScrolling="false">
 
-        <mvc:XMLView viewName="tradelog.domain.login.LoggedUser"></mvc:XMLView>
+             <mvc:XMLView viewName="tradelog.domain.login.LoggedUser" app:title="Título"></mvc:XMLView>
+
 
         <!-- fim do botao que abre a pagina about -->
-        <!--titulos rotativos -->
-        <html:section class="rw-wrapper">
-            <html:h2 class="rw-sentence">
-                <html:span>Prototipo OpenUI5</html:span>
-            </html:h2>
-        </html:section>
-        <!--fim dos titulos rotativos -->
 
         <TileContainer id="container" tiles="{tiles>/Tiles}" class="imagemRodapeInicio">
             <tiles>

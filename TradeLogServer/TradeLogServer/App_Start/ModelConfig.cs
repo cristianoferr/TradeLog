@@ -44,6 +44,7 @@ namespace TradeLogServer.App_Start
 
             builder.EntitySet<Papel>("Papel").EntityType.Function("Update").Returns<String>();
 
+            CriaActionsUsuario(builder);
             CriaActionsCarteira(builder);
             CriaActionsPapel(builder);
             CriaActionsPosicao(builder);
@@ -87,7 +88,15 @@ namespace TradeLogServer.App_Start
         }
 
 
-        private static void CriaActionsTrade(ODataModelBuilder builder)
+        private static void CriaActionsUsuario(ODataModelBuilder builder)
+        {
+            ActionConfiguration action = CreateAction<Usuario>(builder, "VerificaUsuario");
+            action.Parameter<string>("email");
+            action.Parameter<string>("googleId");
+            action.Parameter<string>("name");
+        }
+
+            private static void CriaActionsTrade(ODataModelBuilder builder)
         {
             ActionConfiguration action = CreateAction<Trade>(builder, "ExecutaTrade");
             action.Parameter<int>("IdPapel");

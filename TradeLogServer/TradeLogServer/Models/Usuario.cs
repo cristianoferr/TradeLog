@@ -13,6 +13,8 @@ namespace TradeLogServer.Models
         [Key]
         public int IdUsuario { get; set; }
         public string NomeUsuario { get; set; }
-        
+        public string EmailUsuario { get; set; }
+        public string GoogleId { get; set; }
+
     }
 }

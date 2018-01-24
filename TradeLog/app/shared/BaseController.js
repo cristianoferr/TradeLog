@@ -41,9 +41,11 @@ sap.ui.define(
                 createPost.setRequestHeader("Content-Type", "application/json; charset=utf-8");
                 createPost.onreadystatechange = function (evt) {
                     if (createPost.readyState == 4 && createPost.status == 200) {
-                        fSuccess();
+                        fSuccess(evt);
                     } else {
-                        fError();
+                        if (createPost.status != 200) {
+                            fError(evt);
+                        }
                     }
                 };
                 createPost.send(jsonParameters);

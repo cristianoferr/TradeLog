@@ -2,7 +2,9 @@
 Thumbs.db
 ehthumbs.db
 demos/
+TradeLogServer/.vs/
 TradeLogServer/TradeLogServer/bin/
+TradeLogServer/packages/
 TradeLog/node_modules/
 TradeLogServer/.vs/TradeLogServer/v15/.suo
 TradeLogServer/TradeLogServer/bin/

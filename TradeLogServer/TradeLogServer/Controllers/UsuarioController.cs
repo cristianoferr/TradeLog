@@ -7,10 +7,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.OData;
 using TradeLogServer.Business;
+using TradeLogServer.Handlers;
 using TradeLogServer.Models;
 
 namespace TradeLogServer.Controllers
@@ -27,12 +29,21 @@ namespace TradeLogServer.Controllers
     */
     public class UsuarioController : BaseController<Usuario,BPUsuario>
     {
-        // GET: odata/Usuario
-        [EnableQuery]
-        [ActionName("list")]
-        public IQueryable<Usuario> GetUsuarios()
+        [HttpPost]
+        public IHttpActionResult VerificaUsuario(ODataActionParameters parameters)
         {
-            return db.Usuarios;
+            string email = (string)parameters["email"];
+            if (email == null) return BadRequest("InvalidEmail");
+            string googleId = (string)parameters["googleId"];
+            string name = (string)parameters["name"];
+            string saida = "";
+            int idUsuario= bp.AutenticaUsuario(out saida,email,googleId, name);
+            if (idUsuario > 0)
+            {
+                Session["IdUsuario"]= idUsuario;
+                return Ok(saida);
+            }
+            return BadRequest(saida);
         }
 
         [EnableQuery]
@@ -42,116 +53,6 @@ namespace TradeLogServer.Controllers
             return SingleResult.Create(db.Usuarios.Where(usuario => usuario.IdUsuario == idUsuarioAtual));
         }
 
-        // GET: odata/Usuario(5)
-        [EnableQuery]
-        public SingleResult<Usuario> GetUsuario([FromODataUri] int key)
-        {
-            return SingleResult.Create(db.Usuarios.Where(usuario => usuario.IdUsuario == key));
-        }
-
-        // PUT: odata/Usuario(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] int key, Delta<Usuario> patch)
-        {
-           // Validate(patch.GetEntity());
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Usuario usuario = await db.Usuarios.FindAsync(key);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            patch.Put(usuario);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UsuarioExists(key))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return Updated(usuario);
-        }
-
-        // POST: odata/Usuario
-        public async Task<IHttpActionResult> Post(Usuario usuario)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Usuarios.Add(usuario);
-            await db.SaveChangesAsync();
-
-            return Created(usuario);
-        }
-
-        // PATCH: odata/Usuario(5)
-        [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Usuario> patch)
-        {
-           // Validate(patch.GetEntity());
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Usuario usuario = await db.Usuarios.FindAsync(key);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            patch.Patch(usuario);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UsuarioExists(key))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return Updated(usuario);
-        }
-
-        // DELETE: odata/Usuario(5)
-        public async Task<IHttpActionResult> Delete([FromODataUri] int key)
-        {
-            Usuario usuario = await db.Usuarios.FindAsync(key);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            db.Usuarios.Remove(usuario);
-            await db.SaveChangesAsync();
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
 
         protected override void Dispose(bool disposing)
         {

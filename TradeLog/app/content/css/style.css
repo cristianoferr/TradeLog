@@ -5,6 +5,11 @@
     white-space: normal !important;
 }
 
+.labelTitulo{
+    font-size:xx-large;
+    font-weight: bold;
+}
+
 /*Usado em multilineInput*/
 .maxHeight{
     height:100%;

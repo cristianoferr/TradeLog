@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.SessionState;
+using TradeLogServer.Handlers;
 
 namespace TradeLogServer
 {
@@ -21,17 +23,48 @@ namespace TradeLogServer
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //PreRequestHandlerExecute += new EventHandler(OnPreRequestHandlerExecute);
+            //EndRequest += new EventHandler(OnEndRequest);
         }
 
-    /*   protected void Application_OnBeginRequest()
+        public override void Init()
         {
-            var res = HttpContext.Current.Response;
-            var req = HttpContext.Current.Request;
-           // res.AppendHeader("Access-Control-Allow-Origin", (req.Headers["Origin"] == null ? "*" : req.Headers["Origin"]));
-            res.AppendHeader("Access-Control-Allow-Credentials", "true");
-//            res.AppendHeader("Access-Control-Allow-Headers", "MaxDataServiceVersion, sap-contextid-accept, Authorization, Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name");
-            res.AppendHeader("Access-Control-Allow-Methods", "POST,GET,PUT,PATCH,DELETE,OPTIONS");
+            this.PostAuthenticateRequest += MvcApplication_PostAuthenticateRequest;
+            base.Init();
+        }
 
+        protected void Application_PostAuthorizeRequest()
+        {
+            System.Web.HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
+        }
+
+        void MvcApplication_PostAuthenticateRequest(object sender, EventArgs e)
+        {
+            System.Web.HttpContext.Current.SetSessionStateBehavior(
+                SessionStateBehavior.Required);
+        }
+
+        /*
+        protected void OnPreRequestHandlerExecute(object sender, EventArgs e)
+        {
+            HttpContextProvider.OnBeginRequest();   // preserves HttpContext.Current for use across async/await boundaries.            
+        }
+
+        protected void OnEndRequest(object sender, EventArgs e)
+        {
+            HttpContextProvider.OnEndRequest();
         }*/
+
+        /*   protected void Application_OnBeginRequest()
+            {
+                var res = HttpContext.Current.Response;
+                var req = HttpContext.Current.Request;
+               // res.AppendHeader("Access-Control-Allow-Origin", (req.Headers["Origin"] == null ? "*" : req.Headers["Origin"]));
+                res.AppendHeader("Access-Control-Allow-Credentials", "true");
+    //            res.AppendHeader("Access-Control-Allow-Headers", "MaxDataServiceVersion, sap-contextid-accept, Authorization, Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name");
+                res.AppendHeader("Access-Control-Allow-Methods", "POST,GET,PUT,PATCH,DELETE,OPTIONS");
+
+            }*/
     }
 }

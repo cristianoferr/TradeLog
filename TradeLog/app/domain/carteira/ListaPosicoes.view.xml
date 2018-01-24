@@ -8,8 +8,8 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     >
     <Toolbar>
-        <Title level="H1" text="{i18n>carteira.valorLiquido}:" />
-        <Title level="H1" text="{path:'ValorLiquido', formatter:'.formatter.formataValor'}" />
+        <Title text="{i18n>carteira.valorLiquido}:" />
+        <Title text="{path:'ValorLiquido', formatter:'.formatter.formataValor'}" />
         <ToolbarSpacer />
         <Button type="Accept"
             icon="sap-icon://sys-add" text="{i18n>carteira.adicionaFundos}"
