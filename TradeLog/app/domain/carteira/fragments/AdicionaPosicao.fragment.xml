@@ -42,16 +42,16 @@
                 <Input value="{localModel>/PrecoAcao}"  liveChange="inputFloat" change="checkFloat"/>
 
                 <Label text="{i18n>posicao.valorEntrada}2:" />
-                <Input  value="{ path: 'localModel>/PrecoAcao', type: 'sap.ui.model.type.Float', formatOptions: {
-       maxFractionDigits : 2,
-       minFractionDigits: 0,
-       groupingSeparator: '.',
-       decimalSeparator: ',',
-       groupingEnabled: true,
-       source: {localModel>/PrecoAcao}
-      }
-    }"
-   />
+                <Input  value="{ path: 'localModel>/PrecoAcao',
+                            type: 'sap.ui.model.type.Float', formatOptions: {
+                            maxFractionDigits : 2,
+                            minFractionDigits: 0,
+                            groupingSeparator: ',',
+                            decimalSeparator: '.',
+                            groupingEnabled: true,
+                            roundingMode: 'away_from_zero'
+                            }}"
+                        />
 
                 <Label text="{i18n>posicao.quantidade}" />
                 <Input  value="{localModel>/quantidade}"  liveChange="inputNumeric"/>
