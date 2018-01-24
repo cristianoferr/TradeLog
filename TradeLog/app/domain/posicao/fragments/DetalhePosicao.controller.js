@@ -35,40 +35,36 @@ sap.ui.define([
 
             /*Dialogo de fechar a posição */
             dialogBuyPosition: function (evt) {
-                var btncarteira = this.getView().byId("btnCarteira");
-                var carteiraData = btncarteira.getBindingContext().getObject();
-
-                var data = evt.getSource().getBindingContext().getObject();
-                var parameters = {
-                    tipo: "C", IdPapel: data.IdPapel,
-                    PrecoAtual: data.PrecoAtual,
-                    QuantidadeLiquida: data.QuantidadeLiquida,
-                    IdCarteira: data.IdCarteira,
-                    PrecoStopAtual: data.PrecoStopAtual,
-                    ValorLiquidoCarteira: carteiraData.ValorLiquido,
-                    custoOperacao: carteiraData.CustoOperacaoPadrao
-                };
+                var parameters = this.getParametersDialogoPosicao();
+                parameters.tipo = "C";
 
                 dialogoPosicao.dialogBuyPosition.call(this, evt, parameters, servicoCarteira);
             },
             /*Dialogo de fechar a posição */
             dialogSellPosition: function (evt) {
-                var btncarteira = this.getView().byId("btnCarteira");
-                var carteiraData = btncarteira.getBindingContext().getObject();
+                var parameters = this.getParametersDialogoPosicao();
+                parameters.tipo = "V";
 
+                dialogoPosicao.dialogSellPosition.call(this, evt, parameters, servicoCarteira);
+            },
+
+            /*Retorna um objeto com todos os parametros necessário para comprar/vendar a posição atual*/
+            getParametersDialogoPosicao: function () {
+                var btncarteira = this.getView().byId("btnCarteira");
+                var carteiraAtual = btncarteira.getBindingContext().getObject();
                 var data = evt.getSource().getBindingContext().getObject();
                 var parameters = {
-                    tipo: "V", IdPapel: data.IdPapel,
+                    IdPapel: data.IdPapel,
                     PrecoAtual: data.PrecoAtual,
                     QuantidadeLiquida: data.QuantidadeLiquida,
                     IdCarteira: data.IdCarteira,
                     PrecoStopAtual: data.PrecoStopAtual,
-                    ValorLiquidoCarteira: carteiraData.ValorLiquido,
-                    custoOperacao: carteiraData.CustoOperacaoPadrao
-                };
+                    ValorLiquidoCarteira: carteiraAtual.ValorLiquido,
+                    custoOperacao: carteiraAtual.CustoOperacaoPadrao,
+                    carteiraAtual: carteiraAtual
 
-                dialogoPosicao.dialogSellPosition.call(this, evt, parameters, servicoCarteira);
-            },
+                };
+            }
 
         });
     });

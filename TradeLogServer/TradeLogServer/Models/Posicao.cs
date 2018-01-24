@@ -47,7 +47,11 @@ namespace TradeLogServer.Models
         [NotMapped]
         public float PrecoAtual { get { return Papel.ValorAtual; } }
         [NotMapped]
-        public float ValorLiquido { get { return CalcValor(PrecoAtual); } }
+        public float ValorSaldo { get { return CalcValor(PrecoAtual); } }
+        [NotMapped]
+        public float ValorMedioCompra { get { return CalcValor(PrecoMedioCompra); } }
+        [NotMapped]
+        public float ValorMedioVenda { get { return CalcValor(PrecoMedioVenda); } }
         [NotMapped]
         public string NomePapel { get { return Papel.Nome; } }
         [NotMapped]
@@ -86,7 +90,7 @@ namespace TradeLogServer.Models
         {
             get
             {
-                return ValorLiquido + TotalVendido;
+                return ValorSaldo + TotalVendido;
             }
         }
 
@@ -100,5 +104,20 @@ namespace TradeLogServer.Models
             }
         }
 
+
+
+        //Novas Propriedades
+            [NotMapped]
+        public float RiscoPosicao
+        {
+            get
+            {
+                float valorCompra = QuantidadeLiquida*PrecoMedioCompra;
+                float totalStop = QuantidadeLiquida * PrecoStopAtual;
+                float dif = valorCompra - totalStop;
+                if (dif < 0) dif = 0;
+                return dif;
+            }
         }
+    }
 }

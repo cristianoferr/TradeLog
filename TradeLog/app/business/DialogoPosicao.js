@@ -21,6 +21,7 @@
         dialogCreatePosition.bind(this)(evt, parameters,servicoCarteira);
     }
 
+    /*Dialogo para comprar/vender ativos, deve mostrar os dados de risco para que o usuário possa tomar a melhor opção */
     function dialogCreatePosition(evt, parameters,servicoCarteira) {
         if (parameters == undefined) parameters = {};
         //AdicionaPosicao
@@ -43,6 +44,7 @@
             totalTrade: 0,
             quantidadeExistentePapel: parameters.QuantidadeLiquida ? parameters.QuantidadeLiquida : 0,
             liquidoCarteira: parameters.ValorLiquidoCarteira,
+            carteiraAtual:carteiraAtual
         };
         var modelPosicao = new sap.ui.model.json.JSONModel(dataPosicao);
         this.getView().setModel(modelPosicao, "localModel");

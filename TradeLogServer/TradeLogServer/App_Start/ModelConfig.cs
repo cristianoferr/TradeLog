@@ -72,12 +72,22 @@ namespace TradeLogServer.App_Start
         {
             builder.EntityType<Carteira>().Property(a => a.ValorAtual);
             builder.EntityType<Carteira>().HasMany(a => a.Posicao);
+
+            builder.EntityType<Carteira>().Property(a => a.ValorSaldoAtual);
+            builder.EntityType<Carteira>().Property(a => a.ValorMedioCompra);
+            builder.EntityType<Carteira>().Property(a => a.ValorMedioVenda);
+            builder.EntityType<Carteira>().Property(a => a.ValorRiscoPosicoes);
+            builder.EntityType<Carteira>().Property(a => a.ValorRiscoMaximoCarteira);
+            builder.EntityType<Carteira>().Property(a => a.SaldoRiscoCarteira);
+            builder.EntityType<Carteira>().Property(a => a.PercRiscoAtual);
+            builder.EntityType<Carteira>().Property(a => a.PerdaMaximaTrade);
+
         }
 
         private static void RegistaPropriedadesPosicao(ODataModelBuilder builder)
         {
             builder.EntityType<Posicao>().Property(a => a.PrecoAtual);
-            builder.EntityType<Posicao>().Property(a => a.ValorLiquido);
+            builder.EntityType<Posicao>().Property(a => a.ValorSaldo);
             builder.EntityType<Posicao>().Property(a => a.NomePapel);
             builder.EntityType<Posicao>().Property(a => a.QuantidadeLiquida);
             builder.EntityType<Posicao>().Property(a => a.CodigoPapel);
@@ -85,6 +95,9 @@ namespace TradeLogServer.App_Start
             builder.EntityType<Posicao>().Property(a => a.TotalVendido);
             builder.EntityType<Posicao>().Property(a => a.ValorPosicaoAtual);
             builder.EntityType<Posicao>().Property(a => a.DiferencaAtual);
+            builder.EntityType<Posicao>().Property(a => a.ValorMedioCompra);
+            builder.EntityType<Posicao>().Property(a => a.ValorMedioVenda);
+            
         }
 
 

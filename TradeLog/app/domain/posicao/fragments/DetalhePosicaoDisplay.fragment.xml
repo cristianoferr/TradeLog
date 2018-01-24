@@ -82,7 +82,7 @@
 						</f:FormElement>
                         <f:FormElement label="{i18n>posicao.valorEmPosse}">
 							<f:fields>
-								<ObjectNumber number="{path:'ValorLiquido', formatter:'.formatter.formataValor'}" unit="$" />
+								<ObjectNumber number="{path:'ValorSaldo', formatter:'.formatter.formataValor'}" unit="$" />
 							</f:fields>
 						</f:FormElement>
 
