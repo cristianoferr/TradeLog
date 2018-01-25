@@ -81,6 +81,7 @@ namespace TradeLogServer.App_Start
             builder.EntityType<Carteira>().Property(a => a.SaldoRiscoCarteira);
             builder.EntityType<Carteira>().Property(a => a.PercRiscoAtual);
             builder.EntityType<Carteira>().Property(a => a.PerdaMaximaTrade);
+            builder.EntityType<Carteira>().Property(a => a.RiscoAtual);
 
         }
 
@@ -96,8 +97,10 @@ namespace TradeLogServer.App_Start
             builder.EntityType<Posicao>().Property(a => a.ValorPosicaoAtual);
             builder.EntityType<Posicao>().Property(a => a.DiferencaAtual);
             builder.EntityType<Posicao>().Property(a => a.ValorMedioCompra);
+            
             builder.EntityType<Posicao>().Property(a => a.ValorMedioVenda);
             
+
         }
 
 

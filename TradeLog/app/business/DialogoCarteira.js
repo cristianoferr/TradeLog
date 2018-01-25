@@ -4,8 +4,7 @@
         {
 
             dialogAddFunds: dialogAddFunds,
-            dialogRemoveFunds: dialogRemoveFunds,
-            atualizaValorEntradaDialogo: atualizaValorEntradaDialogo
+            dialogRemoveFunds: dialogRemoveFunds
         };
 
     return DialogoCarteira;
@@ -48,15 +47,7 @@
 
 
 
-    /*Evento chamado quando o usuário seleciona um papel na combo de papeis, o valor do precoAcao é atualizado com o valor do papel selecionado */
-    function atualizaValorEntradaDialogo(evt) {
-        var source = evt.getSource();
-        var item = source.getSelectedItem();
-        var data = item.getBindingContext().getObject();
 
-        this.getModel("localModel").oData.PrecoAcao = this.formatter.formataValor(data.ValorAtual);
-        this.getModel("localModel").oData.PrecoStopOpcional = this.formatter.formataValor(data.ValorAtual);
-    }
 
     function sucessoFechamento() {
         this.toast(this.traduzChave("posicao.posicaoFechadaSucesso"));

@@ -1,4 +1,5 @@
 jQuery.sap.require("tradelog.shared.PainelEditavel");
+jQuery.sap.require("tradelog.domain.posicao.dialogs.AdicionaPosicao");
 
 sap.ui.define([
     'sap/ui/model/Filter',

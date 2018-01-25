@@ -31,7 +31,7 @@ namespace TradeLogServer.Models
         {
             get
             {
-                return Posicao.Sum(x => x.ValorPosicaoAtual) +ValorLiquido;
+                return Posicao.Sum(x => x.ValorSaldo) +ValorLiquido;
             }
         }
 
@@ -123,8 +123,16 @@ namespace TradeLogServer.Models
                 return saldo;
             }
         }
-        
 
+
+        [NotMapped]
+        public float RiscoAtual
+        {
+            get
+            {
+                return PercRiscoAtual / 100f* (ValorMedioCompra + ValorLiquido);
+            }
+        }
 
 
     }

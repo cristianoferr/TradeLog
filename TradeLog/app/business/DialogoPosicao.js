@@ -1,3 +1,4 @@
+
 (function () {
 
 
@@ -14,20 +15,24 @@
     /*  var parameters = { tipo: "V", IdPapel: data.IdPapel, PrecoAtual: data.PrecoAtual, QuantidadeLiquida: data.QuantidadeLiquida };
                   dialogoPosicao.dialogSellPosition.call(this, evt, parameters);
   */
-    function dialogSellPosition(evt, parameters,servicoCarteira) {
-        dialogCreatePosition.bind(this)(evt, parameters,servicoCarteira);
+    function dialogSellPosition(evt, parameters, servicoCarteira) {
+        dialogCreatePosition.bind(this)(evt, parameters, servicoCarteira);
     }
-    function dialogBuyPosition(evt, parameters,servicoCarteira) {
-        dialogCreatePosition.bind(this)(evt, parameters,servicoCarteira);
+    function dialogBuyPosition(evt, parameters, servicoCarteira) {
+        dialogCreatePosition.bind(this)(evt, parameters, servicoCarteira);
     }
 
     /*Dialogo para comprar/vender ativos, deve mostrar os dados de risco para que o usuário possa tomar a melhor opção */
-    function dialogCreatePosition(evt, parameters,servicoCarteira) {
+    function dialogCreatePosition(evt, parameters, servicoCarteira) {
         if (parameters == undefined) parameters = {};
         //AdicionaPosicao
-        var content = sap.ui.xmlfragment("tradelog.domain.carteira.fragments.AdicionaPosicao", this);
+        var oCtrl = sap.ui.controller("tradelog.domain.posicao.dialogs.AdicionaPosicao");
+        var content = sap.ui.xmlfragment("tradelog.domain.posicao.dialogs.AdicionaPosicao", oCtrl);
+        content.setModel(this.getModel("i18n"), "i18n");
+        oCtrl.connectToView(content);
         content.setModel(this.getModel());
         content.setModel(this.getModel("dominio"), "dominio");
+
 
         var carteiraAtual = this.getView().getBindingContext().getObject();
 
@@ -44,8 +49,12 @@
             totalTrade: 0,
             quantidadeExistentePapel: parameters.QuantidadeLiquida ? parameters.QuantidadeLiquida : 0,
             liquidoCarteira: parameters.ValorLiquidoCarteira,
-            carteiraAtual:carteiraAtual
+            carteiraAtual: carteiraAtual,
+            quantidadeRecomendada: 100,
+            riscoCarteira: -carteiraAtual.RiscoAtual,
+            saldoRisco: carteiraAtual.SaldoRiscoCarteira
         };
+        oCtrl.setDataInUse(dataPosicao);
         var modelPosicao = new sap.ui.model.json.JSONModel(dataPosicao);
         this.getView().setModel(modelPosicao, "localModel");
         content.setModel(modelPosicao, "localModel");

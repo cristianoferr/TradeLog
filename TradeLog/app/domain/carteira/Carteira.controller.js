@@ -1,3 +1,5 @@
+jQuery.sap.require("tradelog.domain.posicao.dialogs.AdicionaPosicao");
+
 sap.ui.define([
     'tradelog/shared/DomainController',
     'sap/ui/model/Filter',

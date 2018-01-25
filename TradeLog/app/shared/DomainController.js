@@ -7,7 +7,7 @@ sap.ui.define([
     FilterOperator) {
         "use strict";
 
-        return BaseController.extend("tradelog.controller.DomainController", {
+        return BaseController.extend("tradelog.shared.DomainController", {
 
 
             formataCalculoPreco: function (preco, quantidade) {

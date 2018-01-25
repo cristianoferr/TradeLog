@@ -58,10 +58,6 @@ sap.ui.define([
             this.getView().byId("detalhePosicao").bindElement(`/Posicao(${this.viewData.idPosicaoSelected})`);
         },
 
-        atualizaValorEntradaDialogo: function (evt) {
-            dialogoCarteira.atualizaValorEntradaDialogo.call(this, evt);
-        },
-
         /*Dialogo para criar uma posição nova (ou automaticamente adicionar à uma posição existente) */
         onDialogCreatePosition: function (evt) {
             var carteiraAtual = this.getView().getBindingContext().getObject();
