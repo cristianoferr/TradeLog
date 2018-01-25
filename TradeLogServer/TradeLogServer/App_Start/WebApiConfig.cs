@@ -46,8 +46,7 @@ namespace TradeLogServer
 
             var response = await base.SendAsync(request, cancellationToken);
 
-            if (request.Method == HttpMethod.Options &&
-                (response.StatusCode == HttpStatusCode.NotFound || response.StatusCode == HttpStatusCode.MethodNotAllowed || response.StatusCode == HttpStatusCode.BadRequest))
+            if (request.Method == HttpMethod.Options)
             {
                 response = new HttpResponseMessage(HttpStatusCode.OK);
                 response.Headers.Add("Access-Control-Request-Headers", "content-type,mime-version,odata-maxversion,odata-version,x-csrf-token");
