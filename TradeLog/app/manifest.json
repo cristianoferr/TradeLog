@@ -81,7 +81,7 @@
                     "bundleName": "tradelog.i18n.i18n"
                 }
             },
-            "": {
+            "mainService": {
                 "dataSource": "mainService",
                 "type": "sap.ui.model.odata.v4.ODataModel",
                 "preload": true,

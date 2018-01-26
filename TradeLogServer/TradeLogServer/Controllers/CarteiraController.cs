@@ -117,9 +117,9 @@ namespace TradeLogServer.Controllers
         }
 
         // POST: odata/Carteira
-        public async Task<IHttpActionResult> Post(Carteira carteira)
+        public async Task<IHttpActionResult> Post([FromBody]Carteira carteira)
         {
-            carteira.ValorLiquido = carteira.ValorAtual;
+            if (carteira == null) return BadRequest("Empty Carteira");
             carteira.IdUsuario = idUsuarioAtual;
             if (!IsUnique(carteira))
             {

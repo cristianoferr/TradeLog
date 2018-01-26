@@ -31,6 +31,7 @@ namespace TradeLogServer.Models
         {
             get
             {
+                if (Posicao == null) return 0;
                 return Posicao.Sum(x => x.ValorSaldo) +ValorLiquido;
             }
         }
@@ -44,6 +45,7 @@ namespace TradeLogServer.Models
         {
             get
             {
+                if (Posicao == null) return 0;
                 return Posicao.Sum(x => x.ValorSaldo) ;
             }
         }
@@ -54,6 +56,7 @@ namespace TradeLogServer.Models
         {
             get
             {
+                if (Posicao == null) return 0;
                 return Posicao.Sum(x => x.ValorMedioCompra);
             }
         }
@@ -64,6 +67,7 @@ namespace TradeLogServer.Models
         {
             get
             {
+                if (Posicao == null) return 0;
                 return Posicao.Sum(x => x.ValorMedioVenda);
             }
         }
@@ -74,6 +78,7 @@ namespace TradeLogServer.Models
         {
             get
             {
+                if (Posicao == null) return 0;
                 return Posicao.Sum(x => x.RiscoPosicao);
             }
         }

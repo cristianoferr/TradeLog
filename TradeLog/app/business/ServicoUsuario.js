@@ -18,12 +18,25 @@
             functionSuccess(userData.IdUsuario);
         }
 
-        var functionAutenticaUsuario = function () {
+
+
+        var functionAutenticaUsuario = function (responseURL) {
+            var modelSession = new sap.ui.model.odata.v4.ODataModel({
+                groupId: "$direct",
+                synchronizationMode: "None",
+                serviceUrl: responseURL
+            });
+            this.getView().setModel(modelSession);
+            this.getOwnerComponent().setModel(modelSession);
+            sap.ui.mainModel = modelSession;
+
             var sServiceUrl = 'Usuario/TradeLogServer.Controllers.VerificaUsuario';
             this.postData(sServiceUrl, parameters, fSucesso.bind(this), functionFail.bind(this));;
         }
 
-        pegaSessionAtual.call(this, functionAutenticaUsuario.bind(this));
+        if (!sap.ui.mainModel) {
+            pegaSessionAtual.call(this, functionAutenticaUsuario.bind(this));
+        }
     }
 
 
@@ -33,13 +46,13 @@
     function pegaSessionAtual(funcaoOk) {
         var model = this.getView().getModel();
         var createPost = new XMLHttpRequest();
-        createPost.open("GET", this.getView().getModel().sServiceUrl, true);
+        createPost.open("GET", this.getView().getModel("mainService").sServiceUrl, true);
         createPost.setRequestHeader("Accept", "application/json");
         createPost.setRequestHeader("Content-Type", "text/plain");
         createPost.onreadystatechange = function (evt) {
             if (createPost.readyState == 4 && createPost.status == 200) {
-                model.sServiceUrl = createPost.responseURL;
-                funcaoOk();
+                //model.sServiceUrl = createPost.responseURL;
+                funcaoOk(createPost.responseURL);
             }
         };
         createPost.send();

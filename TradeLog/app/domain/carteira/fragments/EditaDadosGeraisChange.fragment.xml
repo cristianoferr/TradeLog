@@ -39,13 +39,13 @@
 
                          <f:FormElement label="{i18n>carteira.valorLiquido}">
 							<f:fields>
-								<Input value="{ValorLiquido}" liveChange="inputFloat" change="checkFloat"/>
+								<Input value="{path:'ValorLiquido', formatter:'.formatter.formataValor'}}" liveChange="inputFloat" change="checkFloat" editable="false"/>
 							</f:fields>
                         </f:FormElement>
 
                         <f:FormElement label="{i18n>carteira.valorAtual}">
 							<f:fields>
-								<Input value="{ValorAtual}"  liveChange="inputFloat" change="checkFloat"/>
+								<Input value="{path:'ValorAtual', formatter:'.formatter.formataValor'}"  liveChange="inputFloat" change="checkFloat" editable="false"/>
 							</f:fields>
                         </f:FormElement>
 
@@ -64,6 +64,23 @@
                         <f:FormElement label="{i18n>carteira.riscoPorCarteira}">
 							<f:fields>
 								<Input value="{RiscoPorCarteira}"  liveChange="inputFloat" change="checkFloat"/>
+							</f:fields>
+                        </f:FormElement>
+
+                          <f:FormElement label="{i18n>carteira.riscoMaxAtual}">
+							<f:fields>
+								<Input value="{path:'ValorRiscoMaximoCarteira', formatter:'.formatter.formataValor'}" editable="false"/>
+							</f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="{i18n>carteira.saldoRisco}">
+							<f:fields>
+								<Input value="{path:'SaldoRiscoCarteira', formatter:'.formatter.formataValor'}" editable="false" />
+							</f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>carteira.percSobRisco}">
+							<f:fields>
+								<Input value="{path:'PercRiscoAtual', formatter:'.formatter.formataValor'}" editable="false" />
 							</f:fields>
                         </f:FormElement>
 

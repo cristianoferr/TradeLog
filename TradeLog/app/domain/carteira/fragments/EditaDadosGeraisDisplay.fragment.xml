@@ -46,7 +46,7 @@
 
                         <f:FormElement label="{i18n>carteira.valorAtual}">
 							<f:fields>
-								<Text text="{path:'ValorAtual', formatter:'.formatter.formataValor'}" />
+								<Text text="{path:'ValorAtual', formatter:'.formatter.formataValor'}"/>
 							</f:fields>
                         </f:FormElement>
 
@@ -67,6 +67,25 @@
 								<Text text="{path:'RiscoPorCarteira', formatter:'.formatter.formataValor'}" />
 							</f:fields>
                         </f:FormElement>
+
+                         <f:FormElement label="{i18n>carteira.riscoMaxAtual}">
+							<f:fields>
+								<Text text="{path:'ValorRiscoMaximoCarteira', formatter:'.formatter.formataValor'}" />
+							</f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="{i18n>carteira.saldoRisco}">
+							<f:fields>
+								<Text text="{path:'SaldoRiscoCarteira', formatter:'.formatter.formataValor'}" />
+							</f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>carteira.percSobRisco}">
+							<f:fields>
+								<Text text="{path:'PercRiscoAtual', formatter:'.formatter.formataValor'}" />
+							</f:fields>
+                        </f:FormElement>
+
+
 
                     </f:formElements>
 				</f:FormContainer>

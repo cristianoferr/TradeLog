@@ -17,9 +17,9 @@ sap.ui.define([
 
             onShow: function () {
                 //this.addOnChange("riscoPorPosicao");
-               // this.addOnChange("riscoPorCarteira");
-               // this.addOnChange("custoOperacao");
-               // this.addOnChange("saldoInicial");
+                // this.addOnChange("riscoPorCarteira");
+                // this.addOnChange("custoOperacao");
+                // this.addOnChange("saldoInicial");
             },
 
 
@@ -30,10 +30,12 @@ sap.ui.define([
                 var content = form.getContent();
                 var oEntry = {
                     NomeCarteira: this.getFormValue("nomeCarteira", content),
-                    RiscoPorPosicao: this.getFormValue("riscoPorPosicao", content),
-                    RiscoPorCarteira: this.getFormValue("riscoPorCarteira", content),
-                    CustoOperacaoPadrao: this.getFormValue("custoOperacao", content),
-                    ValorAtual: this.getFormValue("saldoInicial", content)
+                    RiscoPorPosicao: parseFloat(this.getFormValue("riscoPorPosicao", content)),
+                    RiscoPorCarteira: parseFloat(this.getFormValue("riscoPorCarteira", content)),
+                    CustoOperacaoPadrao: parseFloat(this.getFormValue("custoOperacao", content)),
+                    ValorLiquido: parseFloat(this.getFormValue("saldoInicial", content)),
+                    IdUsuario: 0,
+                    IdCarteira: 0
                 };
 
                 var bind = lista.getBinding("items");
