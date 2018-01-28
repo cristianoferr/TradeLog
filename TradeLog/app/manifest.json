@@ -138,6 +138,11 @@
                     "pattern": "carteira/{carteira}",
                     "name": "carteira",
                     "target": "carteira"
+                },
+                {
+                    "pattern": "acoes",
+                    "name": "acoes",
+                    "target": "listaAcoes"
                 }
             ],
             "targets": {
@@ -168,6 +173,11 @@
                     "viewLevel": 3,
                     "viewPath": "tradelog.domain.carteira",
                     "viewName": "Carteira"
+                },
+                "listaAcoes": {
+                    "viewLevel": 1,
+                    "viewPath": "tradelog.domain.papel",
+                    "viewName": "ListaPapel"
                 }
             }
         }

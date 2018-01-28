@@ -5,12 +5,34 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
     >
-    <Page showHeader="true" enableScrolling="true">
+    <Page showHeader="true" enableScrolling="true"
+    showNavButton="true" title="{i18n>papel.titulo}"
+     navButtonPress="onNavBack" class="sapUiStdPage">
         <headerContent>
 			<Image class="imagemCabecalho" src="content/images/marca.png" />
 			<Image class="logoCabecalho"   src="content/images/logo.png" />
+            <mvc:XMLView viewName="tradelog.domain.login.LoggedUser"></mvc:XMLView>
 		</headerContent>
 
+ <Table id="tablePapel" items="{/Papel}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
+            <columns>
+                <Column ><Text text="{i18n>papel.codigo}"   /></Column>
+                <Column ><Text text="{i18n>papel.nome}"   /></Column>
+                <Column ><Text text="{i18n>papel.valorAtual}"   /></Column>
+                <Column ><Text text="{i18n>papel.ultimaAtualizacao}"   /></Column>
+
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{Codigo}" />
+                        <Text text="{Nome}" />
+                        <ObjectNumber number="{path:'ValorAtual', formatter:'.formatter.formataValor'}" unit="$" />
+                        <Text text="{path:'LastUpdate', formatter:'.formatter.formataDataHora'}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
 
     </Page>
 </core:View>

@@ -57,6 +57,15 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
                 return value;
             }
         },
+        formataDataHora: function (value) {
+            if (value) {
+                var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({ pattern: "dd.MM.yyyy HH:mm" });
+                var oFormattedDate = oDateFormat.format(new Date(value), true);
+                return oFormattedDate;
+            } else {
+                return value;
+            }
+        },
         calcDifDays: function (value) {
             var date1 = new Date(value);
             var date2 = new Date();

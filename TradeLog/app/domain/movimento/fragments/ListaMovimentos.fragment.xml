@@ -19,7 +19,7 @@
                 <ColumnListItem>
                     <cells>
                         <Text text="{CodigoPapel}" />
-                        <Text text="{path:'DataMovimento', formatter:'.formatter.formataData'}" />
+                        <Text text="{path:'DataMovimento', formatter:'.formatter.formataDataHora'}" />
                         <Text text="{Descricao}" />
                         <ObjectNumber number="{path:'ValorMovimento', formatter:'.formatter.formataValor'}" unit="$" />
                     </cells>

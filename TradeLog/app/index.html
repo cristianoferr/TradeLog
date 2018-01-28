@@ -6,15 +6,13 @@
     <meta charset="utf-8">
     <Title>TradeLog - Your Stock Market Wallet Managing Companion</Title>
 
-    <script id='sap-ui-bootstrap' src='/resources/sap-ui-core.js' data-sap-ui-theme='sap_belize' data-sap-ui-libs='sap.m' data-sap-ui-compatVersion="edge"
-        data-sap-ui-preload="async" data-sap-ui-resourceroots='{
+    <script id='sap-ui-bootstrap' src='/resources/sap-ui-core.js' data-sap-ui-theme='sap_belize_plus' data-sap-ui-libs='sap.m'
+        data-sap-ui-compatVersion="edge" data-sap-ui-preload="async" data-sap-ui-resourceroots='{
 			"tradelog" : "./"
 		}'>
 
         </script>
     <script async defer src="https://apis.google.com/js/api.js"></script>
-    <!--<script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="1014924510372-rcef9ja5r618oce94a502jonauhkank4.apps.googleusercontent.com">-->
 
     <!--https://github.com/js-cookie/js-cookie -->
     <script src="content/js/js.cookie.js"></script>
@@ -43,22 +41,7 @@
             })
         });
 
-        function onSignIn(googleUser) {
-            debugger;
-            var profile = googleUser.getBasicProfile();
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        }
 
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-        }
     </script>
 
 </head>

@@ -49,7 +49,7 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public SingleResult<Papel> GetPapel([FromODataUri] int key)
         {
-            return SingleResult.Create(db.Papels.Where(papel => papel.IdPapel == key));
+            return SingleResult.Create(db.Papels.Where(papel => papel.IdPapel == key).OrderBy(x=>x.Codigo));
         }
 /*
         // PUT: odata/Papel(5)
