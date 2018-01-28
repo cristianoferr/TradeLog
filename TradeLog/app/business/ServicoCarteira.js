@@ -29,7 +29,8 @@
             "PrecoAcao": data.PrecoAcao,
             "quantidade": data.quantidade,
             "custoOperacao": data.custoOperacao,
-            "PrecoStopOpcional": data.PrecoStopOpcional
+            "PrecoStopOpcional": data.PrecoStopOpcional,
+            "IsClosing":data.isClosing
         };
 
         var sServiceUrl = `Trade/TradeLogServer.Controllers.ExecutaTrade`;

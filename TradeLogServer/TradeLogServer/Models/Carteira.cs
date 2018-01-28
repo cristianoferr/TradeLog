@@ -23,8 +23,15 @@ namespace TradeLogServer.Models
         public float RiscoPorPosicao { get; set; }
         public float RiscoPorCarteira { get; set; }
         public float CustoOperacaoPadrao { get; set; }
+        public float CustoOperacaoRelativo { get; set; }
 
         public ICollection<Posicao> Posicao{ get; set; }
+        [NotMapped]
+        public ICollection<Posicao> PosicaoAtiva
+        {
+            get { return Posicao.Where(x => x.FlagAtivo == "T").ToList(); }
+        }
+        
 
         [NotMapped]
         public float ValorAtual
@@ -32,7 +39,7 @@ namespace TradeLogServer.Models
             get
             {
                 if (Posicao == null) return 0;
-                return Posicao.Sum(x => x.ValorSaldo) +ValorLiquido;
+                return PosicaoAtiva.Sum(x => x.ValorSaldo) +ValorLiquido;
             }
         }
 
@@ -46,7 +53,7 @@ namespace TradeLogServer.Models
             get
             {
                 if (Posicao == null) return 0;
-                return Posicao.Sum(x => x.ValorSaldo) ;
+                return PosicaoAtiva.Sum(x => x.ValorSaldo) ;
             }
         }
 
@@ -57,7 +64,7 @@ namespace TradeLogServer.Models
             get
             {
                 if (Posicao == null) return 0;
-                return Posicao.Sum(x => x.ValorMedioCompra);
+                return PosicaoAtiva.Sum(x => x.ValorMedioCompra);
             }
         }
 
@@ -67,8 +74,8 @@ namespace TradeLogServer.Models
         {
             get
             {
-                if (Posicao == null) return 0;
-                return Posicao.Sum(x => x.ValorMedioVenda);
+                if (PosicaoAtiva == null) return 0;
+                return PosicaoAtiva.Sum(x => x.ValorMedioVenda);
             }
         }
 
@@ -79,7 +86,7 @@ namespace TradeLogServer.Models
             get
             {
                 if (Posicao == null) return 0;
-                return Posicao.Sum(x => x.RiscoPosicao);
+                return PosicaoAtiva.Sum(x => x.RiscoPosicao);
             }
         }
 

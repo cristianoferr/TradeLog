@@ -42,7 +42,8 @@ namespace TradeLogServer.App_Start
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Movimento").ReturnsFromEntitySet<Movimento>("Movimento");
             builder.EntitySet<Posicao>("Posicao").EntityType.Function("Trade").ReturnsFromEntitySet<Trade>("Trade");
 
-            builder.EntitySet<Papel>("Papel").EntityType.Function("Update").Returns<String>();
+            //método chamado para atualizar os valores
+            builder.EntitySet<Papel>("Papel").EntityType.Function("UpdateValores").Returns<String>();
 
             CriaActionsUsuario(builder);
             CriaActionsCarteira(builder);
@@ -110,6 +111,8 @@ namespace TradeLogServer.App_Start
             action.Parameter<string>("email");
             action.Parameter<string>("googleId");
             action.Parameter<string>("name");
+            action.Parameter<string>("id_token");
+            
         }
 
             private static void CriaActionsTrade(ODataModelBuilder builder)
@@ -122,12 +125,13 @@ namespace TradeLogServer.App_Start
             action.Parameter<int>("quantidade");
             action.Parameter<float>("custoOperacao");
             action.Parameter<float>("PrecoStopOpcional");
+            action.Parameter<bool>("IsClosing");
         }
 
 
         private static void CriaActionsPapel(ODataModelBuilder builder)
         {
-            ActionConfiguration action = CreateAction<Papel>(builder, "Update");
+            //ActionConfiguration action = CreateAction<Papel>(builder, "Update");
         }
 
         private static void CriaActionsPosicao(ODataModelBuilder builder)

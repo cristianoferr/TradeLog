@@ -9,7 +9,7 @@ namespace TradeLogServer.Business
     public class BPCarteira : BaseBP<Carteira>
     {
 
-        internal bool MovimentaFundo(out string err, int idUsuarioAtual,int idCarteira, float valor, string mensagem)
+        internal bool MovimentaFundo(out string err, int idUsuarioAtual,int idCarteira, float valor, string mensagem, Posicao posicao)
         {
             err = "";
             Carteira carteira = GetValidCarteira(idCarteira, idUsuarioAtual);
@@ -24,7 +24,7 @@ namespace TradeLogServer.Business
                 return false;
             }
 
-            valor = MovimentaSaldoParaCarteira(valor, mensagem, carteira);
+            valor = MovimentaSaldoParaCarteira(valor, mensagem, carteira, posicao);
 
             SalvaDados();
 
@@ -35,7 +35,7 @@ namespace TradeLogServer.Business
         /*
         Função que adiciona um valor à carteira, logando o valor na tabela de movimento
             */
-        internal float MovimentaSaldoParaCarteira(float valor, string mensagem, Carteira carteira)
+        internal float MovimentaSaldoParaCarteira(float valor, string mensagem, Carteira carteira,Posicao posicao)
         {
             carteira.ValorLiquido += valor;
             if (carteira.ValorLiquido < 0)
@@ -46,7 +46,7 @@ namespace TradeLogServer.Business
 
             BPMovimento bpMovimento = new BPMovimento();bpMovimento.db = db;
 
-            bpMovimento.AdicionaMovimento(valor, mensagem, carteira, null);
+            bpMovimento.AdicionaMovimento(valor, mensagem, carteira, posicao);
             return valor;
         }
 

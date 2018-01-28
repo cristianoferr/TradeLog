@@ -11,6 +11,12 @@ namespace TradeLogServer.Models
     [Table("Posicao")]
     public class Posicao : BaseModel
     {
+
+        public Posicao()
+        {
+            FlagAtivo = "T";
+        }
+
         [Key]
         public int IdPosicao { get; set; }
 
@@ -22,6 +28,8 @@ namespace TradeLogServer.Models
         [ForeignKey("Usuario")]
         public int IdUsuario { get; set; }
         public Usuario Usuario { get; set; }
+
+        public string FlagAtivo { get; set; }
 
         [ForeignKey("Carteira")]
         public int? IdCarteira { get; set; }
@@ -69,6 +77,7 @@ namespace TradeLogServer.Models
         {
             get
             {
+                if (Trade == null) return 0;
                 return Trade.Where(x => x.QuantidadeComprada > 0).Sum(x => x.ValorTrade);
             }
         }
@@ -79,6 +88,7 @@ namespace TradeLogServer.Models
         {
             get
             {
+                if (Trade == null) return 0;
                 return Trade.Where(x => x.QuantidadeVendida > 0).Sum(x => x.ValorTrade);
             }
         }
@@ -119,5 +129,7 @@ namespace TradeLogServer.Models
                 return dif;
             }
         }
+
+        
     }
 }

@@ -45,7 +45,7 @@ namespace TradeLogServer.Controllers
         {
             string saida="Fundos Depositados:" + parameters["valor"] + "  com descricao: " + parameters["descricao"];
             string err = "";
-            bool resultado = bp.MovimentaFundo(out err, idUsuarioAtual,(int)parameters["IdCarteira"], (float)parameters["valor"],(string)parameters["descricao"]);
+            bool resultado = bp.MovimentaFundo(out err, idUsuarioAtual,(int)parameters["IdCarteira"], (float)parameters["valor"],(string)parameters["descricao"],null);
             return resultado ? (IHttpActionResult)Ok(saida): (IHttpActionResult)BadRequest(err);
 
         }
@@ -55,7 +55,7 @@ namespace TradeLogServer.Controllers
         {
             string saida = "Fundos Depositados:" + parameters["valor"] + "  com descricao: " + parameters["descricao"];
             string err = "";
-            bool resultado = bp.MovimentaFundo(out err, idUsuarioAtual, (int)parameters["IdCarteira"], -(float)parameters["valor"], (string)parameters["descricao"]);
+            bool resultado = bp.MovimentaFundo(out err, idUsuarioAtual, (int)parameters["IdCarteira"], -(float)parameters["valor"], (string)parameters["descricao"], null);
             return resultado ? (IHttpActionResult)Ok(saida) : (IHttpActionResult)BadRequest(err);
         }
 
@@ -66,7 +66,7 @@ namespace TradeLogServer.Controllers
         [ODataRoute("Carteira({key})/TradeLogServer.Controllers.Posicao")]
         public IQueryable<Posicao> Posicao([FromODataUri] int key)
         {
-            return db.Posicoes.Where(posicao => posicao.IdCarteira==key && posicao.IdUsuario==idUsuarioAtual).Include(p => p.Papel).Include(p => p.Trade);
+            return db.Posicoes.Where(posicao => posicao.IdCarteira==key && posicao.IdUsuario==idUsuarioAtual && posicao.FlagAtivo == "T").Include(p => p.Papel).Include(p => p.Trade);
         }
 
         // GET: odata/Carteira(5)/Movimento
@@ -90,7 +90,7 @@ namespace TradeLogServer.Controllers
             }
 
             Carteira carteira = await db.Carteiras.FindAsync(key);
-            if (carteira == null)
+            if (carteira == null || carteira.IdUsuario != idUsuarioAtual)
             {
                 return NotFound();
             }
@@ -154,7 +154,7 @@ namespace TradeLogServer.Controllers
             }
 
             Carteira carteira = await db.Carteiras.FindAsync(key);
-            if (carteira == null)
+            if (carteira == null || carteira.IdUsuario != idUsuarioAtual)
             {
                 return NotFound();
             }
@@ -184,7 +184,7 @@ namespace TradeLogServer.Controllers
         public async Task<IHttpActionResult> Delete([FromODataUri] int key)
         {
             Carteira carteira = await db.Carteiras.FindAsync(key);
-            if (carteira == null)
+            if (carteira == null || carteira.IdUsuario != idUsuarioAtual)
             {
                 return NotFound();
             }
@@ -199,7 +199,7 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public SingleResult<Usuario> GetUsuario([FromODataUri] int key)
         {
-            return SingleResult.Create(db.Carteiras.Where(m => m.IdCarteira == key).Select(m => m.Usuario));
+            return SingleResult.Create(db.Carteiras.Where(m => m.IdCarteira == key && m.IdUsuario==idUsuarioAtual).Select(m => m.Usuario));
         }
 
         protected override void Dispose(bool disposing)

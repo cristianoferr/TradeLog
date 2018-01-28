@@ -1,0 +1,33 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    >
+
+<Panel id="panelListTrades" expandable="true" expanded="false" headerText="{i18n>trade.ListaTrades}">
+        <Table id="tableTrade" items="{TradeLogServer.Controllers.Trade}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
+            <columns>
+                <Column width="5rem"><Text text="{i18n>trade.precoAcao}"   /></Column>
+                <Column ><Text text="{i18n>trade.data}"   /></Column>
+                <Column ><Text text="{i18n>trade.qtdComprada}"   /></Column>
+                <Column ><Text text="{i18n>trade.qtdVendida}"   /></Column>
+                <Column width="5rem"><Text text="{i18n>trade.valorTrade}"   /></Column>
+
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <ObjectNumber number="{path:'PrecoTrade', formatter:'.formatter.formataValor'}" unit="$" />
+                        <Text text="{path:'Data', formatter:'.formatter.formataData'}" />
+                        <ObjectNumber number="{QuantidadeComprada}" />
+                        <ObjectNumber number="{QuantidadeVendida}" />
+                        <ObjectNumber number="{path:'ValorTrade', formatter:'.formatter.formataValor'}" unit="$" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+
+</core:FragmentDefinition>

@@ -20,6 +20,12 @@ sap.ui.define([
             formataCalculoValorDif: function (preco, quantidade, valorEntrada) {
                 var dif = preco * quantidade - valorEntrada * quantidade;
                 return this.formatter.formataValor(dif);
+            },
+
+            /*Retorna o valor percentual preco*quantidade relacionando com o preco de entrada*/
+            formataCalculoValorPercDif: function (preco, quantidade, valorEntrada, precoEntrada) {
+                var dif = preco * quantidade - valorEntrada * quantidade;
+                return this.formatter.formataValor(dif / (precoEntrada * quantidade) * 100);
             }
         });
     });

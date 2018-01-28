@@ -46,6 +46,7 @@ sap.ui.define([
                 this.viewData.bindPath = sEntityPath;
                 this.getView().byId("DetalheCarteira").bindElement(sEntityPath);
 
+
                 var viewModel = new sap.ui.model.json.JSONModel(this.viewData, true);
                 this.getView().setModel(viewModel, "viewModel");
 
@@ -57,6 +58,9 @@ sap.ui.define([
                 list.bindItems(this.viewData.bindPath + "/TradeLogServer.Controllers.Movimento", list.getBindingInfo("items").template.clone());
                 var binding = list.getBinding("items");
                 var sort = new sap.ui.model.Sorter("IdMovimento", true, false);
+                if (binding == null) {
+                    return;
+                }
                 binding.sOperationMode = sap.ui.model.odata.OperationMode.Server;
                 binding.sort(sort);
             }

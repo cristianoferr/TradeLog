@@ -21,10 +21,20 @@ namespace TradeLogServer.Controllers
     public class PapelController : BaseController<Papel,BPPapel>
     {
 
-        //exemplo de chamada: http://localhost:58761/odata/Papel/TradeLogServer.Controllers.Update
+       /* //exemplo de chamada: http://localhost:58761/odata/Papel/TradeLogServer.Controllers.Update
         [HttpPost]
+        [AllowAnonymous]
         public IHttpActionResult Update()
         {
+            return Ok(bp.UpdateHistoricoDoPapel());
+        }*/
+
+        // GET: odata/Carteira(5)/Posicao
+        [HttpGet]
+        [ODataRoute("Papel({key})/TradeLogServer.Controllers.UpdateValores")]
+        public IHttpActionResult UpdateValores([FromODataUri] int key)
+        {
+            if (key != 1443) return BadRequest("Wrong Key!");
             return Ok(bp.UpdateHistoricoDoPapel());
         }
 

@@ -7,20 +7,19 @@
     xmlns="sap.m"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     >
-    <Bar>
-        <contentLeft>
-            <Button id="DetalhePosicaoEdit" icon="sap-icon://edit" type="Emphasized"  />
-            <Button id="DetalhePosicaoSave" icon="sap-icon://complete"  type="Emphasized" visible="false"  />
-
-            <Button id="btnCarteira" icon="sap-icon://complete"  type="Emphasized" text="{NomeCarteira}" visible="false"  />
-
-        </contentLeft>
-        <contentRight>
-        <Button icon="sap-icon://down" id="btnBuyPosition" text="{i18n>posicao.comprar}" type="Accept" press="dialogBuyPosition" />
-        <Button icon="sap-icon://up" id="btnSellPosition" text="{i18n>posicao.vender}" type="Reject" press="dialogSellPosition" />
-        </contentRight>
-    </Bar>
-    <Panel id="DetalhePosicao">
-    </Panel>
+        <Bar>
+            <contentLeft>
+                <Button id="DetalhePosicaoEdit" icon="sap-icon://edit" type="Emphasized"  />
+                <Button id="DetalhePosicaoSave" icon="sap-icon://complete"  type="Emphasized" visible="false"  />
+                <Button id="btnCarteira" icon="sap-icon://complete"  type="Emphasized" text="{NomeCarteira}" visible="false"  />
+            </contentLeft>
+            <contentRight>
+                <Button icon="sap-icon://down" id="btnBuyPosition" text="{i18n>posicao.comprar}" type="Accept" press="dialogBuyPosition" />
+                <Button icon="sap-icon://up" id="btnSellPosition" text="{i18n>posicao.vender}" type="Reject" press="dialogSellPosition" />
+                <Button icon="sap-icon://less"  text="{i18n>posicao.tituloFechar}" type="Emphasized" press="dialogClosePosition" />
+            </contentRight>
+        </Bar>
+        <Panel id="DetalhePosicao">
+        </Panel>
 
 </mvc:View>

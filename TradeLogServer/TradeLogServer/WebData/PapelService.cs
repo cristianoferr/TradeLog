@@ -18,42 +18,13 @@ namespace TradeLogServer.WebData
             string url = "";
            
                 url = URL_SERVICO.Replace("ACAO", papel);
-            JObject saida = PapelService.LoadFromWeb(url);
+            JObject saida = Utils.Utils.LoadFromWeb(url);
            return saida;
         }
 
-        public static JObject LoadFromWeb( string url)
-        {
-            WebProxy myProxy = CreateProxy();
+        
 
-
-            WebRequest request = WebRequest.Create(url);
-            request.Credentials = CredentialCache.DefaultCredentials;
-            request.Proxy = myProxy;
-
-            WebResponse response = request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-
-            reader.Close();
-            response.Close();
-            JObject json = JObject.Parse(responseFromServer);
-            return json;
-
-        }
-
-        private static WebProxy CreateProxy()
-        {
-            string proxy = Environment.GetEnvironmentVariable("HTTP_PROXY");
-            if (proxy == null || proxy == "")
-                return null;
-
-            WebProxy myProxy = new WebProxy();
-            Uri newUri = new Uri(proxy.Contains("http") ? proxy : "http://" + proxy);
-            myProxy.Address = newUri;
-            return myProxy;
-        }
+        
 
     }
 }

@@ -79,11 +79,12 @@
     // Load the API and make an API call.  Display the results on the screen.
     function makeApiCall() {
         var that = this;
+        var id_token = gapi.client.getToken().id_token;
         gapi.client.people.people.get({
             'resourceName': 'people/me',
             'requestMask.includeField': 'person.names,person.emailAddresses,person.photos'
         }).then(function (resp) {
-            that.callbackUpdateCredentials(resp);
+            that.callbackUpdateCredentials(id_token, resp);
         });
     }
 

@@ -7,15 +7,18 @@
         };
 
     function autenticaUsuarioLogado(functionSuccess, functionFail) {
+
         var parameters = {
             "email": sap.ui.userData.email,
             "googleId": sap.ui.userData.googleId,
-            "name": sap.ui.userData.LoggedUser
+            "name": sap.ui.userData.LoggedUser,
+            "id_token": sap.ui.userData.id_token
         };
         var fSucesso = function (evt) {
             var jsonReturn = JSON.parse(evt.currentTarget.response);
             var userData = JSON.parse(jsonReturn.value);
             functionSuccess(userData.IdUsuario);
+            this.navegaParaRota("home");
         }
 
 
@@ -27,6 +30,7 @@
                 serviceUrl: responseURL
             });
             this.getView().setModel(modelSession);
+            if (this.getOwnerComponent() == null) return;
             this.getOwnerComponent().setModel(modelSession);
             sap.ui.mainModel = modelSession;
 

@@ -32,6 +32,7 @@ namespace TradeLogServer.Controllers
     public class PosicaoController : BaseController<Posicao,BPPosicao>
     {
 
+        /*Retorna os trades que fazem parte da posicao informada pela key*/
         // GET: odata/Posicao(5)/Trade
         [EnableQuery]
         [HttpGet]
@@ -53,10 +54,10 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public IQueryable<Posicao> GetPosicao()
         {
-            return db.Posicoes.Where(posicao => posicao.IdUsuario == idUsuarioAtual).Include(p => p.Papel);
+            return db.Posicoes.Where(posicao => posicao.IdUsuario == idUsuarioAtual &&  posicao.FlagAtivo == "T").Include(p => p.Papel);
         }
 
-        [HttpPost]
+       /* [HttpPost]
         public IHttpActionResult FechaPosicao(ODataActionParameters parameters)
         {
             //  string err = "";
@@ -65,144 +66,7 @@ namespace TradeLogServer.Controllers
             //  return resultado ? (IHttpActionResult)Ok() : (IHttpActionResult)BadRequest(err);
             return Ok("nyi");
         }
-
-        /*
-        // GET: odata/Posicao(5)
-        [EnableQuery]
-        public SingleResult<Posicao> Get([FromODataUri] int id)
-        {
-            return SingleResult.Create(db.Posicoes.Where(posicao => posicao.IdPosicao == id && posicao.IdUsuario == idUsuarioAtual));
-        }*/
-
-
-        // PUT: odata/Posicao(5)
-        [HttpPut]
-        public async Task<IHttpActionResult> Put([FromODataUri] int id, [FromBody] Delta<Posicao> patch)
-        {
-            //Validate(patch.GetEntity());
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Posicao posicao = await db.Posicoes.FindAsync(id);
-            if (posicao == null)
-            {
-                return NotFound();
-            }
-            if (posicao.IdUsuario != idUsuarioAtual)
-            {
-                return BadRequest("NO PERMISSION!");
-            }
-
-            patch.Put(posicao);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PosicaoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return Updated(posicao);
-        }
-
-        // POST: odata/Posicao
-        [HttpPost]
-        public async Task<IHttpActionResult> Post(Posicao posicao)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            if (posicao.Carteira.IdUsuario != idUsuarioAtual)
-            {
-                return BadRequest("NO PERMISSION!");
-            }
-            posicao.IdUsuario = idUsuarioAtual;
-
-            db.Posicoes.Add(posicao);
-            await db.SaveChangesAsync();
-
-            // return Created(posicao);
-            return Ok();
-        }
-
-        // PATCH: odata/Posicao(5)
-        [AcceptVerbs("PATCH", "MERGE")]
-        [HttpPatch]
-        public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Posicao> patch)
-        {
-
-          
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Posicao posicao = await db.Posicoes.FindAsync(key);
-            if (posicao == null)
-            {
-                return NotFound();
-            }
-            if (posicao.IdUsuario != idUsuarioAtual)
-            {
-                return BadRequest("NO PERMISSION!");
-            }
-
-            patch.Patch(posicao);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PosicaoExists(key))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return Updated(posicao);
-
-        }
-
-      
-
-        // DELETE: odata/Posicao(5)
-        public async Task<IHttpActionResult> Delete([FromODataUri] int key)
-        {
-            Posicao posicao = await db.Posicoes.FindAsync(key);
-            if (posicao.IdUsuario != idUsuarioAtual)
-            {
-                return BadRequest("NO PERMISSION!");
-            }
-
-            if (posicao == null)
-            {
-                return NotFound();
-            }
-
-            db.Posicoes.Remove(posicao);
-            await db.SaveChangesAsync();
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        */
 
         protected override void Dispose(bool disposing)
         {

@@ -27,27 +27,27 @@
 			<f:formContainers>
 				<f:FormContainer title="{i18n>posicao.dadosGerais}">
 					<f:formElements>
-                        <f:FormElement label="QuantidadeComprada">
+                        <f:FormElement label="{i18n>trade.qtdComprada}">
 							<f:fields>
 								<ObjectNumber number="{QuantidadeComprada}" />
 							</f:fields>
 						</f:FormElement>
-						<f:FormElement label="PrecoMedioCompra">
+						<f:FormElement label="{i18n>posicao.precoMedioCompra}">
 							<f:fields>
 								<ObjectNumber number="{path:'PrecoMedioCompra', formatter:'.formatter.formataValor'}" unit="$" />
 							</f:fields>
 						</f:FormElement>
-                        <f:FormElement label="QuantidadeVendida">
+                        <f:FormElement label="{i18n>trade.qtdVendida}">
 							<f:fields>
 								<ObjectNumber number="{QuantidadeVendida}" />
 							</f:fields>
 						</f:FormElement>
-                        <f:FormElement label="PrecoMedioVenda">
+                        <f:FormElement label="{i18n>posicao.precoMedioVenda}">
 							<f:fields>
 								<ObjectNumber number="{path:'PrecoMedioVenda', formatter:'.formatter.formataValor'}" unit="$" />
 							</f:fields>
 						</f:FormElement>
-                         <f:FormElement label="QuantidadeLiquida">
+                         <f:FormElement label="{i18n>posicao.quantidadeLiquida}">
 							<f:fields>
 								<ObjectNumber number="{QuantidadeLiquida}" />
 							</f:fields>
@@ -103,7 +103,7 @@
 						</f:FormElement>
 						<f:FormElement label="{i18n>posicao.percDif}">
 							<f:fields>
-								<ObjectNumber number="{parts:[{path:'ValorPosicaoAtual'},{path:'DiferencaAtual'}], formatter:'.formataCalculoPercDif'}" unit="%" />
+								<ObjectNumber number="{parts:[{path:'ValorPosicaoAtual'},{path:'PrecoAtual'},{path:'DiferencaAtual'}], formatter:'.formataCalculoPercDif'}" unit="%" />
 							</f:fields>
 						</f:FormElement>
 
@@ -114,32 +114,33 @@
                     <f:formElements>
                         <f:FormElement label="{i18n>posicao.valorStopInicial}">
                             <f:fields>
-                                <Text text="{path:'PrecoStopInicial', formatter:'.formatter.formataValor'}"  />
+                                <ObjectNumber number="{path:'PrecoStopInicial', formatter:'.formatter.formataValor'}"  />
                             </f:fields>
                         </f:FormElement>
-                        <f:FormElement label="{i18n>posicao.valorStopAtual}">
+                        <f:FormElement label="{i18n>posicao.precoStopAtual}">
                             <f:fields>
-                                <Text text="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}"  />
+                                <ObjectNumber number="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}"  />
                             </f:fields>
                         </f:FormElement>
+                        <f:FormElement label="{i18n>posicao.precoStopAtual}">
+                            <f:fields>
+                                <ObjectNumber number="{parts:[{path:'PrecoStopAtual'},{path:'QuantidadeLiquida'}], formatter:'.formataCalculoPreco'}" unit="%" />
+                            </f:fields>
+                        </f:FormElement>
+						<f:FormElement label="{i18n>posicao.capitalSobRisco}">
+							<f:fields>
+								<ObjectNumber number="{parts:[{path:'PrecoAtual'},{path:'DiferencaAtual'},{path:'PrecoStopAtual'}], formatter:'.formataCalculoValorDif'}"  unit="$"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>posicao.percSobRisco}">
+							<f:fields>
+								<ObjectNumber number="{parts:[{path:'PrecoAtual'},{path:'DiferencaAtual'},{path:'PrecoStopAtual'},{path:'PrecoMedioCompra'}], formatter:'.formataCalculoValorPercDif'}" unit="%" />
+							</f:fields>
+						</f:FormElement>
                     </f:formElements>
                 </f:FormContainer>
-
-				<f:FormContainer title="{i18n>posicao.dadosRisco}">
-					<f:formElements>
-						<f:FormElement label="{i18n>posicao.quantidade}">
-							<f:fields>
-								<Text text="{Url}" />
-							</f:fields>
-						</f:FormElement>
-						<f:FormElement label="Twitter account of the contact">
-							<f:fields>
-								<Text text="{Twitter}" />
-							</f:fields>
-						</f:FormElement>
-					</f:formElements>
-				</f:FormContainer>
-			</f:formContainers>
+                </f:formContainers>
 		</f:Form>
+        <core:Fragment fragmentName="tradelog.domain.trade.fragments.ListaTrades" type="XML" />
 	</VBox>
 </core:FragmentDefinition>

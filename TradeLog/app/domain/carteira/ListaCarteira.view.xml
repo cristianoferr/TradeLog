@@ -9,14 +9,6 @@
 		showNavButton="true"
 		navButtonPress="onNavBack"
 		class="sapUiStdPage">
-        	<!-- Campo de Busca -->
-		<subHeader>
-			<Toolbar>
-				<SearchField liveChange="onLiveSearch" search="onRefresh" width="100%" showRefreshButton="true" placeholder="{i18n>buscaPlaceholder}" />
-			</Toolbar>
-
-		</subHeader>
-		<!-- Fim do banco de busca -->
 		<content>
             <List id="listCarteira" items="{/Carteira}" growing="true" growingScrollToLoad="true" growingThreshold="50" selectionChange="onSelectCarteira"  mode="SingleSelectMaster">
 				<items>

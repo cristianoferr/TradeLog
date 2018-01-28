@@ -32,7 +32,7 @@
                 <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Text text="{i18n>posicao.quantidadeComprada}"   /></Column>
                 <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Text text="{i18n>posicao.quantidadeVendida}"   /></Column>
                 <Column hAlign="Right"><Text text="{i18n>posicao.quantidadeLiquida}"   /></Column>
-                <Column hAlign="Right"><Text text="{i18n>posicao.valorStopAtual}"   /></Column>
+                <Column hAlign="Right"><Text text="{i18n>posicao.precoStopAtual}"   /></Column>
                 <Column hAlign="Right"><Text text="{i18n>posicao.situacaoAtual}"   /></Column>
                 <Column minScreenWidth="1400px" demandPopin="true" hAlign="Right" ><Text text="{i18n>posicao.valorDif}"   /></Column>
                 <Column minScreenWidth="1400px" demandPopin="true" hAlign="Right" ><Text text="{i18n>posicao.percDif}"   /></Column>

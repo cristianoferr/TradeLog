@@ -116,6 +116,13 @@ sap.ui.define(
                 val = val.replace(/[^0-9\.]+/g, '');
                 var contaPonto = val.split(".").length - 1;
                 if (contaPonto > 1) val = val.replace(".", "");
+                if (contaPonto == 1) {
+                    var contaPosicoesAposVirgula = val.length - val.lastIndexOf(".") - 1;
+                    if (contaPosicoesAposVirgula > 2) {
+                        val = val.substring(0, val.lastIndexOf(".") + 3);
+                    }
+                }
+
                 _oInput.setValue(val);
                 console.log("inputFloat:" + val + " || " + _oInput.getValue());
             },
@@ -126,6 +133,7 @@ sap.ui.define(
                 if (val.endsWith(".")) val = val + "0";
                 if (val.startsWith(".")) val = "0" + val;
                 if (val == "") val = "0.0";
+
                 _oInput.setValue(val);
                 console.log("checkFloat:" + val + " || " + _oInput.getValue());
             },

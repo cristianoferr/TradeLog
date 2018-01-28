@@ -36,8 +36,9 @@ namespace TradeLogServer.Controllers
             if (email == null) return BadRequest("InvalidEmail");
             string googleId = (string)parameters["googleId"];
             string name = (string)parameters["name"];
+            string id_token = (string)parameters["id_token"];
             string saida = "";
-            int idUsuario= bp.AutenticaUsuario(out saida,email,googleId, name);
+            int idUsuario= bp.AutenticaUsuario(out saida,email,googleId, name, id_token);
             if (idUsuario > 0)
             {
                 Session["IdUsuario"]= idUsuario;

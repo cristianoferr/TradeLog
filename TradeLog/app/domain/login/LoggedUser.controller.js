@@ -66,11 +66,12 @@ sap.ui.define([
             },
 
             /*Chamado no retorno do serviço quando o usuário está autenticado */
-            callbackUpdateCredentials: function (resp) {
+            callbackUpdateCredentials: function (id_token, resp) {
                 var name = resp.result.names[0].givenName;
                 var email = resp.result.emailAddresses[0].value;
                 sap.ui.userData.UserImg = resp.result.photos[0].url;
                 sap.ui.userData.googleId = resp.result.resourceName;
+                sap.ui.userData.id_token = id_token;
                 sap.ui.userData.LoggedUser = name;
                 sap.ui.userData.email = email;
                 sap.ui.userData.isLogged = true;

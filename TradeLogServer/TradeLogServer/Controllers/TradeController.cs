@@ -34,8 +34,6 @@ namespace TradeLogServer.Controllers
             return SingleResult.Create(db.Trades.Where(trade => trade.IdTrade == key));
         }
 
-       
-
         /*
          Realiza um trade 
          Direcao: 1=compra, -1=venda
@@ -51,10 +49,11 @@ namespace TradeLogServer.Controllers
             int Quantidade = (int)parameters["quantidade"];
             float CustoOperacao = (float)parameters["custoOperacao"];
             float PrecoStopOpcional = (float)parameters["PrecoStopOpcional"];
+            bool IsClosing = (bool)parameters["IsClosing"];
 
 
             string err = "";
-            bool resultado = bp.ExecutaTrade(out err, IdCarteira,idUsuarioAtual, Direcao, idPapel, PrecoAcao, Quantidade, CustoOperacao, PrecoStopOpcional);
+            bool resultado = bp.ExecutaTrade(out err, IdCarteira,idUsuarioAtual, Direcao, idPapel, PrecoAcao, Quantidade, CustoOperacao, PrecoStopOpcional, IsClosing);
             
             if (resultado)
             {
@@ -65,118 +64,7 @@ namespace TradeLogServer.Controllers
             }
         }
 
-        // PUT: odata/Trade(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] int key, Delta<Trade> patch)
-        {
-           // Validate(patch.GetEntity());
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Trade trade = await db.Trades.FindAsync(key);
-            if (trade == null)
-            {
-                return NotFound();
-            }
-
-            patch.Put(trade);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TradeExists(key))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return Updated(trade);
-        }
-/*
-        // POST: odata/Trade
-        public async Task<IHttpActionResult> Post(Trade trade)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Trades.Add(trade);
-            await db.SaveChangesAsync();
-
-            return Created(trade);
-        }
-
-        // PATCH: odata/Trade(5)
-        [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Trade> patch)
-        {
-         //   Validate(patch.GetEntity());
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Trade trade = await db.Trades.FindAsync(key);
-            if (trade == null)
-            {
-                return NotFound();
-            }
-
-            patch.Patch(trade);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TradeExists(key))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return Updated(trade);
-        }
-
-        // DELETE: odata/Trade(5)
-        public async Task<IHttpActionResult> Delete([FromODataUri] int key)
-        {
-            Trade trade = await db.Trades.FindAsync(key);
-            if (trade == null)
-            {
-                return NotFound();
-            }
-
-            db.Trades.Remove(trade);
-            await db.SaveChangesAsync();
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }*/
-
-        // GET: odata/Trade(5)/Posicao
-        [EnableQuery]
-        public SingleResult<Posicao> GetPosicao([FromODataUri] int key)
-        {
-            return SingleResult.Create(db.Trades.Where(m => m.IdTrade == key).Select(m => m.Posicao));
-        }
-
-        protected override void Dispose(bool disposing)
+           protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

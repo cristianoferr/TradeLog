@@ -87,7 +87,7 @@ namespace TradeLogServer.Business
 }*/
 
 
-        internal Posicao GetOrCreatePosicaoForPapel(Carteira carteira, int idPapel)
+        internal Posicao GetOrCreatePosicaoForPapel(Carteira carteira, int idPapel, float precoStopOpcional)
         {
             Papel papel = db.Papels.Where(x => x.IdPapel == idPapel).FirstOrDefault();
             if (papel == null) return null;
@@ -107,6 +107,8 @@ namespace TradeLogServer.Business
                 posicao.PrecoMedioVenda = 0;
                 posicao.IdUsuario = carteira.IdUsuario;
                 posicao.Usuario = carteira.Usuario;
+                posicao.PrecoStopAtual = precoStopOpcional;
+                posicao.PrecoStopInicial= precoStopOpcional;
                 db.Posicoes.Add(posicao);
             }
 

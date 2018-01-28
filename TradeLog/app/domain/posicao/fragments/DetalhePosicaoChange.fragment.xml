@@ -18,40 +18,47 @@
 					emptySpanL="4"
 					emptySpanM="0"
 					emptySpanS="0"
-					columnsXL="3"
-					columnsL="3"
+					columnsXL="2"
+					columnsL="2"
 					columnsM="2"
                     columnsS="1"
 					singleContainerFullSize="false" />
 			</f:layout>
 			<f:formContainers>
-				<f:FormContainer title="{i18n>posicao.dadosIniciais}">
+				<f:FormContainer title="{i18n>posicao.dadosGerais}">
 					<f:formElements>
-						<f:FormElement label="{i18n>posicao.precoEntrada}">
+                        <f:FormElement label="{i18n>trade.qtdComprada}">
 							<f:fields>
-								<Input value="{PrecoEntrada}"  liveChange="inputFloat" change="checkFloat"/>
+								<Input value="{QuantidadeComprada}"  editable="false"/>
 							</f:fields>
 						</f:FormElement>
-                        <f:FormElement label="{i18n>posicao.valorInicial}">
+						<f:FormElement label="{i18n>posicao.precoMedioCompra}">
 							<f:fields>
-								<Input value="{parts:[{path:'PrecoEntrada'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" editable="false"  />
+								<Input value="{path:'PrecoMedioCompra', formatter:'.formatter.formataValor'}" editable="false" />
 							</f:fields>
 						</f:FormElement>
-
-
+                        <f:FormElement label="{i18n>trade.qtdVendida}">
+							<f:fields>
+								<Input value="{QuantidadeVendida}"  editable="false"/>
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.precoMedioVenda}">
+							<f:fields>
+								<Input value="{path:'PrecoMedioVenda', formatter:'.formatter.formataValor'}" editable="false" />
+							</f:fields>
+						</f:FormElement>
+                         <f:FormElement label="{i18n>posicao.quantidadeLiquida}">
+							<f:fields>
+								<Input value="{QuantidadeLiquida}"  editable="false"/>
+							</f:fields>
+						</f:FormElement>
 						<f:FormElement label="{i18n>posicao.dataEntrada}">
 							<f:fields>
-                                <DateTimePicker
-                                displayFormat="short"  valueFormat="yyyy-MM-dd"
-			value="{path:'DataEntrada', type:'sap.ui.model.type.DateTime'}"
-			/>
+								<Input value="{path:'DataEntrada', formatter:'.formatter.formataData'}"  editable="false"/>
 							</f:fields>
 						</f:FormElement>
-                        <f:FormElement label="{i18n>posicao.quantidade}">
-							<f:fields>
-								<Input value="{Quantidade}"  liveChange="inputNumeric"/>
-							</f:fields>
-						</f:FormElement>
+
+
 
 					</f:formElements>
 				</f:FormContainer>
@@ -60,31 +67,43 @@
 					<f:formElements>
                         <f:FormElement label="{i18n>posicao.precoAtual}">
 							<f:fields>
-								<Input value="{path:'PrecoAtual', formatter:'.formatter.formataValor'}"  editable="false" />
+								<Input value="{path:'PrecoAtual', formatter:'.formatter.formataValor'}" editable="false"/>
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.totalComprado}">
+							<f:fields>
+								<Input value="{path:'TotalComprado', formatter:'.formatter.formataValor'}" editable="false"/>
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.totalVendido}">
+							<f:fields>
+								<Input value="{path:'TotalVendido', formatter:'.formatter.formataValor'}" editable="false" />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>posicao.valorEmPosse}">
+							<f:fields>
+								<Input value="{path:'ValorSaldo', formatter:'.formatter.formataValor'}" editable="false" />
 							</f:fields>
 						</f:FormElement>
 
 						<f:FormElement label="{i18n>posicao.situacaoAtual}">
 							<f:fields>
-								<Input value="{parts:[{path:'PrecoAtual'},{path:'Quantidade'}], formatter:'.formataCalculoPreco'}" editable="false" />
+								<Input value="{path:'ValorPosicaoAtual', formatter:'.formatter.formataValor'}" editable="false" />
 							</f:fields>
 						</f:FormElement>
-
                         <f:FormElement label="{i18n>posicao.diasPosicao}">
 							<f:fields>
-								<Input value="{path:'DataEntrada', formatter:'.formatter.calcDifDays'}"  editable="false"/>
+								<Input value="{path:'DataEntrada', formatter:'.formatter.calcDifDays'}"  editable="false" />
 							</f:fields>
 						</f:FormElement>
-
-                        <f:FormElement label="{i18n>posicao.valorDif}" >
+                        <f:FormElement label="{i18n>posicao.valorDif}">
                         <f:fields>
-                            <Input value="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'PrecoEntrada'}], formatter:'.formataCalculoValorDif'}"  editable="false" />
+                            <Input value="{path:'DiferencaAtual', formatter:'.formatter.formataValor'}" editable="false" />
                         </f:fields>
 						</f:FormElement>
-
 						<f:FormElement label="{i18n>posicao.percDif}">
 							<f:fields>
-								<Input value="{parts:[{path:'PrecoAtual'},{path:'Quantidade'},{path:'PrecoEntrada'}], formatter:'.formataCalculoPercDif'}" editable="false" />
+								<Input value="{parts:[{path:'ValorPosicaoAtual'},{path:'PrecoAtual'},{path:'DiferencaAtual'}], formatter:'.formataCalculoPercDif'}" editable="false" />
 							</f:fields>
 						</f:FormElement>
 
@@ -94,32 +113,32 @@
                 <f:FormContainer title="{i18n>posicao.dadosStop}">
                     <f:formElements>
                         <f:FormElement label="{i18n>posicao.valorStopInicial}">
+                            <f:fields>
+                                <Input value="{path:'PrecoStopInicial', formatter:'.formatter.formataValor'}"   editable="false" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="{i18n>posicao.precoStopAtual}">
+                            <f:fields>
+                                <Input value="{PrecoStopAtual}" liveChange="inputFloat" change="checkFloat"/>
+                            </f:fields>
+                        </f:FormElement>
+                          <f:FormElement label="{i18n>posicao.precoStopAtual}">
+                            <f:fields>
+                                <Input value="{parts:[{path:'PrecoStopAtual'},{path:'QuantidadeLiquida'}], formatter:'.formataCalculoPreco'}"   editable="false" />
+                            </f:fields>
+                        </f:FormElement>
+						<f:FormElement label="{i18n>posicao.capitalSobRisco}">
 							<f:fields>
-								<Input value="{PrecoStopInicial}"  liveChange="inputFloat" change="checkFloat" />
+								<Input value="{parts:[{path:'PrecoAtual'},{path:'DiferencaAtual'},{path:'PrecoStopAtual'}], formatter:'.formataCalculoValorDif'}" editable="false"/>
 							</f:fields>
 						</f:FormElement>
-                        <f:FormElement label="{i18n>posicao.valorStopAtual}">
+						<f:FormElement label="{i18n>posicao.percSobRisco}">
 							<f:fields>
-								<Input value="{PrecoStopAtual}"  liveChange="inputFloat" change="checkFloat" />
+								<Input value="{parts:[{path:'PrecoAtual'},{path:'DiferencaAtual'},{path:'PrecoStopAtual'},{path:'PrecoMedioCompra'}], formatter:'.formataCalculoValorPercDif'}" editable="false" />
 							</f:fields>
 						</f:FormElement>
                     </f:formElements>
                 </f:FormContainer>
-
-				<f:FormContainer title="{i18n>posicao.dadosRisco}">
-					<f:formElements>
-						<f:FormElement label="{i18n>posicao.quantidade}">
-							<f:fields>
-								<Text text="{Url}" />
-							</f:fields>
-						</f:FormElement>
-						<f:FormElement label="Twitter account of the contact">
-							<f:fields>
-								<Text text="{Twitter}" />
-							</f:fields>
-						</f:FormElement>
-					</f:formElements>
-				</f:FormContainer>
 			</f:formContainers>
 		</f:Form>
 	</VBox>

@@ -56,6 +56,9 @@ sap.ui.define([
             this.viewData.posicaoSelected = this.viewData.idPosicaoSelected != undefined;
 
             this.getView().byId("detalhePosicao").bindElement(`/Posicao(${this.viewData.idPosicaoSelected})`);
+            // this.getView().byId("conteudoDetalhePosicao").bindElement(`/Posicao(${this.viewData.idPosicaoSelected})`);
+            //this.getView().byId("panelListTrades").bindElement(`/Posicao(${this.viewData.idPosicaoSelected})`);
+
         },
 
         /*Dialogo para criar uma posição nova (ou automaticamente adicionar à uma posição existente) */
@@ -66,7 +69,7 @@ sap.ui.define([
                 ValorLiquidoCarteira: carteiraAtual.ValorLiquido,
                 custoOperacao: carteiraAtual.CustoOperacaoPadrao
             };
-            dialogoPosicao.dialogCreatePosition.call(this, evt, parameters, servicoCarteira);
+            dialogoPosicao.dialogPosition.call(this, evt, parameters, servicoCarteira);
 
         },
 

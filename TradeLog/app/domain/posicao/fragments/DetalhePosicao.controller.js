@@ -36,21 +36,27 @@ sap.ui.define([
 
             /*Dialogo de fechar a posição */
             dialogBuyPosition: function (evt) {
-                var parameters = this.getParametersDialogoPosicao();
+                var parameters = this.getParametersDialogoPosicao(evt);
                 parameters.tipo = "C";
 
                 dialogoPosicao.dialogBuyPosition.call(this, evt, parameters, servicoCarteira);
             },
             /*Dialogo de fechar a posição */
             dialogSellPosition: function (evt) {
-                var parameters = this.getParametersDialogoPosicao();
+                var parameters = this.getParametersDialogoPosicao(evt);
                 parameters.tipo = "V";
 
                 dialogoPosicao.dialogSellPosition.call(this, evt, parameters, servicoCarteira);
             },
 
+            dialogClosePosition: function (evt) {
+                var parameters = this.getParametersDialogoPosicao(evt);
+
+                dialogoPosicao.dialogClosePosition.call(this, evt, parameters, servicoCarteira);
+            },
+
             /*Retorna um objeto com todos os parametros necessário para comprar/vendar a posição atual*/
-            getParametersDialogoPosicao: function () {
+            getParametersDialogoPosicao: function (evt) {
                 var btncarteira = this.getView().byId("btnCarteira");
                 var carteiraAtual = btncarteira.getBindingContext().getObject();
                 var data = evt.getSource().getBindingContext().getObject();
@@ -65,6 +71,7 @@ sap.ui.define([
                     carteiraAtual: carteiraAtual
 
                 };
+                return parameters;
             }
 
         });

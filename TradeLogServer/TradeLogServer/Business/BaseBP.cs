@@ -29,7 +29,7 @@ namespace TradeLogServer.Business
 
         internal IQueryable<Posicao> GetQueryPosicao(int key, int idUsuarioAtual)
         {
-            return db.Posicoes.Where(posicao => posicao.IdPosicao == key && posicao.IdUsuario == idUsuarioAtual).Include(p => p.Trade).Include(p => p.Papel).Include(p => p.Carteira);
+            return db.Posicoes.Where(posicao => posicao.IdPosicao == key && posicao.IdUsuario == idUsuarioAtual && posicao.FlagAtivo=="T").Include(p => p.Trade).Include(p => p.Papel).Include(p => p.Carteira);
         }
 
        

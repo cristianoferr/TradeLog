@@ -39,20 +39,20 @@
                             <core:ListItem key="{dominio>key}" text="{path:'dominio>text',formatter:'.traduzChave'}"/>
                 </Select>
 
-                <Label text="{i18n>posicao.valorEntrada}" />
+                <Label text="{i18n>trade.precoAcao}" />
                 <Input value="{localModel>/PrecoAcao}"  liveChange="floatChange" change="checkFloat"/>
 
                 <Label text="{i18n>posicao.quantidade}" />
-                <Input  value="{localModel>/quantidade}"  liveChange="quantidadeChange"/>
+                <Input value="{localModel>/quantidade}"  liveChange="quantidadeChange" editable="{localModel>/CanChangeQuantidade}"/>
 
-                <Label text="{i18n>posicao.quantidadeRecomendada}" />
-                <Input  value="{localModel>/quantidadeRecomendada}" editable="false"/>
+                <Label visible="{localModel>/StopVisible}" text="{i18n>posicao.quantidadeRecomendada}" />
+                <Input visible="{localModel>/StopVisible}"  value="{localModel>/quantidadeRecomendada}" editable="false"/>
 
                 <Label text="{i18n>carteira.custoOperacao}" />
                 <Input value="{localModel>/custoOperacao}"  liveChange="floatChange"/>
 
-                <Label text="{i18n>posicao.stopPosicao}" />
-                <Input value="{localModel>/PrecoStopOpcional}"  liveChange="floatChange"/>
+                <Label visible="{localModel>/StopVisible}" text="{i18n>posicao.stopPosicao}" />
+                <Input visible="{localModel>/StopVisible}" value="{localModel>/PrecoStopOpcional}"  liveChange="floatChange"/>
 
                 <!-- SUMARIO-->
                 <core:Title text="{i18n>posicao.sumario}" />
@@ -62,19 +62,19 @@
                 <Label text="{i18n>carteira.valorLiquido}" />
                 <Input value="{path:'localModel>/liquidoCarteira', formatter:'.formatter.formataValor'}" editable="false"/>
 
-                <Label text="{i18n>trade.valorStop}" />
-                <Input value="{parts:[{path:'localModel>/PrecoStopOpcional'},{path:'localModel>/quantidade'},{path:'localModel>/custoOperacao'},{path:'localModel>/tipoOperacao'}], formatter:'.formatter.formataCalculaTotalOperacao'}" editable="false"/>
+                <Label text="{i18n>trade.valorStop}" visible="{localModel>/StopVisible}" />
+                <Input  visible="{localModel>/StopVisible}" value="{parts:[{path:'localModel>/PrecoStopOpcional'},{path:'localModel>/quantidade'},{path:'localModel>/custoOperacao'},{path:'localModel>/tipoOperacao'}], formatter:'.formatter.formataCalculaTotalOperacao'}" editable="false"/>
 
-                <Label text="{i18n>trade.valorRisco}" />
-                <Input value="{parts:[{path:'localModel>/PrecoAcao'},{path:'localModel>/PrecoStopOpcional'},{path:'localModel>/quantidade'},{path:'localModel>/custoOperacao'},{path:'localModel>/tipoOperacao'}], formatter:'.formatter.formataCalculaRiscoOperacao'}" editable="false"/>
+                <Label text="{i18n>trade.valorRisco}" visible="{localModel>/StopVisible}" />
+                <Input  visible="{localModel>/StopVisible}" value="{parts:[{path:'localModel>/PrecoAcao'},{path:'localModel>/PrecoStopOpcional'},{path:'localModel>/quantidade'},{path:'localModel>/custoOperacao'},{path:'localModel>/tipoOperacao'}], formatter:'.formatter.formataCalculaRiscoOperacao'}" editable="false"/>
 
                 <Label text="{i18n>posicao.quantidadeEmPosse}" />
                 <Input value="{localModel>/quantidadeExistentePapel}" editable="false"/>
 
-                <Label text="{i18n>carteira.riscoTotal}" />
-                <Input value="{localModel>/riscoCarteira}" editable="false"/>
-                <Label text="{i18n>carteira.saldoRisco}" />
-                <Input value="{localModel>/saldoRisco}" editable="false"/>
+                <Label visible="{localModel>/StopVisible}" text="{i18n>carteira.riscoTotal}" />
+                <Input visible="{localModel>/StopVisible}" value="{localModel>/riscoCarteira}" editable="false"/>
+                <Label visible="{localModel>/StopVisible}" text="{i18n>carteira.saldoRisco}" />
+                <Input visible="{localModel>/StopVisible}" value="{localModel>/saldoRisco}" editable="false"/>
 
 
     </f:content>

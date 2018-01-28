@@ -5,6 +5,7 @@ demos/
 TradeLogServer/.vs/
 TradeLogServer/TradeLogServer/bin/
 TradeLogServer/TradeLogServer/connections.Release.config
+TradeLogServer/TradeLogServer/Web.Release.config
 TradeLogServer/packages/
 TradeLog/node_modules/
 TradeLogServer/.vs/TradeLogServer/v15/.suo
@@ -16,3 +17,7 @@ TradeLogServer\packages
 TradeLogServer\packages\
 */packages/
 TradeLogServer/TradeLogServer/logs/saida.log
+TradeLogServer/Properties/PublishProfiles
+TradeLogServer/Properties/PublishProfiles/CustomProfile.pubxml.user
+TradeLogServer/Properties/PublishProfiles/CustomProfile.pubxml
+TradeLogServer/TradeLogServer/Web.Release.config
