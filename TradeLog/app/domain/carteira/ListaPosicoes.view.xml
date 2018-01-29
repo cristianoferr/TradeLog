@@ -11,6 +11,9 @@
         <Title text="{i18n>carteira.valorLiquido}:" />
         <Title text="{path:'ValorLiquido', formatter:'.formatter.formataValor'}" />
         <ToolbarSpacer />
+        <Button
+            icon="sap-icon://refresh"
+            press="onRefreshModel" />
         <Button type="Accept"
             icon="sap-icon://sys-add" text="{i18n>carteira.adicionaFundos}"
             press="onDialogAddFunds" />
@@ -42,16 +45,22 @@
                     <cells>
                         <Text text="{CodigoPapel}" />
                         <Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />
-                        <Text text="{path:'PrecoMedioCompra', formatter:'.formatter.formataValor'}" />
-                        <Text text="{path:'PrecoMedioVenda', formatter:'.formatter.formataValor'}" />
-                        <Text text="{path:'PrecoAtual', formatter:'.formatter.formataValor'}" />
-                        <Text text="{QuantidadeComprada}" />
-                        <Text text="{QuantidadeVendida}" />
-                        <Text text="{QuantidadeLiquida}" />
-                        <Text text="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}" />
-                        <Text text="{path:'ValorPosicaoAtual', formatter:'.formatter.formataValor'}" />
-                        <Text text="{path:'DiferencaAtual', formatter:'.formatter.formataValor'}" />
-                        <Text text="{parts:[{path:'ValorPosicaoAtual'},{path:'DiferencaAtual'}], formatter:'.formataCalculoPercDif'}" />
+                        <ObjectNumber number="{path:'PrecoMedioCompra', formatter:'.formatter.formataValor'}"  unit="$"/>
+                        <ObjectNumber number="{path:'PrecoMedioVenda', formatter:'.formatter.formataValor'}"  unit="$"/>
+                        <ObjectNumber number="{path:'PrecoAtual', formatter:'.formatter.formataValor'}" unit="$"/>
+                        <ObjectNumber number="{QuantidadeComprada}" />
+                        <ObjectNumber number="{QuantidadeVendida}" />
+                        <ObjectNumber number="{QuantidadeLiquida}"  state="{path: 'QuantidadeLiquida',
+							formatter: '.formatter.stateValor'
+						}"/>
+                        <ObjectNumber number="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}" unit="$"/>
+                        <ObjectNumber number="{path:'ValorPosicaoAtual', formatter:'.formatter.formataValor'}"  unit="$"/>
+                        <ObjectNumber number="{path:'DiferencaAtual', formatter:'.formatter.formataValor'}" state="{path: 'DiferencaAtual',
+							formatter: '.formatter.stateValor'
+						}" unit="$"/>
+                        <ObjectNumber number="{parts:[{path:'ValorPosicaoAtual'},{path:'DiferencaAtual'}], formatter:'.formataCalculoPercDif'}"  unit="%" state="{path: 'DiferencaAtual',
+							formatter: '.formatter.stateValor'
+						}"/>
                     </cells>
                 </ColumnListItem>
             </items>

@@ -3,7 +3,27 @@ DROP TABLE Movimento;
 
 
 
+DROP TABLE Historico;
+
+
+
+DROP TABLE Trade;
+
+
+
 DROP TABLE Posicao;
+
+
+
+DROP TABLE Comentario;
+
+
+
+DROP TABLE Watchlist;
+
+
+
+DROP TABLE Papel;
 
 
 
@@ -15,24 +35,16 @@ DROP TABLE Usuario;
 
 
 
-DROP TABLE Historico;
-
-
-
-DROP TABLE Papel;
-
-
-
 CREATE TABLE Carteira
 (
 	IdCarteira           INT(10) NOT NULL,
-	IdUsuario            int(10) NULL,
-	ValorAtual           decimal(14,6) NULL,
-	NomeCarteira         VARCHAR(50) NULL,
+	IdUsuario            int(10) NOT NULL,
+	NomeCarteira         VARCHAR(50) NOT NULL,
 	RiscoPorPosicao      decimal(14,6) NULL,
 	RiscoPorCarteira     decimal(14,6) NULL,
 	CustoOperacaoPadrao  decimal(14,6) NULL,
-	ValorLiquido         decimal(14,6) NULL
+	ValorLiquido         decimal(14,6) NOT NULL,
+	CustoOperacaoRelativo decimal(14,6) NULL
 );
 
 
@@ -45,22 +57,45 @@ ADD PRIMARY KEY (IdCarteira);
 ALTER TABLE Carteira
 MODIFY IdCarteira INT(10) AUTO_INCREMENT;
 
-insert into Carteira (IdUsuario,ValorAtual,NomeCarteira,RiscoPorPosicao,RiscoPorCarteira,CustoOperacaoPadrao,ValorLiquido) values (1,1000,'Carteira Padrão',2,6,20,1000);
+insert into Carteira (IdUsuario,NomeCarteira,RiscoPorPosicao,RiscoPorCarteira,CustoOperacaoPadrao,ValorLiquido) values (1,'Carteira Padrão',2,6,20,1000);
 
-insert into Carteira (IdUsuario,ValorAtual,NomeCarteira,RiscoPorPosicao,RiscoPorCarteira,CustoOperacaoPadrao,ValorLiquido) values (1,1234.56,'Carteira Teste 2',10,6,120,1234.56);
+insert into Carteira (IdUsuario,NomeCarteira,RiscoPorPosicao,RiscoPorCarteira,CustoOperacaoPadrao,ValorLiquido) values (1,'Carteira Teste 2',10,6,120,1234.56);
+
+
+
+CREATE TABLE Comentario
+(
+	IdComentario         int(10) NOT NULL,
+	IdUsuario            int(10) NULL,
+	IdWatchlist          int(10) NULL,
+	TextoComentario      VARCHAR(255) NULL
+);
+
+
+
+ALTER TABLE Comentario
+ADD PRIMARY KEY (IdComentario);
+
+
+
+ALTER TABLE Comentario
+MODIFY IdComentario  INT(10) AUTO_INCREMENT;
+
+INSERT INTO Comentario(IdWatchlist,IdUsuario,TextoComentario) VALUES (1,1,'Comentario 1');
+INSERT INTO Comentario(IdWatchlist,IdUsuario,TextoComentario) VALUES (1,1,'Comentario 2');
 
 
 
 CREATE TABLE Historico
 (
 	idHistorico          int(10) NOT NULL,
-	Open                 decimal(14,6) NULL,
-	Close                decimal(14,6) NULL,
-	High                 decimal(14,6) NULL,
-	Low                  decimal(14,6) NULL,
-	Volume               decimal(14,6) NULL,
-	Data                 DATE NULL,
-	IdPapel              int(10) NULL
+	Open                 decimal(14,6) NOT NULL,
+	Close                decimal(14,6) NOT NULL,
+	High                 decimal(14,6) NOT NULL,
+	Low                  decimal(14,6) NOT NULL,
+	Volume               decimal(14,6) NOT NULL,
+	Data                 DATETIME NOT NULL,
+	IdPapel              int(10) NOT NULL
 );
 
 
@@ -79,9 +114,10 @@ CREATE TABLE Movimento
 (
 	IdCarteira           INT(10) NULL,
 	IdMovimento          int(10) NOT NULL,
-	ValorMovimento       decimal(14,6) NULL,
+	ValorMovimento       decimal(14,6) NOT NULL,
 	IdPosicao            int(10) NULL,
-	Descricao            VARCHAR(255) NULL
+	Descricao            VARCHAR(255) NOT NULL,
+	DataMovimento        DATETIME NULL
 );
 
 
@@ -91,20 +127,22 @@ ADD PRIMARY KEY (IdMovimento);
 
 
 
-ALTER TABLE MOVIMENTO 
-MODIFY IdMOVIMENTO  INT(10) AUTO_INCREMENT;
+ALTER TABLE Movimento
+MODIFY IdMovimento  INT(10) AUTO_INCREMENT;
 
-INSERT INTO MOVIMENTO (IDCARTEIRA,DESCRICAO,VALORMOVIMENTO,IDPOSICAO) VALUES (1,'TESTE MOVIMENTO',100,1);
+INSERT INTO Movimento (IdCarteira,Descricao,ValorMovimento,IdPosicao) VALUES (1,'TESTE MOVIMENTO',100,1);
 
 
 
 CREATE TABLE Papel
 (
 	IdPapel              int(10) NOT NULL,
-	Codigo               VARCHAR(20) NULL,
-	Nome                 VARCHAR(20) NULL,
-	ValorAtual           decimal(14,6) NULL,
-	LotePadrao           int(6) NULL
+	Codigo               VARCHAR(20) NOT NULL,
+	Nome                 VARCHAR(20) NOT NULL,
+	ValorAtual           decimal(14,6) NOT NULL,
+	LotePadrao           int(6) NOT NULL,
+	LastUpdate           DATETIME NULL,
+	LastUpdateMessage    VARCHAR(50) NULL
 );
 
 
@@ -117,25 +155,89 @@ ADD PRIMARY KEY (IdPapel);
 ALTER TABLE Papel
 MODIFY IdPapel INT(10) AUTO_INCREMENT;
 
-insert into Papel(Codigo,Nome,ValorAtual,LotePadrao) values ('TST1','Teste 1',10,100);
-insert into Papel(Codigo,Nome,ValorAtual,LotePadrao) values ('TST2','Teste 2',20,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('ABEV3.SA','AMBEV S/A',23,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('BBAS3.SA','BRASIL',31,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('BBDC3.SA','BRADESCO',20,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('BBDC4.SA','BRADESCO',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('BBSE3.SA','BBSEGURIDADE',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('BRAP4.SA','BRADESPAR',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('BRFS3.SA','BRF SA',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('BRKM5.SA','BRASKEM',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('BRML3.SA','BR MALLS PAR',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('BVMF3.SA','B3',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('CCRO3.SA','CCR SA',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('CIEL3.SA','CIELO',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('CMIG4.SA','CEMIG',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('CPFE3.SA','CPFL ENERGIA',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('CPLE6.SA','COPEL',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('CSAN3.SA','COSAN',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('CSNA3.SA','SID NACIONAL',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('CYRE3.SA','CYRELA REALT',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('ECOR3.SA','ECORODOVIAS',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('EGIE3.SA','ENGIE BRASIL',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('ELET3.SA','ELETROBRAS',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('ELET6.SA','ELETROBRAS',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('EMBR3.SA','EMBRAER',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('ENBR3.SA','ENERGIAS BR',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('EQTL3.SA','EQUATORIAL',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('ESTC3.SA','ESTACIO PART',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('FIBR3.SA','FIBRIA',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('FLRY3.SA','FLEURY',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('GGBR4.SA','GERDAU',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('GOAU4.SA','GERDAU MET',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('HYPE3.SA','HYPERMARCAS',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('IGTA3.SA','IGUATEMI',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('ITSA4.SA','ITAUSA',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('ITUB4.SA','ITAUUNIBANCO',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('JBSS3.SA','JBS',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('KLBN11.SA','KLABIN S/A',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('KROT3.SA','KROTON',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('LAME4.SA','LOJAS AMERIC',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('LREN3.SA','LOJAS RENNER',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('MGLU3.SA','MAGAZ LUIZA',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('MRFG3.SA','MARFRIG',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('MRVE3.SA','MRV',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('MULT3.SA','MULTIPLAN',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('NATU3.SA','NATURA',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('PCAR4.SA','P.ACUCAR-CBD',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('PETR3.SA','PETROBRAS',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('PETR4.SA','PETROBRAS',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('QUAL3.SA','QUALICORP',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('RADL3.SA','RAIADROGASIL',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('RAIL3.SA','RUMO S.A.',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('RENT3.SA','LOCALIZA',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('SANB11.SA','SANTANDER BR',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('SAPR11.SA','SANEPAR',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('SBSP3.SA','SABESP',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('SMLS3.SA','SMILES',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('SUZB3.SA','SUZANO PAPEL',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('TAEE11.SA','TAESA',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('TIMP3.SA','TIM PART S/A',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('UGPA3.SA','ULTRAPAR',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('USIM5.SA','USIMINAS',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('VALE3.SA','VALE',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('VIVT4.SA','TELEF BRASIL',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('VVAR11.SA','VIAVAREJO',0,100);
+insert into Papel (Codigo,Nome,ValorAtual,LotePadrao) values('WEGE3.SA','WEG',0,100);
+
 
 
 
 CREATE TABLE Posicao
 (
 	IdPosicao            int(10) NOT NULL,
-	PrecoEntrada         decimal(14,6) NULL,
-	PrecoSaida           decimal(14,6) NULL,
-	PrecoStopAtual       VARCHAR(20) NULL,
-	Quantidade           int(6) NULL,
-	IdPapel              int(10) NULL,
-	IdUsuario            int(10) NULL,
+	PrecoMedioCompra     decimal(14,6) NOT NULL,
+	PrecoMedioVenda      decimal(14,6) NOT NULL,
+	PrecoStopAtual       VARCHAR(20) NOT NULL,
+	QuantidadeVendida    int(6) NOT NULL,
+	IdPapel              int(10) NOT NULL,
+	IdUsuario            int(10) NOT NULL,
 	IdCarteira           INT(10) NULL,
-	DataEntrada          DATE NULL,
+	DataEntrada          DATETIME NOT NULL,
 	DataSaida            CHAR(18) NULL,
-	ValorEntrada         decimal(14,6) NULL,
-	PrecoStopInicial     decimal(14,6) NULL
+	PrecoStopInicial     decimal(14,6) NOT NULL,
+	QuantidadeComprada   INTEGER NOT NULL,
+	FlagAtivo            CHAR(1) NULL
 );
 
 
@@ -148,15 +250,50 @@ ADD PRIMARY KEY (IdPosicao);
 ALTER TABLE Posicao 
 MODIFY IdPosicao  INT(10) AUTO_INCREMENT;
 
-insert into Posicao (ValorEntrada,PrecoEntrada,PrecoSaida,PrecoStopInicial,PrecoStopAtual,Quantidade,IdPapel,IdUsuario,IdCarteira,DataEntrada,DataSaida) values (1000,12,20,10,8,100,1,1,1,STR_TO_DATE('1-10-2017', '%d-%m-%Y'),null);
-insert into Posicao (ValorEntrada,PrecoEntrada,PrecoSaida,PrecoStopInicial,PrecoStopAtual,Quantidade,IdPapel,IdUsuario,IdCarteira,DataEntrada,DataSaida) values (1500,15,20,5,4,100,2,1,1,STR_TO_DATE('15-11-2017', '%d-%m-%Y'),null);
+insert into Posicao (PrecoMedioCompra,PrecoMedioVenda,PrecoStopInicial,PrecoStopAtual,QuantidadeComprada,QuantidadeVendida,IdPapel,IdUsuario,IdCarteira,DataEntrada)
+values (20,22,10,12,300,100,1,1,1,now());
+
+insert into Posicao (PrecoMedioCompra,PrecoMedioVenda,PrecoStopInicial,PrecoStopAtual,QuantidadeComprada,QuantidadeVendida,IdPapel,IdUsuario,IdCarteira,DataEntrada)
+values (30,32,20,22,300,200,2,1,1,now());
+
+
+
+CREATE TABLE Trade
+(
+	IdTrade              int(10) NOT NULL,
+	PrecoTrade           decimal(14,6) NOT NULL,
+	QuantidadeVendida    INTEGER NOT NULL,
+	Data                 DATETIME NOT NULL,
+	IdPosicao            int(10) NOT NULL,
+	QuantidadeComprada   INTEGER NOT NULL
+);
+
+
+
+ALTER TABLE Trade
+ADD PRIMARY KEY (IdTrade);
+
+
+
+ALTER TABLE Trade
+MODIFY IdTrade INT(10) AUTO_INCREMENT;
+
+insert into Trade(PrecoTrade,QuantidadeComprada,QuantidadeVendida,Data,IdPosicao) values(20,100,0,now(),1);
+insert into Trade(PrecoTrade,QuantidadeComprada,QuantidadeVendida,Data,IdPosicao) values(21,200,0,now(),1);
+insert into Trade(PrecoTrade,QuantidadeComprada,QuantidadeVendida,Data,IdPosicao) values(22,0,100,now(),1);
+
+
+insert into Trade(PrecoTrade,QuantidadeComprada,QuantidadeVendida,Data,IdPosicao) values(24,300,0,now(),2);
+insert into Trade(PrecoTrade,QuantidadeComprada,QuantidadeVendida,Data,IdPosicao) values(26,0,200,now(),2);
 
 
 
 CREATE TABLE Usuario
 (
 	IdUsuario            int(10) NOT NULL,
-	NomeUsuario          VARCHAR(50) NULL
+	NomeUsuario          VARCHAR(50) NOT NULL,
+	EmailUsuario         VARCHAR(255) NULL,
+	GoogleId             VARCHAR(255) NULL
 );
 
 
@@ -173,6 +310,29 @@ insert into Usuario(NomeUsuario) values ('Usuario Teste');
 
 
 
+CREATE TABLE Watchlist
+(
+	IdWatchlist          int(10) NOT NULL,
+	IdUsuario            int(10) NULL,
+	IdCarteira           INT(10) NULL,
+	IdPapel              int(10) NULL
+);
+
+
+
+ALTER TABLE Watchlist
+ADD PRIMARY KEY (IdWatchlist);
+
+
+
+ALTER TABLE Watchlist
+MODIFY IdWatchlist  INT(10) AUTO_INCREMENT;
+
+INSERT INTO Watchlist(IdCarteira,IdPapel,IdUsuario) VALUES (1,1,1);
+INSERT INTO Watchlist(IdCarteira,IdPapel,IdUsuario) VALUES (1,2,1);
+
+
+
 ALTER TABLE Carteira
 ADD FOREIGN KEY R_3 (IdUsuario) REFERENCES Usuario (IdUsuario);
 
@@ -180,6 +340,16 @@ ADD FOREIGN KEY R_3 (IdUsuario) REFERENCES Usuario (IdUsuario);
 
 ALTER TABLE Carteira
 ADD FOREIGN KEY R_6 (IdUsuario) REFERENCES Usuario (IdUsuario);
+
+
+
+ALTER TABLE Comentario
+ADD FOREIGN KEY R_15 (IdUsuario) REFERENCES Usuario (IdUsuario);
+
+
+
+ALTER TABLE Comentario
+ADD FOREIGN KEY R_16 (IdWatchlist) REFERENCES Watchlist (IdWatchlist);
 
 
 
@@ -210,5 +380,25 @@ ADD FOREIGN KEY R_5 (IdUsuario) REFERENCES Usuario (IdUsuario);
 
 ALTER TABLE Posicao
 ADD FOREIGN KEY R_9 (IdCarteira) REFERENCES Carteira (IdCarteira);
+
+
+
+ALTER TABLE Trade
+ADD FOREIGN KEY R_11 (IdPosicao) REFERENCES Posicao (IdPosicao);
+
+
+
+ALTER TABLE Watchlist
+ADD FOREIGN KEY R_12 (IdUsuario) REFERENCES Usuario (IdUsuario);
+
+
+
+ALTER TABLE Watchlist
+ADD FOREIGN KEY R_13 (IdCarteira) REFERENCES Carteira (IdCarteira);
+
+
+
+ALTER TABLE Watchlist
+ADD FOREIGN KEY R_14 (IdPapel) REFERENCES Papel (IdPapel);
 
 

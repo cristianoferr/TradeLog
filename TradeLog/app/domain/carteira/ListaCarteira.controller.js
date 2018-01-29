@@ -23,12 +23,12 @@ sap.ui.define([
                     return;
                 }
                 list.getBinding("items").refresh();
-                this.initInformativo();
+                //    this.initInformativo();
             },
 
 
             initInformativo: function () {
-                var that=this;
+                var that = this;
                 if (!sap.ui.Device.system.phone) {
                     this.getRouter().myNavToWithoutHash({
                         currentView: this.getView(),

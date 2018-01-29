@@ -49,6 +49,10 @@ sap.ui.define([
             servicoCarteira.depositaValorCarteira.call(this, valor, descricaoMovimento);
         },
 
+        onRefreshModel: function () {
+            this.getView().getModel().refresh();
+        },
+
 
         onClickPosicao: function (evt) {
             //debugger;

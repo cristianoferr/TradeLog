@@ -23,14 +23,14 @@
     /*Executa a chamada ao backend que cria a Posição (executa o Trade) a partir dos parâmetros indicados */
     function criaPosicao(data) {
         var parameters = {
-            "IdPapel": data.IdPapel,
+            "IdPapel": parseInt(data.IdPapel),
             "tipoOperacao": data.tipoOperacao,
             "IdCarteira": data.IdCarteira,
-            "PrecoAcao": data.PrecoAcao,
-            "quantidade": data.quantidade,
-            "custoOperacao": data.custoOperacao,
-            "PrecoStopOpcional": data.PrecoStopOpcional,
-            "IsClosing":data.isClosing
+            "PrecoAcao": parseFloat(data.PrecoAcao),
+            "quantidade": parseInt(data.quantidade),
+            "custoOperacao": parseFloat(data.custoOperacao),
+            "PrecoStopOpcional": data.PrecoStopOpcional ? parseFloat(data.PrecoStopOpcional) : 0,
+            "IsClosing": data.isClosing || false
         };
 
         var sServiceUrl = `Trade/TradeLogServer.Controllers.ExecutaTrade`;

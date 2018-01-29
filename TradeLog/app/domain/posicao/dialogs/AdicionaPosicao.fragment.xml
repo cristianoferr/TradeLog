@@ -72,9 +72,9 @@
                 <Input value="{localModel>/quantidadeExistentePapel}" editable="false"/>
 
                 <Label visible="{localModel>/StopVisible}" text="{i18n>carteira.riscoTotal}" />
-                <Input visible="{localModel>/StopVisible}" value="{localModel>/riscoCarteira}" editable="false"/>
+                <Input visible="{localModel>/StopVisible}" value="{path:'localModel>/riscoCarteira', formatter:'.formatter.formataValor'}" editable="false"/>
                 <Label visible="{localModel>/StopVisible}" text="{i18n>carteira.saldoRisco}" />
-                <Input visible="{localModel>/StopVisible}" value="{localModel>/saldoRisco}" editable="false"/>
+                <Input visible="{localModel>/StopVisible}" value="{path:'localModel>/saldoRisco', formatter:'.formatter.formataValor'}" editable="false"/>
 
 
     </f:content>
