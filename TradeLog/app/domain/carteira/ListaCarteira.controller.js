@@ -23,6 +23,26 @@ sap.ui.define([
                     return;
                 }
                 list.getBinding("items").refresh();
+                this.initInformativo();
+            },
+
+
+            initInformativo: function () {
+                var that=this;
+                if (!sap.ui.Device.system.phone) {
+                    this.getRouter().myNavToWithoutHash({
+                        currentView: this.getView(),
+                        targetViewName: "br.com.petrobras.mm.documentos.view.Informativo",
+                        targetViewType: "XML",
+                        transition: "show"
+                    },
+                        function (viewInfo) {
+                            if (viewInfo) {
+                                var contInfo = viewInfo.getController();
+                                contInfo.carregaAcoes(that.modeloServicos);
+                            }
+                        });
+                }
             },
 
             onSelectCarteira: function (evt) {
