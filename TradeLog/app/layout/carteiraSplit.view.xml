@@ -1,0 +1,14 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	 xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+
+
+
+	<SplitApp id="carteiraSplitApp" initialDetail="detail" initialMaster="master" orientationChange="onOrientationChange">
+
+
+
+	</SplitApp>
+</mvc:View>

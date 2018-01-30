@@ -10,3 +10,16 @@ Posicao:
 Listar as posições da carteira: /api/Posicao/Carteira/{idCarteira} = /odata/Posicao?idCarteira=1
 /api/Posicao/get/{IdPosicao} = /odata/Posicao?id=1
 
+
+
+
+	myNavToWithoutHash: function(oOptions, callback) {
+		var oSplitApp = this._findSplitApp(oOptions.currentView);
+		var oView     = this.getView(oOptions.targetViewName, oOptions.targetViewType);
+		oSplitApp.addPage(oView, oOptions.isMaster);
+		oSplitApp.to(oView.getId(), oOptions.transition || "show", oOptions.data);
+
+		if (callback) {
+			callback(oView);
+		}
+	},

@@ -6,14 +6,16 @@
     xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
     >
     <Page showHeader="false" class="sapUiStdPage MasterButton" enableScrolling="false">
-             <mvc:XMLView viewName="tradelog.domain.login.LoggedUser" app:title="{i18n>appTitle}"></mvc:XMLView>
-<Title text="{i18n>appDescription}" />
+             <mvc:XMLView viewName="tradelog.domain.login.LoggedUser" app:title="Menu"></mvc:XMLView>
 
-        <TileContainer id="container" tiles="{tiles>/Tiles}" class="imagemRodapeInicio">
-            <tiles>
-                <StandardTile icon="{tiles>Icone}" numberUnit="" title="{tiles>Descricao}" press="onNavTo" app:rota="{tiles>Rota}"/>
-            </tiles>
-        </TileContainer>
+        <List id="listCarteira" items="{tiles>/Tiles}" growing="false" selectionChange="onSelecionaMenu"  mode="SingleSelectMaster">
+				<items>
+					<ObjectListItem app:idRegistro="{IdCarteira}" title="{tiles>Descricao}" app:rota="{tiles>Rota}"
+                    icon="{tiles>Icone}"
+                    showMarkers="true" iconDensityAware="false">
+                    </ObjectListItem>
+				</items>
+			</List>
 
     </Page>
 </core:View>

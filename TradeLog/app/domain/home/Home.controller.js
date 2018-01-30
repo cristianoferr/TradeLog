@@ -12,6 +12,11 @@ sap.ui.define([
             onInit: function () {
                 var oComponent = this.getOwnerComponent();
                 this._router = oComponent.getRouter();
+            },
+
+            onSelecionaMenu: function (evt) {
+                var rota = evt.mParameters.listItem.data("rota");
+                this.navegaParaRota(rota);
             }
 
         });

@@ -130,17 +130,31 @@
                 },
                 {
                     "pattern": "carteiras",
+                    "parent": "home",
                     "name": "carteiras",
                     "target": "listaCarteiras"
                 },
                 {
-                    "parent": "carteiras",
                     "pattern": "carteira/{carteira}",
+                    "parent": "carteiras",
                     "name": "carteira",
-                    "target": "carteira"
+                    "target": [
+                        "cabecalhoCarteira",
+                        "carteira"
+                    ]
+                },
+                {
+                    "pattern": "carteira/{carteira}/{posicao}",
+                    "parent": "carteiras",
+                    "name": "posicao",
+                    "target": [
+                        "cabecalhoCarteira",
+                        "posicao"
+                    ]
                 },
                 {
                     "pattern": "acoes",
+                    "parent": "home",
                     "name": "acoes",
                     "target": "listaAcoes"
                 }
@@ -153,9 +167,17 @@
                     "viewPath": "tradelog.layout",
                     "viewName": "masterDetailSimplesSplit"
                 },
+                "home_old": {
+                    "viewName": "Home",
+                    "viewLevel": 1,
+                    "viewPath": "tradelog.domain.home"
+                },
                 "home": {
                     "viewName": "Home",
                     "viewLevel": 1,
+                    "controlAggregation": "masterPages",
+                    "parent": "masterDetailSimplesSplitApp",
+                    "controlId": "masterDetailSimplesSplitAppId",
                     "viewPath": "tradelog.domain.home"
                 },
                 "listaCarteiras": {
@@ -166,17 +188,44 @@
                     "viewPath": "tradelog.domain.carteira",
                     "viewName": "ListaCarteira"
                 },
+                "cabecalhoCarteira": {
+                    "viewLevel": 3,
+                    "viewPath": "tradelog.domain.carteira.detalhe",
+                    "viewName": "CabecalhoCarteira",
+                    "parent": "masterDetailSimplesSplitApp",
+                    "controlId": "masterDetailSimplesSplitAppId",
+                    "controlAggregation": "detailPages"
+                },
                 "carteira": {
+                    "parent": "cabecalhoCarteira",
+                    "controlId": "CabecalhoCarteiraPage",
+                    "controlAggregation": "content",
+                    "viewLevel": 4,
+                    "viewPath": "tradelog.domain.carteira",
+                    "viewName": "Carteira"
+                },
+                "posicao": {
+                    "parent": "cabecalhoCarteira",
+                    "controlId": "CabecalhoCarteiraPage",
+                    "controlAggregation": "content",
+                    "viewLevel": 4,
+                    "viewPath": "tradelog.domain.posicao",
+                    "viewName": "Posicao"
+                },
+                "posicao__": {
                     "parent": "masterDetailSimplesSplitApp",
                     "controlId": "masterDetailSimplesSplitAppId",
                     "controlAggregation": "detailPages",
-                    "viewLevel": 3,
-                    "viewPath": "tradelog.domain.carteira",
-                    "viewName": "Carteira"
+                    "viewPath": "tradelog.domain.posicao",
+                    "viewLevel": 4,
+                    "viewName": "Posicao"
                 },
                 "listaAcoes": {
                     "viewLevel": 1,
                     "viewPath": "tradelog.domain.papel",
+                    "parent": "masterDetailSimplesSplitApp",
+                    "controlId": "masterDetailSimplesSplitAppId",
+                    "controlAggregation": "detailPages",
                     "viewName": "ListaPapel"
                 }
             }

@@ -67,12 +67,4 @@
         </Table>
     </Panel>
 
-    <Panel id="detalhePosicao" expandable="true" expanded="true" headerText="{i18n>posicao.detalhePosicao} - {CodigoPapel}" visible="{viewModel>/posicaoSelected}">
-        <Panel id="conteudoPosicao">
-        <mvc:XMLView viewName="tradelog.domain.posicao.fragments.DetalhePosicao"
-                                app:nomePainel="DetalhePosicao" app:domainAtual="posicao" app:entidade="{viewModel>/bindPath}" app:paramEntidade="posicao" ></mvc:XMLView>
-            <!--<core:Fragment fragmentName="tradelog.domain.posicao.fragments.DetalhePosicaoDisplay" type="XML" />-->
-        </Panel>
-    </Panel>
-
 </mvc:View>

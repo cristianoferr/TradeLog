@@ -58,8 +58,9 @@ sap.ui.define([
             //debugger;
             this.viewData.idPosicaoSelected = evt.getSource().data().IdPosicao;
             this.viewData.posicaoSelected = this.viewData.idPosicaoSelected != undefined;
+            this.navegaParaRota("posicao", { carteira: this.viewData.idCarteira, posicao: this.viewData.idPosicaoSelected });
 
-            this.getView().byId("detalhePosicao").bindElement(`/Posicao(${this.viewData.idPosicaoSelected})`);
+            //this.getView().byId("detalhePosicao").bindElement(`/Posicao(${this.viewData.idPosicaoSelected})`);
             // this.getView().byId("conteudoDetalhePosicao").bindElement(`/Posicao(${this.viewData.idPosicaoSelected})`);
             //this.getView().byId("panelListTrades").bindElement(`/Posicao(${this.viewData.idPosicaoSelected})`);
 

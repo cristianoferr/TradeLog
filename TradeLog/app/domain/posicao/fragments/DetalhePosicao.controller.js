@@ -14,8 +14,7 @@ sap.ui.define([
         return tradelog.shared.PainelEditavel.extend("tradelog.domain.posicao.fragments.DetalhePosicao", {
 
             routeMatched: function () {
-                var data = this.getView().getModel("viewModel").oData;
-                this.getView().byId("btnCarteira").bindElement(data.bindPath);
+                //var data = this.getView().getModel("viewModel").oData;
             },
 
             fechaPosicao: function (valorAcao, quantidadeAtual) {
@@ -57,8 +56,8 @@ sap.ui.define([
 
             /*Retorna um objeto com todos os parametros necessário para comprar/vendar a posição atual*/
             getParametersDialogoPosicao: function (evt) {
-                var btncarteira = this.getView().byId("btnCarteira");
-                var carteiraAtual = btncarteira.getBindingContext().getObject();
+                var carteiraelement = sap.ui.cabecalhoPage;
+                var carteiraAtual = carteiraelement.getBindingContext().getObject();
                 var data = evt.getSource().getBindingContext().getObject();
                 var parameters = {
                     IdPapel: data.IdPapel,

@@ -44,8 +44,7 @@ sap.ui.define([
             */
             bindView: function (sEntityPath) {
                 this.viewData.bindPath = sEntityPath;
-                this.getView().byId("DetalheCarteira").bindElement(sEntityPath);
-
+                this.getView().byId("idIconTabBar").bindElement(sEntityPath);
 
                 var viewModel = new sap.ui.model.json.JSONModel(this.viewData, true);
                 this.getView().setModel(viewModel, "viewModel");

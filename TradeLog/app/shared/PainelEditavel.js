@@ -31,8 +31,6 @@ sap.ui.define([
                 var oComponent = this.getOwnerComponent();
                 this._router = oComponent.getRouter();
                 this.getRouter().attachRouteMatched(this.onRouteMatched, this);
-
-
             },
 
 
@@ -66,11 +64,11 @@ sap.ui.define([
                 var painelDataModel = new sap.ui.model.json.JSONModel(this.painelData, true);
                 this.getView().setModel(painelDataModel, "painelData");
 
-                this.routeMatched();
+                this.routeMatched(evt);
             },
 
             //Método chamado no onroutematched que pode ser sobreescrito pelos filhos dessas classe
-            routeMatched: function () {
+            routeMatched: function (evt) {
 
             },
 

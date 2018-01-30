@@ -5,22 +5,6 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
     >
-    <Page id="DetalheCarteira"  class="sapUiStdPage MasterButton" navButtonPress="onPressBack" showNavButton="{device>/isPhone}" title= "{i18n>carteira.tituloDetalhe}">
-        <headerContent>
-			<Image class="imagemCabecalho" src="content/images/marca.png" />
-			<Image class="logoCabecalho"   src="content/images/logo.png" />
-            <mvc:XMLView viewName="tradelog.domain.login.LoggedUser"></mvc:XMLView>
-		</headerContent>
-
-
-        <content>
-            <ObjectHeader id="oh1"
-                            title= "{NomeCarteira}"
-                            number="{path:'ValorAtual', formatter:'.formatter.formataValor'}"
-						numberUnit="$"
-                        backgroundDesign="Translucent">
-            </ObjectHeader>
-
             <IconTabBar id="idIconTabBar" expandable="false" select="onTabBarSelected">
                 <items>
                     <IconTabFilter id="iconTabPosicao" class="tamanhoMinimo" key="Posicao"
@@ -54,8 +38,4 @@
                 </items>
             </IconTabBar>
 
-
-        </content>
-
-    </Page>
 </core:View>
