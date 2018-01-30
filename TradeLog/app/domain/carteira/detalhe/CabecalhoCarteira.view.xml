@@ -5,20 +5,32 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
     >
-    <Page id="CabecalhoCarteiraPage"  class="sapUiStdPage MasterButton" navButtonPress="onPressBack" showNavButton="{device>/isPhone}" title= "{i18n>carteira.tituloDetalhe}">
+    <Page id="CabecalhoCarteiraPage"  class="sapUiStdPage sapUiNoMargin MasterButton" navButtonPress="onPressBack" showNavButton="{device>/isPhone}" title= "{i18n>carteira.tituloDetalhe}">
         <headerContent>
 			<Image class="imagemCabecalho" src="content/images/marca.png" />
 			<Image class="logoCabecalho"   src="content/images/logo.png" />
             <mvc:XMLView viewName="tradelog.domain.login.LoggedUser"></mvc:XMLView>
 		</headerContent>
-        <content>
             <ObjectHeader id="oh1"
                             title= "{NomeCarteira}"
+                            visible="{device>/isNoPhone}"
                             number="{path:'ValorAtual', formatter:'.formatter.formataValor'}"
 						numberUnit="$"
                         backgroundDesign="Translucent">
+                <attributes>
+					<ObjectAttribute title="{i18n>carteira.valorLiquido}" text="{path:'ValorLiquido', formatter:'.formatter.formataValor'} $" />
+                    <ObjectAttribute title="{i18n>carteira.valorEmPosicoes}" text="{path:'ValorSaldoAtual', formatter:'.formatter.formataValor'} $" />
+				</attributes>
             </ObjectHeader>
-
+        <content>
+        <Panel width="auto" class="painelSemMargem sapUiNoMargin" id="carteiraPanel" accessibleRole="Region">
+        <content>
+        </content>
+        </Panel>
+        <Panel width="auto" class="painelSemMargem sapUiNoMargin" id="posicaoPanel" accessibleRole="Region">
+        <content>
+        </content>
+        </Panel>
         </content>
 
     </Page>

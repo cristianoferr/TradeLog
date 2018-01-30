@@ -10,7 +10,7 @@
 		navButtonPress="onNavBack"
 		class="sapUiStdPage">
 		<content>
-            <List id="listCarteira" items="{/Carteira}" growing="true" growingScrollToLoad="true" growingThreshold="50" selectionChange="onSelectCarteira"  mode="SingleSelectMaster">
+            <List id="listCarteira" items="{/Carteira}" growing="true" growingScrollToLoad="true" growingThreshold="50" select="onSelectCarteira"  mode="SingleSelectMaster">
 				<items>
 					<ObjectListItem app:idRegistro="{IdCarteira}" title="{NomeCarteira}"
                     	number="$ {path:'ValorAtual', formatter:'.formatter.formataValor'}"

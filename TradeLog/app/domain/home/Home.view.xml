@@ -6,7 +6,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
     >
     <Page showHeader="false" class="sapUiStdPage MasterButton" enableScrolling="false">
-             <mvc:XMLView viewName="tradelog.domain.login.LoggedUser" app:title="Menu"></mvc:XMLView>
+    <Label class="labelTitulo" text="{i18n>appTitle}"/>
 
         <List id="listCarteira" items="{tiles>/Tiles}" growing="false" selectionChange="onSelecionaMenu"  mode="SingleSelectMaster">
 				<items>

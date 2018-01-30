@@ -46,7 +46,9 @@ sap.ui.define([
             },
 
             onSelectCarteira: function (evt) {
-                var id = evt.getParameters().listItem.data("idRegistro");
+                var item = evt.getParameters().listItem;
+                var id = item.data("idRegistro");
+                item.setSelected(false);
                 this.navegaParaRota("carteira", { carteira: id });
             },
 

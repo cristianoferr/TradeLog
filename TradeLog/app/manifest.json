@@ -125,7 +125,8 @@
                     "pattern": "",
                     "name": "home",
                     "target": [
-                        "home"
+                        "home",
+                        "slider"
                     ]
                 },
                 {
@@ -149,6 +150,7 @@
                     "name": "posicao",
                     "target": [
                         "cabecalhoCarteira",
+                        "carteira",
                         "posicao"
                     ]
                 },
@@ -198,7 +200,7 @@
                 },
                 "carteira": {
                     "parent": "cabecalhoCarteira",
-                    "controlId": "CabecalhoCarteiraPage",
+                    "controlId": "carteiraPanel",
                     "controlAggregation": "content",
                     "viewLevel": 4,
                     "viewPath": "tradelog.domain.carteira",
@@ -206,9 +208,9 @@
                 },
                 "posicao": {
                     "parent": "cabecalhoCarteira",
-                    "controlId": "CabecalhoCarteiraPage",
+                    "controlId": "posicaoPanel",
                     "controlAggregation": "content",
-                    "viewLevel": 4,
+                    "viewLevel": 5,
                     "viewPath": "tradelog.domain.posicao",
                     "viewName": "Posicao"
                 },
@@ -227,6 +229,14 @@
                     "controlId": "masterDetailSimplesSplitAppId",
                     "controlAggregation": "detailPages",
                     "viewName": "ListaPapel"
+                },
+                "slider": {
+                    "viewLevel": 1,
+                    "viewPath": "tradelog.domain.home",
+                    "parent": "masterDetailSimplesSplitApp",
+                    "controlId": "masterDetailSimplesSplitAppId",
+                    "controlAggregation": "detailPages",
+                    "viewName": "Slide"
                 }
             }
         }

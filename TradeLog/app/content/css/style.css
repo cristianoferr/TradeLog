@@ -1,3 +1,11 @@
+.painelSemMargem {
+    padding:0!important;
+}
+
+.painelSemMargem .sapMPanelContent {
+    padding:0!important;
+}
+
 
 /* Impede que o texto das colunas seja encurtado */
 .quebraLinha, .quebraLinha span{
