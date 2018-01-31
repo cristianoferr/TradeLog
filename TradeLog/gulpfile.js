@@ -1,4 +1,4 @@
-//https://github.com/enric11/OpenUI5compiler/blob/master/WebContent/gulpfile.js
+//https://github.com/enric11/OpenUI5compiler/blob/master/app/gulpfile.js
 /*
 npm install gulp-replace
 npm install gulp-uglify
@@ -34,7 +34,7 @@ gulp.task('build', ['copiaConteudoWeb']);
 //    gulp.watch('app/**/*', ['build']);
 //});
 
-gulp.task('default', ['clean', '1compres', '2ui5preloadCompresed', '3prepareComponentPreload', '4deleteCleanDist']);
+gulp.task('default', ['clean', '1compres', '2ui5preloadCompresed', '3prepareComponentPreload']);
 
 gulp.task('copiaConteudoWeb', function () {
     del(['build/**/*']).then(function (erro) {
@@ -55,6 +55,7 @@ gulp.task('cordovaPrepare', function () {
     }, 3000);
 });
 
+//Funciona mas gera um arquivo de quase 2 megas
 gulp.task(
     'ui5preload',
     function () {
@@ -62,90 +63,86 @@ gulp.task(
             [
                 'app/**/**.+(js|xml)',
                 '!Component-preload.js',
+                '!app/Component-preload.js',
                 '!gulpfile.js',
                 '!WEB-INF/web.xml',
                 '!model/metadata.xml',
-                '!node_modules/**',
-                '!resources/**'
+                '!node_modules/**'
             ]
         )
-            .pipe(gulpif('app/**/*.js', uglify())) //only pass .js files to uglify
+            .pipe(gulpif('./**/*.js', uglify())) //only pass .js files to uglify
             //.pipe(gulpif('**/*.xml', prettydata({type: 'minify'}))) // only pass .xml to prettydata
             .pipe(ui5preload({
-                base: './',
+                base: 'app/',
                 namespace: your_project,
-                fileName: 'Component-preload.js'
+                fileName: 'app/Component-preload.js'
 
             }))
             .pipe(gulp.dest('.'));
     }
 );
 
+//gera arquivos .min.js na pasta build
 gulp.task('1compres', function () {
     return gulp.src(
         [
             'app/**/**.+(js|xml)',
             '!Component-preload.js',
+            '!app/Component-preload.js',
             '!gulpfile.js',
-            '!distTmp/',
             '!WEB-INF/web.xml',
-            '!model/metadata.xml',
-            '!node_modules/**',
-            '!resources/**'
+            '!model/metadata.xml'
         ]
     )
         .pipe(minify({
-            ext: {
-                src: '.js',
-                min: '.js'
-            },
             exclude: ['tasks'],
             ignoreFiles: ['-min.js']
         }))
-        .pipe(gulp.dest('./distTmp'));
+        .pipe(gulp.dest('./build'));
 });
 
+
+//Gera o arquivo component-preload.js a partir da pasta build
 gulp.task(
     '2ui5preloadCompresed', ['1compres'],
     function () {
         return gulp.src(
             [
-                'distTmp/**/**.+(js|xml)',
-                '!distTmp/**/**.dbg.+(js|xml)',
-                '!Component-preload.js',
-                '!gulpfile.js',
-                '!WEB-INF/web.xml',
-                '!model/metadata.xml',
-                '!node_modules/**',
-                '!resources/**'
+                'build/**/**.+(*-min.js)',
+                'build/**/**+(*-min.js)',
+                'build/**/**.+(min.js)',
+                'build/**/**.+(xml)',
+                'build/**.+(xml)',
+                '!build/**/**.dbg.+(js|xml)'
             ]
         )
-            .pipe(gulpif('app/**/*.js', uglify())) //only pass .js files to uglify
+            //.pipe(gulpif('build/**/*.js', uglify())) //only pass .js files to uglify
             //.pipe(gulpif('**/*.xml', prettydata({type: 'minify'}))) // only pass .xml to prettydata
             .pipe(ui5preload({
                 base: 'app/',
                 namespace: your_project,
-                fileName: 'Component-preload.js'
+                fileName: 'app/Component-preload.js'
 
             }))
             .pipe(gulp.dest('./'));
     }
 );
 
+//substitui caminhos invalidos
 gulp.task('3prepareComponentPreload', ['2ui5preloadCompresed'], function () {
-    return gulp.src(['Component-preload.js'])
-        .pipe(replace('/distTmp/', '/'))
-        .pipe(replace("http://localhost:58761/odata/", 'http://tradelog.me/servico/odata/'))
+    return gulp.src(['app/Component-preload.js'])
+        .pipe(replace('../build/', ''))
+        .pipe(replace('-min.js":', '.js":'))
         .pipe(gulp.dest('app'));
 
 });
 
 gulp.task('4deleteCleanDist', ['3prepareComponentPreload'], function () {
-    return del('./distTmp', { force: true });
+    return del('./build', { force: true });
 });
 
 gulp.task('clean', function () {
-    return del('./distTmp', { force: true });
+    return del('./build', { force: true });
 });
 
 
