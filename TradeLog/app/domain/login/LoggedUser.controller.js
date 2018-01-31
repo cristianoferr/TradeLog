@@ -23,8 +23,8 @@ sap.ui.define([
                         sap.ui.userData = cookieData;
                     }
                     sap.ui.userModel = new JSONModel(sap.ui.userData);
+                    this.firstInit();
                 }
-                this.firstInit();
 
                 //contém dados do usuário logado
                 this.getView().setModel(sap.ui.userModel, "loginInfo");
@@ -55,6 +55,10 @@ sap.ui.define([
             },
 
             firstInit: function () {
+                //atualizo o titulo da pagina
+                var title = this.traduzChave("appTitle") + " - " + this.traduzChave("appDescription") + " - " + this.traduzChave("appVersion");
+                document.title = title;
+
                 servicoAutenticacaoGoogle.handleClientLoad.call(this);
             },
 
