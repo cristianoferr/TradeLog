@@ -8,20 +8,20 @@ npm install gulp-pretty-data
 npm install gulp-if
 npm install gulp
 npm install del
-npm install gulp-replace
+npm install gulp-series
+npm install gulp-prettify
 npm install gulp-rimraf
-var gulps = require("gulp-series");
-var prettify = require('gulp-prettify');
 */
 var gulp = require('gulp');
 var del = require('del');
-var replace = require('gulp-replace');
 var ui5preload = require('gulp-ui5-preload');
 var uglify = require('gulp-uglify');
 var minify = require('gulp-minify');
 var prettydata = require('gulp-pretty-data');
 var gulpif = require('gulp-if');
+var replace = require('gulp-replace');
 rm = require('gulp-rimraf');
+
 var gulps = require("gulp-series");
 var prettify = require('gulp-prettify');
 
@@ -34,7 +34,7 @@ gulp.task('build', ['copiaConteudoWeb']);
 //    gulp.watch('app/**/*', ['build']);
 //});
 
-gulp.task('default', ['1compres','2ui5preloadCompresed','3prepareComponentPreload','4deleteCleanDist']);
+gulp.task('default', ['clean', '1compres', '2ui5preloadCompresed', '3prepareComponentPreload', '4deleteCleanDist']);
 
 gulp.task('copiaConteudoWeb', function () {
     del(['build/**/*']).then(function (erro) {
@@ -60,7 +60,7 @@ gulp.task(
     function () {
         return gulp.src(
             [
-                './**/**.+(js|xml)',
+                'app/**/**.+(js|xml)',
                 '!Component-preload.js',
                 '!gulpfile.js',
                 '!WEB-INF/web.xml',
@@ -69,7 +69,7 @@ gulp.task(
                 '!resources/**'
             ]
         )
-            .pipe(gulpif('./**/*.js', uglify())) //only pass .js files to uglify
+            .pipe(gulpif('app/**/*.js', uglify())) //only pass .js files to uglify
             //.pipe(gulpif('**/*.xml', prettydata({type: 'minify'}))) // only pass .xml to prettydata
             .pipe(ui5preload({
                 base: './',
@@ -84,7 +84,7 @@ gulp.task(
 gulp.task('1compres', function () {
     return gulp.src(
         [
-            './**/**.+(js|xml)',
+            'app/**/**.+(js|xml)',
             '!Component-preload.js',
             '!gulpfile.js',
             '!distTmp/',
@@ -96,7 +96,7 @@ gulp.task('1compres', function () {
     )
         .pipe(minify({
             ext: {
-                src: '.dbg.js',
+                src: '.js',
                 min: '.js'
             },
             exclude: ['tasks'],
@@ -120,10 +120,10 @@ gulp.task(
                 '!resources/**'
             ]
         )
-            .pipe(gulpif('./**/*.js', uglify())) //only pass .js files to uglify
+            .pipe(gulpif('app/**/*.js', uglify())) //only pass .js files to uglify
             //.pipe(gulpif('**/*.xml', prettydata({type: 'minify'}))) // only pass .xml to prettydata
             .pipe(ui5preload({
-                base: './',
+                base: 'app/',
                 namespace: your_project,
                 fileName: 'Component-preload.js'
 
@@ -136,11 +136,15 @@ gulp.task('3prepareComponentPreload', ['2ui5preloadCompresed'], function () {
     return gulp.src(['Component-preload.js'])
         .pipe(replace('/distTmp/', '/'))
         .pipe(replace("http://localhost:58761/odata/", 'http://tradelog.me/servico/odata/'))
-        .pipe(gulp.dest('.'));
+        .pipe(gulp.dest('app'));
 
 });
 
 gulp.task('4deleteCleanDist', ['3prepareComponentPreload'], function () {
+    return del('./distTmp', { force: true });
+});
+
+gulp.task('clean', function () {
     return del('./distTmp', { force: true });
 });
 
