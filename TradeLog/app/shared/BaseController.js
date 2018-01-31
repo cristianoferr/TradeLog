@@ -59,7 +59,7 @@ sap.ui.define(
                 if (chave === false) return this.traduzChave("nao");
                 if (chave === true) return this.traduzChave("sim");
                 if (chave == "" || chave == null) return "";
-                return this.getView().getModel("i18n").getProperty(chave);
+                return this.getOwnerComponent().getModel("i18n").getProperty(chave);
             },
 
             /**
@@ -113,6 +113,8 @@ sap.ui.define(
                     this.addOnChangeToInput(_oInput);
                 }
                 var val = _oInput.getValue();
+                val = val.replace(",", ".");
+                //substitui tudo que não for número nem ponto por vazio
                 val = val.replace(/[^0-9\.]+/g, '');
                 var contaPonto = val.split(".").length - 1;
                 if (contaPonto > 1) val = val.replace(".", "");
@@ -124,7 +126,6 @@ sap.ui.define(
                 }
 
                 _oInput.setValue(val);
-                console.log("inputFloat:" + val + " || " + _oInput.getValue());
             },
             checkFloat: function (oEvent) {
                 this.inputFloat(oEvent);
@@ -135,7 +136,6 @@ sap.ui.define(
                 if (val == "") val = "0.0";
 
                 _oInput.setValue(val);
-                console.log("checkFloat:" + val + " || " + _oInput.getValue());
             },
 
             /**

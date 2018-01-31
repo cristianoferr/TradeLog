@@ -1,25 +1,355 @@
+Tarefas:
+- Adicionar campo ValorMovimentado na Carteira e somar tudo o que for depositado e retirado.
+    O resultado da carteira é calculado pegando
+- input: ver uma forma de adicionar/diminuir valores float usando seta para cima e para baixo
+ok input: trocar virgula por ponto automaticamente
+- posicao: somar todos os custos em um campo e subtrair esse campo da 'situação'
 
 
-Pegar o dado: /api/{Dado}/get/{id}
+---
 
-Carteira:
-/api/Carteira/get/{id} = /api/Carteira/{id} < retorna os dados da carteira atual = /odata/Carteira?id=1
-/api/Carteira = retorna todas as carteiras do usuário atual  = /odata/Carteira
+--
 
-Posicao:
-Listar as posições da carteira: /api/Posicao/Carteira/{idCarteira} = /odata/Posicao?idCarteira=1
-/api/Posicao/get/{IdPosicao} = /odata/Posicao?id=1
+Carousel
+				id="carrossel"
+				class="sapUiResponsiveContentPadding imagemRodapeInformativo"
+				loop="true"
+				>
+				<pages>
+	            	<html:div>
+						<Text text="Bem-vindo ao aplicativo de consulta contratual." class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
+	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+	            			<html:tr>
+	            				<html:td class="textoCarrossel">
+									<Text text="Aqui você tem acesso às informações dos contratos sob sua responsabilidade\n\n
+				            					a qualquer hora, em qualquer lugar.\n\n
+				            					Confira os dados de:\n\n
+				            					- Aditivos\n\n
+				            					- Fiscais\n\n
+				            					- Saldos\n\n
+				            					- Custos Complementares\n\n
+				            					- Medições\n\n
+				            					- Multas\n
+				            					"
+				            		/>
+	            				</html:td>
+	            			</html:tr>
+	            		</html:table>
+	            	</html:div>
+	            	<html:div>
+		            	<Text text="Busca por Chave" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
+	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+	            			<html:tr>
+	            				<html:td class="textoCarrossel">
+				            		<Text text="Você também pode ver os contratos de outros gerentes ou fiscais.\n\n
+												Para isto, basta acionar o ícone localizado no canto superior direito.\n\n
+												Neste caso, basta informar a chave, parte do nome ou estrutura e acionar a lupa.
+												"
+									/>
+	            				</html:td>
+	            				<html:td>
+									<Image class="sapUiSmallMarginBegin" src="img/informativo/busca-01.png" />
+	            				</html:td>
+	            			</html:tr>
+	            		</html:table>
+	            	</html:div>
+	            	<html:div>
+						<Text text="Busca por Fornecedor" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
+	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+	            			<html:tr>
+	            				<html:td class="textoCarrossel">
+				            		<Text text="Você também pode ver os contratos de fornecedores específicos.\n\n
+				            					Neste caso, utilize a mesma popup de busca e selecione aba Fornec.\n\n
+				            					Basta informar parte do nome, Código, CPF ou CNPJ do fornecedor e acionar a lupa.\n\n
+				            					Será exibia a lista dos fornecedores encontrados com o termo informado.\n\n
+				            					Selecione o fornecedor desejado e acione a ação 'Buscar'\n
+				            					ou a 'Estrela' para que o mesmo seja adicionado aos seus favoritos.
+				            					"
+				            		/>
+	            				</html:td>
+	            				<html:td>
+									<Image class="sapUiSmallMarginBegin" src="img/informativo/busca-02.png" />
+	            				</html:td>
+	            			</html:tr>
+	            		</html:table>
+	            	</html:div>
+	            	<html:div>
+		            	<Text text="Busca por Contrato" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
+	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+	            			<html:tr>
+	            				<html:td class="textoCarrossel">
+				            		<Text text="Você também pode ver os contratos por parte do número.\n\n
+				            					Utilize a mesma popup de busca e selecione aba Contrato.\n
+				            					Informe a parte do número do contrato que lembrar e \n
+				            					acione o botão 'Buscar'.\n\n
+				            					Mas atenção!\n\n
+				            					Para adicionar o contrato aos favoritos é necessário informar o número do contrato por completo.
+				            					"
+				            		/>
+	            				</html:td>
+	            				<html:td>
+									<Image class="sapUiSmallMarginBegin" src="img/informativo/busca-03.png" />
+	            				</html:td>
+	            			</html:tr>
+	            		</html:table>
+	            	</html:div>
 
+					<html:div>
+		            	<Text text="Favoritar um contrato" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
+	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+	            			<html:tr>
+	            				<html:td class="textoCarrossel">
+				            		<Text text="Utilize a estrela no rodapé da aplicação para favoritar seus contratos mais consultados.\nTambém é
+									possível favoritar um contrato pelo ICJ, gerência, fornecedor ou pelo gerente do contrato."
+				            		/>
+	            				</html:td>
+	            				<html:td>
+									<Image class="sapUiSmallMarginBegin" src="img/informativo/favoritar.png" />
+	            				</html:td>
+	            			</html:tr>
+	            		</html:table>
+	            	</html:div>
 
+	            	<html:div>
+		            	<Text text="Busca por Favoritos" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
+	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+	            			<html:tr>
+	            				<html:td class="textoCarrossel">
+				            		<Text text="Nesta aba você encontrará todos os favoritos adiconados\n
+				            					a partir do acionamento da estrela no rodapé das abas anteriores.
+				            					"
+				            		/>
+	            				</html:td>
+	            				<html:td>
+									<Image class="sapUiSmallMarginBegin" src="img/informativo/busca-04.png" />
+	            				</html:td>
+	            			</html:tr>
+	            		</html:table>
+	            	</html:div>
 
+	            </pages>
+            </Carousel>
 
-	myNavToWithoutHash: function(oOptions, callback) {
-		var oSplitApp = this._findSplitApp(oOptions.currentView);
-		var oView     = this.getView(oOptions.targetViewName, oOptions.targetViewType);
-		oSplitApp.addPage(oView, oOptions.isMaster);
-		oSplitApp.to(oView.getId(), oOptions.transition || "show", oOptions.data);
-
-		if (callback) {
-			callback(oView);
-		}
+	onInit: function() {
+		var that = this;
+		setInterval(function(){
+			var carrossel = that.getView().byId("carrossel");
+			if (carrossel) {
+				carrossel.next();
+			}
+		}, 60000);
 	},
+
+
+---------
+{
+    "_version": "1.1.0",
+    "sap.app": {
+        "_version": "1.1.0",
+        "id": "meuscontratos",
+        "type": "application",
+        "title": "{{app_title}}",
+        "i18n": "i18n/messageBundle.properties",
+        "description": "{{app_description}}",
+        "applicationVersion": {
+            "version": "1.1.0"
+        }
+    },
+    "sap.ui": {
+        "_version": "1.1.0",
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_bluecrystal"
+        ]
+    },
+    "sap.ui5": {
+        "_version": "1.1.0",
+        "rootView": "br.com.petrobras.mm.documentos.view.MasterApp",
+        "dependencies": {
+            "minUI5Version": "1.30",
+            "libs": {
+                "sap.m": {}
+            }
+        },
+        "customizing": {
+            "sap.ui.controllerExtensions": {
+                "br.com.petrobras.mm.documentos.controller.base.MasterBase": {
+                    "controllerName": "br.com.petrobras.mm.documentos.pedidos.controller.Master"
+                },
+                "br.com.petrobras.mm.documentos.controller.base.DetailBase": {
+                    "controllerName": "br.com.petrobras.mm.documentos.contratos.controller.BaseDetail"
+                },
+                "br.com.petrobras.mm.documentos.controller.base.ControlerBase": {
+                    "controllerName": "br.com.petrobras.mm.documentos.contratos.controller.BaseController"
+                }
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "br.com.petrobras.mm.documentos.i18n.messageBundle"
+                }
+            }
+        },
+        "config": {
+            "resourceBundle": "i18n/messageBundle.properties",
+            "serviceConfig": {
+                "srvRootUrl": "/sap/opu/odata/sap/"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "br.com.petrobras.mm.documentos.MyRouter",
+                "viewType": "XML",
+                "viewPath": "br.com.petrobras.mm.documentos.view",
+                "targetAggregation": "pages",
+                "clearTarget": false,
+                "transition": "slide"
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "launch",
+                    "view": "Launch",
+                    "viewLevel": 0,
+                    "targetControl": "masterAppView",
+                    "subroutes": [
+                        {
+                            "pattern": "Launch/{papel}",
+                            "name": "LaunchDetail",
+                            "view": "Launch",
+                            "viewLevel": 1
+                        }
+                    ]
+                },
+                {
+                    "pattern": "overview",
+                    "name": "overview",
+                    "view": "overview.Resumo",
+                    "viewLevel": 0,
+                    "targetControl": "masterAppView",
+                    "subroutes": [
+                        {
+                            "pattern": "overview/{numContrato}/linhasDeServicos",
+                            "name": "linhasDeServico",
+                            "view": "contratos.details.linhasDeServico.LinhasDeServico",
+                            "viewLevel": 1
+                        }
+                    ]
+                },
+                {
+                    "pattern": "App",
+                    "name": "app",
+                    "view": "App",
+                    "viewLevel": 1,
+                    "targetAggregation": "pages",
+                    "targetControl": "masterAppView",
+                    "subroutes": [
+                        {
+                            "pattern": "buscaDocumentos/{modo}/:papel:/{busca}",
+                            "name": "buscaDocumentos",
+                            "view": "contratos.Master",
+                            "viewLevel": 2,
+                            "targetAggregation": "masterPages",
+                            "targetControl": "idAppControl"
+                        },
+                        {
+                            "pattern": "DocumentosGerente",
+                            "name": "DocumentosGerente",
+                            "view": "contratos.Master",
+                            "viewLevel": 2,
+                            "targetAggregation": "masterPages",
+                            "targetControl": "idAppControl"
+                        },
+                        {
+                            "pattern": "DocumentosFiscal",
+                            "name": "DocumentosFiscal",
+                            "view": "contratos.Master",
+                            "viewLevel": 2,
+                            "targetAggregation": "masterPages",
+                            "targetControl": "idAppControl"
+                        },
+                        {
+                            "pattern": "DocumentosDiligenciador",
+                            "name": "DocumentosDiligenciador",
+                            "view": "contratos.Master",
+                            "viewLevel": 2,
+                            "targetAggregation": "masterPages",
+                            "targetControl": "idAppControl"
+                        },
+                        {
+                            "pattern": "Favoritos/:opc:",
+                            "name": "DocumentosFavoritos",
+                            "view": "contratos.Master",
+                            "viewLevel": 2,
+                            "targetAggregation": "masterPages",
+                            "targetControl": "idAppControl"
+                        },
+                        {
+                            "pattern": "documentos/{papel}",
+                            "name": "documento",
+                            "view": "contratos.Master",
+                            "viewLevel": 2,
+                            "targetAggregation": "masterPages",
+                            "targetControl": "idAppControl",
+                            "subroutes": [
+                                {
+                                    "pattern": "contrato/{entity}/detail",
+                                    "name": "contratoDetail",
+                                    "view": "contratos.details.Detail",
+                                    "viewLevel": 3,
+                                    "targetAggregation": "detailPages",
+                                    "subroutes": [
+                                        {
+                                            "pattern": "contrato/{entity}/detail/{itemEntity}",
+                                            "name": "contratoItemDetail",
+                                            "view": "contratos.details.ItemDetail",
+                                            "viewLevel": 4,
+                                            "targetAggregation": "detailPages"
+                                        },
+                                        {
+                                            "pattern": "contrato/{entity}/HistoricoMedicoes",
+                                            "name": "historicoMedicoes",
+                                            "view": "contratos.details.HistoricoMedicoes",
+                                            "viewLevel": 4,
+                                            "targetAggregation": "detailPages"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "pattern": "pedido/{entity}/detail",
+                                    "name": "pedidoDetail",
+                                    "view": "pedidos.details.PedidoDetail",
+                                    "viewLevel": 3,
+                                    "targetAggregation": "detailPages",
+                                    "subroutes": [
+                                        {
+                                            "pattern": "pedido/{entity}/detail/{itemEntity}",
+                                            "name": "pedidoItemDetail",
+                                            "view": "pedidos.details.itens.ItemPedido",
+                                            "viewLevel": 4,
+                                            "targetAggregation": "detailPages"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
