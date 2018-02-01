@@ -1,6 +1,7 @@
 <mvc:View
 	id="appView"
 	xmlns:mvc="sap.ui.core.mvc"
+     controllerName="tradelog.layout.App"
 	xmlns="sap.m"
 	displayBlock="true">
 	<App id="App" />

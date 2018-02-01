@@ -1,24 +1,27 @@
+
+/**
+   * Carrega módulos externos ao OPENI5 para serem utilizados na aplicação. Vai ser executada logo após sua definição.
+   */
+(function carregarModulos() {
+    jQuery.sap.registerModulePath('DialogoCarteira', 'business/DialogoCarteira');
+    jQuery.sap.registerModulePath('DialogoPosicao', 'business/DialogoPosicao');
+    jQuery.sap.registerModulePath('ServicoCarteira', 'business/ServicoCarteira');
+    jQuery.sap.registerModulePath('ServicoAutenticacaoGoogle', 'business/ServicoAutenticacaoGoogle');
+    jQuery.sap.registerModulePath('ServicoUsuario', 'business/ServicoUsuario');
+})();
+
+
 sap.ui.define([
     'sap/ui/core/UIComponent',
     'sap/ui/model/json/JSONModel',
     'tradelog/shared/LocalStorageModel',
     'jquery.sap.global',
     'tradelog/shared/models'
+
 ], function (UIComponent, JSONModel, LocalStorageModel, $, models) {
 
     "use strict";
 
-
-    /**
-       * Carrega módulos externos ao OPENI5 para serem utilizados na aplicação. Vai ser executada logo após sua definição.
-       */
-    (function carregarModulos() {
-        jQuery.sap.registerModulePath('DialogoCarteira', 'business/DialogoCarteira');
-        jQuery.sap.registerModulePath('DialogoPosicao', 'business/DialogoPosicao');
-        jQuery.sap.registerModulePath('ServicoCarteira', 'business/ServicoCarteira');
-        jQuery.sap.registerModulePath('ServicoAutenticacaoGoogle', 'business/ServicoAutenticacaoGoogle');
-        jQuery.sap.registerModulePath('ServicoUsuario', 'business/ServicoUsuario');
-    })();
 
     return UIComponent.extend("tradelog.Component", {
 
@@ -30,17 +33,13 @@ sap.ui.define([
             // call overwritten init (calls createContent)
             sap.ui.getCore().getConfiguration().setLanguage("en-US");
             UIComponent.prototype.init.apply(this, arguments);
-            this.getRouter().attachTitleChanged(function (oEvent) {
-                var sTitle = oEvent.getParameter("title");
-                $(document).ready(function () {
-                    document.title = sTitle;
-                });
-            });
 
             // set the device model
             this.setModel(models.createDeviceModel(), "device");
 
             this.getRouter().initialize();
+
+
         },
 
         myNavBack: function () {

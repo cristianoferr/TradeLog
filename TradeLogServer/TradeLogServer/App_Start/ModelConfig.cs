@@ -41,6 +41,7 @@ namespace TradeLogServer.App_Start
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Posicao").ReturnsFromEntitySet<Posicao>("Posicao");
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Movimento").ReturnsFromEntitySet<Movimento>("Movimento");
             builder.EntitySet<Posicao>("Posicao").EntityType.Function("Trade").ReturnsFromEntitySet<Trade>("Trade");
+            builder.EntitySet<Papel>("Papel").EntityType.Function("Posicao").ReturnsFromEntitySet<Posicao>("Posicao");
 
             //método chamado para atualizar os valores
             builder.EntitySet<Papel>("Papel").EntityType.Function("UpdateValores").Returns<String>();
@@ -55,6 +56,7 @@ namespace TradeLogServer.App_Start
             RegistaPropriedadesPosicao(builder);
             RegistraPropriedadesCarteira(builder);
             RegistraPropriedadesTrade(builder);
+            RegistraPropriedadesPapel(builder);
             builder.EntityType<Movimento>().Property(a => a.CodigoPapel);
 
             builder.Namespace = "TradeLogServer.Controllers";
@@ -64,9 +66,15 @@ namespace TradeLogServer.App_Start
             return model;
         }
 
-        private static void RegistraPropriedadesTrade(ODataModelBuilder builder)
+        private static void RegistraPropriedadesPapel(ODataModelBuilder builder)
+        {
+            builder.EntityType<Papel>().Property(a => a.PosicaoCount);
+        }
+
+            private static void RegistraPropriedadesTrade(ODataModelBuilder builder)
         {
             builder.EntityType<Trade>().Property(a => a.ValorTrade);
+            
         }
 
         private static void RegistraPropriedadesCarteira(ODataModelBuilder builder)

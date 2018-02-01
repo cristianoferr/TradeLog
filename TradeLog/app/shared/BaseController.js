@@ -36,7 +36,7 @@ sap.ui.define(
                 var jsonParameters = JSON.stringify(parameters);
 
                 var createPost = new XMLHttpRequest();
-                createPost.open("POST", this.getView().getModel().sServiceUrl + sServicePath, true);
+                createPost.open("POST", this.getOwnerComponent().getModel().sServiceUrl + sServicePath, true);
                 createPost.setRequestHeader("Accept", "application/json");
                 createPost.setRequestHeader("Content-Type", "application/json; charset=utf-8");
                 createPost.onreadystatechange = function (evt) {

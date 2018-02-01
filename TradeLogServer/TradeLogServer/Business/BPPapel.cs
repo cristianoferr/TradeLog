@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
@@ -13,15 +14,12 @@ namespace TradeLogServer.Business
     {
         internal string UpdateHistoricoDoPapel()
         {
-            string saida = "Updating:\n ";
-            IList<Papel> papeis = db.Papels.ToList();
-            foreach (Papel papel in papeis)
-            {
-                saida += papel.Codigo;
-                saida = UpdateHistorico(papel, saida);
-                saida += "\n";
-            }
 
+            DateTime limiteHora = DateTime.Now.Subtract(TimeSpan.FromHours(1));
+            IList<Papel> papeis = db.Papels.Where(x=>x.Posicao.Count>0 || x.LastUpdate < limiteHora).Include(x=>x.Posicao).ToList();
+
+            string saida = "Atualizando os papeis em...<br> Updating:\n ";
+            saida = UpdatePapeis(saida,papeis);
             try
             {
                 db.SaveChanges();
@@ -34,6 +32,18 @@ namespace TradeLogServer.Business
             return saida;
         }
 
+        private string UpdatePapeis(string saida,IList<Papel> papeis)
+        {
+            
+            foreach (Papel papel in papeis)
+            {
+                saida += papel.Codigo;
+                saida = UpdateHistorico(papel, saida);
+                saida += "\n";
+            }
+
+            return saida;
+        }
 
         private string UpdateHistorico(Papel papel, string saida)
         {
