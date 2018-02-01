@@ -109,14 +109,14 @@ gulp.task('1compres', function () {
 });
 
 gulp.task('build', function () {
-    runSequence('clean', 'copiaMinifica', function () {
-        runSequence('geraComponentPreload', '3prepareComponentPreload');
-        console.log("fim");
-    });
-
+    runSequence('clean', 'copiaMinificada');
 });
 
-gulp.task('copiaMinifica', function () {
+gulp.task('buildPreload', function () {
+    runSequence('geraComponentPreload', 'prepareComponentPreload');
+});
+
+gulp.task('copiaMinificada', function () {
     gulp.src(['app/**/*'])
         .pipe(replace("http://localhost:58761/odata/", 'http://tradelog.me/servico/odata/'))
         .pipe(minify({
@@ -134,8 +134,7 @@ gulp.task('copiaMinifica2', function () {
             exclude: ['tasks'],
             ignoreFiles: ['-min.js']
         }))
-        .pipe(gulp.dest('build'))
-        .pipe(gulp.src(
+        .pipe(gulp.dest('build').pipe(gulp.src(
             [
                 'build/**/**.+(*-min.js)',
                 'build/**/**+(*-min.js)',
@@ -148,12 +147,13 @@ gulp.task('copiaMinifica2', function () {
             //.pipe(gulpif('build/**/*.js', uglify())) //only pass .js files to uglify
             //.pipe(gulpif('**/*.xml', prettydata({type: 'minify'}))) // only pass .xml to prettydata
             .pipe(ui5preload({
-                base: 'build/',
+                base: './',
                 namespace: your_project,
-                fileName: 'build/Component-preload.js'
+                fileName: './Component-preload.js'
 
             }))
-            .pipe(gulp.dest('./')));
+            .pipe(gulp.dest('build'))))
+        ;
 
 
 });
@@ -186,7 +186,7 @@ gulp.task(
 );
 
 //substitui caminhos invalidos
-gulp.task('3prepareComponentPreload', function () {
+gulp.task('prepareComponentPreload', function () {
     return gulp.src(['build/Component-preload.js'])
         .pipe(replace('../build/', ''))
         .pipe(replace('-min.js":', '.js":'))
