@@ -10,10 +10,12 @@
 
 
     function signOut() {
+        if (!gapi) return;
         gapi.auth2.getAuthInstance().signOut();
     }
 
     function signIn() {
+        if (!gapi) return;
         gapi.auth2.getAuthInstance().signIn();
     }
 

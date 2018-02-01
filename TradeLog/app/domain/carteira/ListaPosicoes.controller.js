@@ -79,13 +79,7 @@ sap.ui.define([
         },
 
         retirarValorCarteira: function (valor, descricaoMovimento) {
-            var parameters = {
-                "IdCarteira": this.viewData.idCarteira,
-                "valor": valor,
-                "descricao": descricaoMovimento
-            };
-            var sServiceUrl = `Carteira/TradeLogServer.Controllers.RetiraFundos`;
-            this.postData(sServiceUrl, parameters, this.sucessoTransferencia.bind(this), this.errorTransferencia.bind(this));
+            servicoCarteira.retiraValorCarteira.call(this, valor, descricaoMovimento);
         },
 
         onDialogAddFunds: function (evt) {

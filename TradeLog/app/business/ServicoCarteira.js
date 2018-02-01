@@ -19,6 +19,17 @@
         this.postData(sServiceUrl, parameters, sucessoTransferencia.bind(this), errorTransferencia.bind(this));
     }
 
+    /*Executa chamada ao backend que remove fundos da carteira */
+    function retiraValorCarteira(valor, descricaoMovimento) {
+        var parameters = {
+            "IdCarteira": this.viewData.idCarteira,
+            "valor": valor,
+            "descricao": descricaoMovimento
+        };
+        var sServiceUrl = `Carteira/TradeLogServer.Controllers.RetiraFundos`;
+        this.postData(sServiceUrl, parameters, sucessoTransferencia.bind(this), errorTransferencia.bind(this));
+    }
+
 
     /*Executa a chamada ao backend que cria a Posição (executa o Trade) a partir dos parâmetros indicados */
     function criaPosicao(data) {

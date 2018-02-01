@@ -77,7 +77,7 @@ sap.ui.define([
              */
             showFormFragment: function (sFragmentName) {
                 var oPage = this.getView().byId(this.nomePainel);
-
+                if (!oPage) return;
                 oPage.removeAllContent();
                 oPage.insertContent(this.getFormFragment("tradelog.domain." + this.domainAtual + ".fragments." + this.nomePainel + sFragmentName), 0);
             },

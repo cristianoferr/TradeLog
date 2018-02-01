@@ -1,7 +1,13 @@
 {
-"TipoOperacao":[
-    {"key":"C","text":"tipoOperacao.Compra"},
-    {"key":"V","text":"tipoOperacao.Venda"}
-]
-
+    "TipoOperacao": [
+        {
+            "key": "C",
+            "text": "tipoOperacao.Compra"
+        },
+        {
+            "key": "V",
+            "text": "tipoOperacao.Venda"
+        }
+    ],
+    "mostraImagens": false
 }

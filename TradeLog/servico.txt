@@ -12,137 +12,43 @@ ok input: trocar virgula por ponto automaticamente
 ---
 
 --
+server {
+        charset UTF-8;
+        listen 180;
+        root /html;
+        index index.html;
+        server_name myclient.com;
 
-<Carousel
-				id="carrossel"
-				class="sapUiResponsiveContentPadding imagemRodapeInformativo"
-				loop="true"
-				>
-				<pages>
-	            	<html:div>
-						<Text text="Bem-vindo ao aplicativo de consulta contratual." class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
-	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
-	            			<html:tr>
-	            				<html:td class="textoCarrossel">
-									<Text text="Aqui você tem acesso às informações dos contratos sob sua responsabilidade\n\n
-				            					a qualquer hora, em qualquer lugar.\n\n
-				            					Confira os dados de:\n\n
-				            					- Aditivos\n\n
-				            					- Fiscais\n\n
-				            					- Saldos\n\n
-				            					- Custos Complementares\n\n
-				            					- Medições\n\n
-				            					- Multas\n
-				            					"
-				            		/>
-	            				</html:td>
-	            			</html:tr>
-	            		</html:table>
-	            	</html:div>
-	            	<html:div>
-		            	<Text text="Busca por Chave" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
-	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
-	            			<html:tr>
-	            				<html:td class="textoCarrossel">
-				            		<Text text="Você também pode ver os contratos de outros gerentes ou fiscais.\n\n
-												Para isto, basta acionar o ícone localizado no canto superior direito.\n\n
-												Neste caso, basta informar a chave, parte do nome ou estrutura e acionar a lupa.
-												"
-									/>
-	            				</html:td>
-	            				<html:td>
-									<Image class="sapUiSmallMarginBegin" src="img/informativo/busca-01.png" />
-	            				</html:td>
-	            			</html:tr>
-	            		</html:table>
-	            	</html:div>
-	            	<html:div>
-						<Text text="Busca por Fornecedor" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
-	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
-	            			<html:tr>
-	            				<html:td class="textoCarrossel">
-				            		<Text text="Você também pode ver os contratos de fornecedores específicos.\n\n
-				            					Neste caso, utilize a mesma popup de busca e selecione aba Fornec.\n\n
-				            					Basta informar parte do nome, Código, CPF ou CNPJ do fornecedor e acionar a lupa.\n\n
-				            					Será exibia a lista dos fornecedores encontrados com o termo informado.\n\n
-				            					Selecione o fornecedor desejado e acione a ação 'Buscar'\n
-				            					ou a 'Estrela' para que o mesmo seja adicionado aos seus favoritos.
-				            					"
-				            		/>
-	            				</html:td>
-	            				<html:td>
-									<Image class="sapUiSmallMarginBegin" src="img/informativo/busca-02.png" />
-	            				</html:td>
-	            			</html:tr>
-	            		</html:table>
-	            	</html:div>
-	            	<html:div>
-		            	<Text text="Busca por Contrato" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
-	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
-	            			<html:tr>
-	            				<html:td class="textoCarrossel">
-				            		<Text text="Você também pode ver os contratos por parte do número.\n\n
-				            					Utilize a mesma popup de busca e selecione aba Contrato.\n
-				            					Informe a parte do número do contrato que lembrar e \n
-				            					acione o botão 'Buscar'.\n\n
-				            					Mas atenção!\n\n
-				            					Para adicionar o contrato aos favoritos é necessário informar o número do contrato por completo.
-				            					"
-				            		/>
-	            				</html:td>
-	            				<html:td>
-									<Image class="sapUiSmallMarginBegin" src="img/informativo/busca-03.png" />
-	            				</html:td>
-	            			</html:tr>
-	            		</html:table>
-	            	</html:div>
+        location /resources {
+        	alias "G:/sap/resources/1.44.16";
 
-					<html:div>
-		            	<Text text="Favoritar um contrato" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
-	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
-	            			<html:tr>
-	            				<html:td class="textoCarrossel">
-				            		<Text text="Utilize a estrela no rodapé da aplicação para favoritar seus contratos mais consultados.\nTambém é
-									possível favoritar um contrato pelo ICJ, gerência, fornecedor ou pelo gerente do contrato."
-				            		/>
-	            				</html:td>
-	            				<html:td>
-									<Image class="sapUiSmallMarginBegin" src="img/informativo/favoritar.png" />
-	            				</html:td>
-	            			</html:tr>
-	            		</html:table>
-	            	</html:div>
+        	 #       proxy_pass https://busypd.petrobras.com.br/sap/bc/ui5_ui5/sap/y_sapui5mc_cmm4/resources;
 
-	            	<html:div>
-		            	<Text text="Busca por Favoritos" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
-	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
-	            			<html:tr>
-	            				<html:td class="textoCarrossel">
-				            		<Text text="Nesta aba você encontrará todos os favoritos adiconados\n
-				            					a partir do acionamento da estrela no rodapé das abas anteriores.
-				            					"
-				            		/>
-	            				</html:td>
-	            				<html:td>
-									<Image class="sapUiSmallMarginBegin" src="img/informativo/busca-04.png" />
-	            				</html:td>
-	            			</html:tr>
-	            		</html:table>
-	            	</html:div>
+        }
 
-	            </pages>
-            </Carousel>
+         location / {
+        	alias "G:\\sap\\git_forge\\sapui5mc\\WebContent\\";
+        }
 
-	onInit: function() {
-		var that = this;
-		setInterval(function(){
-			var carrossel = that.getView().byId("carrossel");
-			if (carrossel) {
-				carrossel.next();
-			}
-		}, 60000);
-	},
+        location /sap {
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-NginX-Proxy true;
 
+                proxy_pass https://busypd.petrobras.com.br/sap;
+                proxy_ssl_session_reuse off;
+
+				#dHN0XzA0OnBldHJvQjA0 = tst_04:petroB04 em base64   : base64encode.org
+				proxy_set_header Authorization "Basic dHN0XzA0OnBldHJvQjA0";
+
+                proxy_set_header Host $http_host;
+                proxy_redirect off;
+        }
+
+        location ~ /\. {
+                deny all;
+        }
+	}
 
 ---------
 {

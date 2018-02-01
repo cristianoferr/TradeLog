@@ -37,14 +37,6 @@ sap.ui.define([
                 });
             });
 
-            /*//create and set cart model
-            var oCartModel = new LocalStorageModel("SHOPPING_CART", {
-                cartEntries: {},
-                savedForLaterEntries: {}
-            });
-
-            this.setModel(oCartModel, "cartProducts");*/
-
             // set the device model
             this.setModel(models.createDeviceModel(), "device");
 

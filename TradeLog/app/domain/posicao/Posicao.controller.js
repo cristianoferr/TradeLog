@@ -19,6 +19,14 @@ sap.ui.define([
                 var oComponent = this.getOwnerComponent();
                 this._router = oComponent.getRouter();
                 this.getRouter().getRoute('posicao').attachMatched(this.onRouteMatched, this);
+                this.getRouter().attachRouteMatched(this.clearView, this);
+            },
+
+            clearView: function (evt) {
+                if (evt.mParameters.name == "posicao") return;
+                if (!this.currentView) return;
+                this.currentView.oParent.removeAllContent()
+                this.currentView = undefined;
             },
             /** Método chamado cada vez que o usuário acessa a tela
              * @function onRouteMatched
@@ -29,6 +37,7 @@ sap.ui.define([
                 this.viewData.posicaoAtual = evt.getParameter("arguments").posicao;
 
                 this.bindView(`/Posicao(${this.viewData.posicaoAtual})`);
+                this.currentView = this.getView();
 
             },
 

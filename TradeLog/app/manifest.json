@@ -125,8 +125,8 @@
                     "pattern": "",
                     "name": "home",
                     "target": [
-                        "home",
-                        "slider"
+                        "slider",
+                        "home"
                     ]
                 },
                 {
@@ -150,7 +150,6 @@
                     "name": "posicao",
                     "target": [
                         "cabecalhoCarteira",
-                        "carteira",
                         "posicao"
                     ]
                 },
@@ -169,18 +168,21 @@
                     "viewPath": "tradelog.layout",
                     "viewName": "masterDetailSimplesSplit"
                 },
-                "home_old": {
-                    "viewName": "Home",
-                    "viewLevel": 1,
-                    "viewPath": "tradelog.domain.home"
-                },
                 "home": {
                     "viewName": "Home",
                     "viewLevel": 1,
-                    "controlAggregation": "masterPages",
                     "parent": "masterDetailSimplesSplitApp",
                     "controlId": "masterDetailSimplesSplitAppId",
+                    "controlAggregation": "masterPages",
                     "viewPath": "tradelog.domain.home"
+                },
+                "slider": {
+                    "viewLevel": 1,
+                    "viewPath": "tradelog.domain.home",
+                    "parent": "masterDetailSimplesSplitApp",
+                    "controlId": "masterDetailSimplesSplitAppId",
+                    "controlAggregation": "detailPages",
+                    "viewName": "Slide"
                 },
                 "listaCarteiras": {
                     "parent": "masterDetailSimplesSplitApp",
@@ -229,14 +231,6 @@
                     "controlId": "masterDetailSimplesSplitAppId",
                     "controlAggregation": "detailPages",
                     "viewName": "ListaPapel"
-                },
-                "slider": {
-                    "viewLevel": 1,
-                    "viewPath": "tradelog.domain.home",
-                    "parent": "masterDetailSimplesSplitApp",
-                    "controlId": "masterDetailSimplesSplitAppId",
-                    "controlAggregation": "detailPages",
-                    "viewName": "Slide"
                 }
             }
         }

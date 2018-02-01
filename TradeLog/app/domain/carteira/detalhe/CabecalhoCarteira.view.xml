@@ -5,14 +5,13 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
     >
-    <Page id="CabecalhoCarteiraPage"  class="sapUiStdPage sapUiNoMargin MasterButton" navButtonPress="onPressBack" showNavButton="{device>/isPhone}" title= "{i18n>carteira.tituloDetalhe}">
+    <Page id="CabecalhoCarteiraPage"  class="sapUiStdPage sapUiNoMargin MasterButton" navButtonPress="onPressBack" showNavButton="{device>/isPhone}" title= "{NomeCarteira}">
         <headerContent>
 			<Image class="imagemCabecalho" src="content/images/marca.png" />
 			<Image class="logoCabecalho"   src="content/images/logo.png" />
             <mvc:XMLView viewName="tradelog.domain.login.LoggedUser"></mvc:XMLView>
 		</headerContent>
             <ObjectHeader id="oh1"
-                            title= "{NomeCarteira}"
                             visible="{device>/isNoPhone}"
                             number="{path:'ValorAtual', formatter:'.formatter.formataValor'}"
 						numberUnit="$"

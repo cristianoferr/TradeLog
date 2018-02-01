@@ -16,6 +16,7 @@ sap.ui.define([
 
             onSelecionaMenu: function (evt) {
                 var rota = evt.mParameters.listItem.data("rota");
+                evt.mParameters.listItem.setSelected(false);
                 this.navegaParaRota(rota);
             }
 

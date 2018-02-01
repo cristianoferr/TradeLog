@@ -19,6 +19,10 @@ sap.ui.define([
                 this.getRouter().getRoute('carteira').attachMatched(this.onRouteMatched, this);
             },
 
+            onPressBack: function () {
+                this.navegaParaRota("carteiras");
+            },
+
 
             /** Método chamado cada vez que o usuário acessa a tela
              * @function onRouteMatched
@@ -37,7 +41,7 @@ sap.ui.define([
             bindView: function (sEntityPath) {
                 this.viewData.bindPath = sEntityPath;
                 this.getView().byId("CabecalhoCarteiraPage").bindElement(sEntityPath);
-                sap.ui.cabecalhoPage=this.getView().byId("CabecalhoCarteiraPage");
+                sap.ui.cabecalhoPage = this.getView().byId("CabecalhoCarteiraPage");
 
 
                 var viewModel = new sap.ui.model.json.JSONModel(this.viewData, true);

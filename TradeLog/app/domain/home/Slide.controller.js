@@ -16,7 +16,7 @@ sap.ui.define([
                     if (carrossel) {
                         carrossel.next();
                     }
-                }, 6000);
+                }, 60000);
             },
 
 

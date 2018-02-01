@@ -53,7 +53,7 @@ namespace TradeLogServer.Controllers
         [HttpPost]
         public IHttpActionResult RetiraFundos(ODataActionParameters parameters)
         {
-            string saida = "Fundos Depositados:" + parameters["valor"] + "  com descricao: " + parameters["descricao"];
+            string saida = "Fundos Retirados:" + parameters["valor"] + "  com descricao: " + parameters["descricao"];
             string err = "";
             bool resultado = bp.MovimentaFundo(out err, idUsuarioAtual, (int)parameters["IdCarteira"], -(float)parameters["valor"], (string)parameters["descricao"], null);
             return resultado ? (IHttpActionResult)Ok(saida) : (IHttpActionResult)BadRequest(err);
