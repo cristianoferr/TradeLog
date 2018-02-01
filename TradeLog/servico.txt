@@ -1,3 +1,6 @@
+alter table Carteira add TotalMovimentado decimal(14,6);
+update Carteira set TotalMovimentado=0;
+
 Tarefas:
 - Adicionar campo ValorMovimentado na Carteira e somar tudo o que for depositado e retirado.
     O resultado da carteira é calculado pegando
@@ -10,7 +13,7 @@ ok input: trocar virgula por ponto automaticamente
 
 --
 
-Carousel
+<Carousel
 				id="carrossel"
 				class="sapUiResponsiveContentPadding imagemRodapeInformativo"
 				loop="true"

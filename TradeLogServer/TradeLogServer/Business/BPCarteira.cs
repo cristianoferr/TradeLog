@@ -43,6 +43,8 @@ namespace TradeLogServer.Business
                 valor -= carteira.ValorLiquido;
                 carteira.ValorLiquido = 0;
             }
+            carteira.TotalMovimentado += valor;
+
 
             BPMovimento bpMovimento = new BPMovimento();bpMovimento.db = db;
 

@@ -1,6 +1,8 @@
 <core:View
     	xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
         xmlns:mvc="sap.ui.core.mvc"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+         controllerName="tradelog.domain.home.Slide"
     >
     <Page id="CabecalhoCarteiraPage"  class="sapUiStdPage " navButtonPress="onPressBack" showNavButton="{device>/isPhone}" title= "{i18n>appTitle}">
       <headerContent>
@@ -8,25 +10,81 @@
 			<Image class="logoCabecalho"   src="content/images/logo.png" />
             <mvc:XMLView viewName="tradelog.domain.login.LoggedUser"></mvc:XMLView>
 		</headerContent>
-		<SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" width="100%" height="100%" transitionTime="250" displayTime="2500">
-			<GenericTile
-				backgroundImage="test-resources/sap/m/demokit/sample/SlideTile/images/NewsImage1.png"
-				frameType="TwoByOne" press="pressOnTileOne">
-				<TileContent footer="August 21, 2016">
-					<NewsContent
-						contentText="Wind Map: Monitoring Real-Time and Forecasted Wind Conditions across the Globe"
-						subheader="Today, SAP News" />
-				</TileContent>
-			</GenericTile>
-			<GenericTile
-				backgroundImage="test-resources/sap/m/demokit/sample/SlideTile/images/NewsImage2.png"
-				frameType="TwoByOne" state="Failed">
-				<TileContent footer="August 21, 2016">
-					<NewsContent
-						contentText="SAP Unveils Powerful New Player Comparision Tool Exclusively on NFL.com"
-						subheader="Today, SAP News" />
-				</TileContent>
-			</GenericTile>
-		</SlideTile>
+		<Carousel
+				id="carrossel"
+				class="sapUiResponsiveContentPadding imagemRodapeInformativo"
+				loop="true"
+				>
+				<pages>
+	            	<html:div>
+						<Text text="Bem-vindo ao TradeLog!" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
+	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+	            			<html:tr>
+	            				<html:td class="textoCarrossel">
+									<Text text="Aqui você pode gerenciar a sua carteira de ações com facilidade\n\n
+				            					a qualquer hora, em qualquer lugar.\n\n
+				            					Você pode:\n\n
+				            					- Acompanhar suas posições\n\n
+				            					- Gerenciar o risco\n\n
+				            					- Saber a saúde das suas finanças\n\n
+				            					- Histórico de operações\n\n
+				            					"
+				            		/>
+	            				</html:td>
+	            			</html:tr>
+	            		</html:table>
+	            	</html:div>
+
+	            	<html:div>
+						<Text text="Gerenciamento de Carteira" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
+	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+	            			<html:tr>
+	            				<html:td class="textoCarrossel">
+				            		<Text text="
+				            					"
+				            		/>
+	            				</html:td>
+	            				<html:td>
+									<Image class="sapUiSmallMarginBegin" width="75%" height="75%" src="content/carrossel/carteira.png" />
+	            				</html:td>
+	            			</html:tr>
+	            		</html:table>
+	            	</html:div>
+
+	            	<html:div>
+		            	<Text text="Novo Trade" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
+	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+	            			<html:tr>
+	            				<html:td class="textoCarrossel">
+				            		<Text text="
+												"
+									/>
+	            				</html:td>
+	            				<html:td>
+									<Image class="sapUiSmallMarginBegin" width="75%" height="75%" src="content/carrossel/novo_trade.png" />
+	            				</html:td>
+	            			</html:tr>
+	            		</html:table>
+	            	</html:div>
+
+	            	<html:div>
+		            	<Text text="Fechando posição" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd sapMTitle sapMTitleStyleAuto"/>
+	            		<html:table class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd">
+	            			<html:tr>
+	            				<html:td class="textoCarrossel">
+				            		<Text text=""
+				            		/>
+	            				</html:td>
+	            				<html:td>
+									<Image class="sapUiSmallMarginBegin" width="75%" height="75%" src="content/carrossel/fecha_trade.png" />
+	            				</html:td>
+	            			</html:tr>
+	            		</html:table>
+	            	</html:div>
+
+
+
+	            </pages>
+            </Carousel>
     </Page>
 </core:View>
