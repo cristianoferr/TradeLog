@@ -15,8 +15,8 @@ namespace TradeLogServer.Business
         internal string UpdateHistoricoDoPapel()
         {
 
-            DateTime limiteHora = DateTime.Now.Subtract(TimeSpan.FromHours(1));
-            IList<Papel> papeis = db.Papels.Where(x=>x.Posicao.Count>0 || x.LastUpdate < limiteHora).Include(x=>x.Posicao).ToList();
+            DateTime limiteHora = DateTime.Now.Subtract(TimeSpan.FromHours(3));
+            IList<Papel> papeis = db.Papels.Where(x=>(x.Posicao.Where(a => a.FlagAtivo == "T").ToList().Count >0) || x.LastUpdate < limiteHora).Include(x=>x.Posicao).ToList();
 
             string saida = "Atualizando os papeis em...<br> Updating:\n ";
             saida = UpdatePapeis(saida,papeis);

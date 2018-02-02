@@ -63,16 +63,15 @@ namespace TradeLogServer.Controllers
         // GET: odata/Carteira(5)/Posicao
         [EnableQuery]
         [HttpGet]
-        [ODataRoute("Carteira({key})/TradeLogServer.Controllers.Posicao")]
+        [ODataRoute("Carteira({key})/Posicao")]
         public IQueryable<Posicao> Posicao([FromODataUri] int key)
         {
             return db.Posicoes.Where(posicao => posicao.IdCarteira==key && posicao.IdUsuario==idUsuarioAtual && posicao.FlagAtivo == "T").Include(p => p.Papel).Include(p => p.Trade);
         }
 
         // GET: odata/Carteira(5)/Movimento
-        [EnableQuery]
         [HttpGet]
-        [ODataRoute("Carteira({key})/TradeLogServer.Controllers.Movimento")]
+        //[ODataRoute("Carteira({key})/Movimento")]
         public IQueryable<Movimento> Movimento([FromODataUri] int key)
         {
             return db.Movimentoes.Where(movimento => movimento.IdCarteira == key && movimento.Carteira.IdUsuario == idUsuarioAtual).Include(p => p.Carteira).Include(p => p.Posicao.Papel).Include(p => p.Posicao.Trade);

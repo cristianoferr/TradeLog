@@ -31,7 +31,7 @@ namespace TradeLogServer.Controllers
 
         // GET: odata/Carteira(5)/Posicao
         [HttpGet]
-        [ODataRoute("Papel({key})/TradeLogServer.Controllers.UpdateValores")]
+       // [ODataRoute("Papel({key})/UpdateValores")]
         public IHttpActionResult UpdateValores([FromODataUri] int key)
         {
             if (key != 1443) return BadRequest("Wrong Key!");

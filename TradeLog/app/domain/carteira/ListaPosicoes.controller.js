@@ -39,7 +39,7 @@ sap.ui.define([
             this.viewData.bindPath = sEntityPath;
 
             var table = this.getView().byId("tablePosicao");
-            table.bindItems(sEntityPath + "/TradeLogServer.Controllers.Posicao", table.getBindingInfo("items").template.clone());
+            table.bindItems(sEntityPath + "/Posicao", table.getBindingInfo("items").template.clone());
 
             var viewModel = new sap.ui.model.json.JSONModel(this.viewData, true);
             this.getView().setModel(viewModel, "viewModel");

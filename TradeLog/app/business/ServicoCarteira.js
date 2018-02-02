@@ -15,7 +15,7 @@
             "valor": valor,
             "descricao": descricaoMovimento
         };
-        var sServiceUrl = `Carteira/TradeLogServer.Controllers.DepositaFundos`;
+        var sServiceUrl = `Carteira/DepositaFundos`;
         this.postData(sServiceUrl, parameters, sucessoTransferencia.bind(this), errorTransferencia.bind(this));
     }
 
@@ -26,7 +26,7 @@
             "valor": valor,
             "descricao": descricaoMovimento
         };
-        var sServiceUrl = `Carteira/TradeLogServer.Controllers.RetiraFundos`;
+        var sServiceUrl = `Carteira/RetiraFundos`;
         this.postData(sServiceUrl, parameters, sucessoTransferencia.bind(this), errorTransferencia.bind(this));
     }
 
@@ -44,7 +44,7 @@
             "IsClosing": data.isClosing || false
         };
 
-        var sServiceUrl = `Trade/TradeLogServer.Controllers.ExecutaTrade`;
+        var sServiceUrl = `Trade/ExecutaTrade`;
         this.postData(sServiceUrl, parameters, sucessoTrade.bind(this), errorTrade.bind(this));
     }
 

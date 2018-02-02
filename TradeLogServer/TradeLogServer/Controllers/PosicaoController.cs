@@ -36,7 +36,7 @@ namespace TradeLogServer.Controllers
         // GET: odata/Posicao(5)/Trade
         [EnableQuery]
         [HttpGet]
-        [ODataRoute("Posicao({key})/TradeLogServer.Controllers.Trade")]
+       // [ODataRoute("Posicao({key})/Trade")]
         public IQueryable<Trade> Trade([FromODataUri] int key)
         {
             return db.Trades.Where(trade => trade.IdPosicao== key && trade.Posicao.IdUsuario == idUsuarioAtual).Include(t => t.Posicao);

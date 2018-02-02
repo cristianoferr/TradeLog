@@ -21,6 +21,14 @@ namespace TradeLogServer.Models
         public ICollection<Posicao> Posicao { get; set; }
 
         [NotMapped]
+        public ICollection<Posicao> PosicaoAtiva { get
+            {
+                if (Posicao == null) return null;
+                return Posicao.Where(x => x.FlagAtivo == "T").ToList();
+            }
+        }
+
+        [NotMapped]
         public int PosicaoCount
         {
             get { if (Posicao == null) return 0;

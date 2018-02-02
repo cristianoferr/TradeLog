@@ -27,7 +27,7 @@
             verificaUsuario.call(this);
         } else if (sap.ui.userData.email) {
             console.log("ResponseURL não encontrado no cookie... requisitando ao backend");
-            autenticaUsuarioLogado();
+            autenticaUsuarioLogado.call(this);
         }
         sap.ui.userModel = new sap.ui.model.json.JSONModel(sap.ui.userData);
 
@@ -62,7 +62,7 @@
             sap.ui.userData.responseURL = responseURL;
             salvaCookie();
 
-            verificaUsuario();
+            verificaUsuario.call(this);
         }
 
         if (!sap.ui.mainModel) {
@@ -135,13 +135,14 @@
 
     function pegaSessionAtual(funcaoOk) {
         var createPost = new XMLHttpRequest();
+        var that = this;
         createPost.open("GET", ServicoUsuario.context.getModel("mainService").sServiceUrl, true);
         createPost.setRequestHeader("Accept", "application/json");
         createPost.setRequestHeader("Content-Type", "text/plain");
         createPost.onreadystatechange = function (evt) {
             if (createPost.readyState == 4 && createPost.status == 200) {
                 //model.sServiceUrl = createPost.responseURL;
-                funcaoOk(createPost.responseURL);
+                funcaoOk.call(that, createPost.responseURL);
             }
         };
         createPost.send();

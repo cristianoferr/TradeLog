@@ -7,7 +7,7 @@
     xmlns="sap.m"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     >
-    <Panel id="paginaPosicao"  class="sapUiStdPage MasterButton" navButtonPress="onPressBack" showNavButton="true" title="{i18n>posicao.detalhePosicao} - {CodigoPapel}">
+    <Panel id="paginaPosicao"  class="sapUiStdPage MasterButton"  headerText="{i18n>posicao.detalhePosicao} - {CodigoPapel}">
         <content>
         <mvc:XMLView viewName="tradelog.domain.posicao.fragments.DetalhePosicao"
                                 app:nomePainel="DetalhePosicao" app:domainAtual="posicao" app:entidade="{viewPosicao>/bindPathPosicao}" app:paramEntidade="posicao" ></mvc:XMLView>

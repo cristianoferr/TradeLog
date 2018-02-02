@@ -21,7 +21,6 @@
 					columnsXL="3"
 					columnsL="3"
 					columnsM="2"
-                    columnsS="1"
 					singleContainerFullSize="false" />
 			</f:layout>
 			<f:formContainers>

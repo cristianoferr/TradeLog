@@ -24,7 +24,7 @@ sap.ui.define([
                     "valorAcao": valorAcao,
                     "quantidadeFechada": quantidadeAtual
                 };
-                var sServiceUrl = `Posicao/TradeLogServer.Controllers.FechaPosicao`;
+                var sServiceUrl = `Posicao/FechaPosicao`;
                 this.postData(sServiceUrl, parameters, this.sucessoFechamento.bind(this), this.errorFechamento.bind(this));
             },
 
