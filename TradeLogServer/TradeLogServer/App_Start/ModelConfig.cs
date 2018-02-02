@@ -68,7 +68,6 @@ namespace TradeLogServer.App_Start
 
         private static void RegistraPropriedadesPapel(ODataModelBuilder builder)
         {
-            builder.EntityType<Papel>().Property(a => a.PosicaoCount);
         }
 
             private static void RegistraPropriedadesTrade(ODataModelBuilder builder)

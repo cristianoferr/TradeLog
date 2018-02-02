@@ -59,7 +59,7 @@ namespace TradeLogServer.Business
                 papel.ValorAtual = close;
 
                 DateTime data = Utils.Utils.UnixTimeStampToDateTime(timestamp);
-                papel.LastUpdate = data;
+                papel.LastUpdate = DateTime.Now;
                 papel.LastUpdateMessage = "OK";
                 Historico historico = GetHistoricoForPapel(papel, data);
                 historico.Close = close;
