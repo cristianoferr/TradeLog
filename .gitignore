@@ -25,3 +25,4 @@ TradeLogServer/TradeLogServer/logs/saida.log
 TradeLog/build
 TradeLogServer/TradeLogServer/Web.Release.config
 TradeLogServer/TradeLogServer/obj/Debug/TradeLogServer.dll
+TradeLogServer/TradeLogServer/Web.Release.config
