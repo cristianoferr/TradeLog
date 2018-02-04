@@ -91,7 +91,7 @@
         };
 
         var sServiceUrl = 'Usuario/TradeLogServer.Controllers.VerificaUsuario';
-        this.postData(sServiceUrl, parameters, fSucesso.bind(this), removeCredentials.bind(this));
+        this.postData(sServiceUrl, parameters, fSucesso.bind(this), erroAutenticandoUsuario.bind(this));
     }
 
     return ServicoUsuario;
@@ -117,6 +117,10 @@
     }
 
 
+    function erroAutenticandoUsuario(evt) {
+        console.error("Erro ao autenticar o usuário");
+        console.log(evt);
+    }
 
     function removeCredentials() {
         console.log("Removendo credenciais do usuário");
