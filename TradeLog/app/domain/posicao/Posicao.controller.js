@@ -41,6 +41,11 @@ sap.ui.define([
 
             },
 
+            bindTableTrades: function () {
+                var list = this.getView().byId("tableTrade");
+                list.bindItems(this.viewData.bindPathPosicao + "/TradeLogServer.Controllers.Trade", list.getBindingInfo("items").template.clone());
+            },
+
             /**
              *Método que 'binda' a view atual com o caminho da entidade
             * @param sEntityPath
@@ -50,6 +55,7 @@ sap.ui.define([
                 this.getView().byId("paginaPosicao").bindElement(sEntityPath);
                 var viewModel = new sap.ui.model.json.JSONModel(this.viewData, true);
                 this.getView().setModel(viewModel, "viewPosicao");
+                this.bindTableTrades();
             },
 
             onPressBack: function () {

@@ -5,8 +5,12 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
     >
-    <Page showHeader="false" class="sapUiStdPage MasterButton" enableScrolling="false">
-    <Label class="labelTitulo" text="{i18n>appTitle}"/>
+    <Page showHeader="true" class="sapUiStdPage MasterButton" enableScrolling="false">
+        <headerContent>
+            <Label class="labelTitulo" text="{i18n>appTitle}"/>
+        </headerContent>
+
+        <mvc:XMLView viewName="tradelog.domain.login.LoggedUser" visible="{device>/isNoDesktop}"></mvc:XMLView>
 
         <List id="listCarteira" items="{tiles>/Tiles}" growing="false" selectionChange="onSelecionaMenu"  mode="SingleSelectMaster">
 				<items>

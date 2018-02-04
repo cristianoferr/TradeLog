@@ -7,7 +7,7 @@
     >
 
     <Panel expandable="true" expanded="true" headerText="{i18n>movimento.tituloLista}">
-        <Table id="tableMovimento" items="{TradeLogServer.Controllers.Movimento}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
+        <Table id="tableMovimento" items="{/Movimento}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
             <columns>
                 <Column width="5rem"><Text text="{i18n>posicao.nomePapel}"   /></Column>
                 <Column width="5rem"><Text text="{i18n>movimento.data}"   /></Column>

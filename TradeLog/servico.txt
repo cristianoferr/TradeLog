@@ -1,3 +1,5 @@
+alter table Posicao add Anotacoes VARCHAR(4000)
+-=-
 alter table Carteira add TotalMovimentado decimal(14,6);
 update Carteira set TotalMovimentado=0;
 update papel set LastUpdate=now(); (botar no post script)

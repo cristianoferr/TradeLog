@@ -2,13 +2,13 @@
     "Tiles": [
         {
             "Navegacao": "FRONT",
-            "Icone": "sap-icon://key-user-settings",
+            "Icone": "sap-icon://wallet",
             "Descricao": "Carteira",
             "Rota": "carteiras"
         },
         {
             "Navegacao": "FRONT",
-            "Icone": "sap-icon://add-activity-2",
+            "Icone": "sap-icon://line-charts",
             "Descricao": "Ações",
             "Rota": "acoes"
         }

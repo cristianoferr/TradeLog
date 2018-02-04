@@ -10,6 +10,10 @@ sap.ui.define([
         return BaseController.extend("tradelog.shared.DomainController", {
 
 
+            formataCalculoDif: function (valor1, valor2) {
+                return this.formatter.formataValor(parseFloat(valor1) - parseFloat(valor2));
+            },
+
             formataCalculoPreco: function (preco, quantidade) {
                 return this.formatter.formataValor(preco * quantidade);
             },

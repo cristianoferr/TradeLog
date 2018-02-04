@@ -97,12 +97,13 @@
 						</f:FormElement>
                         <f:FormElement label="{i18n>posicao.valorDif}">
                         <f:fields>
-                            <ObjectNumber number="{path:'DiferencaAtual', formatter:'.formatter.formataValor'}" unit="$" />
+                            <ObjectNumber number="{path:'DiferencaAtual', formatter:'.formatter.formataValor'}" state="{path: 'DiferencaAtual',formatter: '.formatter.stateValor'}" unit="$" />
                         </f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>posicao.percDif}">
 							<f:fields>
-								<ObjectNumber number="{parts:[{path:'ValorPosicaoAtual'},{path:'PrecoAtual'},{path:'DiferencaAtual'}], formatter:'.formataCalculoPercDif'}" unit="%" />
+								<ObjectNumber number="{parts:[{path:'ValorPosicaoAtual'},{path:'DiferencaAtual'}], formatter:'.formataCalculoPercDif'}"
+                                state="{path: 'DiferencaAtual',formatter: '.formatter.stateValor'}" unit="%" />
 							</f:fields>
 						</f:FormElement>
 
@@ -113,33 +114,49 @@
                     <f:formElements>
                         <f:FormElement label="{i18n>posicao.valorStopInicial}">
                             <f:fields>
-                                <ObjectNumber number="{path:'PrecoStopInicial', formatter:'.formatter.formataValor'}"  />
+                                <ObjectNumber number="{path:'PrecoStopInicial', formatter:'.formatter.formataValor'}" unit="$" />
                             </f:fields>
                         </f:FormElement>
                         <f:FormElement label="{i18n>posicao.precoStopAtual}">
                             <f:fields>
-                                <ObjectNumber number="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}"  />
+                                <ObjectNumber number="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}"
+                                    state="{parts:[{path: 'PrecoStopAtual'},{path: 'PrecoMedioCompra'}],formatter: '.formatter.stateValorMaior'}"
+                                unit="$" />
+
                             </f:fields>
                         </f:FormElement>
-                        <f:FormElement label="{i18n>posicao.precoStopAtual}">
+                        <f:FormElement label="{i18n>posicao.valorStopAtual}">
                             <f:fields>
-                                <ObjectNumber number="{parts:[{path:'PrecoStopAtual'},{path:'QuantidadeLiquida'}], formatter:'.formataCalculoPreco'}" unit="%" />
+                                <ObjectNumber number="{parts:[{path:'PrecoStopAtual'},{path:'QuantidadeLiquida'}], formatter:'.formataCalculoPreco'}"
+                                unit="%" />
                             </f:fields>
                         </f:FormElement>
 						<f:FormElement label="{i18n>posicao.capitalSobRisco}">
 							<f:fields>
-								<ObjectNumber number="{parts:[{path:'PrecoAtual'},{path:'DiferencaAtual'},{path:'PrecoStopAtual'}], formatter:'.formataCalculoValorDif'}"  unit="$"/>
+								<ObjectNumber number="{parts:[{path:'PrecoStopAtual'},{path:'QuantidadeLiquida'},{path:'PrecoMedioCompra'}], formatter:'.formataCalculoValorDif'}"
+                                 state="{parts:[{path: 'PrecoStopAtual'},{path: 'PrecoMedioCompra'}],formatter: '.formatter.stateValorMaior'}" unit="$"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>posicao.percSobRisco}">
 							<f:fields>
-								<ObjectNumber number="{parts:[{path:'PrecoAtual'},{path:'DiferencaAtual'},{path:'PrecoStopAtual'},{path:'PrecoMedioCompra'}], formatter:'.formataCalculoValorPercDif'}" unit="%" />
+								<ObjectNumber number="{parts:[{path:'PrecoStopAtual'},{path:'QuantidadeLiquida'},{path:'PrecoMedioCompra'},{path:'PrecoMedioCompra'}], formatter:'.formataCalculoValorPercDif'}"
+                                state="{parts:[{path: 'PrecoStopAtual'},{path: 'PrecoMedioCompra'}],formatter: '.formatter.stateValorMaior'}" unit="%" />
 							</f:fields>
 						</f:FormElement>
                     </f:formElements>
                 </f:FormContainer>
-                </f:formContainers>
+
+                <f:FormContainer title="{i18n>posicao.misc}">
+                    <f:formElements>
+                        <f:FormElement label="{i18n>posicao.anotacoes}">
+                            <f:fields>
+                                <Text text="{Anotacoes}" />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
 		</f:Form>
-        <core:Fragment fragmentName="tradelog.domain.trade.fragments.ListaTrades" type="XML" />
+
 	</VBox>
 </core:FragmentDefinition>

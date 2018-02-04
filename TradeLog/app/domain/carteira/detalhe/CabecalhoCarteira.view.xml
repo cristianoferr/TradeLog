@@ -18,7 +18,6 @@
                         backgroundDesign="Translucent">
                 <attributes>
 					<ObjectAttribute title="{i18n>carteira.valorLiquido}" text="{path:'ValorLiquido', formatter:'.formatter.formataValor'} $" />
-                    <ObjectAttribute title="{i18n>carteira.valorEmPosicoes}" text="{path:'ValorSaldoAtual', formatter:'.formatter.formataValor'} $" />
 				</attributes>
             </ObjectHeader>
         <content>

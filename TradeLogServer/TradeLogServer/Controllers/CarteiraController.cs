@@ -83,7 +83,7 @@ namespace TradeLogServer.Controllers
         {
             //Validate(patch.GetEntity());
 
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || idUsuarioAtual == -1)
             {
                 return BadRequest(ModelState);
             }
@@ -118,9 +118,13 @@ namespace TradeLogServer.Controllers
         // POST: odata/Carteira
         public async Task<IHttpActionResult> Post([FromBody]Carteira carteira)
         {
+            if (idUsuarioAtual == -1)
+            {
+                return BadRequest("invalid_user");
+            }
             if (carteira == null) return BadRequest("Empty Carteira");
             carteira.IdUsuario = idUsuarioAtual;
-            if (!IsUnique(carteira))
+            if (!IsUnique(carteira) )
             {
                 return BadRequest("repeated_name");
             }
@@ -130,8 +134,12 @@ namespace TradeLogServer.Controllers
                 return BadRequest(ModelState);
             }
 
+            float valorLiquido = carteira.ValorLiquido;
+            carteira.ValorLiquido = 0;
             db.Carteiras.Add(carteira);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
+            string saida = "";
+            bp.MovimentaFundo(out saida, idUsuarioAtual, carteira.IdCarteira, valorLiquido, "Lançamento Inicial de " + valorLiquido, null);
 
             return Created(carteira);
         }
@@ -146,6 +154,10 @@ namespace TradeLogServer.Controllers
         public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Carteira> patch)
         {
             //Validate(patch.GetEntity());
+            if (idUsuarioAtual == -1)
+            {
+                return BadRequest("invalid_user");
+            }
 
             if (!ModelState.IsValid)
             {
@@ -182,6 +194,10 @@ namespace TradeLogServer.Controllers
         // DELETE: odata/Carteira(5)
         public async Task<IHttpActionResult> Delete([FromODataUri] int key)
         {
+            if (idUsuarioAtual == -1)
+            {
+                return BadRequest("invalid_user");
+            }
             Carteira carteira = await db.Carteiras.FindAsync(key);
             if (carteira == null || carteira.IdUsuario != idUsuarioAtual)
             {

@@ -57,16 +57,65 @@ namespace TradeLogServer.Controllers
             return db.Posicoes.Where(posicao => posicao.IdUsuario == idUsuarioAtual &&  posicao.FlagAtivo == "T").Include(p => p.Papel);
         }
 
-       /* [HttpPost]
-        public IHttpActionResult FechaPosicao(ODataActionParameters parameters)
-        {
-            //  string err = "";
-            // bool resultado = bp.FechaPosicao(out err, idUsuarioAtual, (int)parameters["IdPosicao"], (float)parameters["valorAcao"], (int)(Single)parameters["quantidadeFechada"]);
 
-            //  return resultado ? (IHttpActionResult)Ok() : (IHttpActionResult)BadRequest(err);
-            return Ok("nyi");
+        // PATCH: odata/Posicao(5)
+        [AcceptVerbs("PATCH", "MERGE")]
+        [HttpPatch]
+        public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Posicao> patch)
+        {
+
+            if (idUsuarioAtual == -1)
+            {
+                return BadRequest("invalid_user");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Posicao posicao = await db.Posicoes.FindAsync(key);
+            if (posicao == null)
+            {
+                return NotFound();
+            }
+            if (posicao.IdUsuario != idUsuarioAtual)
+            {
+                return BadRequest("NO PERMISSION!");
+            }
+
+            patch.Patch(posicao);
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PosicaoExists(key))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Updated(posicao);
+
         }
-        */
+
+        /* [HttpPost]
+         public IHttpActionResult FechaPosicao(ODataActionParameters parameters)
+         {
+             //  string err = "";
+             // bool resultado = bp.FechaPosicao(out err, idUsuarioAtual, (int)parameters["IdPosicao"], (float)parameters["valorAcao"], (int)(Single)parameters["quantidadeFechada"]);
+
+             //  return resultado ? (IHttpActionResult)Ok() : (IHttpActionResult)BadRequest(err);
+             return Ok("nyi");
+         }
+         */
 
         protected override void Dispose(bool disposing)
         {

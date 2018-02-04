@@ -19,6 +19,19 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
             }
         },
 
+        stateValorMaior: function (valor1, valor2) {
+            var valor = 0;
+            if (valor1 < valor2) valor = -1;
+            if (valor1 > valor2) valor = 1;
+            if (valor < 0) {
+                return "Error";
+            } else if (valor == 0) {
+                return "None";
+            } else {
+                return "Success";
+            }
+        },
+
         calculaTotalOperacao: function (preco, qtd, custo, tipo) {
             var total;
             if (tipo == "C") {

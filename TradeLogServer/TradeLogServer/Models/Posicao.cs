@@ -43,6 +43,8 @@ namespace TradeLogServer.Models
         public int QuantidadeComprada { get; set; }
         public int QuantidadeVendida { get; set; }
 
+        public string Anotacoes { get; set; }
+
         [NotMapped]
         public int QuantidadeLiquida { get { return QuantidadeComprada - QuantidadeVendida; } }
 

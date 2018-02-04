@@ -11,6 +11,8 @@
         <content>
         <mvc:XMLView viewName="tradelog.domain.posicao.fragments.DetalhePosicao"
                                 app:nomePainel="DetalhePosicao" app:domainAtual="posicao" app:entidade="{viewPosicao>/bindPathPosicao}" app:paramEntidade="posicao" ></mvc:XMLView>
+
+            <core:Fragment fragmentName="tradelog.domain.trade.fragments.ListaTrades" type="XML" />
         </content>
     </Panel>
 

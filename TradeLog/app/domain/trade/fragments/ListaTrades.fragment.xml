@@ -7,10 +7,10 @@
     >
 
 <Panel id="panelListTrades" expandable="true" expanded="false" headerText="{i18n>trade.ListaTrades}">
-        <Table id="tableTrade" items="{TradeLogServer.Controllers.Trade}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
+        <Table id="tableTrade" items="{/Trade}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
             <columns>
-                <Column width="5rem"><Text text="{i18n>trade.precoAcao}"   /></Column>
                 <Column ><Text text="{i18n>trade.data}"   /></Column>
+                <Column width="5rem"><Text text="{i18n>trade.precoAcao}"   /></Column>
                 <Column ><Text text="{i18n>trade.qtdComprada}"   /></Column>
                 <Column ><Text text="{i18n>trade.qtdVendida}"   /></Column>
                 <Column width="5rem"><Text text="{i18n>trade.valorTrade}"   /></Column>
@@ -19,8 +19,8 @@
             <items>
                 <ColumnListItem>
                     <cells>
-                        <ObjectNumber number="{path:'PrecoTrade', formatter:'.formatter.formataValor'}" unit="$" />
                         <Text text="{path:'Data', formatter:'.formatter.formataData'}" />
+                        <ObjectNumber number="{path:'PrecoTrade', formatter:'.formatter.formataValor'}" unit="$" />
                         <ObjectNumber number="{QuantidadeComprada}" />
                         <ObjectNumber number="{QuantidadeVendida}" />
                         <ObjectNumber number="{path:'ValorTrade', formatter:'.formatter.formataValor'}" unit="$" />

@@ -3,7 +3,8 @@
     ServicoCarteira =
         {
             depositaValorCarteira: depositaValorCarteira,
-            criaPosicao: criaPosicao
+            criaPosicao: criaPosicao,
+            retiraValorCarteira: retiraValorCarteira
         };
 
     return ServicoCarteira;
@@ -15,7 +16,7 @@
             "valor": valor,
             "descricao": descricaoMovimento
         };
-        var sServiceUrl = `Carteira/DepositaFundos`;
+        var sServiceUrl = `Carteira/TradeLogServer.Controllers.DepositaFundos`;
         this.postData(sServiceUrl, parameters, sucessoTransferencia.bind(this), errorTransferencia.bind(this));
     }
 
@@ -26,7 +27,7 @@
             "valor": valor,
             "descricao": descricaoMovimento
         };
-        var sServiceUrl = `Carteira/RetiraFundos`;
+        var sServiceUrl = `Carteira/TradeLogServer.Controllers.RetiraFundos`;
         this.postData(sServiceUrl, parameters, sucessoTransferencia.bind(this), errorTransferencia.bind(this));
     }
 
@@ -44,7 +45,7 @@
             "IsClosing": data.isClosing || false
         };
 
-        var sServiceUrl = `Trade/ExecutaTrade`;
+        var sServiceUrl = `Trade/TradeLogServer.Controllers.ExecutaTrade`;
         this.postData(sServiceUrl, parameters, sucessoTrade.bind(this), errorTrade.bind(this));
     }
 

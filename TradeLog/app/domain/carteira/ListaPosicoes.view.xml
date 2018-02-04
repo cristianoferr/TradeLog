@@ -23,7 +23,7 @@
 
     <Panel expandable="true" expanded="true" headerText="{i18n>carteira.tituloPosicoes}">
 
-        <Table id="tablePosicao" fixedLayout="false" items="{Posicao}" growing="false">
+        <Table id="tablePosicao" fixedLayout="false" items="{/Posicao}" growing="false">
             <columns>
                 <Column width="5rem"><Text text="{i18n>posicao.nomePapel}"   /></Column>
                 <Column minScreenWidth="1200px" demandPopin="true" hAlign="Center" width="5rem"><Text text="{i18n>posicao.dataEntrada}"   /></Column>
@@ -33,7 +33,7 @@
                 <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Text text="{i18n>posicao.quantidadeComprada}"   /></Column>
                 <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Text text="{i18n>posicao.quantidadeVendida}"   /></Column>
                 <Column hAlign="Right"><Text text="{i18n>posicao.quantidadeLiquida}"   /></Column>
-                <Column hAlign="Right"><Text text="{i18n>posicao.precoStopAtual}"   /></Column>
+                <Column hAlign="Right"><Text text="{i18n>posicao.precoStopAtual}" /></Column>
                 <Column hAlign="Right"><Text text="{i18n>posicao.situacaoAtual}"   /></Column>
                 <Column minScreenWidth="1400px" demandPopin="true" hAlign="Right" ><Text text="{i18n>posicao.valorDif}"   /></Column>
                 <Column minScreenWidth="1400px" demandPopin="true" hAlign="Right" ><Text text="{i18n>posicao.percDif}"   /></Column>
@@ -51,7 +51,9 @@
                         <ObjectNumber number="{QuantidadeLiquida}"  state="{path: 'QuantidadeLiquida',
 							formatter: '.formatter.stateValor'
 						}"/>
-                        <ObjectNumber number="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}" unit="$"/>
+                        <ObjectNumber number="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}"
+                         state="{parts:[{path: 'PrecoStopAtual'},{path: 'PrecoMedioCompra'}],formatter: '.formatter.stateValorMaior'}"
+                         unit="$"/>
                         <ObjectNumber number="{path:'ValorPosicaoAtual', formatter:'.formatter.formataValor'}"  unit="$"/>
                         <ObjectNumber number="{path:'DiferencaAtual', formatter:'.formatter.formataValor'}" state="{path: 'DiferencaAtual',
 							formatter: '.formatter.stateValor'

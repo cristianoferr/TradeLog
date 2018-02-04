@@ -50,7 +50,7 @@ namespace TradeLogServer.Controllers
         //TODO: ver como pega o usuário logado
         protected int idUsuarioAtual { get {
                 var idUsuario = Session["IdUsuario"];
-                if (idUsuario == null) return 1;
+                if (idUsuario == null) return -1;
                 return (int)idUsuario;
             }
         }

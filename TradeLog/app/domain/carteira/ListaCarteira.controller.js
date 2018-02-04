@@ -19,7 +19,7 @@ sap.ui.define([
             onRouteMatched: function (evt) {
                 var list = this.getView().byId("listCarteira");
                 if (list.getBinding("items") == undefined) {
-                    this.navegaParaRota("home");
+                    //this.navegaParaRota("home");
                     return;
                 }
                 list.getBinding("items").refresh();

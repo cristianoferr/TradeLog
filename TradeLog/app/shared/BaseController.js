@@ -59,7 +59,11 @@ sap.ui.define(
                 if (chave === false) return this.traduzChave("nao");
                 if (chave === true) return this.traduzChave("sim");
                 if (chave == "" || chave == null) return "";
-                return this.getOwnerComponent().getModel("i18n").getProperty(chave);
+                var owner = this.getOwnerComponent();
+                if (owner) {
+                    return owner.getModel("i18n").getProperty(chave);
+                }
+                return this.getView().getModel("i18n").getProperty(chave);
             },
 
             /**

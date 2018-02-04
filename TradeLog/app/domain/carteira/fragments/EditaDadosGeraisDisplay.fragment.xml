@@ -50,6 +50,23 @@
 							</f:fields>
                         </f:FormElement>
 
+                        <f:FormElement label="{i18n>carteira.valorEmPosicoes}">
+							<f:fields>
+								<Text text="{path:'ValorSaldoAtual', formatter:'.formatter.formataValor'}"/>
+							</f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>carteira.totalMovimentado}">
+							<f:fields>
+								<Text text="{path:'TotalMovimentado', formatter:'.formatter.formataValor'}"/>
+							</f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="{i18n>carteira.situacaoAtual}">
+							<f:fields>
+								<Text text="{parts:[{path:'ValorAtual'},{path:'TotalMovimentado'}], formatter:'.formataCalculoDif'}"/>
+							</f:fields>
+                        </f:FormElement>
 
 					</f:formElements>
 				</f:FormContainer>
