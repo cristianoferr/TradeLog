@@ -9,7 +9,11 @@ namespace TradeLogServer.Business
     public class BPCarteira : BaseBP<Carteira>
     {
 
-        internal bool MovimentaFundo(out string err, int idUsuarioAtual,int idCarteira, float valor, string mensagem, Posicao posicao)
+        /**
+         * addToMovimentado: flag para dizer se deve ser adicionado ao campo TotalMovimentado da carteira
+         * 
+         */
+        internal bool MovimentaFundo(out string err, int idUsuarioAtual,int idCarteira, float valor, string mensagem, Posicao posicao,bool addToMovimentado=false)
         {
             err = "";
             Carteira carteira = GetValidCarteira(idCarteira, idUsuarioAtual);
@@ -22,6 +26,10 @@ namespace TradeLogServer.Business
             {
                 err = "No Fund to transfer";
                 return false;
+            }
+            if (addToMovimentado)
+            {
+                carteira.TotalMovimentado += valor;
             }
 
             valor = MovimentaSaldoParaCarteira(valor, mensagem, carteira, posicao);
@@ -43,8 +51,6 @@ namespace TradeLogServer.Business
                 valor -= carteira.ValorLiquido;
                 carteira.ValorLiquido = 0;
             }
-            carteira.TotalMovimentado += valor;
-
 
             BPMovimento bpMovimento = new BPMovimento();bpMovimento.db = db;
 

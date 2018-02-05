@@ -28,6 +28,13 @@ namespace TradeLogServer
             //EndRequest += new EventHandler(OnEndRequest);
         }
 
+        protected void Session_Start()
+        {
+            log.Info("Session Start");
+            Session["init"] = 0;
+        }
+
+
         public override void Init()
         {
             this.PostAuthenticateRequest += MvcApplication_PostAuthenticateRequest;

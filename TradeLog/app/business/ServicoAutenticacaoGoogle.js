@@ -77,6 +77,7 @@ sap.ui.define(
             if (isSignedIn) {
                 makeApiCall.bind(this)();
             } else {
+                console.log("AuthGoogle: updateSigninStatus false...");
                 servicoUsuario.removeCredentials();
             }
         }

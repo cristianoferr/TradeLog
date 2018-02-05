@@ -32,6 +32,7 @@ namespace TradeLogServer.Controllers
         [HttpPost]
         public IHttpActionResult VerificaUsuario(ODataActionParameters parameters)
         {
+            if (parameters == null) return BadRequest("Null parameters");
             string email = (string)parameters["email"];
             if (email == null) return BadRequest("InvalidEmail");
             string googleId = (string)parameters["googleId"];

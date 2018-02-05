@@ -58,7 +58,7 @@ sap.ui.define([
                 }
                 if (acao == "logoff") {
                     servicoAutenticacaoGoogle.signOut();
-
+                    console.log("loggedUser: logoff");
                     servicoUsuario.removeCredentials();
                 }
             },

@@ -118,8 +118,12 @@
 
 
     function erroAutenticandoUsuario(evt) {
+        sap.ui.userData.responseURL = undefined;
         console.error("Erro ao autenticar o usuário");
         console.log(evt);
+        Cookies.set("loggedUser", sap.ui.userData);
+        location.reload();
+
     }
 
     function removeCredentials() {

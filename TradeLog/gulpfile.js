@@ -45,9 +45,15 @@ gulp.task('build__', ['copiaConteudoWeb']);
 gulp.task('default', ['clean', 'copiaConteudoWeb', '1compres', 'geraComponentPreload', '3prepareComponentPreload']);
 
 gulp.task('copiaConteudoWeb', function () {
-    gulp.src(['app/**/*'])
+    gulp.src(['app/**/*.(json)'
+    ])
         .pipe(replace("http://localhost:58761/odata/", 'http://tradelog.me/servico/odata/'))
-        .pipe(gulp.dest('tmpBuild'));
+        .pipe(gulp.dest('build'));
+
+    gulp.src(['app/**/*',
+        '!app/**/*.(json|js|xml)'
+    ])
+        .pipe(gulp.dest('build'));
 
 });
 gulp.task('cordovaPrepare', function () {
@@ -93,9 +99,9 @@ gulp.task(
 gulp.task('1compres', function () {
     return gulp.src(
         [
-            'tmpBuild/**/**.+(js|xml)',
+            'build/**/**.+(js|xml)',
             '!Component-preload.js',
-            '!tmpBuild/Component-preload.js',
+            '!build/Component-preload.js',
             '!gulpfile.js',
             '!WEB-INF/web.xml',
             '!model/metadata.xml'
@@ -109,7 +115,7 @@ gulp.task('1compres', function () {
 });
 
 gulp.task('build', function () {
-    runSequence('clean', 'copiaMinificada');
+    runSequence('clean', 'copiaConteudoWeb', 'copiaMinificada');
 });
 
 gulp.task('buildPreload', function () {
@@ -117,7 +123,7 @@ gulp.task('buildPreload', function () {
 });
 
 gulp.task('copiaMinificada', function () {
-    gulp.src(['app/**/*'])
+    gulp.src(['app/**/*.+(js)'])
         .pipe(replace("http://localhost:58761/odata/", 'http://tradelog.me/servico/odata/'))
         .pipe(minify({
             exclude: ['tasks'],

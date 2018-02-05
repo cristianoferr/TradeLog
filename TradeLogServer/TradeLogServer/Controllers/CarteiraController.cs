@@ -45,7 +45,7 @@ namespace TradeLogServer.Controllers
         {
             string saida="Fundos Depositados:" + parameters["valor"] + "  com descricao: " + parameters["descricao"];
             string err = "";
-            bool resultado = bp.MovimentaFundo(out err, idUsuarioAtual,(int)parameters["IdCarteira"], (float)parameters["valor"],(string)parameters["descricao"],null);
+            bool resultado = bp.MovimentaFundo(out err, idUsuarioAtual,(int)parameters["IdCarteira"], (float)parameters["valor"],(string)parameters["descricao"],null,true);
             return resultado ? (IHttpActionResult)Ok(saida): (IHttpActionResult)BadRequest(err);
 
         }
@@ -55,7 +55,7 @@ namespace TradeLogServer.Controllers
         {
             string saida = "Fundos Retirados:" + parameters["valor"] + "  com descricao: " + parameters["descricao"];
             string err = "";
-            bool resultado = bp.MovimentaFundo(out err, idUsuarioAtual, (int)parameters["IdCarteira"], -(float)parameters["valor"], (string)parameters["descricao"], null);
+            bool resultado = bp.MovimentaFundo(out err, idUsuarioAtual, (int)parameters["IdCarteira"], -(float)parameters["valor"], (string)parameters["descricao"], null, true);
             return resultado ? (IHttpActionResult)Ok(saida) : (IHttpActionResult)BadRequest(err);
         }
 
@@ -137,6 +137,8 @@ namespace TradeLogServer.Controllers
             float valorLiquido = carteira.ValorLiquido;
             carteira.ValorLiquido = 0;
             db.Carteiras.Add(carteira);
+            carteira.TotalMovimentado = valorLiquido;
+
             db.SaveChanges();
             string saida = "";
             bp.MovimentaFundo(out saida, idUsuarioAtual, carteira.IdCarteira, valorLiquido, "Lançamento Inicial de " + valorLiquido, null);

@@ -25,6 +25,7 @@
 		<footer>
 			<OverflowToolbar>
                 <Button activeIcon="sap-icon://add" icon="sap-icon://add" id="buttonAdiciona" press="onAdicionaCarteira" text="{i18n>carteira.adicionaCarteira}"  />
+                <Button icon="sap-icon://refresh" press="onRefreshModel" />
 			</OverflowToolbar>
 		</footer>
 	</Page>
