@@ -25,7 +25,16 @@
                             <mvc:XMLView viewName="tradelog.domain.carteira.fragments.EditaDadosGerais" id="panelDadosGerais"
                                 app:nomePainel="EditaDadosGerais" app:domainAtual="carteira" app:entidade="{viewModel>/bindPath}" app:paramEntidade="carteira" ></mvc:XMLView>
 
-                            <Panel id="graficoPizzaCarteira">
+
+                        </content>
+                    </IconTabFilter>
+
+                     <IconTabFilter id="iconTabComposicao" class="tamanhoMinimo" key="Composicao"
+                        text="{i18n>carteira.tabComposicao}"
+                        icon="sap-icon://pie-chart"
+                        >
+                        <content>
+                           <Panel id="graficoPizzaCarteira" width="100%" height="100%">
                             </Panel>
                         </content>
                     </IconTabFilter>

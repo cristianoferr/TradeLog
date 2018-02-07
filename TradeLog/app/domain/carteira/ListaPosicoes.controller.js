@@ -39,6 +39,7 @@ sap.ui.define([
             this.viewData.bindPath = sEntityPath;
 
             var table = this.getView().byId("tablePosicao");
+            sap.ui.tablePosicao = table;
             table.bindItems(sEntityPath + "/Posicao", table.getBindingInfo("items").template.clone());
 
             var viewModel = new sap.ui.model.json.JSONModel(this.viewData, true);
@@ -49,7 +50,7 @@ sap.ui.define([
             servicoCarteira.depositaValorCarteira.call(this, valor, descricaoMovimento);
         },
 
-       
+
 
 
         onClickPosicao: function (evt) {

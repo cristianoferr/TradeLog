@@ -14,8 +14,8 @@
  limitations under the License.
  */
 
-sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
-    function(jQuery, Control, library) {
+sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', './library'],
+    function (jQuery, Control, library) {
         "use strict";
 
         /**
@@ -35,20 +35,20 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
          *
          */
         var SimplePieChart = Control.extend("openui5.simplecharts.SimplePieChart", {
-                metadata: {
-                    library: "openui5.simplecharts",
-                    properties: {
-                        id:     { type : "string", defaultValue:"ssvgpie" },
-                        title:  { type : "string", defaultValue:null },
-                        width : {type : "sap.ui.core.CSSSize", defaultValue : "450"},
-                        height: {type : "sap.ui.core.CSSSize", defaultValue : "450"},
+            metadata: {
+                library: "openui5.simplecharts",
+                properties: {
+                    id: { type: "string", defaultValue: "ssvgpie" },
+                    title: { type: "string", defaultValue: null },
+                    width: { type: "sap.ui.core.CSSSize", defaultValue: "450" },
+                    height: { type: "sap.ui.core.CSSSize", defaultValue: "450" },
 
-                        _first: { type : "boolean", defaultValue:true },
+                    _first: { type: "boolean", defaultValue: true },
 
-                        items: {type: "any", defaultValue: null }
-                    }
+                    items: { type: "any", defaultValue: null }
                 }
             }
+        }
         );
 
         SimplePieChart.prototype._drawGraph = function (iWidth, iHeight) {
@@ -56,16 +56,16 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
             jQuery.sap.require("sap.ui.thirdparty.d3");
             jQuery.sap.require("bower_component.d3-tip.index");
 
-            if (!iWidth){
+            if (!iWidth) {
                 this.controlWidth = this.getProperty("width");
                 this.controlHeight = this.getProperty("height");
             }
-            else{
+            else {
                 this.controlWidth = iWidth;
                 this.controlHeight = iHeight;
             }
 
-            if(!iWidth && this.oldWidth ){
+            if (!iWidth && this.oldWidth) {
                 this.controlWidth = this.oldWidth;
                 this.controlHeight = this.oldHeight;
             }
@@ -79,7 +79,7 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
              To control the animations of the graphic I keep a old map of the data
              that way I can make a D3 transitions from the old values to the new values
              */
-            if (!this.oldData){
+            if (!this.oldData) {
                 this.oldData = [];
             }
 
@@ -93,8 +93,10 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
             /*
              The width of the chart is less then the witdh of the SVG viewport. I put 10% I think it is nice enough
              */
-            var margin = {top: this.controlHeight *0.10 , right: this.controlWidth *0.10,
-                bottom: this.controlHeight*0.10, left: this.controlWidth*0.10};
+            var margin = {
+                top: this.controlHeight * 0.10, right: this.controlWidth * 0.10,
+                bottom: this.controlHeight * 0.10, left: this.controlWidth * 0.10
+            };
             var width = this.controlWidth - margin.left - margin.right;
             var height = this.controlHeight - margin.top - margin.bottom;
 
@@ -102,7 +104,7 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
 
             var color = d3.scale.ordinal()
                 .range(["#5cbae6", "#b6d957", "#fac364", "#8cd3ff", "#d998cb", "#f2d249", "#93b9c6"
-                , "#ccc5a8", "#52bacc", "#dbdb46", "#98aafb"]);
+                    , "#ccc5a8", "#52bacc", "#dbdb46", "#98aafb"]);
 
             var arc = d3.svg.arc()
                 .outerRadius(radius - 10)
@@ -110,7 +112,7 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
 
             var pie = d3.layout.pie()
                 .sort(null)
-                .value(function(d) {
+                .value(function (d) {
                     return d.value;
                 });
 
@@ -121,12 +123,12 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
                 .attr("height", this.controlHeight);
 
             var svgt = svg.append("g")
-                .attr("transform", "translate(" + width / 2.5 + "," + height / 2     + ")");
+                .attr("transform", "translate(" + width / 2.5 + "," + height / 2 + ")");
 
             var tip = d3.tip()
                 .attr('class', 'd3-tip')
                 .offset([-10, 0])
-                .html(function(d) {
+                .html(function (d) {
                     var c = color(d.data.name);
                     return "<Strong>" + d.data.name + ":" + "</Strong> <span style='color:" + c + "'>"
                         + d.data.value + "</span>";
@@ -142,7 +144,7 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
 
             g.append("path")
                 .attr("d", arc)
-                .style("fill", function(d) { return color(d.data.name); });
+                .style("fill", function (d) { return color(d.data.name); });
 
             svg.append("text")
                 .attr("x", (width / 2))
@@ -152,13 +154,13 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
                 .text(this.getProperty("title"));
 
             this._drawLegend(svg, width, color);
-            if(!this.resize) {
+            if (!this.resize) {
                 this.resize = sap.ui.core.ResizeHandler.register(this, function (oEvent) {
                     var chart = oEvent.control;
                     var w = Math.min(chart.getProperty("width"), this.iWidth);
                     var h = Math.min(chart.getProperty("height"), this.iHeight);
-                    if(chart._shouldResize(w, chart.controlWidth, h,
-                            chart.controlHeight)) {
+                    if (chart._shouldResize(w, chart.controlWidth, h,
+                        chart.controlHeight)) {
                         h = w / chart.controlAspect;
                         chart._drawGraph(w, h);
                     }
@@ -175,15 +177,15 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
          *                , data and one measure. If the dataset has more then one measure it will be ignore as the
          *                chart doesn't support multiple axis.
          */
-        SimplePieChart.prototype.setDataSet  = function(dataSet){
+        SimplePieChart.prototype.setDataSet = function (dataSet) {
             this.setProperty("items", dataSet);
         };
 
-        SimplePieChart.prototype._getData = function(oldData){
+        SimplePieChart.prototype._getData = function (oldData) {
             var dataset = this.getItems();
             var aItems = dataset.getChartData().items;
 
-            if(aItems.length == 0){
+            if (aItems.length == 0) {
                 return;
             }
 
@@ -192,40 +194,40 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
             var xlabel = dataset.getLabelForAxis("x");
             var mlabel = dataset.getMeasureNameByIndex();
 
-            xdomain.forEach(function(d){
+            xdomain.forEach(function (d) {
                 var object = {};
                 object.name = d.value;
                 data.push(object);
             });
-            data.forEach(function(d){
-               for(var i = 0; i < aItems.length; i++ ){
-                   if(aItems[i][xlabel] == d.name){
-                       d.value = aItems[i][mlabel];
-                   }
-               }
+            data.forEach(function (d) {
+                for (var i = 0; i < aItems.length; i++) {
+                    if (aItems[i][xlabel] == d.name) {
+                        d.value = aItems[i][mlabel];
+                    }
+                }
             });
             return data;
         };
 
-        SimplePieChart.prototype._shouldResize = function(newWidth,oldWidth, newHeight, oldHeight){
-            var raciow = ( newWidth - oldWidth) / oldWidth;
-            var racioh = ( newHeight - oldHeight) / oldHeight;
+        SimplePieChart.prototype._shouldResize = function (newWidth, oldWidth, newHeight, oldHeight) {
+            var raciow = (newWidth - oldWidth) / oldWidth;
+            var racioh = (newHeight - oldHeight) / oldHeight;
 
-            if (Math.abs(raciow) > 0.1 ||  Math.abs(racioh) > 0.1){
+            if (Math.abs(raciow) > 0.1 || Math.abs(racioh) > 0.1) {
                 return true;
             }
-            else{
+            else {
                 return false;
             }
         };
 
-        SimplePieChart.prototype._drawLegend = function(svg, width, color){
+        SimplePieChart.prototype._drawLegend = function (svg, width, color) {
 
             var dataset = this.getItems();
 
             var sNames = [];
             var xdomain = dataset.getDimensionValues("x");
-            for(var i = 0; i < xdomain.length; i++){
+            for (var i = 0; i < xdomain.length; i++) {
                 sNames.push(xdomain[i]["value"]);
             }
 
@@ -234,8 +236,8 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
                 .data(sNames.slice().reverse())
                 .enter().append("g")
                 .attr("class", "legend")
-                .attr("transform", function(d, i) {
-                    return "translate(0," + (45/2 + i * 20) + ")";
+                .attr("transform", function (d, i) {
+                    return "translate(0," + (45 / 2 + i * 20) + ")";
                 });
 
             legend.append("rect")
@@ -251,7 +253,7 @@ sap.ui.define(['jquery.sap.global','sap/ui/core/Control','./library'],
                 .attr("dy", ".35em")
                 .style("text-anchor", "end")
                 .style("font-size", "small")
-                .text(function(d) {
+                .text(function (d) {
                     return d;
                 });
         };

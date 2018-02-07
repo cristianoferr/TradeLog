@@ -52,6 +52,8 @@ sap.ui.define([
                 this.getView().setModel(viewModel, "viewModel");
 
                 this.bindTableMovimento();
+
+                this.iniciaTimerGrafico();
             },
 
             bindTableMovimento: function () {
@@ -67,28 +69,48 @@ sap.ui.define([
                 binding.sort(sort);
             },
 
+            iniciaTimerGrafico: function () {
+                var fnVerificaCarga = function () {
+                    if (sap.ui.tablePosicao == undefined) return;
+
+                    var carteiraAtual = this.getView().byId("idIconTabBar").getBindingContext().getObject();
+                    if (carteiraAtual != undefined) {
+                        //se a carteira não tem posicoes ou se tem posicoes e as mesmas já foram carregadas...
+                        if ((carteiraAtual.ValorAtual == carteiraAtual.ValorLiquido) ||
+                            (carteiraAtual.ValorAtual != carteiraAtual.ValorLiquido && sap.ui.tablePosicao.getItems().length > 0)) {
+                            clearInterval(timer);
+                            this.montaGraficoPizza();
+                        }
+                    }
+                };
+                var timer = setInterval(fnVerificaCarga.bind(this), 1000);
+            },
+
             /**Ver uma forma de recuperar os dados da carteira e posições adicionar aqui */
-            montaGraficoPizza: function (evt) {
-                var tablePosicao = this.getView().byId("tablePosicao");
+            montaGraficoPizza: function () {
+                var tablePosicao = sap.ui.tablePosicao;
                 var panel = this.getView().byId("graficoPizzaCarteira");
                 if (typeof openui5 == "undefined") return;
 
-                var chartData = new openui5.simplecharts.SimpleChartData();
 
-                //var data = { items: [{ "team": "Benfica", "goals": 20 }, { "team": "Porto", "goals": 15 }] };
-                debugger;
-                //this.getView().byId("idIconTabBar").bindElement(sEntityPath);
                 var carteiraAtual = this.getView().byId("idIconTabBar").getBindingContext().getObject();
-                var viewModel = this.getView().getModel("viewModel");
-                var data = [];
+                var data = { items: [] };
+                data.items.push({ nome: "Líquido", valor: carteiraAtual.ValorLiquido });
+                var items = tablePosicao.getItems();
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    data.items.push({ nome: item.data().CodigoPapel, valor: item.data().ValorPosicaoAtual });
+                }
 
-                chartData.bindDimensions({ items: [{ name: "team", description: "Team", axis: "x" }] });
-                chartData.bindMeasures({ items: [{ name: "goals", description: "Goals", rank: "1" }] });
-                chartData.bindData(data);
-                var chart = new openui5.simplecharts.SimplePieChart({ title: "Composição da Carteira" });
-                chart.setData(chartData);
+                var oDatasetPie = new openui5.simplecharts.SimpleChartData();
+                oDatasetPie.bindDimensions({ items: [{ name: "nome", description: "Alocado", axis: "x" }] });
+                oDatasetPie.bindMeasures({ items: [{ name: "valor", description: "Valor", rank: "1" }] });
+                oDatasetPie.bindData(data);
+
+                var grafico = new openui5.simplecharts.SimplePieChart({ title: "Composição da Carteira" });
+                grafico.setDataSet(oDatasetPie);
                 panel.removeAllContent();
-                panel.addContent(chart);
+                panel.addContent(grafico);
             }
 
 
