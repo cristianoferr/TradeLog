@@ -49,6 +49,7 @@ sap.ui.define([
                 this.nomePainel = this.getView().data("nomePainel");
                 this.showFormFragment("Display");
 
+                this.routeMatched(evt);
                 if (this.hasInitialized) return;
                 //pego os botoes da view principal (que não fazem parte da sub view)
                 this.buttonEdit = this.getView().byId(this.nomePainel + "Edit");
@@ -64,7 +65,6 @@ sap.ui.define([
                 var painelDataModel = new sap.ui.model.json.JSONModel(this.painelData, true);
                 this.getView().setModel(painelDataModel, "painelData");
 
-                this.routeMatched(evt);
             },
 
             //Método chamado no onroutematched que pode ser sobreescrito pelos filhos dessas classe

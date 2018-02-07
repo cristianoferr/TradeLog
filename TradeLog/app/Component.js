@@ -1,3 +1,4 @@
+jQuery.sap.require("sap.ui.thirdparty.d3");
 
 /**
    * Carrega módulos externos ao OPENI5 para serem utilizados na aplicação. Vai ser executada logo após sua definição.
@@ -39,7 +40,9 @@ sap.ui.define([
 
             this.getRouter().initialize();
 
-
+            //https://blogs.sap.com/2015/05/13/a-journey-towards-to-openui5-charts/
+            sap.ui.getCore().loadLibrary("openui5.simplecharts", "./bower_components/openui5.simplecharts/resources/openui5/simplecharts");
+            jQuery.sap.registerModulePath('bower_component', './bower_components');
         },
 
         myNavBack: function () {

@@ -115,6 +115,17 @@ sap.ui.define(
                 if (!_oInput.hasInitializedOnChange) {
                     _oInput.hasInitializedOnChange = true;
                     this.addOnChangeToInput(_oInput);
+
+                    _oInput.onsapdown = function () {
+                        var value = parseFloat(_oInput.getValue());
+                        value -= 0.1;
+                        _oInput.setValue(value);
+                    };
+                    _oInput.onsapup = function () {
+                        var value = parseFloat(_oInput.getValue());
+                        value += 0.1;
+                        _oInput.setValue(value);
+                    };
                 }
                 var val = _oInput.getValue();
                 val = val.replace(",", ".");

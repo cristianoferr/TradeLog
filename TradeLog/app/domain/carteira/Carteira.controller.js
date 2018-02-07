@@ -46,6 +46,7 @@ sap.ui.define([
             bindView: function (sEntityPath) {
                 this.viewData.bindPath = sEntityPath;
                 this.getView().byId("idIconTabBar").bindElement(sEntityPath);
+                //this.getView().byId("idIconTabBar").getModel().attachEventOnce("requestCompleted", this.montaGraficoPizza.bind(this));
 
                 var viewModel = new sap.ui.model.json.JSONModel(this.viewData, true);
                 this.getView().setModel(viewModel, "viewModel");
@@ -64,6 +65,30 @@ sap.ui.define([
                 }
                 binding.sOperationMode = sap.ui.model.odata.OperationMode.Server;
                 binding.sort(sort);
+            },
+
+            /**Ver uma forma de recuperar os dados da carteira e posições adicionar aqui */
+            montaGraficoPizza: function (evt) {
+                var tablePosicao = this.getView().byId("tablePosicao");
+                var panel = this.getView().byId("graficoPizzaCarteira");
+                if (typeof openui5 == "undefined") return;
+
+                var chartData = new openui5.simplecharts.SimpleChartData();
+
+                //var data = { items: [{ "team": "Benfica", "goals": 20 }, { "team": "Porto", "goals": 15 }] };
+                debugger;
+                //this.getView().byId("idIconTabBar").bindElement(sEntityPath);
+                var carteiraAtual = this.getView().byId("idIconTabBar").getBindingContext().getObject();
+                var viewModel = this.getView().getModel("viewModel");
+                var data = [];
+
+                chartData.bindDimensions({ items: [{ name: "team", description: "Team", axis: "x" }] });
+                chartData.bindMeasures({ items: [{ name: "goals", description: "Goals", rank: "1" }] });
+                chartData.bindData(data);
+                var chart = new openui5.simplecharts.SimplePieChart({ title: "Composição da Carteira" });
+                chart.setData(chartData);
+                panel.removeAllContent();
+                panel.addContent(chart);
             }
 
 

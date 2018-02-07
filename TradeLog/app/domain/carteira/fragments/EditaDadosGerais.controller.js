@@ -11,5 +11,6 @@ sap.ui.define([
         return tradelog.shared.PainelEditavel.extend("tradelog.domain.carteira.fragments.EditaDadosGerais", {
 
 
+
         });
     });

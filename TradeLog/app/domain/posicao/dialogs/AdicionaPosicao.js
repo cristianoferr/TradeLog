@@ -31,10 +31,10 @@ sap.ui.define([
 
                 var gapStop = this.dataPosicao.PrecoAcao - this.dataPosicao.PrecoStopOpcional;
 
+                var qtdMaximaCapital = parseInt((this.dataPosicao.liquidoCarteira - this.dataPosicao.custoOperacao) / this.dataPosicao.PrecoAcao);
                 //situação normal de adição à posição
                 if (this.dataPosicao.StopVisible) {
-                    var qtdMaximaCapital = parseInt((this.dataPosicao.liquidoCarteira - this.dataPosicao.custoOperacao) / this.dataPosicao.PrecoAcao);
-                    if (this.dataPosicao.quantidade > qtdMaximaCapital || changeQtd) {
+                    if (this.dataPosicao.quantidade > qtdMaximaCapital) {
                         this.dataPosicao.quantidade = qtdMaximaCapital;
                     }
                 } else {
@@ -51,17 +51,11 @@ sap.ui.define([
                 if (qtdMaximaTrade < 0) qtdMaximaTrade = 0;
                 this.dataPosicao.quantidadeRecomendada = parseInt(qtdMaximaTrade < qtdMaximaRiscoCarteira ? qtdMaximaTrade : qtdMaximaRiscoCarteira);
 
-                if (changeQtd) {
-                    this.dataPosicao.quantidade = this.dataPosicao.quantidadeRecomendada;
-                }
 
-                var riscoTrade = gapStop * this.dataPosicao.quantidade;
+                var riscoTrade = gapStop * this.dataPosicao.quantidade + 2 * this.dataPosicao.custoOperacao;
                 this.dataPosicao.riscoCarteira = -(this.dataPosicao.carteiraAtual.RiscoAtual + riscoTrade);
                 this.dataPosicao.saldoRisco = this.dataPosicao.carteiraAtual.SaldoRiscoCarteira - riscoTrade;
 
-                if (this.dataPosicao.quantidade > qtdMaximaCapital && changeQtd) {
-                    this.dataPosicao.quantidade = qtdMaximaCapital;
-                }
             },
             setDataInUse: function (dataPosicao) {
                 this.dataPosicao = dataPosicao;

@@ -26,11 +26,14 @@
 			<f:formContainers>
 				<f:FormContainer title="{i18n>posicao.dadosEditaveis}">
 					<f:formElements>
-                        <f:FormElement label="{i18n>posicao.precoStopAtual}">
+                         <f:FormElement label="{i18n>posicao.precoStopAtual}">
                             <f:fields>
-                                <Input value="{PrecoStopAtual}" liveChange="inputFloat" change="checkFloat"/>
+                                 <Input value="{path:'PrecoStopAtual', type:'sap.ui.model.type.Float',
+                                        formatOptions:{maxFractionDigits:2,minFractionDigits:2}}"
+                                         liveChange="inputFloat" change="checkFloat"/>
                             </f:fields>
                         </f:FormElement>
+
                         <f:FormElement label="{i18n>posicao.anotacoes}">
                             <f:fields>
                                 <TextArea value="{Anotacoes}" />

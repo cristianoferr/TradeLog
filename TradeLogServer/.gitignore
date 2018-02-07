@@ -1,0 +1,20 @@
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+.vs/
+TradeLogServer/bin/
+TradeLogServer/connections.Release.config
+packages/
+.vs/TradeLogServer/v15/.suo
+TradeLogServer/bin/
+TradeLogServer/obj/
+TradeLogServer/logs/
+TradeLogServer/logs/saida.log
+TradeLogServer/Properties/PublishProfiles
+TradeLogServer/Properties/PublishProfiles/CustomProfile.pubxml.user
+TradeLogServer/Properties/PublishProfiles/CustomProfile.pubxml
+TradeLogServer/Web.Release.config
+TradeLogServer/logs/saida.log
+TradeLogServer/Web.Release.config
+TradeLogServer/obj/Debug/TradeLogServer.dll

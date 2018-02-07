@@ -24,6 +24,9 @@
                         <content>
                             <mvc:XMLView viewName="tradelog.domain.carteira.fragments.EditaDadosGerais" id="panelDadosGerais"
                                 app:nomePainel="EditaDadosGerais" app:domainAtual="carteira" app:entidade="{viewModel>/bindPath}" app:paramEntidade="carteira" ></mvc:XMLView>
+
+                            <Panel id="graficoPizzaCarteira">
+                            </Panel>
                         </content>
                     </IconTabFilter>
 
