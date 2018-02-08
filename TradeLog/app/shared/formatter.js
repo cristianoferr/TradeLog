@@ -80,6 +80,15 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
                 return value;
             }
         },
+        formataDataYYYYMMDD: function (value) {
+            if (value) {
+                var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({ pattern: "yyyyMMdd" });
+                var oFormattedDate = oDateFormat.format(new Date(value), true);
+                return oFormattedDate;
+            } else {
+                return value;
+            }
+        },
         formataDataHora: function (value) {
             if (value) {
                 var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({ pattern: "dd.MM.yyyy HH:mm" });

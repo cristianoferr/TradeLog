@@ -53,7 +53,9 @@ sap.ui.define([
 
                 this.bindTableMovimento();
 
-                this.iniciaTimerGrafico();
+                this.iniciaTimerGraficoComposicao();
+
+                this.bindTableEvolucao();
             },
 
             bindTableMovimento: function () {
@@ -69,7 +71,52 @@ sap.ui.define([
                 binding.sort(sort);
             },
 
-            iniciaTimerGrafico: function () {
+
+            bindTableEvolucao: function () {
+                var list = this.getView().byId("tableEvolucao");
+                list.bindItems(this.viewData.bindPath + "/TradeLogServer.Controllers.Evolucao", list.getBindingInfo("items").template.clone());
+
+                var count = 0;
+                var fnVerificaCarga = function () {
+                    count++;
+                    if (list.getItems().length > 0 || count > 5) {
+                        clearInterval(timer);
+                        this.montaGraficoEvolucao(list);
+                    }
+                };
+                var timer = setInterval(fnVerificaCarga.bind(this), 1000);
+
+            },
+
+            montaGraficoEvolucao: function (table) {
+                var panel = this.getView().byId("graficoEvolucao");
+
+
+                var carteiraAtual = this.getView().byId("idIconTabBar").getBindingContext().getObject();
+                var data = { items: [] };
+                var items = table.getItems();
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    data.items.push({ data: this.formatter.formataDataYYYYMMDD(item.data().Data), name: "Valor Posição", valor: item.data().ValorPosicao });
+                    data.items.push({ data: this.formatter.formataDataYYYYMMDD(item.data().Data), name: "Valor Líquido", valor: item.data().ValorLiquido });
+                    data.items.push({ data: this.formatter.formataDataYYYYMMDD(item.data().Data), name: "Valor Total", valor: item.data().ValorTotal });
+                }
+
+                var oDatasetPie = new openui5.simplecharts.SimpleChartData();
+                oDatasetPie.bindDimensions({
+                    items: [{ name: "data", description: "Data", axis: "x" },
+                    { name: "name", description: "Dado", axis: "y" }]
+                });
+                oDatasetPie.bindMeasures({ items: [{ name: "valor", description: "Valor", rank: "1" }] });
+                oDatasetPie.bindData(data);
+
+                var grafico = new openui5.simplecharts.SimpleLineChart({ title: "Evolução da Carteira"});
+                grafico.setDataSet(oDatasetPie);
+                panel.removeAllContent();
+                panel.addContent(grafico);
+            },
+
+            iniciaTimerGraficoComposicao: function () {
                 var fnVerificaCarga = function () {
                     if (sap.ui.tablePosicao == undefined) return;
 

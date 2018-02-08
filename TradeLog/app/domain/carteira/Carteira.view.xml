@@ -24,8 +24,15 @@
                         <content>
                             <mvc:XMLView viewName="tradelog.domain.carteira.fragments.EditaDadosGerais" id="panelDadosGerais"
                                 app:nomePainel="EditaDadosGerais" app:domainAtual="carteira" app:entidade="{viewModel>/bindPath}" app:paramEntidade="carteira" ></mvc:XMLView>
+                        </content>
+                    </IconTabFilter>
 
-
+                    <IconTabFilter id="iconTabEvolucao" class="tamanhoMinimo" key="Evolucao"
+                        text="{i18n>carteira.tabEvolucao}"
+                        icon="sap-icon://line-chart"
+                        >
+                        <content>
+                           <core:Fragment fragmentName="tradelog.domain.carteira.fragments.Evolucao" type="XML" />
                         </content>
                     </IconTabFilter>
 

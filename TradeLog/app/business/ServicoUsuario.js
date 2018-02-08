@@ -121,6 +121,7 @@
         sap.ui.userData.responseURL = undefined;
         console.error("Erro ao autenticar o usuário");
         console.log(evt);
+        debugger;
         Cookies.set("loggedUser", sap.ui.userData);
         location.reload();
 

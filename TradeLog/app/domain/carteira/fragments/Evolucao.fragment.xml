@@ -1,0 +1,34 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:core="sap.ui.core">
+
+    <Panel expandable="true" width="100%" id="graficoEvolucao" expanded="true" headerText="{i18n>carteira.graficoEvolucao}">
+    </Panel>
+
+    <Panel expandable="true" expanded="true" headerText="{i18n>carteira.tabEvolucao}">
+
+        <Table id="tableEvolucao" fixedLayout="false" items="{/Evolucao}" growing="false">
+            <columns>
+                <Column><Text text="{i18n>generico.data}"   /></Column>
+                <Column><Text text="{i18n>carteira.valorLiquido}"   /></Column>
+                <Column><Text text="{i18n>carteira.valorEmPosicoes}"   /></Column>
+                <Column><Text text="{i18n>posicao.valorTotal}"   /></Column>
+            </columns>
+            <items>
+            <ColumnListItem app:IdEvolucao="{IdEvolucao}" app:Data="{Data}"
+            app:ValorLiquido="{ValorLiquido}" app:ValorPosicao="{ValorPosicao}"  app:ValorTotal="{ValorTotal}">
+                    <cells>
+                        <Text text="{path:'Data', formatter:'.formatter.formataData'}" />
+                        <ObjectNumber number="{path:'ValorLiquido', formatter:'.formatter.formataValor'}"  unit="$"/>
+                        <ObjectNumber number="{path:'ValorPosicao', formatter:'.formatter.formataValor'}"  unit="$"/>
+                        <ObjectNumber number="{path:'ValorTotal', formatter:'.formatter.formataValor'}" unit="$"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+
+</core:FragmentDefinition>

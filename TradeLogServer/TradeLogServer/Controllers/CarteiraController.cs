@@ -60,6 +60,15 @@ namespace TradeLogServer.Controllers
         }
 
 
+        // GET: odata/Carteira(5)/Evolucao
+        [EnableQuery]
+        [HttpGet]
+        //[ODataRoute("Carteira({key})/Evolucao")]
+        public IQueryable<Evolucao> Evolucao([FromODataUri] int key)
+        {
+            return db.Evolucaos.Where(evolucao => evolucao.IdCarteira == key && evolucao.Carteira.IdUsuario == idUsuarioAtual ).Include(p => p.Carteira).OrderBy(x=>x.IdEvolucao);
+        }
+
         // GET: odata/Carteira(5)/Posicao
         [EnableQuery]
         [HttpGet]

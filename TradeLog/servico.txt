@@ -1,21 +1,4 @@
-CREATE TABLE Evolucao
-(
-	IdEvolucao           CHAR(18) NOT NULL,
-	ValorLiquido         CHAR(18) NULL,
-	ValorPosicao         CHAR(18) NULL,
-	Data                 CHAR(18) NULL,
-	IdCarteira           INT(10) NULL
-);
 
-
-
-ALTER TABLE Evolucao
-ADD PRIMARY KEY (IdEvolucao);
-
-ALTER TABLE Evolucao
-ADD FOREIGN KEY R_17 (IdCarteira) REFERENCES Carteira (IdCarteira);
-ALTER TABLE Evolucao
-MODIFY IdEvolucao  INT(10) AUTO_INCREMENT;
 
 ---
 Tarefas:
