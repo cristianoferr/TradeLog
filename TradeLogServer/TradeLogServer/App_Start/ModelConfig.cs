@@ -36,6 +36,7 @@ namespace TradeLogServer.App_Start
             builder.EntitySet<Papel>("Papel");
             builder.EntitySet<Usuario>("Usuario");
             builder.EntitySet<Trade>("Trade");
+            builder.EntitySet<Evolucao>("Evolucao");
 
             //Mapeando navigation properties
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Posicao").ReturnsFromEntitySet<Posicao>("Posicao");
@@ -45,6 +46,7 @@ namespace TradeLogServer.App_Start
 
             //método chamado para atualizar os valores
             builder.EntitySet<Papel>("Papel").EntityType.Function("UpdateValores").Returns<String>();
+            builder.EntitySet<Evolucao>("Evolucao").EntityType.Function("UpdateEvolucao").Returns<String>();
 
             CriaActionsUsuario(builder);
             CriaActionsCarteira(builder);
@@ -57,6 +59,9 @@ namespace TradeLogServer.App_Start
             RegistraPropriedadesCarteira(builder);
             RegistraPropriedadesTrade(builder);
             RegistraPropriedadesPapel(builder);
+
+            builder.EntityType<Evolucao>().Property(a => a.ValorTotal);
+            
             builder.EntityType<Movimento>().Property(a => a.CodigoPapel);
 
             builder.Namespace = "TradeLogServer.Controllers";

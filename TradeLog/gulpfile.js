@@ -44,18 +44,6 @@ gulp.task('build__', ['copiaConteudoWeb']);
 
 gulp.task('default', ['clean', 'copiaConteudoWeb', '1compres', 'geraComponentPreload', '3prepareComponentPreload']);
 
-gulp.task('copiaConteudoWeb', function () {
-    gulp.src(['app/**/*.(json)'
-    ])
-        .pipe(replace("http://localhost:58761/odata/", 'http://tradelog.me/servico/odata/'))
-        .pipe(gulp.dest('build'));
-
-    gulp.src(['app/**/*',
-        '!app/**/*.(json|js|xml)'
-    ])
-        .pipe(gulp.dest('build'));
-
-});
 gulp.task('cordovaPrepare', function () {
     setTimeout(function () {
         var exec = require('child_process').exec;
@@ -122,8 +110,19 @@ gulp.task('buildPreload', function () {
     runSequence('geraComponentPreload', 'prepareComponentPreload');
 });
 
+gulp.task('copiaConteudoWeb', function () {
+    gulp.src(['app/**/*',
+        '!app/**/*.+(json|js|xml)'
+    ])
+        .pipe(gulp.dest('build'));
+
+});
+
+
 gulp.task('copiaMinificada', function () {
-    gulp.src(['app/**/*.+(js)'])
+ 
+
+    gulp.src(['app/**/*.+(js|json|xml)'])
         .pipe(replace("http://localhost:58761/odata/", 'http://tradelog.me/servico/odata/'))
         .pipe(minify({
             exclude: ['tasks'],

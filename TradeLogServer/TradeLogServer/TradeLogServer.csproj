@@ -310,6 +310,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Business\BaseBP.cs" />
     <Compile Include="Business\BPCarteira.cs" />
+    <Compile Include="Business\BPEvolucao.cs" />
     <Compile Include="Business\BPTrade.cs" />
     <Compile Include="Business\BPHistorico.cs" />
     <Compile Include="Business\BPMovimento.cs" />
@@ -318,6 +319,7 @@
     <Compile Include="Business\BPPapel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarteiraController.cs" />
+    <Compile Include="Controllers\EvolucaoController.cs" />
     <Compile Include="Controllers\HistoricoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovimentoController.cs" />
@@ -339,6 +341,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Movimento.cs" />
     <Compile Include="Models\Historico.cs" />
+    <Compile Include="Models\Evolucao.cs" />
     <Compile Include="Models\Trade.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Posicao.cs" />

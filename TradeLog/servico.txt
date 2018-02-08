@@ -1,8 +1,30 @@
+CREATE TABLE Evolucao
+(
+	IdEvolucao           CHAR(18) NOT NULL,
+	ValorLiquido         CHAR(18) NULL,
+	ValorPosicao         CHAR(18) NULL,
+	Data                 CHAR(18) NULL,
+	IdCarteira           INT(10) NULL
+);
+
+
+
+ALTER TABLE Evolucao
+ADD PRIMARY KEY (IdEvolucao);
+
+ALTER TABLE Evolucao
+ADD FOREIGN KEY R_17 (IdCarteira) REFERENCES Carteira (IdCarteira);
+ALTER TABLE Evolucao
+MODIFY IdEvolucao  INT(10) AUTO_INCREMENT;
+
+---
 Tarefas:
 - criar uma tabela para manter o historico da carteira ao longo dos dias, registrar valores: líquido, situação atual e risco
 - fazer um gráfico de linha com esses dados
 - fazer um gráfico de pizza com fatias de cada ação + capital liquido
 https://blogs.sap.com/2015/05/13/a-journey-towards-to-openui5-charts/
+- criar uma tarefa para registrar o histórico de cada carteira
+    - mostrar um gráfico da evolução da carteira
 
 - posicao: somar todos os custos em um campo e subtrair esse campo da 'situação'
 

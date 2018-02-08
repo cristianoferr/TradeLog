@@ -50,5 +50,7 @@ namespace TradeLogServer.Models
         public System.Data.Entity.DbSet<TradeLogServer.Models.Historico> Historicoes { get; set; }
 
         public System.Data.Entity.DbSet<TradeLogServer.Models.Trade> Trades { get; set; }
+
+        public System.Data.Entity.DbSet<TradeLogServer.Models.Evolucao> Evolucaos { get; set; }
     }
 }
