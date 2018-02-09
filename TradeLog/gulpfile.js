@@ -1,20 +1,20 @@
 //https://github.com/enric11/OpenUI5compiler/blob/master/app/gulpfile.js
 /*
-npm install gulp-replace
-npm install gulp-uglify
-npm install gulp-ui5-preload
-npm install gulp-minify
-npm install gulp-pretty-data
-npm install gulp-if
-npm install gulp
-npm install gulp-debug
-npm install del
-npm install gulp-series
+npm install gulp-replace --save-dev
+npm install gulp-uglify --save-dev
+npm install gulp-ui5-preload --save-dev
+npm install gulp-minify --save-dev
+npm install gulp-pretty-data --save-dev
+npm install gulp-if --save-dev
+npm install gulp --save-dev
+npm install gulp-debug --save-dev
+npm install del --save-dev
+npm install gulp-series --save-dev --save-dev
 npm install gulp-prettify
-npm install gulp-rimraf
-npm install run-sequence
-
-npm install gulp-filelist
+npm install gulp-exec --save-dev
+npm install gulp-rimraf --save-dev
+npm install run-sequence --save-dev
+npm install gulp-filelist --save-dev
 */
 var gulp = require('gulp');
 var exec = require('gulp-exec');
@@ -120,7 +120,7 @@ gulp.task('copiaConteudoWeb', function () {
 
 
 gulp.task('copiaMinificada', function () {
- 
+
 
     gulp.src(['app/**/*.+(js|json|xml)'])
         .pipe(replace("http://localhost:58761/odata/", 'http://tradelog.me/servico/odata/'))

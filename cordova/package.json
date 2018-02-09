@@ -1,0 +1,40 @@
+{
+  "name": "helloworld",
+  "displayName": "HelloCordova",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "cordova": {
+    "plugins": {
+      "kapsel-plugin-ui5": {},
+      "kapsel-plugin-logon": {},
+      "kapsel-plugin-logger": {},
+      "kapsel-plugin-i18n": {},
+      "kapsel-plugin-authproxy": {},
+      "kapsel-plugin-corelibs": {},
+      "kapsel-plugin-inappbrowser": {},
+      "cordova-plugin-whitelist": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  },
+  "dependencies": {
+    "cordova-android": "^6.2.3",
+    "cordova-plugin-device": "^1.1.6",
+    "cordova-plugin-whitelist": "^1.3.2",
+    "kapsel-plugin-authproxy": "~3.14.0",
+    "kapsel-plugin-corelibs": "~3.14.0",
+    "kapsel-plugin-i18n": "~3.14.0",
+    "kapsel-plugin-inappbrowser": "~3.14.0",
+    "kapsel-plugin-logger": "~3.14.0",
+    "kapsel-plugin-logon": "~3.14.0",
+    "kapsel-plugin-ui5": "~3.14.0",
+    "plugin": "^0.3.3"
+  }
+}

@@ -7,6 +7,10 @@ TradeLogServer/TradeLogServer/bin/
 TradeLogServer/TradeLogServer/connections.Release.config
 TradeLogServer/packages/
 TradeLog/node_modules/
+cordova/node_modules/
+cordova/platforms/
+cordova/plugins/
+cordova/www/
 TradeLogServer/.vs/TradeLogServer/v15/.suo
 TradeLogServer/TradeLogServer/bin/
 TradeLogServer/TradeLogServer/obj/

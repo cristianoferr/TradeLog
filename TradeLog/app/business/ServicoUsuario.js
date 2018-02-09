@@ -73,6 +73,9 @@
 
 
     function verificaUsuario() {
+        if (!sap.ui.userData.id_token) {
+            return;
+        }
         if (!sap.ui.userData.isLogged) return;
 
         var fSucesso = function (evt) {
@@ -119,6 +122,7 @@
 
     function erroAutenticandoUsuario(evt) {
         sap.ui.userData.responseURL = undefined;
+        sap.ui.userData.id_token = undefined;
         console.error("Erro ao autenticar o usuário");
         console.log(evt);
         debugger;
