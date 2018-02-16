@@ -1,3 +1,8 @@
+alter table Posicao add CustoOperacao decimal(14,6);
+alter table Trade add CustoOperacao decimal(14,6);
+
+update Trade set CustoOperacao=20;
+update Posicao set CustoOperacao=20;
 
 
 ---

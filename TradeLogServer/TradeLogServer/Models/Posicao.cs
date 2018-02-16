@@ -40,6 +40,11 @@ namespace TradeLogServer.Models
         public float PrecoMedioCompra { get; set; }
         public float PrecoMedioVenda { get; set; }
 
+        /*Contem o custo total gasto em operacao, será deduzido do valor atual*/
+        public float CustoOperacao { get; set; }
+
+        
+
         public int QuantidadeComprada { get; set; }
         public int QuantidadeVendida { get; set; }
 
@@ -102,7 +107,7 @@ namespace TradeLogServer.Models
         {
             get
             {
-                return ValorSaldo + TotalVendido;
+                return ValorSaldo + TotalVendido - CustoOperacao;
             }
         }
 

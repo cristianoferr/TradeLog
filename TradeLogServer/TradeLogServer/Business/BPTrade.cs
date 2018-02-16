@@ -30,6 +30,8 @@ namespace TradeLogServer.Business
             float valorTotal = quantidade * precoAcao;
             BPPosicao bpPosicao = new BPPosicao();bpPosicao.db = db;
             Posicao posicao = bpPosicao.GetOrCreatePosicaoForPapel(carteira, idPapel, precoStopOpcional);
+            posicao.CustoOperacao += custoOperacao;
+
             MovimentaFundo(carteira, posicao, valorTotal, quantidade, precoAcao, direcao,custoOperacao);
 
             if (posicao == null)
@@ -40,6 +42,7 @@ namespace TradeLogServer.Business
 
             Trade trade = new Trade();
             trade.Posicao = posicao;
+            trade.CustoOperacao += custoOperacao;
             if (precoStopOpcional > 0)
             {
                 posicao.PrecoStopAtual = precoStopOpcional;

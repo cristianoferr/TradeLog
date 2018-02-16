@@ -27,6 +27,9 @@ namespace TradeLogServer.Models
 
         public int QuantidadeComprada{ get; set; }
         public int QuantidadeVendida{ get; set; }
+
+        /*Contem o custo  gasto em operacao*/
+        public float CustoOperacao { get; set; }
         public DateTime Data { get; set; }
     }
 }

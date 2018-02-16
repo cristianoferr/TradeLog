@@ -10,10 +10,11 @@
         <Table id="tableTrade" items="{/Trade}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
             <columns>
                 <Column ><Text text="{i18n>trade.data}"   /></Column>
-                <Column width="5rem"><Text text="{i18n>trade.precoAcao}"   /></Column>
+                <Column width="10rem"><Text text="{i18n>trade.precoAcao}"   /></Column>
                 <Column ><Text text="{i18n>trade.qtdComprada}"   /></Column>
                 <Column ><Text text="{i18n>trade.qtdVendida}"   /></Column>
-                <Column width="5rem"><Text text="{i18n>trade.valorTrade}"   /></Column>
+                <Column width="10rem"><Text text="{i18n>trade.valorTrade}"   /></Column>
+                <Column width="10rem"><Text text="{i18n>carteira.custoOperacao}"   /></Column>
 
             </columns>
             <items>
@@ -24,8 +25,10 @@
                         <ObjectNumber number="{QuantidadeComprada}" />
                         <ObjectNumber number="{QuantidadeVendida}" />
                         <ObjectNumber number="{path:'ValorTrade', formatter:'.formatter.formataValor'}" unit="$" />
+                        <ObjectNumber number="{path:'CustoOperacao', formatter:'.formatter.formataValor'}" unit="$" />
                     </cells>
                 </ColumnListItem>
+
             </items>
         </Table>
     </Panel>

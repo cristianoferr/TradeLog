@@ -56,6 +56,11 @@
 								<Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />
 							</f:fields>
 						</f:FormElement>
+                        <f:FormElement label="{i18n>carteira.custoOperacao}">
+							<f:fields>
+								<ObjectNumber number="{path:'CustoOperacao', formatter:'.formatter.formataValor'}" unit="$" />
+							</f:fields>
+						</f:FormElement>
 
 
 

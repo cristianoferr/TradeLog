@@ -35,7 +35,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
         calculaTotalOperacao: function (preco, qtd, custo, tipo) {
             var total;
             if (tipo == "C") {
-                total = parseFloat(preco) * parseFloat(qtd) - parseFloat(custo);
+                total = parseFloat(preco) * parseFloat(qtd) + parseFloat(custo);
             }
             if (tipo == "V") {
                 total = -parseFloat(preco) * parseFloat(qtd) - parseFloat(custo);
