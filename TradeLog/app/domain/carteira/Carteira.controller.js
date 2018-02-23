@@ -29,13 +29,20 @@ sap.ui.define([
                 this.viewData.carteiraAtual = evt.getParameter("arguments").carteira;
                 this.viewData.bindPath = `/Carteira(${this.viewData.carteiraAtual})`;
                 this.bindView(this.viewData.bindPath);
+                this.onTabBarSelected();
             },
 
             /**
             * método chamado quando o usuário clica em um ícone da tabBar
             */
             onTabBarSelected: function (evt) {
-                this.viewData.abaDadosGerais = evt.getParameters().selectedKey === "DadosGerais";
+                if (evt) {
+                    this.lastTabBar = evt.getParameters().selectedKey;
+                }
+                this.viewData.abaDadosGerais = this.lastTabBar === "DadosGerais";
+                if (this.lastTabBar == "Evolucao") {
+                    this.montaGraficoEvolucaoAsync();
+                }
             },
 
 
@@ -76,19 +83,25 @@ sap.ui.define([
                 var list = this.getView().byId("tableEvolucao");
                 list.bindItems(this.viewData.bindPath + "/TradeLogServer.Controllers.Evolucao", list.getBindingInfo("items").template.clone());
 
+
+
+            },
+
+            montaGraficoEvolucaoAsync: function () {
+                var list = this.getView().byId("tableEvolucao");
                 var count = 0;
                 var fnVerificaCarga = function () {
                     count++;
                     if (list.getItems().length > 0 || count > 5) {
                         clearInterval(timer);
-                        this.montaGraficoEvolucao(list);
+                        this.montaGraficoEvolucao();
                     }
                 };
                 var timer = setInterval(fnVerificaCarga.bind(this), 1000);
-
             },
 
-            montaGraficoEvolucao: function (table) {
+            montaGraficoEvolucao: function () {
+                var table = this.getView().byId("tableEvolucao");
                 var panel = this.getView().byId("graficoEvolucao");
 
 
@@ -110,7 +123,8 @@ sap.ui.define([
                 oDatasetPie.bindMeasures({ items: [{ name: "valor", description: "Valor", rank: "1" }] });
                 oDatasetPie.bindData(data);
 
-                var grafico = new openui5.simplecharts.SimpleLineChart({ title: "Evolução da Carteira"});
+                //var grafico = new openui5.simplecharts.SimpleLineChart({ title: "Evolução da Carteira", width: parseInt(table.$().width() * 0.8) + "px", height: table.$().height() + "px" });
+                var grafico = new openui5.simplecharts.SimpleLineChart({ title: "Evolução da Carteira" });
                 grafico.setDataSet(oDatasetPie);
                 panel.removeAllContent();
                 panel.addContent(grafico);
