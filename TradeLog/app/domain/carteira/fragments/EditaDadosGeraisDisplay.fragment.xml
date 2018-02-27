@@ -90,9 +90,14 @@
 								<Text text="{path:'ValorRiscoMaximoCarteira', formatter:'.formatter.formataValor'}" />
 							</f:fields>
                         </f:FormElement>
-                        <f:FormElement label="{i18n>carteira.saldoRisco}">
+                          <f:FormElement label="{i18n>carteira.saldoRisco}">
 							<f:fields>
 								<Text text="{path:'SaldoRiscoCarteira', formatter:'.formatter.formataValor'}" />
+							</f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="{i18n>carteira.riscoAtual}">
+							<f:fields>
+								<Text text="{path:'ValorRiscoPosicoes', formatter:'.formatter.formataValor'}" />
 							</f:fields>
                         </f:FormElement>
 
