@@ -124,7 +124,9 @@ sap.ui.define([
                 oDatasetPie.bindData(data);
 
                 //var grafico = new openui5.simplecharts.SimpleLineChart({ title: "Evolução da Carteira", width: parseInt(table.$().width() * 0.8) + "px", height: table.$().height() + "px" });
+                //var grafico = new openui5.simplecharts.SimpleLineChart({ title: "Evolução da Carteira" });
                 var grafico = new openui5.simplecharts.SimpleLineChart({ title: "Evolução da Carteira" });
+                //grafico.setWidth(parseInt(table.$().width() * 0.8) + "px");
                 grafico.setDataSet(oDatasetPie);
                 panel.removeAllContent();
                 panel.addContent(grafico);

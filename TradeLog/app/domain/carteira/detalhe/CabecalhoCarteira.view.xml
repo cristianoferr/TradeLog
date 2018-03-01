@@ -18,8 +18,7 @@
                         backgroundDesign="Translucent">
                 <attributes>
 					<ObjectAttribute title="{i18n>carteira.valorLiquido}" text="{path:'ValorLiquido', formatter:'.formatter.formataValor'} $" />
-                    <ObjectAttribute title="{i18n>carteira.riscoAtual}" text="{path:'ValorRiscoPosicoes', formatter:'.formatter.formataValor'} $" />
-                    <ObjectAttribute title="{i18n>carteira.percSobRisco}" text="{path:'PercRiscoAtual', formatter:'.formatter.formataValor'} %" />
+                    <ObjectAttribute title="{i18n>carteira.riscoAtual}" text="{path:'ValorRiscoPosicoes', formatter:'.formatter.formataValor'} $ ({path:'PercRiscoAtual', formatter:'.formatter.formataValor'} %)" />
 				</attributes>
             </ObjectHeader>
         <content>
