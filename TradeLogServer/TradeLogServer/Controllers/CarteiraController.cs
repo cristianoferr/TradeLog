@@ -29,7 +29,7 @@ namespace TradeLogServer.Controllers
             var current2 = HttpContextProvider.Current;
             var current = HttpContext.Current;
             HttpContextWrapper context = Request.Properties["MS_HttpContext"] as HttpContextWrapper;
-            return db.Carteiras.Where(carteira => carteira.IdUsuario == idUsuarioAtual).Include(p => p.Posicao.Select(x=>x.Papel)).Include(p=>p.Posicao.Select(x=>x.Trade));
+            return db.Carteiras.Where(carteira => carteira.IdUsuario == idUsuarioAtual).Include(p => p.Posicao.Select(x=>x.Papel)).Include(p=>p.Posicao.Select(x=>x.Trade)).OrderBy(p=>p.NomeCarteira);
         }
 
         // GET: odata/Carteira(5)

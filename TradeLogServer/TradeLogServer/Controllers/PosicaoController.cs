@@ -39,7 +39,7 @@ namespace TradeLogServer.Controllers
        // [ODataRoute("Posicao({key})/Trade")]
         public IQueryable<Trade> Trade([FromODataUri] int key)
         {
-            return db.Trades.Where(trade => trade.IdPosicao== key && trade.Posicao.IdUsuario == idUsuarioAtual).Include(t => t.Posicao);
+            return db.Trades.Where(trade => trade.IdPosicao== key && trade.Posicao.IdUsuario == idUsuarioAtual).Include(t => t.Posicao).OrderBy(p=>p.IdTrade);
         }
 
 
@@ -54,7 +54,7 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public IQueryable<Posicao> GetPosicao()
         {
-            return db.Posicoes.Where(posicao => posicao.IdUsuario == idUsuarioAtual &&  posicao.FlagAtivo == "T").Include(p => p.Papel);
+            return db.Posicoes.Where(posicao => posicao.IdUsuario == idUsuarioAtual &&  posicao.FlagAtivo == "T").Include(p => p.Papel).OrderBy(p => p.CodigoPapel);
         }
 
 

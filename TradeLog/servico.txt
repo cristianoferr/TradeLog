@@ -1,19 +1,8 @@
-alter table Posicao add CustoOperacao decimal(14,6);
-alter table Trade add CustoOperacao decimal(14,6);
-
-update Trade set CustoOperacao=20;
-update Posicao set CustoOperacao=20;
 
 
 ---
 Tarefas:
-- criar uma tabela para manter o historico da carteira ao longo dos dias, registrar valores: líquido, situação atual e risco
-- fazer um gráfico de linha com esses dados
-- fazer um gráfico de pizza com fatias de cada ação + capital liquido
-https://blogs.sap.com/2015/05/13/a-journey-towards-to-openui5-charts/
-- criar uma tarefa para registrar o histórico de cada carteira
-    - mostrar um gráfico da evolução da carteira
-
+- ao efetuar a opera��o mostrar a diferen�a entre o pre�o de compra e o stop
 - posicao: somar todos os custos em um campo e subtrair esse campo da 'situação'
 
 
