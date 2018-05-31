@@ -86,6 +86,14 @@ namespace TradeLogServer.Controllers
             return db.Movimentoes.Where(movimento => movimento.IdCarteira == key && movimento.Carteira.IdUsuario == idUsuarioAtual).Include(p => p.Carteira).Include(p => p.Posicao.Papel).Include(p => p.Posicao.Trade);
         }
 
+        // GET: odata/Carteira(5)/Balanco
+        [HttpGet]
+        //[ODataRoute("Carteira({key})/Balanco")]
+        public IQueryable<Balanco> Balanco([FromODataUri] int key)
+        {
+            return db.Balancos.Where(balanco=>balanco.IdCarteira== key && balanco.Carteira.IdUsuario == idUsuarioAtual).Include(p => p.Carteira).Include(p => p.Papel);
+        }
+
 
         // PUT: odata/Carteira(5)
         public async Task<IHttpActionResult> Put([FromODataUri] int key, Delta<Carteira> patch)

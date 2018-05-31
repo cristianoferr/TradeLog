@@ -45,6 +45,8 @@ namespace TradeLogServer.Models
 
         public System.Data.Entity.DbSet<TradeLogServer.Models.Movimento> Movimentoes { get; set; }
 
+        public System.Data.Entity.DbSet<TradeLogServer.Models.Balanco> Balancos { get; set; }
+
         public System.Data.Entity.DbSet<TradeLogServer.Models.Usuario> Usuarios { get; set; }
 
         public System.Data.Entity.DbSet<TradeLogServer.Models.Historico> Historicoes { get; set; }

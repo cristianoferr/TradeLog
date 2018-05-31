@@ -36,10 +36,12 @@ namespace TradeLogServer.App_Start
             builder.EntitySet<Papel>("Papel");
             builder.EntitySet<Usuario>("Usuario");
             builder.EntitySet<Trade>("Trade");
+            builder.EntitySet<Balanco>("Balanco");
             builder.EntitySet<Evolucao>("Evolucao");
 
             //Mapeando navigation properties
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Posicao").ReturnsFromEntitySet<Posicao>("Posicao");
+            builder.EntitySet<Carteira>("Carteira").EntityType.Function("Balanco").ReturnsFromEntitySet<Balanco>("Balanco");
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Movimento").ReturnsFromEntitySet<Movimento>("Movimento");
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Evolucao").ReturnsFromEntitySet<Evolucao>("Evolucao");
             builder.EntitySet<Posicao>("Posicao").EntityType.Function("Trade").ReturnsFromEntitySet<Trade>("Trade");

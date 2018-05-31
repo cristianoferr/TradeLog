@@ -54,6 +54,16 @@
                             <core:Fragment fragmentName="tradelog.domain.movimento.fragments.ListaMovimentos" type="XML" />
                         </content>
                     </IconTabFilter>
+
+                    <IconTabFilter id="iconTabHolder" class="tamanhoMinimo" key="Holder"
+                        text="Balanceamento"
+                        icon="sap-icon://compare"
+                        >
+                        <content>
+                           <mvc:XMLView viewName="tradelog.domain.balanco.consulta.BalancoCarteira"></mvc:XMLView>
+
+                        </content>
+                    </IconTabFilter>
                 </items>
             </IconTabBar>
 

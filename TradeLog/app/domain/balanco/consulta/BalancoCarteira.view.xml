@@ -1,0 +1,33 @@
+<core:View
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="tradelog.domain.balanco.consulta.BalancoCarteira"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
+    >
+
+    <Panel expandable="true" expanded="true" headerText="Balanço de Ações">
+        <Table id="tableBalanco" items="{TradeLogServer.Controllers.Balanco}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
+            <columns>
+                <Column width="5rem"><Text text="{i18n>posicao.nomePapel}"   /></Column>
+                <Column width="5rem"><Text text="Peso"   /></Column>
+                <Column ><Text text="{i18n>movimento.descricao}"   /></Column>
+                <Column ><Text text="{i18n>movimento.valor}"   /></Column>
+
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{CodigoPapel}" />
+                        <Input value="{path:'PesoPapel', type:'sap.ui.model.type.Float',
+                                        formatOptions:{maxFractionDigits:2,minFractionDigits:2}}"
+                                         liveChange="inputFloat" change="checkFloat"/>
+                        <Text text="" />
+                        <Text text="" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Panel>
+
+</core:View>
