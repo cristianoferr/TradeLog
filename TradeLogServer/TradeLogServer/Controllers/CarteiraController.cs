@@ -91,7 +91,7 @@ namespace TradeLogServer.Controllers
         //[ODataRoute("Carteira({key})/Balanco")]
         public IQueryable<Balanco> Balanco([FromODataUri] int key)
         {
-            return db.Balancos.Where(balanco=>balanco.IdCarteira== key && balanco.Carteira.IdUsuario == idUsuarioAtual).Include(p => p.Carteira).Include(p => p.Papel);
+            return db.Balancos.Where(balanco=>balanco.IdCarteira== key && balanco.Carteira.IdUsuario == idUsuarioAtual).Include(p => p.Carteira).Include(p => p.Carteira.Posicao).Include(p => p.Carteira.Posicao.Select(x => x.Papel)).Include(p => p.Papel).OrderBy(p => p.Papel.Codigo); ;
         }
 
 

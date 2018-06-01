@@ -62,6 +62,7 @@ namespace TradeLogServer.App_Start
             RegistraPropriedadesCarteira(builder);
             RegistraPropriedadesTrade(builder);
             RegistraPropriedadesPapel(builder);
+            RegistaPropriedadesBalanco(builder);
 
             builder.EntityType<Evolucao>().Property(a => a.ValorTotal);
             
@@ -78,7 +79,15 @@ namespace TradeLogServer.App_Start
         {
         }
 
-            private static void RegistraPropriedadesTrade(ODataModelBuilder builder)
+        private static void RegistaPropriedadesBalanco(ODataModelBuilder builder)
+        {
+            builder.EntityType<Balanco>().Property(a => a.CodigoPapel);
+            builder.EntityType<Balanco>().Property(a => a.ValorPapel);
+            builder.EntityType<Balanco>().Property(a => a.QtdPosse);
+            
+        }
+
+        private static void RegistraPropriedadesTrade(ODataModelBuilder builder)
         {
             builder.EntityType<Trade>().Property(a => a.ValorTrade);
             

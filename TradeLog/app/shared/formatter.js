@@ -32,6 +32,12 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
             }
         },
 
+        formataMultiplicacao: function (preco, qtd) {
+            var total;
+            total = parseFloat(preco) * parseFloat(qtd);
+            return this.formatter.formataValor(total);
+        },
+
         calculaTotalOperacao: function (preco, qtd, custo, tipo) {
             var total;
             if (tipo == "C") {

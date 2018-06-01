@@ -22,5 +22,42 @@ namespace TradeLogServer.Models
         public float PesoPapel { get; set; }
         public string FlagCongelado { get; set; }
 
+
+        [NotMapped]
+        public float QtdPosse { get
+            {
+                int qtd = Carteira.Posicao.Where(pos => pos.Papel.Codigo == Papel.Codigo).Sum(x=>x.QuantidadeLiquida);
+                return qtd;
+            }
+        }
+
+
+        [NotMapped]
+        public string CodigoPapel
+        {
+            get
+            {
+                return Papel.Codigo;
+            }
+        }
+
+        [NotMapped]
+        public float ValorPapel
+        {
+            get
+            {
+                return Papel.ValorAtual;
+            }
+        }
+
+        [NotMapped]
+        public float ValorAtual
+        {
+            get
+            {
+                return Carteira.ValorAtual;
+            }
+        }
+
     }
 }

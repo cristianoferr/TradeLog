@@ -7,23 +7,30 @@
     >
 
     <Panel expandable="true" expanded="true" headerText="Balanço de Ações">
-        <Table id="tableBalanco" items="{TradeLogServer.Controllers.Balanco}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
+        <Table id="tableBalanco" items="{Balanco}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
             <columns>
                 <Column width="5rem"><Text text="{i18n>posicao.nomePapel}"   /></Column>
                 <Column width="5rem"><Text text="Peso"   /></Column>
-                <Column ><Text text="{i18n>movimento.descricao}"   /></Column>
-                <Column ><Text text="{i18n>movimento.valor}"   /></Column>
+                <Column width="6rem"><Text text="Preço Ação"   /></Column>
+                <Column width="6rem" ><Text text="Qtd. Calculada"   /></Column>
+                <Column width="6rem" ><Text text="Valor Calc."   /></Column>
+                <Column width="6rem" ><Text text="Qtd. em Posse"   /></Column>
+                <Column width="6rem" ><Text text="Valor em Posse"   /></Column>
 
             </columns>
             <items>
                 <ColumnListItem>
                     <cells>
-                        <Text text="{CodigoPapel}" />
+                        <Input value="{CodigoPapel}" enabled="false"/>
                         <Input value="{path:'PesoPapel', type:'sap.ui.model.type.Float',
                                         formatOptions:{maxFractionDigits:2,minFractionDigits:2}}"
                                          liveChange="inputFloat" change="checkFloat"/>
-                        <Text text="" />
-                        <Text text="" />
+                        <Input value="{path:'ValorPapel', formatter:'.formatter.formataValor'}" enabled="false"/>
+                        <Input value="" enabled="false"/>
+                        <Input value="" enabled="false"/>
+                        <Input value="{path:'QtdPosse', formatter:'.formatter.formataValor'}" enabled="false"/>
+                        <Input value="{parts:[{path:'QtdPosse'},{path:'ValorPapel'}], formatter:'.formatter.formataMultiplicacao'}" enabled="false"/>
+
                     </cells>
                 </ColumnListItem>
             </items>
