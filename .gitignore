@@ -25,3 +25,5 @@ TradeLog/build/
 TradeLogServer/TradeLogServer/Web.Release.config
 TradeLogServer/TradeLogServer/obj/Debug/TradeLogServer.dll
 TradeLogServer/TradeLogServer/obj/Debug/TradeLogServer.pdb
+TradeLogServer/.vs/config/applicationhost.config
+TradeLogServer/.vs/TradeLogServer/v15/.suo

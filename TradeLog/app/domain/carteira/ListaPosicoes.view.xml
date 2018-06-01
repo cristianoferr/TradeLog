@@ -24,9 +24,7 @@
     <Panel expandable="true" expanded="true" headerText="{i18n>carteira.tituloPosicoes}">
 
         <Table id="tablePosicao" fixedLayout="false" items="{
-                    path: '/Posicao', events: {
-                                change: '.guardaDadosPosicao'
-                            } }" growing="false">
+                    path: '/Posicao'}" growing="false">
             <columns>
                 <Column width="5rem"><Text text="{i18n>posicao.nomePapel}"   /></Column>
                 <Column minScreenWidth="1200px" demandPopin="true" hAlign="Center" width="5rem"><Text text="{i18n>posicao.dataEntrada}"   /></Column>

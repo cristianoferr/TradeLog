@@ -44,3 +44,26 @@ server {
         }
 	}
 
+
+--
+CREATE TABLE Balanco
+(
+	IdCarteira           INT(10) NOT NULL,
+	IdPapel              int(10) NOT NULL,
+	PesoPapel            decimal(14,6) NULL,
+	FlagCongelado        CHAR(1) NULL
+);
+
+
+
+ALTER TABLE Balanco
+ADD PRIMARY KEY (IdCarteira,IdPapel);
+
+
+ALTER TABLE Balanco
+ADD FOREIGN KEY  (IdCarteira) REFERENCES Carteira (IdCarteira);
+
+
+
+ALTER TABLE Balanco
+ADD FOREIGN KEY (IdPapel) REFERENCES Papel (IdPapel);

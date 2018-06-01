@@ -32,8 +32,9 @@ sap.ui.define([
             var list = this.getView().byId("tableBalanco");
             list.bindItems(this.viewData.bindPath + "/TradeLogServer.Controllers.Balanco", list.getBindingInfo("items").template.clone());
             var binding = list.getBinding("items");
-
-            binding.sOperationMode = sap.ui.model.odata.OperationMode.Server;
+            if (binding) {
+                binding.sOperationMode = sap.ui.model.odata.OperationMode.Server;
+            }
         }
 
     });
