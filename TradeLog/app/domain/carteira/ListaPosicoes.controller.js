@@ -6,21 +6,36 @@ sap.ui.define([
 ], function (DomainController, dialogoCarteira, dialogoPosicao, servicoCarteira) {
     "use strict";
 
+        let that;
+
     return DomainController.extend("tradelog.domain.carteira.ListaPosicoes", {
 
         viewData: { bindPath: '', posicaoSelected: false, idPosicaoSelected: false, idCarteira: undefined },
 
         onInit: function () {
+            that = this;
             var oComponent = this.getOwnerComponent();
             this._router = oComponent.getRouter();
             this.getRouter().getRoute('carteira').attachMatched(this.onRouteMatched, this);
         },
+        onRouteMatched:onRouteMatched,
+        guardaDadosPosicao:guardaDadosPosicao,
+        bindView:bindView,
+        callDepositaValorCarteira:callDepositaValorCarteira,
+        onClickPosicao:onClickPosicao,
+        onDialogCreatePosition:onDialogCreatePosition,
+        retirarValorCarteira:retirarValorCarteira,
+        onDialogAddFunds:onDialogAddFunds,
+        onDialogRemoveFunds:onDialogRemoveFunds
+
+
+        });
 
         /** Método chamado cada vez que o usuário acessa a tela
          * @function onRouteMatched
          * @return {type} {description}
          */
-        onRouteMatched: function (evt) {
+        function onRouteMatched (evt) {
             this.viewData.idCarteira = evt.getParameter("arguments").carteira;
             var sEntityPath = `/Carteira(${evt.getParameter("arguments").carteira})`;
             this.bindView(sEntityPath);
@@ -28,13 +43,21 @@ sap.ui.define([
             this.viewData.posicaoSelected = false;
             this.viewData.idPosicaoSelected = false;
 
-        },
+        }
+
+        /**
+         * evento chamado quando os dados da posicao são carregados
+         */
+       function guardaDadosPosicao (evt) {
+            var model = this.getView().getModel("viewModel");
+            debugger;
+        }
 
         /**
          *Método que 'binda' a view atual com o caminho da entidade
         * @param sEntityPath
         */
-        bindView: function (sEntityPath) {
+        function bindView (sEntityPath) {
             //this.getView().byId("tablePosicao").bindElement(sEntityPath);
             this.viewData.bindPath = sEntityPath;
 
@@ -44,16 +67,13 @@ sap.ui.define([
 
             var viewModel = new sap.ui.model.json.JSONModel(this.viewData, true);
             this.getView().setModel(viewModel, "viewModel");
-        },
+        }
 
-        callDepositaValorCarteira: function (valor, descricaoMovimento) {
+        function callDepositaValorCarteira  (valor, descricaoMovimento) {
             servicoCarteira.depositaValorCarteira.call(this, valor, descricaoMovimento);
-        },
+        }
 
-
-
-
-        onClickPosicao: function (evt) {
+       function onClickPosicao (evt) {
             //debugger;
             this.viewData.idPosicaoSelected = evt.getSource().data().IdPosicao;
             this.viewData.posicaoSelected = this.viewData.idPosicaoSelected != undefined;
@@ -63,10 +83,10 @@ sap.ui.define([
             // this.getView().byId("conteudoDetalhePosicao").bindElement(`/Posicao(${this.viewData.idPosicaoSelected})`);
             //this.getView().byId("panelListTrades").bindElement(`/Posicao(${this.viewData.idPosicaoSelected})`);
 
-        },
+        }
 
         /*Dialogo para criar uma posição nova (ou automaticamente adicionar à uma posição existente) */
-        onDialogCreatePosition: function (evt) {
+        function onDialogCreatePosition (evt) {
             var carteiraAtual = this.getView().getBindingContext().getObject();
             var parameters = {
                 IdCarteira: carteiraAtual.IdCarteira,
@@ -75,19 +95,18 @@ sap.ui.define([
             };
             dialogoPosicao.dialogPosition.call(this, evt, parameters, servicoCarteira);
 
-        },
+        }
 
-        retirarValorCarteira: function (valor, descricaoMovimento) {
+        function retirarValorCarteira (valor, descricaoMovimento) {
             servicoCarteira.retiraValorCarteira.call(this, valor, descricaoMovimento);
-        },
+        }
 
-        onDialogAddFunds: function (evt) {
+        function onDialogAddFunds (evt) {
             dialogoCarteira.dialogAddFunds.call(this, evt);
-        },
+        }
 
-        onDialogRemoveFunds: function (evt) {
+        function onDialogRemoveFunds (evt) {
             dialogoCarteira.dialogRemoveFunds.call(this, evt);
-        },
+        }
 
-    });
 });

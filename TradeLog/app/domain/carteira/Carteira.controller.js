@@ -71,7 +71,6 @@ sap.ui.define([
                 var binding = list.getBinding("items");
                 var sort = new sap.ui.model.Sorter("IdMovimento", true, false);
                 if (binding == null) {
-                    debugger;
                     return;
                 }
                 binding.sOperationMode = sap.ui.model.odata.OperationMode.Server;
