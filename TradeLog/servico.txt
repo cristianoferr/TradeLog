@@ -1,8 +1,11 @@
+ items="{path : 'Arquivos', events: {
+                                change: '.contarRegistros'
+                            },
 
 
 ---
 Tarefas:
-- ao efetuar a operação mostrar a diferença entre o preço de compra e o stop
+- ao efetuar a operaï¿½ï¿½o mostrar a diferenï¿½a entre o preï¿½o de compra e o stop
 - posicao: somar todos os custos em um campo e subtrair esse campo da 'situaÃ§Ã£o'
 
 
