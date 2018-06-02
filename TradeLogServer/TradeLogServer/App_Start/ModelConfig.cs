@@ -29,6 +29,7 @@ namespace TradeLogServer.App_Start
         public static Microsoft.OData.Edm.IEdmModel GetModel()
         {
             ODataModelBuilder builder = new ODataConventionModelBuilder();
+            builder.Namespace = "TradeLogServer.Controllers";
 
             builder.EntitySet<Carteira>("Carteira");
             builder.EntitySet<Posicao>("Posicao");
@@ -47,12 +48,15 @@ namespace TradeLogServer.App_Start
             builder.EntitySet<Posicao>("Posicao").EntityType.Function("Trade").ReturnsFromEntitySet<Trade>("Trade");
             builder.EntitySet<Papel>("Papel").EntityType.Function("Posicao").ReturnsFromEntitySet<Posicao>("Posicao");
 
+            builder.EntitySet<Balanco>("Balanco").EntityType.Function("GetBalanco").ReturnsFromEntitySet<Balanco>("Balanco");
+
             //método chamado para atualizar os valores
             builder.EntitySet<Papel>("Papel").EntityType.Function("UpdateValores").Returns<String>();
             builder.EntitySet<Evolucao>("Evolucao").EntityType.Function("UpdateEvolucao").Returns<String>();
 
             CriaActionsUsuario(builder);
             CriaActionsCarteira(builder);
+            CriaActionsBalanco(builder);
             CriaActionsPapel(builder);
             CriaActionsPosicao(builder);
             CriaActionsTrade(builder);
@@ -68,11 +72,23 @@ namespace TradeLogServer.App_Start
             
             builder.EntityType<Movimento>().Property(a => a.CodigoPapel);
 
-            builder.Namespace = "TradeLogServer.Controllers";
+            
 
             IEdmModel model = builder.GetEdmModel();
 
             return model;
+        }
+
+        private static void CriaActionsBalanco(ODataModelBuilder builder)
+        {
+            
+           ActionConfiguration action = CreateAction<Balanco>(builder, "RemoveBalanco");
+            action.Parameter<int>("IdCarteira");
+            action.Parameter<int>("IdPapel");
+
+            action = CreateAction<Balanco>(builder, "AdicionaBalanco");
+            action.Parameter<int>("IdCarteira");
+            action.Parameter<int>("IdPapel");
         }
 
         private static void RegistraPropriedadesPapel(ODataModelBuilder builder)
@@ -83,6 +99,7 @@ namespace TradeLogServer.App_Start
         {
             builder.EntityType<Balanco>().Property(a => a.CodigoPapel);
             builder.EntityType<Balanco>().Property(a => a.ValorPapel);
+            builder.EntityType<Balanco>().Property(a => a.ValorAtual);
             builder.EntityType<Balanco>().Property(a => a.QtdPosse);
             
         }

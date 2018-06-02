@@ -40,7 +40,10 @@
                 <Column minScreenWidth="1400px" demandPopin="true" hAlign="Right" ><Text text="{i18n>posicao.percDif}"   /></Column>
             </columns>
             <items>
-            <ColumnListItem type="Navigation" press="onClickPosicao" app:IdPosicao="{IdPosicao}" app:CodigoPapel="{CodigoPapel}" app:ValorPosicaoAtual="{ValorPosicaoAtual}">
+            <ColumnListItem type="Navigation" press="onClickPosicao" app:IdPosicao="{IdPosicao}"
+            app:CodigoPapel="{CodigoPapel}" app:QuantidadeLiquida="{QuantidadeLiquida}"
+            app:PrecoMedioCompra="{PrecoMedioCompra}" app:PrecoMedioVenda="{PrecoMedioVenda}"
+             app:ValorPosicaoAtual="{ValorPosicaoAtual}">
                     <cells>
                         <Text text="{CodigoPapel}" />
                         <Text text="{path:'DataEntrada', formatter:'.formatter.formataData'}" />

@@ -2,39 +2,82 @@
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m" controllerName="tradelog.domain.balanco.consulta.BalancoCarteira"
+    xmlns:f="sap.ui.layout.form"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true"
     >
 
     <Panel expandable="true" expanded="true" headerText="Balanço de Ações">
+        <f:SimpleForm id="hboxCarteira"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			>
+			<f:content>
+                <Label text="Ações para completar Lote"/>
+                <Input value="{path:'LoteFill', type:'sap.ui.model.type.Integer' }" change="atualizaBalanco" editable="true"/>
+        	</f:content>
+		</f:SimpleForm>
+
+
         <Table id="tableBalanco" items="{Balanco}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
             <columns>
                 <Column width="5rem"><Text text="{i18n>posicao.nomePapel}"   /></Column>
-                <Column width="5rem"><Text text="Peso"   /></Column>
+                <Column width="8rem"><Text text="Congela Posição"   /></Column>
+                <Column width="4rem"><Text text="Peso"   /></Column>
                 <Column width="6rem"><Text text="Preço Ação"   /></Column>
-                <Column width="6rem" ><Text text="Qtd. Calculada"   /></Column>
+                <Column width="4rem"><Text text="Alvo" /></Column>
+                <Column width="4rem"><Text text="Alvo Ajust." /></Column>
                 <Column width="6rem" ><Text text="Valor Calc."   /></Column>
-                <Column width="6rem" ><Text text="Qtd. em Posse"   /></Column>
+                <Column width="4rem" ><Text text="Qtd. em Posse"   /></Column>
                 <Column width="6rem" ><Text text="Valor em Posse"   /></Column>
+                <Column width="6rem" ><Text text="Remove"   /></Column>
 
             </columns>
             <items>
-                <ColumnListItem>
+                <ColumnListItem app:CodigoPapel="{CodigoPapel}" app:FlagCongelado="{FlagCongelado}"
+                 app:ValorPapel="{ValorPapel}" app:QtdPosse="{QtdPosse}">
                     <cells>
-                        <Input value="{CodigoPapel}" enabled="false"/>
+                        <Label text="{CodigoPapel}" enabled="false" />
+                        <Select showSecondaryValues="true" selectedKey="{FlagCongelado}"
+                        selectionChange="atualizaBalanco"
+                        items="{
+                            path: 'dominio>/OpcoesCongela'
+                        }">
+                            <core:ListItem key="{dominio>key}" text="{dominio>text}" />
+                </Select>
+
                         <Input value="{path:'PesoPapel', type:'sap.ui.model.type.Float',
                                         formatOptions:{maxFractionDigits:2,minFractionDigits:2}}"
-                                         liveChange="inputFloat" change="checkFloat"/>
-                        <Input value="{path:'ValorPapel', formatter:'.formatter.formataValor'}" enabled="false"/>
-                        <Input value="" enabled="false"/>
-                        <Input value="" enabled="false"/>
-                        <Input value="{path:'QtdPosse', formatter:'.formatter.formataValor'}" enabled="false"/>
-                        <Input value="{parts:[{path:'QtdPosse'},{path:'ValorPapel'}], formatter:'.formatter.formataMultiplicacao'}" enabled="false"/>
+                                         change="atualizaBalanco"/>
+                        <Label text="{path:'ValorPapel', formatter:'.formatter.formataValor'}" enabled="false"/>
+                        <Label text="{parts:[{path:'PesoPapel'},{path:'CodigoPapel'},{path:'FlagCongelado'},{path:'ValorAtual'},{path:'ValorPapel'},{path:'cacheModel>/balancoFroze'}], formatter:'.formataAlvoRaw'}" enabled="false"/>
+                        <Label text="{parts:[{path:'PesoPapel'},{path:'CodigoPapel'},{path:'FlagCongelado'},{path:'ValorAtual'},{path:'ValorPapel'},{path:'cacheModel>/balancoFroze'}], formatter:'.formataAlvoAjustado'}" enabled="false"/>
+                        <Label text="{parts:[{path:'PesoPapel'},{path:'CodigoPapel'},{path:'FlagCongelado'},{path:'ValorAtual'},{path:'ValorPapel'},{path:'cacheModel>/balancoFroze'}], formatter:'.formataValorAjustado'}" enabled="false"/>
+                        <Label text="{QtdPosse}" enabled="false"/>
+                        <Label text="{parts:[{path:'QtdPosse'},{path:'ValorPapel'}], formatter:'.formatter.formataMultiplicacao'}" enabled="false"/>
+                        <Button icon="sap-icon://delete" app:IdPapel="{IdPapel}" app:IdCarteira="{IdCarteira}" press="removeBalanco"  />
 
                     </cells>
                 </ColumnListItem>
             </items>
         </Table>
+          <f:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+			>
+			<f:content>
+                <Label text="Adiciona Acao"/>
+
+                    <Select showSecondaryValues="true" id="selectIdPapelNovo" selectedKey="{cacheModel>/IdPapelNovo}"
+                        items="{
+                            path: '/Papel'
+                        }">
+                            <core:ListItem key="{IdPapel}" text="{Codigo} - {Nome}"
+                            additionalText= "{path:'ValorAtual', formatter:'.formatter.formataValor'}"/>
+                    </Select>
+                    <Button width="5rem" icon="sap-icon://add" press="adicionaBalanco"  />
+        	</f:content>
+		</f:SimpleForm>
     </Panel>
 
 </core:View>

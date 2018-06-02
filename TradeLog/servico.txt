@@ -67,3 +67,13 @@ ADD FOREIGN KEY  (IdCarteira) REFERENCES Carteira (IdCarteira);
 
 ALTER TABLE Balanco
 ADD FOREIGN KEY (IdPapel) REFERENCES Papel (IdPapel);
+
+alter table Carteira add LoteFill  INTEGER NULL;
+update Carteira set LoteFill=25;
+
+insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'F',(select IdPapel from Papel where Codigo='BRKM5.SA'));
+insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'T',(select IdPapel from Papel where Codigo='EMBR3.SA'));
+insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'T',(select IdPapel from Papel where Codigo='GGBR4.SA'));
+insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'F',(select IdPapel from Papel where Codigo='ITSA4.SA'));
+insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'F',(select IdPapel from Papel where Codigo='VALE3.SA'));
+insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'F',(select IdPapel from Papel where Codigo='WEGE3.SA'));

@@ -56,7 +56,7 @@
                     </IconTabFilter>
 
                     <IconTabFilter id="iconTabHolder" class="tamanhoMinimo" key="Holder"
-                        text="Balanceamento"
+                        text="Balanço"
                         icon="sap-icon://compare"
                         >
                         <content>

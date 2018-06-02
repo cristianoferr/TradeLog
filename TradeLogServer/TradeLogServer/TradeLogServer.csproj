@@ -311,6 +311,7 @@
     <Compile Include="Business\BaseBP.cs" />
     <Compile Include="Business\BPCarteira.cs" />
     <Compile Include="Business\BPEvolucao.cs" />
+    <Compile Include="Business\BPBalanco.cs" />
     <Compile Include="Business\BPTrade.cs" />
     <Compile Include="Business\BPHistorico.cs" />
     <Compile Include="Business\BPMovimento.cs" />
@@ -325,6 +326,7 @@
     <Compile Include="Controllers\MovimentoController.cs" />
     <Compile Include="Controllers\PapelController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BalancoController.cs" />
     <Compile Include="Controllers\PosicaoController.cs" />
     <Compile Include="Controllers\TradeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />

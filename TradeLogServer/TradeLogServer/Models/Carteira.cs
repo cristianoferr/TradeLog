@@ -20,6 +20,7 @@ namespace TradeLogServer.Models
         public float ValorLiquido { get; set; }
         public string NomeCarteira { get; set; }
 
+        public int LoteFill{ get; set; }
         public float RiscoPorPosicao { get; set; }
         public float RiscoPorCarteira { get; set; }
         public float CustoOperacaoPadrao { get; set; }

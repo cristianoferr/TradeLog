@@ -9,5 +9,15 @@
             "text": "tipoOperacao.Venda"
         }
     ],
-    "mostraImagens": true
+    "mostraImagens": true,
+    "OpcoesCongela": [
+        {
+            "key": "T",
+            "text": "Sim"
+        },
+        {
+            "key": "F",
+            "text": "Não"
+        }
+    ]
 }
