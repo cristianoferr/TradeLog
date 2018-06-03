@@ -77,3 +77,20 @@ insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'T'
 insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'F',(select IdPapel from Papel where Codigo='ITSA4.SA'));
 insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'F',(select IdPapel from Papel where Codigo='VALE3.SA'));
 insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'F',(select IdPapel from Papel where Codigo='WEGE3.SA'));
+---
+
+INSERT INTO Posicao (IdPosicao,PrecoMedioCompra,PrecoMedioVenda,PrecoStopAtual,QuantidadeVendida,IdPapel,IdUsuario,IdCarteira,DataEntrada,DataSaida,PrecoStopInicial,QuantidadeComprada,FlagAtivo,Anotacoes,CustoOperacao) VALUES (15,44.750000,0.000000,'40',0,8,2,3,{ts '2018-06-03 10:06:24'},null,40.000000,100,'T',null,20.000000);
+INSERT INTO Posicao (IdPosicao,PrecoMedioCompra,PrecoMedioVenda,PrecoStopAtual,QuantidadeVendida,IdPapel,IdUsuario,IdCarteira,DataEntrada,DataSaida,PrecoStopInicial,QuantidadeComprada,FlagAtivo,Anotacoes,CustoOperacao) VALUES (16,50.100000,0.000000,'48',0,61,2,3,{ts '2018-06-03 10:06:52'},null,48.000000,100,'T',null,20.000000);
+INSERT INTO Posicao (IdPosicao,PrecoMedioCompra,PrecoMedioVenda,PrecoStopAtual,QuantidadeVendida,IdPapel,IdUsuario,IdCarteira,DataEntrada,DataSaida,PrecoStopInicial,QuantidadeComprada,FlagAtivo,Anotacoes,CustoOperacao) VALUES (17,15.040000,0.000000,'14',0,29,2,3,{ts '2018-06-03 10:07:22'},null,14.000000,200,'T',null,20.000000);
+INSERT INTO Posicao (IdPosicao,PrecoMedioCompra,PrecoMedioVenda,PrecoStopAtual,QuantidadeVendida,IdPapel,IdUsuario,IdCarteira,DataEntrada,DataSaida,PrecoStopInicial,QuantidadeComprada,FlagAtivo,Anotacoes,CustoOperacao) VALUES (18,11.269001,0.000000,'10',0,33,2,3,{ts '2018-06-03 10:07:57'},null,10.000000,330,'T',null,20.000000);
+INSERT INTO Posicao (IdPosicao,PrecoMedioCompra,PrecoMedioVenda,PrecoStopAtual,QuantidadeVendida,IdPapel,IdUsuario,IdCarteira,DataEntrada,DataSaida,PrecoStopInicial,QuantidadeComprada,FlagAtivo,Anotacoes,CustoOperacao) VALUES (19,17.590000,0.000000,'15',0,64,2,3,{ts '2018-06-03 10:08:30'},null,15.000000,200,'T',null,20.000000);
+INSERT INTO Posicao (IdPosicao,PrecoMedioCompra,PrecoMedioVenda,PrecoStopAtual,QuantidadeVendida,IdPapel,IdUsuario,IdCarteira,DataEntrada,DataSaida,PrecoStopInicial,QuantidadeComprada,FlagAtivo,Anotacoes,CustoOperacao) VALUES (20,22.420000,0.000000,'20',0,23,2,3,{ts '2018-06-03 10:09:20'},null,20.000000,100,'T',null,20.000000);
+
+
+INSERT INTO Trade (IdTrade,PrecoTrade,QuantidadeVendida,Data,IdPosicao,QuantidadeComprada,CustoOperacao) VALUES (32,44.750000,0,{ts '2018-06-03 10:06:25'},15,100,20.000000);
+INSERT INTO Trade (IdTrade,PrecoTrade,QuantidadeVendida,Data,IdPosicao,QuantidadeComprada,CustoOperacao) VALUES (33,50.100000,0,{ts '2018-06-03 10:06:52'},16,100,20.000000);
+INSERT INTO Trade (IdTrade,PrecoTrade,QuantidadeVendida,Data,IdPosicao,QuantidadeComprada,CustoOperacao) VALUES (34,15.040000,0,{ts '2018-06-03 10:07:22'},17,200,20.000000);
+INSERT INTO Trade (IdTrade,PrecoTrade,QuantidadeVendida,Data,IdPosicao,QuantidadeComprada,CustoOperacao) VALUES (35,11.270000,0,{ts '2018-06-03 10:07:57'},18,300,20.000000);
+INSERT INTO Trade (IdTrade,PrecoTrade,QuantidadeVendida,Data,IdPosicao,QuantidadeComprada,CustoOperacao) VALUES (36,17.590000,0,{ts '2018-06-03 10:08:30'},19,200,20.000000);
+INSERT INTO Trade (IdTrade,PrecoTrade,QuantidadeVendida,Data,IdPosicao,QuantidadeComprada,CustoOperacao) VALUES (37,22.420000,0,{ts '2018-06-03 10:09:20'},20,100,20.000000);
+INSERT INTO Trade (IdTrade,PrecoTrade,QuantidadeVendida,Data,IdPosicao,QuantidadeComprada,CustoOperacao) VALUES (38,0.010000,0,{ts '2018-06-03 10:10:49'},18,30,0.000000);

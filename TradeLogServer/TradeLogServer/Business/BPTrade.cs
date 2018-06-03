@@ -21,12 +21,6 @@ namespace TradeLogServer.Business
                 return false;
             }
 
-            if (precoAcao <= 0)
-            {
-                err = "Invalid Price";
-                return false;
-            }
-
             float valorTotal = quantidade * precoAcao;
             BPPosicao bpPosicao = new BPPosicao();bpPosicao.db = db;
             Posicao posicao = bpPosicao.GetOrCreatePosicaoForPapel(carteira, idPapel, precoStopOpcional);
