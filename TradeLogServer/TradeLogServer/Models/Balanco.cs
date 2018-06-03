@@ -10,23 +10,40 @@ namespace TradeLogServer.Models
     [Table("Balanco")]
     public class Balanco : BaseModel
     {
-        [Key, Column(Order = 0),ForeignKey("Carteira")]
+        [Key]
+        public int IdBalanco { get; set; }
+
+        [ForeignKey("Carteira")]
         public int IdCarteira { get; set; }
         public Carteira Carteira { get; set; }
 
-        [Key, Column(Order = 1), ForeignKey("Papel")]
+        [ForeignKey("Papel")]
         public int IdPapel { get; set; }
         public Papel Papel { get; set; }
-
 
         public float PesoPapel { get; set; }
         public string FlagCongelado { get; set; }
 
 
         [NotMapped]
-        public float QtdPosse { get
+        public bool BoolCongelado
+        {
+            get
             {
-                int qtd = Carteira.Posicao.Where(pos => pos.Papel.Codigo == Papel.Codigo).Sum(x=>x.QuantidadeLiquida);
+                return FlagCongelado == "T";
+            }
+            set
+            {
+                FlagCongelado = value ? "T" : "F";
+            }
+        }
+
+        [NotMapped]
+        public float QtdPosse
+        {
+            get
+            {
+                int qtd = Carteira.Posicao.Where(pos => pos.Papel.Codigo == Papel.Codigo).Sum(x => x.QuantidadeLiquida);
                 return qtd;
             }
         }

@@ -34,25 +34,18 @@
 
             </columns>
             <items>
-                <ColumnListItem app:CodigoPapel="{CodigoPapel}" app:FlagCongelado="{FlagCongelado}"
-                 app:ValorPapel="{ValorPapel}" app:QtdPosse="{QtdPosse}">
+                <ColumnListItem app:CodigoPapel="{CodigoPapel}" app:BoolCongelado="{BoolCongelado}"
+                 app:ValorPapel="{ValorPapel}" app:QtdPosse="{QtdPosse}" app:PesoPapel="{PesoPapel}" app:ValorAtual="{ValorAtual}">
                     <cells>
                         <Label text="{CodigoPapel}" enabled="false" />
-                        <Select showSecondaryValues="true" selectedKey="{FlagCongelado}"
-                        selectionChange="atualizaBalanco"
-                        items="{
-                            path: 'dominio>/OpcoesCongela'
-                        }">
-                            <core:ListItem key="{dominio>key}" text="{dominio>text}" />
-                </Select>
-
+                        <Switch state="{BoolCongelado}" customTextOn="Sim" customTextOff="Não"/>
                         <Input value="{path:'PesoPapel', type:'sap.ui.model.type.Float',
                                         formatOptions:{maxFractionDigits:2,minFractionDigits:2}}"
                                          change="atualizaBalanco"/>
                         <Label text="{path:'ValorPapel', formatter:'.formatter.formataValor'}" enabled="false"/>
-                        <Label text="{parts:[{path:'PesoPapel'},{path:'CodigoPapel'},{path:'FlagCongelado'},{path:'ValorAtual'},{path:'ValorPapel'},{path:'cacheModel>/balancoFroze'}], formatter:'.formataAlvoRaw'}" enabled="false"/>
-                        <Label text="{parts:[{path:'PesoPapel'},{path:'CodigoPapel'},{path:'FlagCongelado'},{path:'ValorAtual'},{path:'ValorPapel'},{path:'cacheModel>/balancoFroze'}], formatter:'.formataAlvoAjustado'}" enabled="false"/>
-                        <Label text="{parts:[{path:'PesoPapel'},{path:'CodigoPapel'},{path:'FlagCongelado'},{path:'ValorAtual'},{path:'ValorPapel'},{path:'cacheModel>/balancoFroze'}], formatter:'.formataValorAjustado'}" enabled="false"/>
+                        <Label text="{parts:[{path:'PesoPapel'},{path:'CodigoPapel'},{path:'BoolCongelado'},{path:'ValorAtual'},{path:'ValorPapel'},{path:'cacheModel>/balancoFroze'}], formatter:'.formataAlvoRaw'}" enabled="false"/>
+                        <Label text="{parts:[{path:'PesoPapel'},{path:'CodigoPapel'},{path:'BoolCongelado'},{path:'ValorAtual'},{path:'ValorPapel'},{path:'cacheModel>/balancoFroze'}], formatter:'.formataAlvoAjustado'}" enabled="false"/>
+                        <Label text="{parts:[{path:'PesoPapel'},{path:'CodigoPapel'},{path:'BoolCongelado'},{path:'ValorAtual'},{path:'ValorPapel'},{path:'cacheModel>/balancoFroze'}], formatter:'.formataValorAjustado'}" enabled="false"/>
                         <Label text="{QtdPosse}" enabled="false"/>
                         <Label text="{parts:[{path:'QtdPosse'},{path:'ValorPapel'}], formatter:'.formatter.formataMultiplicacao'}" enabled="false"/>
                         <Button icon="sap-icon://delete" app:IdPapel="{IdPapel}" app:IdCarteira="{IdCarteira}" press="removeBalanco"  />
@@ -61,6 +54,34 @@
                 </ColumnListItem>
             </items>
         </Table>
+<!-- Form totalizador-->
+        <f:Form editable="false">
+			<f:layout>
+				<f:ResponsiveGridLayout
+					adjustLabelSpan="false"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="Totais">
+					<f:formElements>
+
+                        <f:FormElement label="Total Calculado">
+							<f:fields>
+								<Text text="{parts:[{path:'cacheModel>/TotalPosicao'},{path:'cacheModel>/balancoFroze'}],formatter:'.somaTotalCalculado'}" />
+							</f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="Total em Posse">
+							<f:fields>
+								<Text text="{parts:[{path:'cacheModel>/TotalPosicao'},{path:'cacheModel>/balancoFroze'}],formatter:'.somaTotalPosse'}" />
+							</f:fields>
+                        </f:FormElement>
+
+					</f:formElements>
+				</f:FormContainer>
+            </f:formContainers>
+		</f:Form>
+
           <f:SimpleForm
 			editable="true"
 			layout="ResponsiveGridLayout"

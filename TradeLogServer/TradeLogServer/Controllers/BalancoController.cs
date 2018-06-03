@@ -23,10 +23,10 @@ namespace TradeLogServer.Controllers
     {
 
         // GET: odata/Balanco(5)
-        [EnableQuery]
-        public IQueryable<Balanco> GetBalanco([FromODataUri] int key)
+        [EnableQuery,ODataRoute("Balanco")]
+        public IQueryable<Balanco> GetBalancos()
         {
-            var saida = db.Balancos.Where(balanco => balanco.IdCarteira == key && balanco.Carteira.IdUsuario == idUsuarioAtual).Include(p => p.Carteira).Include(p => p.Carteira.Posicao).Include(p => p.Carteira.Posicao.Select(x => x.Papel)).Include(p => p.Papel).OrderBy(p => p.Papel.Codigo); ;
+            var saida = db.Balancos.Where(balanco => balanco.Carteira.IdUsuario == idUsuarioAtual).Include(p => p.Carteira).Include(p => p.Carteira.Posicao).Include(p => p.Carteira.Posicao.Select(x => x.Papel)).Include(p => p.Papel).OrderBy(p => p.Papel.Codigo); ;
             return saida;
         }
 
@@ -54,8 +54,7 @@ namespace TradeLogServer.Controllers
 
         // PATCH: odata/Balanco(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        [HttpPatch]
-        public async Task<IHttpActionResult> Patch([FromODataUri] int IdCarteira, [FromODataUri] int IdPapel, Delta<Balanco> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Balanco> patch)
         {
 
             if (idUsuarioAtual == -1)
@@ -68,12 +67,14 @@ namespace TradeLogServer.Controllers
                 return BadRequest(ModelState);
             }
 
-            Balanco Balanco = await db.Balancos.FindAsync(IdCarteira, IdPapel);
+            Balanco Balanco = await db.Balancos.FindAsync(key);
             if (Balanco == null)
             {
                 return NotFound();
             }
-            if (Balanco.Carteira.IdUsuario != idUsuarioAtual)
+            Carteira cart = await db.Carteiras.FindAsync(Balanco.IdCarteira);
+
+            if (cart.IdUsuario != idUsuarioAtual)
             {
                 return BadRequest("NO PERMISSION!");
             }
@@ -86,7 +87,7 @@ namespace TradeLogServer.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BalancoExists(IdCarteira, IdPapel))
+                if (!BalancoExists(key))
                 {
                     return NotFound();
                 }
@@ -109,9 +110,9 @@ namespace TradeLogServer.Controllers
             base.Dispose(disposing);
         }
 
-        private bool BalancoExists(int IdCarteira, int IdPapel)
+        private bool BalancoExists(int IdBalanco)
         {
-            return db.Balancos.Count(e => e.IdCarteira == IdCarteira && e.IdPapel==IdPapel) > 0;
+            return db.Balancos.Count(e => e.IdBalanco == IdBalanco) > 0;
         }
     }
 }

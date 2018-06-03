@@ -46,30 +46,30 @@ server {
 
 
 --
+alter table Carteira add LoteFill             INTEGER NULL;
+update Carteira set LoteFill=25;
+
 CREATE TABLE Balanco
 (
-	IdCarteira           INT(10) NOT NULL,
-	IdPapel              int(10) NOT NULL,
 	PesoPapel            decimal(14,6) NULL,
-	FlagCongelado        CHAR(1) NULL
+	FlagCongelado        CHAR(1) NULL,
+	IdCarteira           INT(10) NULL,
+	IdPapel              int(10) NULL,
+	IdBalanco            int(10) NOT NULL
 );
 
+ALTER TABLE Balanco
+ADD PRIMARY KEY (IdBalanco);
 
 
 ALTER TABLE Balanco
-ADD PRIMARY KEY (IdCarteira,IdPapel);
-
-
-ALTER TABLE Balanco
-ADD FOREIGN KEY  (IdCarteira) REFERENCES Carteira (IdCarteira);
-
-
+ADD FOREIGN KEY (IdCarteira) REFERENCES Carteira (IdCarteira);
 
 ALTER TABLE Balanco
 ADD FOREIGN KEY (IdPapel) REFERENCES Papel (IdPapel);
 
-alter table Carteira add LoteFill  INTEGER NULL;
-update Carteira set LoteFill=25;
+ALTER TABLE Balanco
+MODIFY IdBalanco  INT(10) AUTO_INCREMENT;
 
 insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'F',(select IdPapel from Papel where Codigo='BRKM5.SA'));
 insert into Balanco (IdCarteira,PesoPapel,FlagCongelado,IdPapel) values (3,1,'T',(select IdPapel from Papel where Codigo='EMBR3.SA'));

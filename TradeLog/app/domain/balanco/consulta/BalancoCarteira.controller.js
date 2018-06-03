@@ -22,7 +22,9 @@ sap.ui.define([
         formataValorAjustado: formataValorAjustado,
         atualizaBalanco: atualizaBalanco,
         removeBalanco: removeBalanco,
-        adicionaBalanco: adicionaBalanco
+        adicionaBalanco: adicionaBalanco,
+        somaTotalCalculado: somaTotalCalculado,
+        somaTotalPosse: somaTotalPosse
 
 
     });
@@ -65,13 +67,16 @@ sap.ui.define([
     function bindTableBalanco() {
         var table = that.getView().byId("tableBalanco");
         //table.bindItems(`/Balanco(${that.viewData.carteiraAtual})`,
-        table.bindItems(that.viewData.bindPath + "/TradeLogServer.Controllers.Balanco",
-            table.getBindingInfo("items").template.clone());
+        var oFilters = [new sap.ui.model.Filter('IdCarteira', "EQ", that.viewData.carteiraAtual)];
+        table.bindItems(`/Balanco`,
+            //table.bindItems(that.viewData.bindPath + "/TradeLogServer.Controllers.Balanco",
+            table.getBindingInfo("items").template.clone(), null);
+
         var binding = table.getBinding("items");
         if (binding) {
             binding.sOperationMode = sap.ui.model.odata.OperationMode.Server;
         }
-
+        binding.filter(oFilters);
 
         table.attachUpdateFinished(function (evt) {
             var cacheModel = evt.oSource.getModel("cacheModel");
@@ -82,9 +87,11 @@ sap.ui.define([
             items.forEach((item) => {
                 var dado = {
                     CodigoPapel: item.data().CodigoPapel,
-                    FlagCongelado: item.data().FlagCongelado,
+                    BoolCongelado: item.data().BoolCongelado,
                     ValorPapel: item.data().ValorPapel,
-                    QtdPosse: item.data().QtdPosse
+                    QtdPosse: item.data().QtdPosse,
+                    PesoPapel: item.data().PesoPapel,
+                    ValorAtual: item.data().ValorAtual
                 };
                 if (dado.FlagCongelado !== 'T') {
                     totalPeso++;
@@ -96,7 +103,8 @@ sap.ui.define([
             cacheModel.setProperty("/balancos", balancos);
             cacheModel.setProperty("/balancoPeso", totalPeso);
             cacheModel.setProperty("/balancoFroze", totalFroze);
-            cacheModel.updateBindings();
+            console.log("balancoPeso:" + totalPeso);
+            //cacheModel.updateBindings();
             //  table.refreshItems();
         });
     }
@@ -106,13 +114,13 @@ sap.ui.define([
         //table.refreshItems();
         sap.table = table;
         var cacheModel = that.getModel("cacheModel");
-        cacheModel.updateBindings();
+        //cacheModel.updateBindings();
     }
 
-    function formataAlvoRaw(pesoPapel, CodigoPapel, FlagCongelado, ValorCarteiraAtual, ValorPapel) {
+    function formataAlvoRaw(pesoPapel, CodigoPapel, BoolCongelado, ValorCarteiraAtual, ValorPapel) {
 
         var dadoCache = buscaCache(CodigoPapel);
-        var isFrozen = FlagCongelado == "T";
+        var isFrozen = BoolCongelado;
         if (dadoCache) {
 
             if (isFrozen) {
@@ -145,14 +153,14 @@ sap.ui.define([
         return valor;
     }
 
-    function formataAlvoAjustado(pesoPapel, CodigoPapel, FlagCongelado, ValorCarteiraAtual, ValorPapel) {
-        var alvoRaw = formataAlvoRaw(pesoPapel, CodigoPapel, FlagCongelado, ValorCarteiraAtual, ValorPapel);
+    function formataAlvoAjustado(pesoPapel, CodigoPapel, BoolCongelado, ValorCarteiraAtual, ValorPapel) {
+        var alvoRaw = formataAlvoRaw(pesoPapel, CodigoPapel, BoolCongelado, ValorCarteiraAtual, ValorPapel);
         var alvoArr = parseInt(alvoRaw / 100) * 100;
         if (alvoArr <= 0) alvoArr = 100;
 
         var dadoCache = buscaCache(CodigoPapel);
         var loteFill = getDadoCarteira("LoteFill");
-        console.log("loteFill:" + loteFill);
+        //console.log("loteFill:" + loteFill);
 
         var alvoProx = alvoArr;
         if (alvoProx + 100 - alvoRaw < loteFill) {
@@ -162,10 +170,42 @@ sap.ui.define([
         return alvoProx;
     }
 
-    function formataValorAjustado(pesoPapel, CodigoPapel, FlagCongelado, ValorCarteiraAtual, ValorPapel) {
-        var alvo = formataAlvoAjustado(pesoPapel, CodigoPapel, FlagCongelado, ValorCarteiraAtual, ValorPapel);
+    function formataValorAjustado(pesoPapel, CodigoPapel, BoolCongelado, ValorCarteiraAtual, ValorPapel) {
+        var alvo = formataAlvoAjustado(pesoPapel, CodigoPapel, BoolCongelado, ValorCarteiraAtual, ValorPapel);
 
         return that.formatter.formataValor(alvo * ValorPapel);
+    }
+
+    /**
+     * Soma o total de valores calculados
+     * @param {*} totalPosicao
+     * @param {*} balancoFroze
+     */
+    function somaTotalCalculado(totalPosicao, balancoFroze) {
+        var cacheModel = that.getModel("cacheModel");
+        var balancos = cacheModel.getProperty("/balancos");
+        var soma = 0;
+        if (balancos == undefined) {
+            return 0;
+        }
+        balancos.forEach((item) => {
+            soma += formataAlvoAjustado(item.PesoPapel, item.CodigoPapel, item.BoolCongelado, item.ValorAtual, item.ValorPapel) * item.ValorPapel;
+        });
+        return that.formatter.formataValor(soma);
+    }
+
+    function somaTotalPosse(totalPosicao, balancoFroze) {
+        var cacheModel = that.getModel("cacheModel");
+        var balancos = cacheModel.getProperty("/balancos");
+        var soma = 0;
+        if (balancos == undefined) {
+            return 0;
+        }
+        balancos.forEach((item) => {
+            soma += item.QtdPosse * item.ValorPapel;
+        });
+        return that.formatter.formataValor(soma);
+
     }
 
     function buscaCache(CodigoPapel) {
