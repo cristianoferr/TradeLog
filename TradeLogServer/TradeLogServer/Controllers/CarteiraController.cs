@@ -70,12 +70,12 @@ namespace TradeLogServer.Controllers
         }
 
         // GET: odata/Carteira(5)/Posicao
-        [EnableQuery]
+        [EnableQuery(EnsureStableOrdering = false)]
         [HttpGet]
         [ODataRoute("Carteira({key})/Posicao")]
         public IQueryable<Posicao> Posicao([FromODataUri] int key)
         {
-            return db.Posicoes.Where(posicao => posicao.IdCarteira==key && posicao.IdUsuario==idUsuarioAtual && posicao.FlagAtivo == "T").Include(p => p.Papel).Include(p => p.Trade);
+            return db.Posicoes.Where(posicao => posicao.IdCarteira==key && posicao.IdUsuario==idUsuarioAtual && posicao.FlagAtivo == "T").Include(p => p.Papel).Include(p => p.Trade).OrderBy(p=>p.Papel.Codigo);
         }
 
         // GET: odata/Carteira(5)/Movimento

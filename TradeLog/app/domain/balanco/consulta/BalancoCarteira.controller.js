@@ -93,9 +93,10 @@ sap.ui.define([
                     PesoPapel: item.data().PesoPapel,
                     ValorAtual: item.data().ValorAtual
                 };
-                if (dado.FlagCongelado !== 'T') {
-                    totalPeso++;
+                if (dado.BoolCongelado) {
                     totalFroze += dado.QtdPosse * dado.ValorPapel;
+                } else {
+                    totalPeso++;
                 }
                 balancos.push(dado);
 
