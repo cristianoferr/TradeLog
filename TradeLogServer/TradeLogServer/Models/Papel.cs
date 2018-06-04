@@ -15,6 +15,7 @@ namespace TradeLogServer.Models
         public string Codigo{ get; set; }
         public string Nome{ get; set; }
         public float ValorAtual{ get; set; }
+        public int LotePadrao{ get; set; }
         public DateTime LastUpdate { get; set; }
         public string LastUpdateMessage { get; set; }
 

@@ -42,120 +42,37 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public IQueryable<Papel> GetPapel()
         {
-            return db.Papels;
+            return db.Papeis;
         }
 
         // GET: odata/Papel(5)
         [EnableQuery]
         public SingleResult<Papel> GetPapel([FromODataUri] int key)
         {
-            return SingleResult.Create(db.Papels.Where(papel => papel.IdPapel == key).OrderBy(x=>x.Codigo));
+            return SingleResult.Create(db.Papeis.Where(papel => papel.IdPapel == key).OrderBy(x=>x.Codigo));
         }
-/*
-        // PUT: odata/Papel(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] int key, Delta<Papel> patch)
+
+        [HttpPost]
+        public IHttpActionResult CadastraPapel(ODataActionParameters parameters)
         {
-           // Validate(patch.GetEntity());
+            int LotePadrao = (int)parameters["LotePadrao"];
+            string Codigo = (string)parameters["Codigo"];
+            string Nome = (string)parameters["Nome"];
 
-            if (!ModelState.IsValid)
+
+            string err = "";
+            bool resultado = bp.CadastraPapel(out err, idUsuarioAtual, Codigo,Nome,LotePadrao);
+
+            if (resultado)
             {
-                return BadRequest(ModelState);
+                return Ok("PAPEL OK");
             }
-
-            Papel papel = await db.Papels.FindAsync(key);
-            if (papel == null)
+            else
             {
-                return NotFound();
+                return BadRequest(err);
             }
-
-            patch.Put(papel);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PapelExists(key))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return Updated(papel);
         }
 
-        // POST: odata/Papel
-        public async Task<IHttpActionResult> Post(Papel papel)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Papels.Add(papel);
-            await db.SaveChangesAsync();
-
-            return Created(papel);
-        }
-
-        // PATCH: odata/Papel(5)
-        [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Papel> patch)
-        {
-           // Validate(patch.GetEntity());
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Papel papel = await db.Papels.FindAsync(key);
-            if (papel == null)
-            {
-                return NotFound();
-            }
-
-            patch.Patch(papel);
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PapelExists(key))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return Updated(papel);
-        }
-
-        // DELETE: odata/Papel(5)
-        public async Task<IHttpActionResult> Delete([FromODataUri] int key)
-        {
-            Papel papel = await db.Papels.FindAsync(key);
-            if (papel == null)
-            {
-                return NotFound();
-            }
-
-            db.Papels.Remove(papel);
-            await db.SaveChangesAsync();
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -167,7 +84,7 @@ namespace TradeLogServer.Controllers
 
         private bool PapelExists(int key)
         {
-            return db.Papels.Count(e => e.IdPapel == key) > 0;
+            return db.Papeis.Count(e => e.IdPapel == key) > 0;
         }
     }
 }

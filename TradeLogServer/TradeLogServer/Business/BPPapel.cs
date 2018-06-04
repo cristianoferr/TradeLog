@@ -12,11 +12,63 @@ namespace TradeLogServer.Business
 {
     public class BPPapel : BaseBP<Papel>
     {
+
+        internal bool CadastraPapel(out string err, int idUsuarioAtual, string codigo, string nome, int lotePadrao)
+        {
+            if (nome == "")
+            {
+                err = "Empty name";
+                return false;
+            }
+            if (codigo == "")
+            {
+                err = "Empty code";
+                return false;
+            }
+            if (lotePadrao<=0)
+            {
+                err = "Lote padrao invalido";
+                return false;
+            }
+            codigo = codigo.ToUpper();
+            nome = nome.ToUpper();
+
+            Papel papel = db.Papeis.Where(x => x.Codigo == codigo).FirstOrDefault();
+            if (papel != null)
+            {
+                err = "Papel já existe";
+                return false;
+            }
+            papel = new Papel();
+            papel.Codigo = codigo;
+            papel.Nome = nome;
+            papel.LotePadrao = lotePadrao;
+            papel.LastUpdate = DateTime.Now;
+
+            try
+            {
+                JObject saidaJson = PapelService.RequestData(codigo);
+            }
+            catch (Exception)
+            {
+                err = "Erro ao validar a ação";
+                return false;
+
+            }
+            db.Papeis.Add(papel);
+            db.SaveChanges();
+
+
+            err = "";
+            return true;
+        }
+
+
         internal string UpdateHistoricoDoPapel()
         {
 
             DateTime limiteHora = DateTime.Now.Subtract(TimeSpan.FromHours(3));
-            IList<Papel> papeis = db.Papels.Where(x=>(x.Posicao.Where(a => a.FlagAtivo == "T").ToList().Count >0) || x.LastUpdate < limiteHora).Include(x=>x.Posicao).ToList();
+            IList<Papel> papeis = db.Papeis.Where(x=>(x.Posicao.Where(a => a.FlagAtivo == "T").ToList().Count >0) || x.LastUpdate < limiteHora).Include(x=>x.Posicao).ToList();
 
             string saida = "Atualizando os papeis em...<br> Updating:\n ";
             saida = UpdatePapeis(saida,papeis);
@@ -78,17 +130,19 @@ namespace TradeLogServer.Business
             return saida;
         }
 
+        
+
         private Historico GetHistoricoForPapel(Papel papel, DateTime lastUpdate)
         {
 
-            Historico hist = db.Historicoes.Where(h => h.Papel.IdPapel == papel.IdPapel && h.Data.Day == lastUpdate.Day && h.Data.Month == lastUpdate.Month && h.Data.Year == lastUpdate.Year).FirstOrDefault();
+            Historico hist = db.Historicos.Where(h => h.Papel.IdPapel == papel.IdPapel && h.Data.Day == lastUpdate.Day && h.Data.Month == lastUpdate.Month && h.Data.Year == lastUpdate.Year).FirstOrDefault();
             if (hist == null)
             {
                 hist = new Historico();
                 hist.Papel = papel;
                 hist.IdPapel = papel.IdPapel;
                 hist.Data = lastUpdate;
-                db.Historicoes.Add(hist);
+                db.Historicos.Add(hist);
 
             }
             return hist;

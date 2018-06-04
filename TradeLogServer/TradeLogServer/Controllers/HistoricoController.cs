@@ -22,21 +22,21 @@ namespace TradeLogServer.Controllers
         [EnableQuery]
         public IQueryable<Historico> GetHistorico()
         {
-            return db.Historicoes;
+            return db.Historicos;
         }
 
         // GET: odata/Historico(5)
         [EnableQuery]
         public SingleResult<Historico> GetHistorico([FromODataUri] int key)
         {
-            return SingleResult.Create(db.Historicoes.Where(historico => historico.IdHistorico == key));
+            return SingleResult.Create(db.Historicos.Where(historico => historico.IdHistorico == key));
         }
 
         // GET: odata/Historico(5)/Papel
         [EnableQuery]
         public SingleResult<Papel> GetPapel([FromODataUri] int key)
         {
-            return SingleResult.Create(db.Historicoes.Where(m => m.IdHistorico == key).Select(m => m.Papel));
+            return SingleResult.Create(db.Historicos.Where(m => m.IdHistorico == key).Select(m => m.Papel));
         }
 
         protected override void Dispose(bool disposing)
@@ -50,7 +50,7 @@ namespace TradeLogServer.Controllers
 
         private bool HistoricoExists(int key)
         {
-            return db.Historicoes.Count(e => e.IdHistorico == key) > 0;
+            return db.Historicos.Count(e => e.IdHistorico == key) > 0;
         }
     }
 }

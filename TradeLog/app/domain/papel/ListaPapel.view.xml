@@ -14,6 +14,11 @@
             <mvc:XMLView viewName="tradelog.domain.login.LoggedUser"></mvc:XMLView>
 		</headerContent>
 
+        <Toolbar>
+        <ToolbarSpacer />
+            <Button  text="Novo Papel" icon="sap-icon://add"  type="Emphasized"  press="onDialogAddPapel"/>
+    </Toolbar>
+
  <Table id="tablePapel" items="{/Papel}"  growing="true" growingScrollToLoad="true" growingThreshold="50">
             <columns>
                 <Column ><Text text="{i18n>papel.codigo}"   /></Column>

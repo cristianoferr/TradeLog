@@ -42,7 +42,7 @@ namespace TradeLogServer.Business
 
         internal Posicao GetOrCreatePosicaoForPapel(Carteira carteira, int idPapel, float precoStopOpcional)
         {
-            Papel papel = db.Papels.Where(x => x.IdPapel == idPapel).FirstOrDefault();
+            Papel papel = db.Papeis.Where(x => x.IdPapel == idPapel).FirstOrDefault();
             if (papel == null) return null;
 
             Posicao posicao = db.Posicoes.Where(x => x.IdCarteira == carteira.IdCarteira && x.IdPapel == papel.IdPapel).Include(p => p.Papel).Include(p => p.Trade).FirstOrDefault();

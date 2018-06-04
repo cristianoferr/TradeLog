@@ -41,7 +41,7 @@ namespace TradeLogServer.Models
 
         public System.Data.Entity.DbSet<TradeLogServer.Models.Carteira> Carteiras { get; set; }
 
-        public System.Data.Entity.DbSet<TradeLogServer.Models.Papel> Papels { get; set; }
+        public System.Data.Entity.DbSet<TradeLogServer.Models.Papel> Papeis { get; set; }
 
         public System.Data.Entity.DbSet<TradeLogServer.Models.Movimento> Movimentoes { get; set; }
 
@@ -49,7 +49,7 @@ namespace TradeLogServer.Models
 
         public System.Data.Entity.DbSet<TradeLogServer.Models.Usuario> Usuarios { get; set; }
 
-        public System.Data.Entity.DbSet<TradeLogServer.Models.Historico> Historicoes { get; set; }
+        public System.Data.Entity.DbSet<TradeLogServer.Models.Historico> Historicos { get; set; }
 
         public System.Data.Entity.DbSet<TradeLogServer.Models.Trade> Trades { get; set; }
 

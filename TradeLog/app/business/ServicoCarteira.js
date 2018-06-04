@@ -4,7 +4,8 @@
         {
             depositaValorCarteira: depositaValorCarteira,
             criaPosicao: criaPosicao,
-            retiraValorCarteira: retiraValorCarteira
+            retiraValorCarteira: retiraValorCarteira,
+            cadastraPapel: cadastraPapel
         };
 
     return ServicoCarteira;
@@ -27,10 +28,14 @@
             "valor": valor,
             "descricao": descricaoMovimento
         };
-        var sServiceUrl = `Carteira/TradeLogServer.Controllers.RetiraFundos`;
+        var sServiceUrl = 'Carteira/TradeLogServer.Controllers.RetiraFundos';
         this.postData(sServiceUrl, parameters, sucessoTransferencia.bind(this), errorTransferencia.bind(this));
     }
 
+    function cadastraPapel(data) {
+        var sServiceUrl = 'Papel/TradeLogServer.Controllers.CadastraPapel';
+        this.postData(sServiceUrl, data, sucessoPapel.bind(this), errorPapel.bind(this));
+    }
 
     /*Executa a chamada ao backend que cria a Posição (executa o Trade) a partir dos parâmetros indicados */
     function criaPosicao(data) {
@@ -47,6 +52,15 @@
 
         var sServiceUrl = `Trade/TradeLogServer.Controllers.ExecutaTrade`;
         this.postData(sServiceUrl, parameters, sucessoTrade.bind(this), errorTrade.bind(this));
+    }
+
+    function sucessoPapel() {
+        this.toast("Sucesso ao cadastrar papel");
+        this.getView().getModel().refresh();
+    }
+
+    function errorPapel() {
+        this.toast("Erro ao cadastrar papel");
     }
 
     /*Callback quando há sucesso na transferencia de fundos à carteira */

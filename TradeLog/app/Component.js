@@ -43,6 +43,20 @@ sap.ui.define([
             //https://blogs.sap.com/2015/05/13/a-journey-towards-to-openui5-charts/
             sap.ui.getCore().loadLibrary("openui5.simplecharts", "./bower_components/openui5.simplecharts/resources/openui5/simplecharts");
             jQuery.sap.registerModulePath('bower_component', './bower_components');
+
+            // this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
+
+        },
+
+        getContentDensityClass: function () {
+            if (!this._sContentDensityClass) {
+                if (!sap.ui.Device.support.touch) {
+                    this._sContentDensityClass = "sapUiSizeCompact";
+                } else {
+                    this._sContentDensityClass = "sapUiSizeCozy";
+                }
+            }
+            return this._sContentDensityClass;
         },
 
         myNavBack: function () {

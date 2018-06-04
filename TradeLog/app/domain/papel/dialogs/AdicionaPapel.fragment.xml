@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<f:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+			adjustLabelSpan="false"
+			singleContainerFullSize="false" >
+        <f:content>
+            <core:Title text="Adiciona Papel" />
+                <Label text="Codigo (padrão yahoo)" />
+                <Input value="{localModel>/Codigo}" />
+
+                <Label text="Nome" />
+                <Input value="{localModel>/Nome}" />
+
+                <Label text="Lote Padrao" />
+                <Input value="{localModel>/LotePadrao}" />
+        </f:content>
+    </f:SimpleForm>
+</core:FragmentDefinition>

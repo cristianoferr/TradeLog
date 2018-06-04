@@ -179,8 +179,11 @@ namespace TradeLogServer.App_Start
 
          private static void CriaActionsPapel(ODataModelBuilder builder)
          {
-             //ActionConfiguration action = CreateAction<Papel>(builder, "Update");
-         }
+            ActionConfiguration action = CreateAction<Papel>(builder, "CadastraPapel");
+            action.Parameter<string>("Codigo");
+            action.Parameter<string>("Nome");
+            action.Parameter<int>("LotePadrao");
+        }
 
          private static void CriaActionsPosicao(ODataModelBuilder builder)
          {
