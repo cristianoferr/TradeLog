@@ -54,17 +54,9 @@ sap.ui.define([
 
 
         bindPosicaoAtivas(sEntityPath);
-        bindPosicaoFechadas(sEntityPath);
     }
 
-    function bindPosicaoFechadas(sEntityPath) {
-        var table = that.getView().byId("tablePosicaoFechada");
-        if (!table) {
-            return;
-        }
 
-        table.bindItems(sEntityPath + "/PosicaoFechada", table.getBindingInfo("items").template.clone());
-    }
 
     function bindPosicaoAtivas(sEntityPath) {
 
@@ -73,6 +65,7 @@ sap.ui.define([
             return;
         }
         table.bindItems(sEntityPath + "/Posicao", table.getBindingInfo("items").template.clone());
+        //table.bindItems("Posicao", table.getBindingInfo("items").template.clone());
         table.attachUpdateFinished(function (evt) {
             var items = evt.oSource.getItems();
             var cacheModel = evt.oSource.getModel("cacheModel");

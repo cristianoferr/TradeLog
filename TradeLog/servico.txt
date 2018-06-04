@@ -48,3 +48,4 @@ server {
 INSERT INTO Papel (Codigo,Nome,ValorAtual,LotePadrao) VALUES ('GRND3.SA','Grendene',0,100);
 INSERT INTO Papel (Codigo,Nome,ValorAtual,LotePadrao) VALUES ('EZTC3.SA','EZTEC',0,100);
 INSERT INTO Papel (Codigo,Nome,ValorAtual,LotePadrao) VALUES ('PSSA3.SA','Porto Seguro SA',0,100);
+update Papel set LastUpdate=curdate() where LastUpdate is null;

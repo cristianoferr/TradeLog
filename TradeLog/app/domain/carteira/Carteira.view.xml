@@ -48,7 +48,7 @@
 
                     <IconTabFilter id="iconTabMovimento" class="tamanhoMinimo" key="Movimento"
                         text="{i18n>carteira.tabMovimento}"
-                        icon="sap-icon://history"
+                        icon="sap-icon://monitor-payments"
                         >
                         <content>
                             <core:Fragment fragmentName="tradelog.domain.movimento.fragments.ListaMovimentos" type="XML" />
@@ -56,7 +56,7 @@
                     </IconTabFilter>
 
                      <IconTabFilter id="iconTabPosicaoFechada" class="tamanhoMinimo" key="PosicaoFechada"
-                        text="Historico"
+                        text="{i18n>carteira.tabPosicaoFechada}"
                         icon="sap-icon://time-entry-request"
                         >
                         <content>

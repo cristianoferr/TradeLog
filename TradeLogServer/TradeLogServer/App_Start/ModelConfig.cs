@@ -119,11 +119,13 @@ namespace TradeLogServer.App_Start
          {
              builder.EntityType<Carteira>().Property(a => a.ValorAtual);
              builder.EntityType<Carteira>().HasMany(a => a.Posicao);
+            builder.EntityType<Carteira>().HasMany(a => a.PosicaoFechada);
 
-             builder.EntityType<Carteira>().Property(a => a.ValorSaldoAtual);
+            builder.EntityType<Carteira>().Property(a => a.ValorSaldoAtual);
              builder.EntityType<Carteira>().Property(a => a.ValorMedioCompra);
              builder.EntityType<Carteira>().Property(a => a.ValorMedioVenda);
-             builder.EntityType<Carteira>().Property(a => a.ValorRiscoPosicoes);
+            
+            builder.EntityType<Carteira>().Property(a => a.ValorRiscoPosicoes);
              builder.EntityType<Carteira>().Property(a => a.ValorRiscoMaximoCarteira);
              builder.EntityType<Carteira>().Property(a => a.SaldoRiscoCarteira);
              builder.EntityType<Carteira>().Property(a => a.PercRiscoAtual);

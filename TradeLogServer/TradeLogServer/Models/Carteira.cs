@@ -36,7 +36,17 @@ namespace TradeLogServer.Models
                 if (Posicao == null) return null;
                 return Posicao.Where(x => x.FlagAtivo == "T").ToList(); }
         }
-        
+
+        [NotMapped]
+        public ICollection<Posicao> PosicaoFechada
+        {
+            get
+            {
+                if (Posicao == null) return null;
+                return Posicao.Where(x => x.FlagAtivo == "F").ToList();
+            }
+        }
+
 
         [NotMapped]
         public float ValorAtual

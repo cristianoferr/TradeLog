@@ -81,7 +81,7 @@ namespace TradeLogServer.Controllers
         // GET: odata/Carteira(5)/PosicaoFechada
         [EnableQuery(EnsureStableOrdering = false)]
         [HttpGet]
-       /* [ODataRoute("Carteira({key})/PosicaoFechada")]*/
+        [ODataRoute("Carteira({key})/PosicaoFechada")]
         public IQueryable<Posicao> PosicaoFechada([FromODataUri] int key)
         {
             return db.Posicoes.Where(posicao => posicao.IdCarteira == key && posicao.IdUsuario == idUsuarioAtual && posicao.FlagAtivo == "F").Include(p => p.Papel).Include(p => p.Trade).OrderByDescending(p => p.DataSaida);

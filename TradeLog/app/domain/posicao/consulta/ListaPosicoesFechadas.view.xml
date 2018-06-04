@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="tradelog.domain.posicao.consulta.ListaPosicoes"
+    controllerName="tradelog.domain.posicao.consulta.ListaPosicoesFechadas"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     xmlns:mvc="sap.ui.core.mvc"
@@ -18,10 +18,8 @@
                 <Column minScreenWidth="1200px" demandPopin="true" hAlign="Center" width="5rem"><Text text="{i18n>posicao.dataSaida}"   /></Column>
                 <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Right"><Text text="{i18n>posicao.precoMedioCompra}"   /></Column>
                 <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Right"><Text text="{i18n>posicao.precoMedioVenda}"   /></Column>
-                <Column  hAlign="Right"><Text text="{i18n>posicao.precoAtual}"   /></Column>
                 <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Text text="{i18n>posicao.quantidadeComprada}"   /></Column>
                 <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right"><Text text="{i18n>posicao.quantidadeVendida}"   /></Column>
-                <Column hAlign="Right"><Text text="{i18n>posicao.quantidadeLiquida}"   /></Column>
                 <Column hAlign="Right"><Text text="{i18n>posicao.precoStopAtual}" /></Column>
                 <Column hAlign="Right"><Text text="{i18n>posicao.situacaoAtual}"   /></Column>
                 <Column minScreenWidth="1400px" demandPopin="true" hAlign="Right" ><Text text="{i18n>posicao.valorDif}"   /></Column>
@@ -35,13 +33,9 @@
                         <Text text="{path:'DataSaida', formatter:'.formatter.formataData'}" />
                         <ObjectNumber number="{path:'PrecoMedioCompra', formatter:'.formatter.formataValor'}"  unit="$"/>
                         <ObjectNumber number="{path:'PrecoMedioVenda', formatter:'.formatter.formataValor'}"  unit="$"/>
-                        <ObjectNumber number="{path:'PrecoAtual', formatter:'.formatter.formataValor'}" unit="$"/>
                         <ObjectNumber number="{QuantidadeComprada}" />
                         <ObjectNumber number="{QuantidadeVendida}" />
-                        <ObjectNumber number="{QuantidadeLiquida}"  state="{path: 'QuantidadeLiquida',
-							formatter: '.formatter.stateValor'
-						}"/>
-                        <ObjectNumber number="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}"
+                      <ObjectNumber number="{path:'PrecoStopAtual', formatter:'.formatter.formataValor'}"
                          state="{parts:[{path: 'PrecoStopAtual'},{path: 'PrecoMedioCompra'}],formatter: '.formatter.stateValorMaior'}"
                          unit="$"/>
                         <ObjectNumber number="{path:'ValorPosicaoAtual', formatter:'.formatter.formataValor'}"  unit="$"/>
