@@ -42,20 +42,16 @@ namespace TradeLogServer.App_Start
 
             //Mapeando navigation properties
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Posicao").ReturnsFromEntitySet<Posicao>("Posicao");
+            builder.EntitySet<Carteira>("Carteira").EntityType.Function("PosicaoFechada").ReturnsFromEntitySet<Posicao>("Posicao");
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Balanco").ReturnsFromEntitySet<Balanco>("Balanco");
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Movimento").ReturnsFromEntitySet<Movimento>("Movimento");
             builder.EntitySet<Carteira>("Carteira").EntityType.Function("Evolucao").ReturnsFromEntitySet<Evolucao>("Evolucao");
             builder.EntitySet<Posicao>("Posicao").EntityType.Function("Trade").ReturnsFromEntitySet<Trade>("Trade");
             builder.EntitySet<Papel>("Papel").EntityType.Function("Posicao").ReturnsFromEntitySet<Posicao>("Posicao");
 
-            //builder.EntitySet<Balanco>("Balanco").EntityType.Function("Evolucao").ReturnsFromEntitySet<Evolucao>("Evolucao");
-            /* 
-             function.Parameter<int>("IdCarteira");
-             function.ReturnsCollectionFromEntitySet<Balanco>("Balanco");*/
-            var function = builder.EntitySet<Balanco>("Balanco").EntityType.Function("Balancos");
-           //  var function = builder.Function("Balancos");
+           /* var function = builder.EntitySet<Balanco>("Balanco").EntityType.Function("Balancos");
             function.Parameter<int>("IdCarteira");
-            function.ReturnsCollectionFromEntitySet<Balanco>("Balanco");
+            function.ReturnsCollectionFromEntitySet<Balanco>("Balanco");*/
 
 
             //método chamado para atualizar os valores

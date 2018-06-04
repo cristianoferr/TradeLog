@@ -40,53 +40,6 @@ namespace TradeLogServer.Business
         }
 
 
-        /* internal bool FechaPosicao(out string err, int idUsuarioAtual, int idPosicao, float valorFechamento,int quantidadeFechada)
-{
-    err = "";
-    quantidadeFechada = Math.Abs(quantidadeFechada);
-    if (quantidadeFechada == 0)
-    {
-        err = "Posicao: 0 quantity";
-        return false;
-    }
-    Posicao posicao = GetValidPosicao(idPosicao, idUsuarioAtual);
-
-    if (posicao == null)
-    {
-        err = "Posicao: NotFound ";
-        return false;
-    }
-    if (posicao.IdCarteira == null || posicao.IdCarteira==0)
-    {
-        err = "Posicao: Already Closed ";
-        return false;
-    }
-
-    int idCarteira = posicao.IdCarteira ?? default(int);
-    Carteira carteira = GetValidCarteira(idCarteira, idUsuarioAtual);
-    posicao.Quantidade -= quantidadeFechada;
-    if (posicao.Quantidade < 0)
-    {
-        quantidadeFechada += posicao.Quantidade;
-        posicao.Quantidade = 0;
-    }
-
-    if (posicao.Quantidade == 0)
-    {
-        posicao.Carteira = null;
-        posicao.IdCarteira = null;
-        posicao.DataSaida = DateTime.Now;
-    }
-
-    float valor = valorFechamento * quantidadeFechada;
-    string saida = String.Format("Selling {0}x{1} of {2} for $ {3}, you have {4} stocks left.",valorFechamento,quantidadeFechada,posicao.CodigoPapel, valor,posicao.Quantidade);
-    MovimentaSaldoParaCarteira(valor-carteira.CustoOperacaoPadrao, saida, carteira);
-
-    SalvaDados();
-    return true;
-}*/
-
-
         internal Posicao GetOrCreatePosicaoForPapel(Carteira carteira, int idPapel, float precoStopOpcional)
         {
             Papel papel = db.Papels.Where(x => x.IdPapel == idPapel).FirstOrDefault();

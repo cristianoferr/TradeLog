@@ -8,7 +8,7 @@ sap.ui.define([
 
     let that;
 
-    return DomainController.extend("tradelog.domain.carteira.ListaPosicoes", {
+    return DomainController.extend("tradelog.domain.posicao.consulta.ListaPosicoes", {
 
         viewData: { bindPath: '', posicaoSelected: false, idPosicaoSelected: false, idCarteira: undefined },
 
@@ -52,8 +52,26 @@ sap.ui.define([
         //that.getView().byId("tablePosicao").bindElement(sEntityPath);
         that.viewData.bindPath = sEntityPath;
 
+
+        bindPosicaoAtivas(sEntityPath);
+        bindPosicaoFechadas(sEntityPath);
+    }
+
+    function bindPosicaoFechadas(sEntityPath) {
+        var table = that.getView().byId("tablePosicaoFechada");
+        if (!table) {
+            return;
+        }
+
+        table.bindItems(sEntityPath + "/PosicaoFechada", table.getBindingInfo("items").template.clone());
+    }
+
+    function bindPosicaoAtivas(sEntityPath) {
+
         var table = that.getView().byId("tablePosicao");
-        sap.ui.tablePosicao = table;
+        if (!table) {
+            return;
+        }
         table.bindItems(sEntityPath + "/Posicao", table.getBindingInfo("items").template.clone());
         table.attachUpdateFinished(function (evt) {
             var items = evt.oSource.getItems();

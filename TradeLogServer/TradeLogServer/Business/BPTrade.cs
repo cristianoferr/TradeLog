@@ -55,6 +55,7 @@ namespace TradeLogServer.Business
             if (IsClosing)
             {
                 posicao.FlagAtivo = "F";
+                posicao.DataSaida = DateTime.Now;
             }
 
             SalvaDados();

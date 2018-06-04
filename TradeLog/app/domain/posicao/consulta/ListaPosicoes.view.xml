@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="tradelog.domain.carteira.ListaPosicoes"
+    controllerName="tradelog.domain.posicao.consulta.ListaPosicoes"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     xmlns:mvc="sap.ui.core.mvc"

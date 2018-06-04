@@ -12,7 +12,7 @@
                         icon="sap-icon://form"
                         >
                         <content>
-                            <mvc:XMLView viewName="tradelog.domain.carteira.ListaPosicoes"
+                            <mvc:XMLView viewName="tradelog.domain.posicao.consulta.ListaPosicoes"
                                 app:domainAtual="carteira"  app:entidade="{viewModel>/bindPath}/Posicao"></mvc:XMLView>
                         </content>
                     </IconTabFilter>
@@ -52,6 +52,16 @@
                         >
                         <content>
                             <core:Fragment fragmentName="tradelog.domain.movimento.fragments.ListaMovimentos" type="XML" />
+                        </content>
+                    </IconTabFilter>
+
+                     <IconTabFilter id="iconTabPosicaoFechada" class="tamanhoMinimo" key="PosicaoFechada"
+                        text="Historico"
+                        icon="sap-icon://time-entry-request"
+                        >
+                        <content>
+                            <mvc:XMLView viewName="tradelog.domain.posicao.consulta.ListaPosicoesFechadas"
+                                app:domainAtual="carteira"  app:entidade="{viewModel>/bindPath}/Posicao"></mvc:XMLView>
                         </content>
                     </IconTabFilter>
 
